@@ -1,6 +1,8 @@
 package solr.main;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrClient;
@@ -12,11 +14,18 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
 public class SolrSearch {
+	
+	
 
 	public static void main(String[] args) {
 
 		try {
 
+			List<String> content = Files.readAllLines(Paths.get("./framework/meta.txt"));
+			for (String string : content) {
+				String x = string;
+				System.out.println(x);
+			}
 			
 			String urlString = "http://localhost:8983/solr/gettingstarted";
 			SolrClient solr = new HttpSolrClient.Builder(urlString).build();
