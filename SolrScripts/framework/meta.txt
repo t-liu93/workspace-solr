@@ -1,0 +1,17 @@
+messages.message:/.*[Ii]t appears.*/
+messages.message:/.*[Ii]t seems.*/
+messages.message:/.*argues that.*/
+messages.message:/.*claims that.*/
+messages.message:/.*contends that.*/
+messages.message:/.*maintains that.*/
+messages.message:/.*[Tt]here is a probability.*/
+messages.message:/.*[Tt]here is a likelihood.*/
+messages.message:/.*[Tt]here is a possibility.*/
+messages.message:/.*[Tt]here is a chance.*/
+messages.message:/.*[Ii] didn't understand.*/
+messages.message:/.*[Ii] did not understand.*/
+messages.message:/.*[Ii] didn't know.*/
+messages.message:/.*[Ii] did not know.*/
+messages.message:/.*[Ii] didn't get it.*/
+messages.message:/.*[Ii] did not get it.*/
+messages.message:/.*[Ii]t turns out.*/
