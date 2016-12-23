@@ -14,6 +14,7 @@ public class CheckCodeReviewIDList {
 
 		BufferedReader br = null;
 		try {
+			//TODO check this URL and file
 			br = new BufferedReader(new FileReader("./results/code-review-id-list.txt"));
 			String line = br.readLine();
 
@@ -32,6 +33,7 @@ public class CheckCodeReviewIDList {
 
 		BufferedReader br2 = null;
 		try {
+			//TODO check this URL and file
 			br2 = new BufferedReader(new FileReader("./results/code-review-id-solr.txt"));
 			String line = br2.readLine();
 
