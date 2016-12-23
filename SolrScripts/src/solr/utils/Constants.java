@@ -21,4 +21,10 @@ public class Constants {
 	public static String MESSAGES_ID = "messages.id";
 	
 	public static String MESSAGES_MESSAGE = "messages.message";
+	
+	public static String COMMA = ",";
+	
+	public static String TWO_DOTS = ":";
+	
+	public static String SLASH = "/";
 }

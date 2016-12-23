@@ -17,5 +17,6 @@
 	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/stax2-api-3.1.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/woodstox-core-asl-4.4.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/zookeeper-3.4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/commons-lang3-3.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

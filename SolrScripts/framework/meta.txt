@@ -1,17 +1,17 @@
-messages.message:/.*[Ii]t appears.*/
-messages.message:/.*[Ii]t seems.*/
-messages.message:/.*argues that.*/
-messages.message:/.*claims that.*/
-messages.message:/.*contends that.*/
-messages.message:/.*maintains that.*/
-messages.message:/.*[Tt]here is a probability.*/
-messages.message:/.*[Tt]here is a likelihood.*/
-messages.message:/.*[Tt]here is a possibility.*/
-messages.message:/.*[Tt]here is a chance.*/
-messages.message:/.*[Ii] didn't understand.*/
-messages.message:/.*[Ii] did not understand.*/
-messages.message:/.*[Ii] didn't know.*/
-messages.message:/.*[Ii] did not know.*/
-messages.message:/.*[Ii] didn't get it.*/
-messages.message:/.*[Ii] did not get it.*/
-messages.message:/.*[Ii]t turns out.*/
+.*[Ii]t appears.*
+.*[Ii]t seems.*
+.*argues that.*
+.*claims that.*
+.*contends that.*
+.*maintains that.*
+.*[Tt]here is a probability.*
+.*[Tt]here is a likelihood.*
+.*[Tt]here is a possibility.*
+.*[Tt]here is a chance.*
+.*[Ii] didn't understand.*
+.*[Ii] did not understand.*
+.*[Ii] didn't know.*
+.*[Ii] did not know.*
+.*[Ii] didn't get it.*
+.*[Ii] did not get it.*
+.*[Ii]t turns out.*
