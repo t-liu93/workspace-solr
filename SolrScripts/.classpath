@@ -2,5 +2,20 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/xercesImpl-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/opencsv-3.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/SentiStrengthCom.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/solr-core-6.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/solr-solrj-6.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/httpclient-4.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/httpcore-4.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/httpmime-4.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/jcl-over-slf4j-1.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/noggit-0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/stax2-api-3.1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/woodstox-core-asl-4.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Felipe/Documents/workspaces/library_jars/zookeeper-3.4.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
