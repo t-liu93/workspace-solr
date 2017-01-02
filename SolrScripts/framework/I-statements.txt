@@ -1,0 +1,33 @@
+.*[Ii] wonder.*
+.*[Ii] struggle.*
+.*[Ii]'m not sure.*
+.*[Ii] am not sure.*
+.*[Ii]'m curious.*
+.*[Ii] am curious.*
+.*[Ii] bet.*
+.*[Ii] wonder.*
+.*[Ii]'m not sure.*
+.*[Ii] am not sure.*
+.*[Ii]'m curious.*
+.*[Ii] am curious.*
+.*[Ii] would guess not.*
+.*[Ii]'m confused.*
+.*[Ii] am confused.*
+.*[Ii] guess.*
+.*[Ii] doubt.*
+.*[Ii] think.*
+.*[Ii] believe.*
+.*[Ii] guess.*
+.*[Ii] reckon.*
+.*[Ii] suppose.*
+.*[Ii] suspect.*
+.*[Ii] don't understand.*
+.*[Ii] do not understand.*
+.*[Ii] couldn't understand.*
+.*[Ii] could not understand.*
+.*[Ii] don't know.*
+.*[Ii] do not know.*
+.*[Ii] don't get it.*
+.*[Ii] do not get it.*
+.*[Ii]'m unsure.*
+.*[Ii] am unsure.*

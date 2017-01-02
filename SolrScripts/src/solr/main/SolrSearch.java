@@ -151,7 +151,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// the path for the framework file
-		String framework = "meta";
+		String framework = "I-statements";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);
