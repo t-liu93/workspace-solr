@@ -7,9 +7,9 @@ public class Test {
 
 	public static void main(String[] args) {
 
-		String line = "Hello, i didn't understand It appears that it is solved!  i didn't understand...";
+		String line = "Hello, I didn't understand It appears that it is solved!  i didn't understand...";
 
-		Pattern pattern = Pattern.compile(".*ders.*");
+		Pattern pattern = Pattern.compile("\\.*[Ii] didn't understand\\.*");
 
 		Matcher matcher = pattern.matcher(line);
 
@@ -18,6 +18,6 @@ public class Test {
 			count++;
 		}
 		System.out.println(count);
-
+		
 	}
 }

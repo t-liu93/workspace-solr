@@ -1,11 +1,16 @@
 package solr.main;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -30,8 +35,11 @@ public class SolrSearch {
 	 * @param framework
 	 */
 	public static void countFeaturesOccurrences(String framework) {
+		
+		// the path for the framework file
+		String frameworkPath = Constants.DIR_FRAMEWORK + framework + Constants._TXT;
 
-		System.out.println("Searching for framework: " + framework);
+		System.out.println("Searching for framework: " + frameworkPath);
 
 		try {
 			// call the Solr Cloud URL
@@ -41,12 +49,14 @@ public class SolrSearch {
 			String solrQuery = Constants.MESSAGES_MESSAGE + Constants.TWO_DOTS + Constants.SLASH;
 
 			// read the framework file
-			List<String> features = Files.readAllLines(Paths.get(framework));
-
+			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
+			
 			StringBuffer sb = new StringBuffer();
-
+			
 			// iterate over each feature
 			for (String feature : features) {
+
+				int numTotalHits = 0;
 
 				System.out.println("Searching for feature: " + feature);
 
@@ -58,10 +68,13 @@ public class SolrSearch {
 
 				// set the query
 				query.setQuery(solrQuery + feature + Constants.SLASH);
-
+				
 				// set the fields to be returned from the json
 				query.setFields(Constants._NUMBER, Constants.MESSAGES_ID, Constants.MESSAGES_MESSAGE);
-
+				
+				//TODO implement the pagination!!!
+				query.setRows(Constants._1000);
+				
 				// call the query
 				QueryResponse response = solr.query(query);
 
@@ -72,7 +85,10 @@ public class SolrSearch {
 				long numCodeReviewsFound = results.getNumFound();
 
 				System.out.println("Number of code reviews: " + numCodeReviewsFound);
-
+				
+				// add the number of code reviews to the string buffer
+				sb.append(numCodeReviewsFound + Constants.COMMA);
+				
 				// iterate over each code review
 				for (int i = 0; i < results.size(); ++i) {
 
@@ -83,19 +99,40 @@ public class SolrSearch {
 					// get the messages.message field
 					List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
 
-					int countMatches = StringUtils.countMatches(messages.toString(), feature);
-					System.out.println(countMatches);
+					int numMessagesFound = Constants._0;
 
+					String ptn = feature.replace(Constants.DOT_STAR, Constants.JAVA_REGEX);
+					
 					// iterate over the messages.message object to count the
 					// number of features within it
-					for (String string : messages) {
-						if (string.contains("like a reasonable")) {
-							String s = string;
-							System.out.println(s);
+					for (String message : messages) {
+						
+						Pattern pattern = Pattern.compile(ptn);
+
+						Matcher matcher = pattern.matcher(message);
+
+						while (matcher.find()) {
+							numMessagesFound++;
 						}
 					}
+					
+					numTotalHits = numTotalHits + numMessagesFound;
 				}
+				
+				// add the number of code reviews to the string buffer
+				sb.append(numTotalHits + Constants.NEW_LINE);
+				
+				System.out.println("Number of hit for feature => " + numTotalHits);
+				System.out.println("===========================");
 			}
+			
+			try (Writer writer = new BufferedWriter(
+					new OutputStreamWriter(new FileOutputStream(Constants.DIR_FRAMEWORK + framework + Constants._CSV), Constants._UTF_8))) {
+				writer.write(sb.toString());
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
@@ -111,7 +148,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// the path for the framework file
-		String framework = "./framework/meta.txt";
+		String framework = "probables";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);
