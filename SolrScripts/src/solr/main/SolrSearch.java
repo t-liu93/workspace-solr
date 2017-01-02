@@ -35,7 +35,7 @@ public class SolrSearch {
 	 * @param framework
 	 */
 	public static void countFeaturesOccurrences(String framework) {
-		
+
 		// the path for the framework file
 		String frameworkPath = Constants.DIR_FRAMEWORK + framework + Constants._TXT;
 
@@ -45,14 +45,14 @@ public class SolrSearch {
 			// call the Solr Cloud URL
 			SolrClient solr = new HttpSolrClient.Builder(Constants.URL_SORL).build();
 
-			// create the Solr query string base 
+			// create the Solr query string base
 			String solrQuery = Constants.MESSAGES_MESSAGE + Constants.TWO_DOTS + Constants.SLASH;
 
 			// read the framework file
 			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
-			
+
 			StringBuffer sb = new StringBuffer();
-			
+
 			// iterate over each feature
 			for (String feature : features) {
 
@@ -68,13 +68,13 @@ public class SolrSearch {
 
 				// set the query
 				query.setQuery(solrQuery + feature + Constants.SLASH);
-				
+
 				// set the fields to be returned from the json
 				query.setFields(Constants._NUMBER, Constants.MESSAGES_ID, Constants.MESSAGES_MESSAGE);
-				
-				//TODO implement the pagination!!!
+
+				// TODO implement the pagination!!!
 				query.setRows(Constants._1000);
-				
+
 				// call the query
 				QueryResponse response = solr.query(query);
 
@@ -85,10 +85,10 @@ public class SolrSearch {
 				long numCodeReviewsFound = results.getNumFound();
 
 				System.out.println("Number of code reviews: " + numCodeReviewsFound);
-				
+
 				// add the number of code reviews to the string buffer
 				sb.append(numCodeReviewsFound + Constants.COMMA);
-				
+
 				// iterate over each code review
 				for (int i = 0; i < results.size(); ++i) {
 
@@ -102,11 +102,11 @@ public class SolrSearch {
 					int numMessagesFound = Constants._0;
 
 					String ptn = feature.replace(Constants.DOT_STAR, Constants.JAVA_REGEX);
-					
+
 					// iterate over the messages.message object to count the
 					// number of features within it
 					for (String message : messages) {
-						
+
 						Pattern pattern = Pattern.compile(ptn);
 
 						Matcher matcher = pattern.matcher(message);
@@ -115,27 +115,30 @@ public class SolrSearch {
 							numMessagesFound++;
 						}
 					}
-					
+
 					numTotalHits = numTotalHits + numMessagesFound;
 				}
-				
+
 				// add the number of code reviews to the string buffer
 				sb.append(numTotalHits + Constants.NEW_LINE);
-				
+
 				System.out.println("Number of hit for feature => " + numTotalHits);
 				System.out.println("===========================");
 			}
-			
-			try (Writer writer = new BufferedWriter(
-					new OutputStreamWriter(new FileOutputStream(Constants.DIR_FRAMEWORK + framework + Constants._CSV), Constants._UTF_8))) {
+
+			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream(Constants.DIR_FRAMEWORK + framework + Constants._OUT + Constants._CSV),
+					Constants._UTF_8))) {
 				writer.write(sb.toString());
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			
+
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
+		
+		System.out.println("Done...");
 	}
 
 	/**
@@ -148,7 +151,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// the path for the framework file
-		String framework = "probables";
+		String framework = "meta";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);
