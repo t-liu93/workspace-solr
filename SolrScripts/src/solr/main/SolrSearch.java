@@ -67,7 +67,7 @@ public class SolrSearch {
 				System.out.println("Searching for feature: " + featureCaseInsensitive);
 
 				// add the feature to the string buffer
-				sb.append(featureCaseInsensitive + Constants.COMMA);
+				sb.append(featureCaseInsensitive + Constants.SEMICOLON);
 
 				// create the query object
 				SolrQuery query = new SolrQuery();
@@ -79,9 +79,7 @@ public class SolrSearch {
 				query.setFields(Constants._NUMBER, Constants.MESSAGES_ID, Constants.MESSAGES_MESSAGE);
 
 				// TODO implement the pagination!!!
-				query.setRows(Constants._20000);
-
-				System.out.println(query.getQuery());
+				query.setRows(Constants._50000);
 
 				// call the query
 				QueryResponse response = solr.query(query);
@@ -91,11 +89,11 @@ public class SolrSearch {
 
 				// count the number of code reviews with the feature
 				long numCodeReviewsFound = results.getNumFound();
-
+				
 				System.out.println("Number of code reviews => " + numCodeReviewsFound);
 
 				// add the number of code reviews to the string buffer
-				sb.append(numCodeReviewsFound + Constants.COMMA);
+				sb.append(numCodeReviewsFound + Constants.SEMICOLON);
 
 				// iterate over each code review
 				for (int i = 0; i < results.size(); ++i) {
@@ -141,11 +139,11 @@ public class SolrSearch {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-
+			
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		System.out.println("Done...");
 	}
 
@@ -159,7 +157,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// the framework
-		String framework = "probables";
+		String framework = "hedges";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);

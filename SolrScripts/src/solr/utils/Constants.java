@@ -22,7 +22,7 @@ public class Constants {
 
 	public static String MESSAGES_MESSAGE = "messages.message";
 
-	public static String COMMA = ",";
+	public static String SEMICOLON = ";";
 
 	public static String TWO_DOTS = ":";
 
@@ -52,7 +52,7 @@ public class Constants {
 
 	public static int _500 = 500;
 	
-	public static int _1000 = 1000;
-	
 	public static int _20000 = 20000;
+	
+	public static int _50000 = 50000;
 }

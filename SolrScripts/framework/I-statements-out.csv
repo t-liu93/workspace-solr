@@ -1,33 +1,33 @@
-.*[Ii] wonder.*,234,281
-.*[Ii] struggle.*,3,3
-.*[Ii]'m not sure.*,790,929
-.*[Ii] am not sure.*,239,310
-.*[Ii]'m curious.*,39,47
-.*[Ii] am curious.*,8,8
-.*[Ii] bet.*,16,22
-.*[Ii] wonder.*,234,281
-.*[Ii]'m not sure.*,790,929
-.*[Ii] am not sure.*,239,310
-.*[Ii]'m curious.*,39,47
-.*[Ii] am curious.*,8,8
-.*[Ii] would guess not.*,0,0
-.*[Ii]'m confused.*,33,33
-.*[Ii] am confused.*,5,6
-.*[Ii] guess.*,681,849
-.*[Ii] doubt.*,72,90
-.*[Ii] think.*,3666,5349
-.*[Ii] believe.*,563,687
-.*[Ii] guess.*,681,849
-.*[Ii] reckon.*,0,0
-.*[Ii] suppose.*,144,173
-.*[Ii] suspect.*,223,264
-.*[Ii] don't understand.*,183,221
-.*[Ii] do not understand.*,11,11
-.*[Ii] couldn't understand.*,3,4
-.*[Ii] could not understand.*,1,1
-.*[Ii] don't know.*,567,694
-.*[Ii] do not know.*,35,41
-.*[Ii] don't get it.*,4,5
-.*[Ii] do not get it.*,0,0
-.*[Ii]'m unsure.*,15,15
-.*[Ii] am unsure.*,6,6
+.*[Ii] wonder.*;234;281
+.*[Ii] struggle.*;3;3
+.*[Ii]'m not sure.*;790;929
+.*[Ii] am not sure.*;239;310
+.*[Ii]'m curious.*;39;47
+.*[Ii] am curious.*;8;8
+.*[Ii] bet.*;16;22
+.*[Ii] wonder.*;234;281
+.*[Ii]'m not sure.*;790;929
+.*[Ii] am not sure.*;239;310
+.*[Ii]'m curious.*;39;47
+.*[Ii] am curious.*;8;8
+.*[Ii] would guess not.*;0;0
+.*[Ii]'m confused.*;33;33
+.*[Ii] am confused.*;5;6
+.*[Ii] guess.*;681;849
+.*[Ii] doubt.*;72;90
+.*[Ii] think.*;3666;5349
+.*[Ii] believe.*;563;687
+.*[Ii] guess.*;681;849
+.*[Ii] reckon.*;0;0
+.*[Ii] suppose.*;144;173
+.*[Ii] suspect.*;223;264
+.*[Ii] don't understand.*;183;221
+.*[Ii] do not understand.*;11;11
+.*[Ii] couldn't understand.*;3;4
+.*[Ii] could not understand.*;1;1
+.*[Ii] don't know.*;567;694
+.*[Ii] do not know.*;35;41
+.*[Ii] don't get it.*;4;5
+.*[Ii] do not get it.*;0;0
+.*[Ii]'m unsure.*;15;15
+.*[Ii] am unsure.*;6;6

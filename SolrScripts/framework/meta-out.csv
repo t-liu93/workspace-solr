@@ -1,17 +1,17 @@
-.*[Ii]t appears.*,137,161
-.*[Ii]t seems.*,952,1181
-.*[Aa]rgues that.*,1,1
-.*[Cc]laims that.*,1,1
-.*[Cc]ontends that.*,0,0
-.*[Mm]aintains that.*,0,0
-.*[Tt]here is a probability.*,0,0
-.*[Tt]here is a likelihood.*,0,0
-.*[Tt]here is a possibility.*,4,5
-.*[Tt]here is a chance.*,3,3
-.*[Ii] didn't understand.*,6,6
-.*[Ii] did not understand.*,2,2
-.*[Ii] didn't know.*,49,54
-.*[Ii] did not know.*,6,6
-.*[Ii] didn't get it.*,2,2
-.*[Ii] did not get it.*,0,0
-.*[Ii]t turns out.*,108,119
+.*[Ii]t appears.*;137;161
+.*[Ii]t seems.*;952;1181
+.*[Aa]rgues that.*;1;1
+.*[Cc]laims that.*;1;1
+.*[Cc]ontends that.*;0;0
+.*[Mm]aintains that.*;0;0
+.*[Tt]here is a probability.*;0;0
+.*[Tt]here is a likelihood.*;0;0
+.*[Tt]here is a possibility.*;4;5
+.*[Tt]here is a chance.*;3;3
+.*[Ii] didn't understand.*;6;6
+.*[Ii] did not understand.*;2;2
+.*[Ii] didn't know.*;49;54
+.*[Ii] did not know.*;6;6
+.*[Ii] didn't get it.*;2;2
+.*[Ii] did not get it.*;0;0
+.*[Ii]t turns out.*;108;119
