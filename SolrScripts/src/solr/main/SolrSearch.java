@@ -56,24 +56,32 @@ public class SolrSearch {
 			// iterate over each feature
 			for (String feature : features) {
 
+				char firstChar = feature.charAt(2);
+
+				String featureCaseInsensitive = feature.replace(Constants.DOT_STAR + firstChar,
+						Constants.DOT_STAR + Constants.BRACKET_LEFT + Character.toUpperCase(firstChar)
+								+ Character.toLowerCase(firstChar) + Constants.BRACKET_RIGHT);
+
 				int numTotalHits = 0;
 
-				System.out.println("Searching for feature: " + feature);
+				System.out.println("Searching for feature: " + featureCaseInsensitive);
 
 				// add the feature to the string buffer
-				sb.append(feature + Constants.COMMA);
+				sb.append(featureCaseInsensitive + Constants.COMMA);
 
 				// create the query object
 				SolrQuery query = new SolrQuery();
 
 				// set the query
-				query.setQuery(solrQuery + feature + Constants.SLASH);
+				query.setQuery(solrQuery + featureCaseInsensitive + Constants.SLASH);
 
 				// set the fields to be returned from the json
 				query.setFields(Constants._NUMBER, Constants.MESSAGES_ID, Constants.MESSAGES_MESSAGE);
 
 				// TODO implement the pagination!!!
-				query.setRows(Constants._1000);
+				query.setRows(Constants._20000);
+
+				System.out.println(query.getQuery());
 
 				// call the query
 				QueryResponse response = solr.query(query);
@@ -84,7 +92,7 @@ public class SolrSearch {
 				// count the number of code reviews with the feature
 				long numCodeReviewsFound = results.getNumFound();
 
-				System.out.println("Number of code reviews: " + numCodeReviewsFound);
+				System.out.println("Number of code reviews => " + numCodeReviewsFound);
 
 				// add the number of code reviews to the string buffer
 				sb.append(numCodeReviewsFound + Constants.COMMA);
@@ -101,7 +109,7 @@ public class SolrSearch {
 
 					int numMessagesFound = Constants._0;
 
-					String ptn = feature.replace(Constants.DOT_STAR, Constants.JAVA_REGEX);
+					String ptn = featureCaseInsensitive.replace(Constants.DOT_STAR, Constants.JAVA_REGEX);
 
 					// iterate over the messages.message object to count the
 					// number of features within it
@@ -122,7 +130,7 @@ public class SolrSearch {
 				// add the number of code reviews to the string buffer
 				sb.append(numTotalHits + Constants.NEW_LINE);
 
-				System.out.println("Number of hit for feature => " + numTotalHits);
+				System.out.println("Number of general messages => " + numTotalHits);
 				System.out.println("===========================");
 			}
 
@@ -137,7 +145,7 @@ public class SolrSearch {
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		System.out.println("Done...");
 	}
 
@@ -151,7 +159,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// the path for the framework file
-		String framework = "I-statements";
+		String framework = "test";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);

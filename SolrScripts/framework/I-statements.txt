@@ -1,33 +1,33 @@
-.*[Ii] wonder.*
-.*[Ii] struggle.*
-.*[Ii]'m not sure.*
-.*[Ii] am not sure.*
-.*[Ii]'m curious.*
-.*[Ii] am curious.*
-.*[Ii] bet.*
-.*[Ii] wonder.*
-.*[Ii]'m not sure.*
-.*[Ii] am not sure.*
-.*[Ii]'m curious.*
-.*[Ii] am curious.*
-.*[Ii] would guess not.*
-.*[Ii]'m confused.*
-.*[Ii] am confused.*
-.*[Ii] guess.*
-.*[Ii] doubt.*
-.*[Ii] think.*
-.*[Ii] believe.*
-.*[Ii] guess.*
-.*[Ii] reckon.*
-.*[Ii] suppose.*
-.*[Ii] suspect.*
-.*[Ii] don't understand.*
-.*[Ii] do not understand.*
-.*[Ii] couldn't understand.*
-.*[Ii] could not understand.*
-.*[Ii] don't know.*
-.*[Ii] do not know.*
-.*[Ii] don't get it.*
-.*[Ii] do not get it.*
-.*[Ii]'m unsure.*
-.*[Ii] am unsure.*
+.*I wonder.*
+.*I struggle.*
+.*I'm not sure.*
+.*I am not sure.*
+.*I'm curious.*
+.*I am curious.*
+.*I bet.*
+.*I wonder.*
+.*I'm not sure.*
+.*I am not sure.*
+.*I'm curious.*
+.*I am curious.*
+.*I would guess not.*
+.*I'm confused.*
+.*I am confused.*
+.*I guess.*
+.*I doubt.*
+.*I think.*
+.*I believe.*
+.*I guess.*
+.*I reckon.*
+.*I suppose.*
+.*I suspect.*
+.*I don't understand.*
+.*I do not understand.*
+.*I couldn't understand.*
+.*I could not understand.*
+.*I don't know.*
+.*I do not know.*
+.*I don't get it.*
+.*I do not get it.*
+.*I'm unsure.*
+.*I am unsure.*

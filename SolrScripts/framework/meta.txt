@@ -1,17 +1,17 @@
-.*[Ii]t appears.*
-.*[Ii]t seems.*
+.*It appears.*
+.*It seems.*
 .*argues that.*
 .*claims that.*
 .*contends that.*
 .*maintains that.*
-.*[Tt]here is a probability.*
-.*[Tt]here is a likelihood.*
-.*[Tt]here is a possibility.*
-.*[Tt]here is a chance.*
-.*[Ii] didn't understand.*
-.*[Ii] did not understand.*
-.*[Ii] didn't know.*
-.*[Ii] did not know.*
-.*[Ii] didn't get it.*
-.*[Ii] did not get it.*
-.*[Ii]t turns out.*
+.*there is a probability.*
+.*there is a likelihood.*
+.*there is a possibility.*
+.*there is a chance.*
+.*I didn't understand.*
+.*I did not understand.*
+.*I didn't know.*
+.*I did not know.*
+.*I didn't get it.*
+.*I did not get it.*
+.*It turns out.*

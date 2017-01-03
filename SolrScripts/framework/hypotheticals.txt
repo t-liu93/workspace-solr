@@ -1,6 +1,6 @@
-.*[Ii] can't imagine.*
-.*[Ii] can not imagine.*
-.*[Ii] cannot imagine.*
-.*[Ww]hat if.*
-.*[Ii]magine.*
-.*[Ii] was wondering.*
+.*I can't imagine.*
+.*I can not imagine.*
+.*I cannot imagine.*
+.*what if.*
+.*imagine.*
+.*I was wondering.*

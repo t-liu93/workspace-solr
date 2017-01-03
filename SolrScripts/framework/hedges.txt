@@ -1,0 +1,331 @@
+.*sort of.*
+.*maybe.*
+.*may.*
+.*might.*
+.*perhaps.*
+.*maybe.*
+.*sort of.*
+.*could.*
+.*seems.*
+.*seems like.*
+.*might feel a bit.*
+.*sort of.*
+.*kind of.*
+.*loosely speaking.*
+.*more or less.*
+.*on the .{1,15} side.*
+.*roughly.*
+.*pretty.*
+.*pretty much.*
+.*relatively.*
+.*somewhat.*
+.*rather.*
+.*mostly.*
+.*technically.*
+.*strictly speaking.*
+.*essentially.*
+.*in essence.*
+.*basically.*
+.*principally.*
+.*particularly.*
+.*par excellence.*
+.*largely.*
+.*for the most part.*
+.*very.*
+.*especially.*
+.*exceptionally.*
+.*quintessential.*
+.*quintessentially.*
+.*literally.*
+.*often.*
+.*more of a .{1,15} than anything else.*
+.*more of an .{1,15} than anything else.*
+.*almost.*
+.*typical.*
+.*typically.*
+.*as it were.*
+.*in a sense.*
+.*in one sense.*
+.*in a real sense.*
+.*in an important sense.*
+.*in a way.*
+.*mutatis mutandis.*
+.*in a manner of speaking.*
+.*details aside.*
+.*so to say.*
+.*a veritable.*
+.*a true.*
+.*a real.*
+.*a regular.*
+.*virtually.*
+.*all but technically.*
+.*practically.*
+.*all but a.*
+.*anything but a.*
+.*a self-styled.*
+.*nominally.*
+.*he calls himself a .*
+.*she calls herself a .*
+.*they call themselves a .*
+.*he calls himself an .*
+.*she calls herself an .*
+.*they call themselves an .*
+.*in name only.*
+.*actually.*
+.*really.*
+.*he as much as .*
+.*she as much as .*
+.*they as much as .*
+.*[^ ]like .*
+.*[^ ]-like .*
+.*[^ ]ish .*
+.*[^ ]-ish .*
+.*can be tooked upon as.*
+.*can be viewed as.*
+.* pseudo-[^ ].*
+.* pseudo[^ ].*
+.* crypto-[^ ].*
+.* crypto[^ ].*
+.*can.*
+.*could.*
+.*may.*
+.*might.*
+.*must.*
+.*should.*
+.*will.*
+.*would.*
+.*alleg.*
+.*allud.*
+.*argu.*
+.*assert.*
+.*charg.*
+.*claim.*
+.*contend.*
+.*forecast.*
+.*foreshadow.*
+.*hint.*
+.*implic.*
+.*impli.*
+.*point.{1,3} to.*
+.*point.{1,3} toward.*
+.*portend.*
+.*posit.*
+.*postul.*
+.*predict.*
+.*propos.*
+.*suggest.*
+.*anticip.*
+.*approxim.*
+.*assess.*
+.*reassess.*
+.*assum.*
+.*believ.*
+.*conceiv.*
+.*conceptu.*
+.*conclud.*
+.*consid.*
+.*deem.*
+.*doubt.*
+.*envis.*
+.*estim.*
+.*reestim.*
+.*evalu.*
+.*expect.*
+.*extrapol.*
+.*fear.*
+.*feel.*
+.*find.*
+.*forese.*
+.*hold.*
+.*hope.*
+.*hypothes.*
+.*imagin.*
+.*infer.*
+.*interpret.*
+.*judg.*
+.*maintain.*
+.*perceiv.*
+.*postul.*
+.*presum.*
+.*project.*
+.*reason.*
+.*regard.*
+.*see.*
+.*specul.*
+.*suppos.*
+.*surmis.*
+.*suspect.*
+.*theoriz.*
+.*think.*
+.*view.*
+.*wish.*
+.*wonder.*
+.*worri.*
+.*appear.*
+.*look.*
+.*seem.*
+.*sound.*
+.*tend.*
+.*considerably.*
+.*dramatically.*
+.*drastically.*
+.*fairly.*
+.*greatly.*
+.*highly.*
+.*largely.*
+.*mainly.*
+.*markedly.*
+.*massively.*
+.*moderately.*
+.*modestly.*
+.*mostly.*
+.*partially.*
+.*partly.*
+.*predominantly.*
+.*predominately.*
+.*primarily.*
+.*principally.*
+.*quite.*
+.*rather.*
+.*reasonably.*
+.*relatively.*
+.*shortly.*
+.*significantly.*
+.*slightly.*
+.*somewhat.*
+.*strongly.*
+.*substantially.*
+.*vastly.*
+.*widely.*
+.*about.*
+.*almost.*
+.*approximately.*
+.*around.*
+.*basically.*
+.*closely.*
+.*essentially.*
+.*just.*
+.*nearly.*
+.*practically.*
+.*roughly.*
+.*some.*
+.*virtually.*
+.*appreciable.*
+.*central.*
+.*considerable.*
+.*devastating.*
+.*fair.*
+.*immense.*
+.*impressive.*
+.*large.*
+.*little.*
+.*main.*
+.*major.*
+.*marked.*
+.*moderate.*
+.*modest.*
+.*negligible.*
+.*notable.*
+.*noticeable.*
+.*primary.*
+.*principal.*
+.*reasonable.*
+.*relative.*
+.*remarkable.*
+.*significant.*
+.*slight.*
+.*small.*
+.*substantial.*
+.*tiny.*
+.*tremendous.*
+.*approximate.*
+.*close.*
+.*gross.*
+.*proximate.*
+.*rough.*
+.*virtual.*
+.*allegation.*
+.*argument.*
+.*assertion.*
+.*charge.*
+.*claim.*
+.*clue.*
+.*contention.*
+.*hint.*
+.*implication.*
+.*indication.*
+.*postulate.*
+.*prediction.*
+.*proposal.*
+.*proposition.*
+.*suggestion.*
+.*approach.*
+.*approximation.*
+.*assessment.*
+.*assumption.*
+.*belief.*
+.*concept.*
+.*conceptualization.*
+.*conclusion.*
+.*construct.*
+.*deduction.*
+.*estimate.*
+.*estimate.*
+.*estimation.*
+.*estimator.*
+.*evaluation.*
+.*expectancy.*
+.*expectation.*
+.*fantasy.*
+.*fear.*
+.*guess.*
+.*hope.*
+.*hunch.*
+.*hypothesis.*
+.*idea.*
+.*illusion.*
+.*impression.*
+.*inference.*
+.*interpretation.*
+.*judgment.*
+.*notion.*
+.*opinion.*
+.*perception.*
+.*perspective.*
+.*philosophy.*
+.*point of view.*
+.*premise.*
+.*presumption.*
+.*projection.*
+.*scenario.*
+.*scheme.*
+.*speculation.*
+.*supposition.*
+.*suspicion.*
+.*tenet.*
+.*theory.*
+.*thesis.*
+.*thinking.*
+.*thought.*
+.*view.*
+.*viewpoint.*
+.*vision.*
+.*alternative.*
+.*appearance.*
+.*avenue.*
+.*candidate.*
+.*chance.*
+.*inclination.*
+.*likelihood.*
+.*odds.*
+.*opportunity.*
+.*option.*
+.*possibility.*
+.*potential.*
+.*probability.*
+.*promise.*
+.*prospect.*
+.*sign.*
+.*tendency.*
+.*threat.*
+.*trend.*
