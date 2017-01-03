@@ -41,7 +41,6 @@ public class SolrPaginationTest {
 			long numCodeReviewsFound = results.getNumFound();
 
 			System.out.println("Number of code reviews => " + numCodeReviewsFound);
-			System.out.println("Number of code reviews per page => " + results.size());
 			
 			boolean pagination = false;
 			if (numCodeReviewsFound > results.size()) {
@@ -60,15 +59,13 @@ public class SolrPaginationTest {
 			while (pagination) {
 				
 				if (sumRead >= numCodeReviewsFound) {
-					pagination = false;
+					break;
 				}
 				
 				pageNum++;
 				query.setStart((pageNum  - 1) * numItemsPerPage );
 				response = solr.query(query);
 				results = response.getResults();
-
-				numCodeReviewsFound = results.getNumFound();
 
 				sumRead = sumRead + results.size();
 				System.out.println("Number of sum read => " + sumRead);
