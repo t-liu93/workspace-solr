@@ -62,7 +62,7 @@ public class SolrSearch {
 						Constants.DOT_STAR + Constants.BRACKET_LEFT + Character.toUpperCase(firstChar)
 								+ Character.toLowerCase(firstChar) + Constants.BRACKET_RIGHT);
 
-				int numTotalHits = 0;
+				int numTotalHits = Constants._0;
 
 				System.out.println("Searching for feature: " + featureCaseInsensitive);
 
@@ -158,8 +158,8 @@ public class SolrSearch {
 	 */
 	public static void main(String[] args) {
 
-		// the path for the framework file
-		String framework = "test";
+		// the framework
+		String framework = "probables";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);

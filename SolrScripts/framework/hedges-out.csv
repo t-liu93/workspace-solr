@@ -1,0 +1,331 @@
+.*[Ss]ort of.*,148,196
+.*[Mm]aybe.*,1338,1858
+.*[Mm]ay.*,6637,20563
+.*[Mm]ight.*,2039,2831
+.*[Pp]erhaps.*,475,633
+.*[Mm]aybe.*,1338,1858
+.*[Ss]ort of.*,148,196
+.*[Cc]ould.*,5890,16751
+.*[Ss]eems.*,2899,3943
+.*[Ss]eems like.*,607,744
+.*[Mm]ight feel a bit.*,0,0
+.*[Ss]ort of.*,148,196
+.*[Kk]ind of.*,393,476
+.*[Ll]oosely speaking.*,0,0
+.*[Mm]ore or less.*,32,33
+.*[Oo]n the .{1,15} side.*,171,225
+.*[Rr]oughly.*,74,79
+.*[Pp]retty.*,711,912
+.*[Pp]retty much.*,89,114
+.*[Rr]elatively.*,73,82
+.*[Ss]omewhat.*,171,203
+.*[Rr]ather.*,1162,1534
+.*[Mm]ostly.*,434,509
+.*[Tt]echnically.*,105,110
+.*[Ss]trictly speaking.*,6,7
+.*[Ee]ssentially.*,154,177
+.*[Ii]n essence.*,9,10
+.*[Bb]asically.*,308,377
+.*[Pp]rincipally.*,2,2
+.*[Pp]articularly.*,94,105
+.*[Pp]ar excellence.*,0,0
+.*[Ll]argely.*,25,29
+.*[Ff]or the most part.*,13,16
+.*[Vv]ery.*,9601,15773
+.*[Ee]specially.*,664,720
+.*[Ee]xceptionally.*,2,3
+.*[Qq]uintessential.*,0,0
+.*[Qq]uintessentially.*,0,0
+.*[Ll]iterally.*,25,26
+.*[Oo]ften.*,192,235
+.*[Mm]ore of a .{1,15} than anything else.*,1,1
+.*[Mm]ore of an .{1,15} than anything else.*,0,0
+.*[Aa]lmost.*,278,320
+.*[Tt]ypical.*,162,193
+.*[Tt]ypically.*,111,131
+.*[Aa]s it were.*,0,0
+.*[Ii]n a sense.*,5,8
+.*[Ii]n one sense.*,0,0
+.*[Ii]n a real sense.*,0,0
+.*[Ii]n an important sense.*,0,0
+.*[Ii]n a way.*,70,80
+.*[Mm]utatis mutandis.*,0,0
+.*[Ii]n a manner of speaking.*,0,0
+.*[Dd]etails aside.*,1,1
+.*[Ss]o to say.*,0,0
+.*[Aa] veritable.*,0,0
+.*[Aa] true.*,8,8
+.*[Aa] real.*,204,238
+.*[Aa] regular.*,36,42
+.*[Vv]irtually.*,8,17
+.*[Aa]ll but technically.*,0,0
+.*[Pp]ractically.*,14,16
+.*[Aa]ll but a.*,1,1
+.*[Aa]nything but a.*,3,3
+.*[Aa] self-styled.*,0,0
+.*[Nn]ominally.*,1,1
+.*[Hh]e calls himself a .*,0,0
+.*[Ss]he calls herself a .*,0,0
+.*[Tt]hey call themselves a .*,0,0
+.*[Hh]e calls himself an .*,0,0
+.*[Ss]he calls herself an .*,0,0
+.*[Tt]hey call themselves an .*,0,0
+.*[Ii]n name only.*,0,0
+.*[Aa]ctually.*,2458,3265
+.*[Rr]eally.*,2071,2794
+.*[Hh]e as much as .*,0,0
+.*[Ss]he as much as .*,0,0
+.*[Tt]hey as much as .*,0,0
+.*[[[]^ ]like .*,0,0
+.*[[[]^ ]-like .*,0,0
+.*[[[]^ ]ish .*,0,0
+.*[[[]^ ]-ish .*,0,0
+.*[Cc]an be tooked upon as.*,0,0
+.*[Cc]an be viewed as.*,0,0
+.*[  ]pseudo-[^ ].*,11,19
+.*[  ]pseudo[^ ].*,13,25
+.*[  ]crypto-[^ ].*,0,0
+.*[  ]crypto[^ ].*,14,32
+.*[Cc]an.*,11575,23339
+.*[Cc]ould.*,5890,16751
+.*[Mm]ay.*,6637,20563
+.*[Mm]ight.*,2039,2831
+.*[Mm]ust.*,5565,8971
+.*[Ss]hould.*,7981,13847
+.*[Ww]ill.*,17792,41059
+.*[Ww]ould.*,6259,11773
+.*[Aa]lleg.*,4,5
+.*[Aa]llud.*,6,18
+.*[Aa]rgu.*,598,1037
+.*[Aa]ssert.*,317,647
+.*[Cc]harg.*,58,188
+.*[Cc]laim.*,122,149
+.*[Cc]ontend.*,3,6
+.*[Ff]orecast.*,0,0
+.*[Ff]oreshadow.*,0,0
+.*[Hh]int.*,72,120
+.*[Ii]mplic.*,239,367
+.*[Ii]mpli.*,1152,1447
+.*[Pp]oint.{1,3} to.*,209,288
+.*[Pp]oint.{1,3} toward.*,3,3
+.*[Pp]ortend.*,0,0
+.*[Pp]osit.*,57336,20250
+.*[Pp]ostul.*,1,1
+.*[Pp]redict.*,48,62
+.*[Pp]ropos.*,412,550
+.*[Ss]uggest.*,1650,2112
+.*[Aa]nticip.*,32,37
+.*[Aa]pproxim.*,327,339
+.*[Aa]ssess.*,17,18
+.*[Rr]eassess.*,0,0
+.*[Aa]ssum.*,1281,1692
+.*[Bb]eliev.*,1255,1760
+.*[Cc]onceiv.*,7,10
+.*[Cc]onceptu.*,25,27
+.*[Cc]onclud.*,27,29
+.*[Cc]onsid.*,942,1256
+.*[Dd]eem.*,22,24
+.*[Dd]oubt.*,129,160
+.*[Ee]nvis.*,14,23
+.*[Ee]stim.*,44,68
+.*[Rr]eestim.*,0,0
+.*[Ee]valu.*,244,353
+.*[Ee]xpect.*,1386,2754
+.*[Ee]xtrapol.*,1,1
+.*[Ff]ear.*,35,38
+.*[Ff]eel.*,975,1187
+.*[Ff]ind.*,2174,4091
+.*[Ff]orese.*,13,14
+.*[Hh]old.*,602,859
+.*[Hh]ope.*,676,795
+.*[Hh]ypothes.*,5,6
+.*[Ii]magin.*,126,163
+.*[Ii]nfer.*,30,38
+.*[Ii]nterpret.*,280,884
+.*[Jj]udg.*,63,69
+.*[Mm]aintain.*,445,592
+.*[Pp]erceiv.*,5,5
+.*[Pp]ostul.*,1,1
+.*[Pp]resum.*,168,200
+.*[Pp]roject.*,2449,3722
+.*[Rr]eason.*,2325,3431
+.*[Rr]egard.*,578,759
+.*[Ss]ee.*,28230,133594
+.*[Ss]pecul.*,22,25
+.*[Ss]uppos.*,498,618
+.*[Ss]urmis.*,0,0
+.*[Ss]uspect.*,250,312
+.*[Tt]heoriz.*,1,2
+.*[Tt]hink.*,5834,9488
+.*[Vv]iew.*,92741,39894
+.*[Ww]ish.*,1007,1045
+.*[Ww]onder.*,595,712
+.*[Ww]orri.*,220,262
+.*[Aa]ppear.*,706,892
+.*[Ll]ook.*,18728,33047
+.*[Ss]eem.*,3686,5226
+.*[Ss]ound.*,643,861
+.*[Tt]end.*,958,1349
+.*[Cc]onsiderably.*,10,12
+.*[Dd]ramatically.*,7,7
+.*[Dd]rastically.*,9,9
+.*[Ff]airly.*,129,150
+.*[Gg]reatly.*,42,47
+.*[Hh]ighly.*,38,46
+.*[Ll]argely.*,25,29
+.*[Mm]ainly.*,119,137
+.*[Mm]arkedly.*,0,0
+.*[Mm]assively.*,3,3
+.*[Mm]oderately.*,4,7
+.*[Mm]odestly.*,0,0
+.*[Mm]ostly.*,434,509
+.*[Pp]artially.*,51,57
+.*[Pp]artly.*,6,13
+.*[Pp]redominantly.*,0,0
+.*[Pp]redominately.*,0,0
+.*[Pp]rimarily.*,32,35
+.*[Pp]rincipally.*,2,2
+.*[Qq]uite.*,647,782
+.*[Rr]ather.*,1162,1534
+.*[Rr]easonably.*,59,67
+.*[Rr]elatively.*,73,82
+.*[Ss]hortly.*,2666,3367
+.*[Ss]ignificantly.*,91,107
+.*[Ss]lightly.*,334,383
+.*[Ss]omewhat.*,171,203
+.*[Ss]trongly.*,115,139
+.*[Ss]ubstantially.*,25,28
+.*[Vv]astly.*,5,6
+.*[Ww]idely.*,30,34
+.*[Aa]bout.*,4511,6615
+.*[Aa]lmost.*,278,320
+.*[Aa]pproximately.*,311,311
+.*[Aa]round.*,1226,1612
+.*[Bb]asically.*,308,377
+.*[Cc]losely.*,81,94
+.*[Ee]ssentially.*,154,177
+.*[Jj]ust.*,7214,11469
+.*[Nn]early.*,56,57
+.*[Pp]ractically.*,14,16
+.*[Rr]oughly.*,74,79
+.*[Ss]ome.*,17398,31240
+.*[Vv]irtually.*,8,17
+.*[Aa]ppreciable.*,2,2
+.*[Cc]entral.*,52,86
+.*[Cc]onsiderable.*,10,11
+.*[Dd]evastating.*,0,0
+.*[Ff]air.*,259,307
+.*[Ii]mmense.*,4,4
+.*[Ii]mpressive.*,2244,2388
+.*[Ll]arge.*,1131,1390
+.*[Ll]ittle.*,643,794
+.*[Mm]ain.*,3711,7148
+.*[Mm]ajor.*,608,715
+.*[Mm]arked.*,5519,10999
+.*[Mm]oderate.*,6,10
+.*[Mm]odest.*,2,2
+.*[Nn]egligible.*,17,22
+.*[Nn]otable.*,14,15
+.*[Nn]oticeable.*,32,38
+.*[Pp]rimary.*,92,195
+.*[Pp]rincipal.*,10,14
+.*[Rr]easonable.*,557,653
+.*[Rr]elative.*,216,334
+.*[Rr]emarkable.*,1,1
+.*[Ss]ignificant.*,280,359
+.*[Ss]light.*,387,454
+.*[Ss]mall.*,1048,1342
+.*[Ss]ubstantial.*,54,59
+.*[Tt]iny.*,145,182
+.*[Tt]remendous.*,6,6
+.*[Aa]pproximate.*,314,314
+.*[Cc]lose.*,733,1202
+.*[Gg]ross.*,124,265
+.*[Pp]roximate.*,314,314
+.*[Rr]ough.*,1329,1764
+.*[Vv]irtual.*,238,501
+.*[Aa]llegation.*,0,0
+.*[Aa]rgument.*,520,912
+.*[Aa]ssertion.*,149,230
+.*[Cc]harge.*,51,129
+.*[Cc]laim.*,122,149
+.*[Cc]lue.*,44,48
+.*[Cc]ontention.*,18,43
+.*[Hh]int.*,72,120
+.*[Ii]mplication.*,56,65
+.*[Ii]ndication.*,41,49
+.*[Pp]ostulate.*,1,1
+.*[Pp]rediction.*,8,8
+.*[Pp]roposal.*,118,157
+.*[Pp]roposition.*,4,4
+.*[Ss]uggestion.*,746,890
+.*[Aa]pproach.*,685,1034
+.*[Aa]pproximation.*,12,23
+.*[Aa]ssessment.*,12,13
+.*[Aa]ssumption.*,181,237
+.*[Bb]elief.*,11,19
+.*[Cc]oncept.*,108,126
+.*[Cc]onceptualization.*,1,1
+.*[Cc]onclusion.*,40,51
+.*[Cc]onstruct.*,329,573
+.*[Dd]eduction.*,0,0
+.*[Ee]stimate.*,30,40
+.*[Ee]stimate.*,30,40
+.*[Ee]stimation.*,9,16
+.*[Ee]stimator.*,4,7
+.*[Ee]valuation.*,31,53
+.*[Ee]xpectancy.*,0,0
+.*[Ee]xpectation.*,84,108
+.*[Ff]antasy.*,0,0
+.*[Ff]ear.*,35,38
+.*[Gg]uess.*,915,1163
+.*[Hh]ope.*,676,795
+.*[Hh]unch.*,3,4
+.*[Hh]ypothesis.*,5,6
+.*[Ii]dea.*,2061,3126
+.*[Ii]llusion.*,2,2
+.*[Ii]mpression.*,34,42
+.*[Ii]nference.*,9,9
+.*[Ii]nterpretation.*,30,36
+.*[Jj]udgment.*,22,22
+.*[Nn]otion.*,33,50
+.*[Oo]pinion.*,402,480
+.*[Pp]erception.*,5,7
+.*[Pp]erspective.*,88,101
+.*[Pp]hilosophy.*,3,3
+.*[Pp]oint of view.*,58,61
+.*[Pp]remise.*,6,9
+.*[Pp]resumption.*,1,1
+.*[Pp]rojection.*,5,8
+.*[Ss]cenario.*,192,407
+.*[Ss]cheme.*,69,107
+.*[Ss]peculation.*,4,5
+.*[Ss]upposition.*,1,1
+.*[Ss]uspicion.*,10,10
+.*[Tt]enet.*,1,1
+.*[Tt]heory.*,68,83
+.*[Tt]hesis.*,12,13
+.*[Tt]hinking.*,343,432
+.*[Tt]hought.*,1040,1326
+.*[Vv]iew.*,92741,39894
+.*[Vv]iewpoint.*,1,3
+.*[Vv]ision.*,555,1080
+.*[Aa]lternative.*,433,543
+.*[Aa]ppearance.*,11,14
+.*[Aa]venue.*,2,3
+.*[Cc]andidate.*,97,129
+.*[Cc]hance.*,635,693
+.*[Ii]nclination.*,6,6
+.*[Ll]ikelihood.*,4,5
+.*[Oo]dds.*,8,8
+.*[Oo]pportunity.*,57,67
+.*[Oo]ption.*,1202,2092
+.*[Pp]ossibility.*,104,130
+.*[Pp]otential.*,671,758
+.*[Pp]robability.*,18,20
+.*[Pp]romise.*,70,77
+.*[Pp]rospect.*,4,4
+.*[Ss]ign.*,8043,13443
+.*[Tt]endency.*,4,8
+.*[Tt]hreat.*,3,3
+.*[Tt]rend.*,3,3
