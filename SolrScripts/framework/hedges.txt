@@ -82,10 +82,10 @@
 .*[^ ]-ish .*
 .*can be tooked upon as.*
 .*can be viewed as.*
-.* pseudo-[^ ].*
-.* pseudo[^ ].*
-.* crypto-[^ ].*
-.* crypto[^ ].*
+.*pseudo-[^ ].*
+.*pseudo[^ ].*
+.*crypto-[^ ].*
+.*crypto[^ ].*
 .*can.*
 .*could.*
 .*may.*

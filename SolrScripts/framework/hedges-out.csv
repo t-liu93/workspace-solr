@@ -76,16 +76,16 @@
 .*[Hh]e as much as .*;0;0
 .*[Ss]he as much as .*;0;0
 .*[Tt]hey as much as .*;0;0
-.*[[[]^ ]like .*;0;0
-.*[[[]^ ]-like .*;0;0
-.*[[[]^ ]ish .*;0;0
-.*[[[]^ ]-ish .*;0;0
+.*[^ ]like .*;281;351
+.*[^ ]-like .*;25;27
+.*[^ ]ish .*;1440;1636
+.*[^ ]-ish .*;15;18
 .*[Cc]an be tooked upon as.*;0;0
 .*[Cc]an be viewed as.*;0;0
-.*[  ]pseudo-[^ ].*;11;19
-.*[  ]pseudo[^ ].*;13;25
-.*[  ]crypto-[^ ].*;0;0
-.*[  ]crypto[^ ].*;14;32
+.*[Pp]seudo-[^ ].*;12;20
+.*[Pp]seudo[^ ].*;20;33
+.*[Cc]rypto-[^ ].*;10;14
+.*[Cc]rypto[^ ].*;94;208
 .*[Cc]an.*;11575;23339
 .*[Cc]ould.*;5890;16751
 .*[Mm]ay.*;6637;20563

@@ -55,17 +55,25 @@ public class SolrSearchWithPagination {
 
 			// iterate over each feature
 			for (String feature : features) {
-				
+
 				// Escaping Special Characters:
 				// The current list special characters are:
 				// + - && || ! ( ) { } [ ] ^ " ~ * ? : \
 				// To escape these character use the \ before the character.
 
+				// .*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*
+
 				char firstChar = feature.charAt(2);
 
-				String featureCaseInsensitive = feature.replace(Constants.DOT_STAR + firstChar,
-						Constants.DOT_STAR + Constants.BRACKET_LEFT + Character.toUpperCase(firstChar)
-								+ Character.toLowerCase(firstChar) + Constants.BRACKET_RIGHT);
+				String featureCaseInsensitive = "";
+
+				if (firstChar != '[') {
+					featureCaseInsensitive = feature.replace(Constants.DOT_STAR + firstChar,
+							Constants.DOT_STAR + Constants.BRACKET_LEFT + Character.toUpperCase(firstChar)
+									+ Character.toLowerCase(firstChar) + Constants.BRACKET_RIGHT);
+				} else {
+					featureCaseInsensitive = feature;
+				}
 
 				int numTotalHits = Constants._0;
 
@@ -86,7 +94,7 @@ public class SolrSearchWithPagination {
 				int pageNum = 1;
 				int numItemsPerPage = Constants._20000;
 				int sumRead = numItemsPerPage;
-				query.setStart((pageNum  - 1) * numItemsPerPage );
+				query.setStart((pageNum - 1) * numItemsPerPage);
 				query.setRows(numItemsPerPage);
 
 				// call the query
@@ -97,9 +105,9 @@ public class SolrSearchWithPagination {
 
 				// count the number of code reviews with the feature
 				long numCodeReviewsFound = results.getNumFound();
-				
+
 				System.out.println("Number of code reviews => " + numCodeReviewsFound);
-				
+
 				boolean pagination = false;
 				if (numCodeReviewsFound > results.size()) {
 					pagination = true;
@@ -138,18 +146,17 @@ public class SolrSearchWithPagination {
 					numTotalHits = numTotalHits + numMessagesFound;
 				}
 
-				
 				while (pagination) {
-					
+
 					if (sumRead >= numCodeReviewsFound) {
 						break;
 					}
-					
+
 					pageNum++;
-					query.setStart((pageNum  - 1) * numItemsPerPage );
+					query.setStart((pageNum - 1) * numItemsPerPage);
 					response = solr.query(query);
 					results = response.getResults();
-					
+
 					// iterate over each code review
 					for (int i = 0; i < results.size(); ++i) {
 
@@ -183,7 +190,7 @@ public class SolrSearchWithPagination {
 					sumRead = sumRead + results.size();
 					System.out.println("Number of sum read => " + sumRead);
 				}
-				
+
 				// add the number of code reviews to the string buffer
 				sb.append(numTotalHits + Constants.NEW_LINE);
 
@@ -198,11 +205,11 @@ public class SolrSearchWithPagination {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			
+
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		System.out.println("Done...");
 	}
 
