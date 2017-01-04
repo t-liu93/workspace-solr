@@ -21,7 +21,7 @@ import org.apache.solr.common.SolrDocumentList;
 
 import solr.utils.Constants;
 
-public class SolrSearch {
+public class SolrSearchWithPagination {
 
 	/**
 	 * This method counts the occurrences of each feature in the framework and
@@ -83,8 +83,11 @@ public class SolrSearch {
 				// set the fields to be returned from the json
 				query.setFields(Constants._NUMBER, Constants.MESSAGES_MESSAGE);
 
-				// TODO implement the pagination!!!
-				query.setRows(Constants._50000);
+				int pageNum = 1;
+				int numItemsPerPage = Constants._20000;
+				int sumRead = numItemsPerPage;
+				query.setStart((pageNum  - 1) * numItemsPerPage );
+				query.setRows(numItemsPerPage);
 
 				// call the query
 				QueryResponse response = solr.query(query);
@@ -96,6 +99,11 @@ public class SolrSearch {
 				long numCodeReviewsFound = results.getNumFound();
 				
 				System.out.println("Number of code reviews => " + numCodeReviewsFound);
+				
+				boolean pagination = false;
+				if (numCodeReviewsFound > results.size()) {
+					pagination = true;
+				}
 
 				// add the number of code reviews to the string buffer
 				sb.append(numCodeReviewsFound + Constants.SEMICOLON);
@@ -130,6 +138,52 @@ public class SolrSearch {
 					numTotalHits = numTotalHits + numMessagesFound;
 				}
 
+				
+				while (pagination) {
+					
+					if (sumRead >= numCodeReviewsFound) {
+						break;
+					}
+					
+					pageNum++;
+					query.setStart((pageNum  - 1) * numItemsPerPage );
+					response = solr.query(query);
+					results = response.getResults();
+					
+					// iterate over each code review
+					for (int i = 0; i < results.size(); ++i) {
+
+						// create the Solr code review object
+						SolrDocument codeReview = results.get(i);
+
+						@SuppressWarnings("unchecked")
+						// get the messages.message field
+						List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
+
+						int numMessagesFound = Constants._0;
+
+						String ptn = featureCaseInsensitive.replace(Constants.DOT_STAR, Constants.JAVA_REGEX);
+
+						// iterate over the messages.message object to count the
+						// number of features within it
+						for (String message : messages) {
+
+							Pattern pattern = Pattern.compile(ptn);
+
+							Matcher matcher = pattern.matcher(message);
+
+							while (matcher.find()) {
+								numMessagesFound++;
+							}
+						}
+
+						numTotalHits = numTotalHits + numMessagesFound;
+					}
+
+					sumRead = sumRead + results.size();
+					System.out.println("Number of sum read => " + sumRead);
+				}
+				
 				// add the number of code reviews to the string buffer
 				sb.append(numTotalHits + Constants.NEW_LINE);
 
