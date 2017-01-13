@@ -1,0 +1,12 @@
+
+code reviews dated until 25/11/2016!!
+
+==================
+
+total of code reviews: 141,784 (with duplicated)
+
+duplicated code reviews: 1,778
+
+code reviews downloaded: 140,006
+
+code reviews with inline comments: 28,091 (20%)
