@@ -1,33 +1,33 @@
-.*I wonder.*
-.*I struggle.*
-.*I'm not sure.*
-.*I am not sure.*
-.*I'm curious.*
-.*I am curious.*
-.*I bet.*
-.*I wonder.*
-.*I'm not sure.*
-.*I am not sure.*
-.*I'm curious.*
-.*I am curious.*
-.*I would guess not.*
-.*I'm confused.*
-.*I am confused.*
-.*I guess.*
-.*I doubt.*
-.*I think.*
-.*I believe.*
-.*I guess.*
-.*I reckon.*
-.*I suppose.*
-.*I suspect.*
-.*I don't understand.*
-.*I do not understand.*
-.*I couldn't understand.*
-.*I could not understand.*
-.*I don't know.*
-.*I do not know.*
-.*I don't get it.*
-.*I do not get it.*
-.*I'm unsure.*
-.*I am unsure.*
+I wonder
+I struggle
+I'm not sure
+I am not sure
+I'm curious
+I am curious
+I bet
+I wonder
+I'm not sure
+I am not sure
+I'm curious
+I am curious
+I would guess not
+I'm confused
+I am confused
+I guess
+I doubt
+I think
+I believe
+I guess
+I reckon
+I suppose
+I suspect
+I don't understand
+I do not understand
+I couldn't understand
+I could not understand
+I don't know
+I do not know
+I don't get it
+I do not get it
+I'm unsure
+I am unsure

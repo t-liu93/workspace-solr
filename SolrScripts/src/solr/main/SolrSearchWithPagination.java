@@ -46,7 +46,7 @@ public class SolrSearchWithPagination {
 			SolrClient solr = new HttpSolrClient.Builder(Constants.URL_SORL).build();
 
 			// create the Solr query string base
-			String solrQuery = Constants.MESSAGES_MESSAGE + Constants.TWO_DOTS + Constants.SLASH;
+			String solrQuery = Constants.MESSAGES_MESSAGE + Constants.TWO_DOTS + Constants.DOUBLE_QUOTES;
 
 			// read the framework file
 			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
@@ -61,32 +61,23 @@ public class SolrSearchWithPagination {
 				// + - && || ! ( ) { } [ ] ^ " ~ * ? : \
 				// To escape these character use the \ before the character.
 
-				// .*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*
+				// "/.*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*/"
 
-				char firstChar = feature.charAt(2);
 
-				String featureCaseInsensitive = "";
-
-				if (firstChar != '[') {
-					featureCaseInsensitive = feature.replace(Constants.DOT_STAR + firstChar,
-							Constants.DOT_STAR + Constants.BRACKET_LEFT + Character.toUpperCase(firstChar)
-									+ Character.toLowerCase(firstChar) + Constants.BRACKET_RIGHT);
-				} else {
-					featureCaseInsensitive = feature;
-				}
+				solrQuery = solrQuery + feature + Constants.DOUBLE_QUOTES;
 
 				int numTotalHits = Constants._0;
 
-				System.out.println("Searching for feature: " + featureCaseInsensitive);
+				System.out.println("Searching for feature: " + solrQuery);
 
 				// add the feature to the string buffer
-				sb.append(featureCaseInsensitive + Constants.SEMICOLON);
+				sb.append(solrQuery + Constants.SEMICOLON);
 
 				// create the query object
 				SolrQuery query = new SolrQuery();
 
 				// set the query
-				query.setQuery(solrQuery + featureCaseInsensitive + Constants.SLASH);
+				query.setQuery(solrQuery);
 
 				// set the fields to be returned from the json
 				query.setFields(Constants._NUMBER, Constants.MESSAGES_MESSAGE);
@@ -128,13 +119,11 @@ public class SolrSearchWithPagination {
 
 					int numMessagesFound = Constants._0;
 
-					String ptn = featureCaseInsensitive.replace(Constants.DOT_STAR, Constants.JAVA_REGEX);
-
 					// iterate over the messages.message object to count the
 					// number of features within it
 					for (String message : messages) {
 
-						Pattern pattern = Pattern.compile(ptn);
+						Pattern pattern = Pattern.compile(feature);
 
 						Matcher matcher = pattern.matcher(message);
 
@@ -169,13 +158,11 @@ public class SolrSearchWithPagination {
 
 						int numMessagesFound = Constants._0;
 
-						String ptn = featureCaseInsensitive.replace(Constants.DOT_STAR, Constants.JAVA_REGEX);
-
 						// iterate over the messages.message object to count the
 						// number of features within it
 						for (String message : messages) {
 
-							Pattern pattern = Pattern.compile(ptn);
+							Pattern pattern = Pattern.compile(feature);
 
 							Matcher matcher = pattern.matcher(message);
 
@@ -223,7 +210,7 @@ public class SolrSearchWithPagination {
 	public static void main(String[] args) {
 
 		// the framework
-		String framework = "hedges";
+		String framework = "probables";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);

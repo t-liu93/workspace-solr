@@ -28,6 +28,8 @@ public class Constants {
 
 	public static String SLASH = "/";
 	
+	public static String DOUBLE_QUOTES = "\"";
+	
 	public static String BRACKET_LEFT = "[";
 	
 	public static String BRACKET_RIGHT = "]";

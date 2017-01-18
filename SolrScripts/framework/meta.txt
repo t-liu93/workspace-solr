@@ -1,17 +1,17 @@
-.*It appears.*
-.*It seems.*
-.*argues that.*
-.*claims that.*
-.*contends that.*
-.*maintains that.*
-.*there is a probability.*
-.*there is a likelihood.*
-.*there is a possibility.*
-.*there is a chance.*
-.*I didn't understand.*
-.*I did not understand.*
-.*I didn't know.*
-.*I did not know.*
-.*I didn't get it.*
-.*I did not get it.*
-.*It turns out.*
+It appears
+It seems
+argues that
+claims that
+contends that
+maintains that
+there is a probability
+there is a likelihood
+there is a possibility
+there is a chance
+I didn't understand
+I did not understand
+I didn't know
+I did not know
+I didn't get it
+I did not get it
+It turns out

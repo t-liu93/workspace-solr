@@ -5,6 +5,8 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,18 +45,24 @@ public class CheckCodeReviewIDList {
 
 	public static void createSolrIndexingCmds() {
 
-		List<String> codeReviewIDs = readCodeReviewIDs();
+		List<String> codeReviewIDs = new ArrayList<String>();
+
+		try {
+			codeReviewIDs = Files.readAllLines(Paths.get("./results/code-review-id-list.txt"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		List<String> solrIndexCmds = new ArrayList<String>();
 
 		for (String id : codeReviewIDs) {
-			String line = "java -Dc=gettingstarted -Dauto=yes -Ddata=files -Drecursive=yes -jar example/exampledocs/post.jar "
+
+			String line = "java -Dc=gettingstarted -Dauto=yes -Ddata=files -Drecursive=yes -jar "
+					+ "C:/Solr/solr-6.3.0-2/example/exampledocs/post.jar "
 					+ "C:/Users/Felipe/Documents/code-reviews/details/" + id + ".json";
 
 			solrIndexCmds.add(line + "\n");
 		}
-
-		System.out.println(solrIndexCmds.size());
 
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter("./results/code-review-solr-index-cmds.txt"))) {
 
@@ -65,11 +73,35 @@ public class CheckCodeReviewIDList {
 			e.printStackTrace();
 		}
 
+		System.out.println("Done...");
+	}
+
+	public static void runSolrIndexCmds() {
+
+		try {
+
+			List<String> solrCmds = Files.readAllLines(Paths.get("./results/code-review-solr-index-cmds.txt"));
+
+			for (String cmd : solrCmds) {
+
+				Runtime.getRuntime().exec(cmd);
+
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void checkMissingCodeReviews() {
 
-		List<String> codeReviewIDs = readCodeReviewIDs();
+		List<String> codeReviewIDs = new ArrayList<String>();
+
+		try {
+			codeReviewIDs = Files.readAllLines(Paths.get("./results/code-review-id-list.txt"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		BufferedReader br2 = null;
 		try {
@@ -101,36 +133,15 @@ public class CheckCodeReviewIDList {
 		}
 	}
 
-	public static List<String> readCodeReviewIDs() {
-
-		List<String> codeReviewIDs = new ArrayList<>();
-
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader("./results/code-review-id-list.txt"));
-			String line = br.readLine();
-
-			while (line != null) {
-				codeReviewIDs.add(line);
-				line = br.readLine();
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		} finally {
-			try {
-				br.close();
-			} catch (IOException e) {
-			}
-		}
-		return codeReviewIDs;
-	}
-
 	public static void main(String[] args) {
 
-		// checkMissingCodeReviews();
-
-		createSolrIndexingCmds();
-
 		// printAllCodeReviewsIndexed();
+
+		checkMissingCodeReviews();
+		
+		// createSolrIndexingCmds();
+
+		// runSolrIndexCmds();
+
 	}
 }
