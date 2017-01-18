@@ -21,7 +21,7 @@ import org.apache.solr.common.SolrDocumentList;
 
 import solr.utils.Constants;
 
-public class SolrSearchWithPagination {
+public class SolrSearch {
 
 	/**
 	 * This method counts the occurrences of each feature in the framework and
