@@ -15,6 +15,8 @@ package solr.utils;
 public class Constants {
 
 	public static String URL_SORL = "http://localhost:8983/solr/gettingstarted";
+	
+	public static String URL_GERRIT = "https://android-review.googlesource.com/#/c/";
 
 	public static String _NUMBER = "_number";
 
@@ -27,6 +29,8 @@ public class Constants {
 	public static String MESSAGES_AUTHOR_NAME = "messages.author.name";
 
 	public static String SEMICOLON = ";";
+	
+	public static String SPACE = " ";
 
 	public static String TWO_DOTS = ":";
 

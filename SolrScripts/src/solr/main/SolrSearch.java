@@ -54,9 +54,9 @@ public class SolrSearch {
 			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
 
 			StringBuffer sbFeaturesOutput = new StringBuffer();
-			
+
 			StringBuffer sbFeaturesIDs = new StringBuffer();
-			
+
 			List<String> featuresIDs = new ArrayList<String>();
 			
 			Long _number = (long) 0;
@@ -71,9 +71,8 @@ public class SolrSearch {
 
 				// "/.*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*/"
 
-
 				String solrQueryString = solrQuery + feature + Constants.DOUBLE_QUOTES;
-				
+
 				System.out.println(solrQueryString);
 
 				int numTotalHits = Constants._0;
@@ -90,7 +89,8 @@ public class SolrSearch {
 				query.setQuery(solrQueryString);
 
 				// set the fields to be returned from the json
-				query.setFields(Constants._NUMBER, Constants.MESSAGES_MESSAGE, Constants.MESSAGES_AUTHOR_ID, Constants.MESSAGES_ID);
+				query.setFields(Constants._NUMBER, Constants.MESSAGES_MESSAGE, Constants.MESSAGES_AUTHOR_ID,
+						Constants.MESSAGES_ID);
 
 				int pageNum = 1;
 				int numItemsPerPage = Constants._20000;
@@ -122,12 +122,12 @@ public class SolrSearch {
 
 					// get the messages.message field
 					List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
-					
+
 					// get the messages.message field
 					List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Constants.MESSAGES_AUTHOR_ID));
-					
+
 					List<String> messagesID = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_ID));
-					
+
 					_number = ((List<Long>) codeReview.getFieldValue(Constants._NUMBER)).get(0);
 
 					int numMessagesFound = Constants._0;
@@ -135,23 +135,27 @@ public class SolrSearch {
 					// iterate over the messages.message object to count the
 					// number of features within it
 					for (int j = 0; j < messages.size(); j++) {
-						
+
 						if (!isBot(authorsID.get(j))) {
-							
+
 							Pattern pattern = Pattern.compile(feature.toLowerCase());
-							
+
 							Matcher matcher = pattern.matcher(messages.get(j).toLowerCase());
-							
+
 							while (matcher.find()) {
 								numMessagesFound++;
 								if (!featuresIDs.contains(messagesID.get(j))) {
 									featuresIDs.add(messagesID.get(j));
-									sbFeaturesIDs.append(_number + ";" + messagesID.get(j) + Constants.NEW_LINE);
+									String url = Constants.URL_GERRIT + _number;
+									int x = j + 1;
+									sbFeaturesIDs.append(feature + Constants.SEMICOLON + Constants.SPACE + _number 
+											+ Constants.SEMICOLON + Constants.SPACE + x + Constants.SEMICOLON
+											+ Constants.SPACE +  url + Constants.NEW_LINE);
 								}
 							}
 						}
 					}
-					
+
 					numTotalHits = numTotalHits + numMessagesFound;
 				}
 
@@ -177,31 +181,35 @@ public class SolrSearch {
 
 						// get the messages.message field
 						List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Constants.MESSAGES_AUTHOR_ID));
-						
+
 						List<String> messagesID = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_ID));
-						
+
 						int numMessagesFound = Constants._0;
 
 						// iterate over the messages.message object to count the
 						// number of features within it
 						for (int j = 0; j < messages.size(); j++) {
-							
+
 							if (!isBot(authorsID.get(j))) {
-							
+
 								Pattern pattern = Pattern.compile(feature.toLowerCase());
-	
+
 								Matcher matcher = pattern.matcher(messages.get(j).toLowerCase());
-	
+
 								while (matcher.find()) {
 									numMessagesFound++;
 									if (!featuresIDs.contains(messagesID.get(j))) {
 										featuresIDs.add(messagesID.get(j));
-										sbFeaturesIDs.append(_number + ";" + messagesID.get(j) + Constants.NEW_LINE);
+										String url = Constants.URL_GERRIT + _number;
+										int x = j + 1;
+										sbFeaturesIDs.append(feature + Constants.SEMICOLON + Constants.SPACE + _number 
+												+ Constants.SEMICOLON + Constants.SPACE + x + Constants.SEMICOLON
+												+ Constants.SPACE +  url + Constants.NEW_LINE);
 									}
 								}
 							}
 						}
-						
+
 						numTotalHits = numTotalHits + numMessagesFound;
 					}
 
@@ -223,7 +231,7 @@ public class SolrSearch {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			
+
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 					new FileOutputStream(Constants.DIR_FRAMEWORK + framework + Constants._ID + Constants._TXT),
 					Constants._UTF_8))) {
@@ -231,8 +239,7 @@ public class SolrSearch {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			
-			
+
 			System.out.println("Total of general messages: " + featuresIDs.size());
 
 		} catch (SolrServerException | IOException e) {
@@ -240,23 +247,20 @@ public class SolrSearch {
 		}
 
 		System.out.println("Done...");
-		
+
 	}
 
 	private static boolean isBot(Long authorID) {
-		
+
 		boolean isBot = false;
-		
-		if (authorID == Constants.ANDROID_BOT_TREEHUGGER
-				|| authorID == Constants.ANDROID_BOT_DECKARD
-				|| authorID == Constants.ANDROID_BOT_ANONYMOUS
-				|| authorID == Constants.ANDROID_BOT_BIONIC
+
+		if (authorID == Constants.ANDROID_BOT_TREEHUGGER || authorID == Constants.ANDROID_BOT_DECKARD
+				|| authorID == Constants.ANDROID_BOT_ANONYMOUS || authorID == Constants.ANDROID_BOT_BIONIC
 				|| authorID == Constants.ANDROID_BOT_ANDROID_MERGER
-				|| authorID == Constants.ANDROID_BOT_ANDROID_DEVTOOLS
-				|| authorID == Constants.ANDROID_BOT_GERRIT) {
+				|| authorID == Constants.ANDROID_BOT_ANDROID_DEVTOOLS || authorID == Constants.ANDROID_BOT_GERRIT) {
 			isBot = true;
-		} 
-		
+		}
+
 		return isBot;
 	}
 
@@ -270,7 +274,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// the framework
-		String framework = "meta";
+		String framework = "hedges";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);

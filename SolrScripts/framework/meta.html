@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Category: Meta</title>
+</head>
+<body>
+
+<H2> Features examples of the Meta category!</H2>
+
+<ul>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/168013/">168013</a></li>
+	<li><b>Feature:</b> it appears</li>
+	<li><b>Number of comment:</b> 4</li>
+	<li><b>Comment:</b> <br>I just tested this on a shamu-eng build, and this patch works for me. system_server starts fine and there are no SELinux denials being generated. /proc/PID/maps doesn't show any non-file based executable memory either.
+	It appears that dex2oat is run unconditionally from zygote to generate system_server's files, so system_server itself never runs in a JITed mode.
+	Am I misunderstanding something?</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/79730/">79730</a></li>
+	<li><b>Feature:</b> it seems</li>
+	<li><b>Number of comment:</b> 3</li>
+	<li><b>Comment:</b> <br>Patch Set 1:
+Thanks Eric for your code review +2!
+It seems Deckard is not actively working these days to verify patches but I've confirmed the patch merges, builds and works fine in my latest aosp environment.
+If you are fine with the change, could you kindly add verified+1 and submit?</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/209661/">209661</a></li>
+	<li><b>Feature:</b> it seems</li>
+	<li><b>Number of comment:</b> 13</li>
+	<li><b>Comment:</b> <br>Patch Set 1:
+Aart, sorry if my previous message was not clear, but this CL has
+been superseded by https://android-review.googlesource.com/#/c/251850/
+and https://android-review.googlesource.com/#/c/266395/ :)
+Ah, my oversight! But it seems my suggestion still applies :-)</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/109778/">109778</a></li>
+	<li><b>Feature:</b> claims that</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b> <br>Patch Set 1: Code-Review-1
+chh claims that he can boot without this change.</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/154750/">154750</a></li>
+	<li><b>Feature:</b> there is a possibility</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b> <br>Patch Set 1:
+writepid is perfect; however I don't think this will work as written.
+if I understand this correctly, there's a race between writing the pid and executing the service. as a result, there is a possibility that the child process may have created its own thread before the writepid is finished, resulting in that worker thread not being included in the appropriate cpuset. this is bad.
+can we make the child process write its own pid instead of the parent?</li>
+	
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/67337/">67337</a></li>
+	<li><b>Feature:</b> I didn't understand</li>
+	<li><b>Number of comment:</b> 3</li>
+	<li><b>Comment:</b> <br>Patch Set 1:
+I was able to stage this change locally here:
+http://claym.mtv.corp.google.com:8090/source/initializing.html#installing-required-packages-ubuntu-1204
+I will do that in the future for these changes to help us root out issues. I didn't understand I could readily cherry-pick from AOSP.
+Please just let me know when these changes should go to staging and production. Thanks.</li>
+
+</ul>
+
+</body>
+</html>

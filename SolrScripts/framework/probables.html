@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Category: Probables</title>
+</head>
+<body>
+
+<H2> Features examples of the Probables category!</H2>
+
+<ul>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/53723/">53723</a></li>
+	<li><b>Feature:</b> likely</li>
+	<li><b>Number of comment:</b>2</li>
+	<li><b>Comment:</b><br>Abandoned
+Likely will be obsoleted by a change similar to
+Icb0f58985ee2b283c563ebc8513cebfcc7a3f871</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/159961/">159961</a></li>
+	<li><b>Feature:</b> sometimes</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br>Patch Set 1:
+Sometimes we need more than one $(recovery_resources_private) which need to be put into recovery image.
+Without $(newline) at the end, build will fail.</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/159584/">159584</a></li>
+	<li><b>Feature:</b> probably</li>
+	<li><b>Number of comment:</b> 3</li>
+	<li><b>Comment:</b><br>Patch Set 1: Code-Review+2
+(1 comment)
+As sergio said elsewhere, you should probably use the same Change-Id or the same topic to tie these changes together.</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/96502/">96502</a></li>
+	<li><b>Feature:</b> apparently</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br>Patch Set 1: Code-Review+1 Verified+1
+First step before we can even consider removing utils/Debug.h dependency.
+We discovered when replacing utils/Debug.h with -std=gnu++11 static_assert functionality that we get:
+out/target/product/flounder/obj/STATIC_LIBRARIES/libbinder_intermediates/libbinder.a(Parcel.o): In function `android::Parcel::readString16() const':
+/ssd/master/frameworks/native/libs/binder/Parcel.cpp:1138: undefined reference to `android::String16::String16(char16_t const*, unsigned long)'
+collect2: error: ld returned 1 exit status
+As a direct result of the -std flag, apparently there is some API breakage in support of the standard? Will investigate in my free time later.</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/63212/">63212</a></li>
+	<li><b>Feature:</b> perhaps</li>
+	<li><b>Number of comment:</b> 1</li>
+	<li><b>Comment:</b><br>Patch Set 1: Code-Review-2
+Rather than adding code, please address this through a project specific resource overlay wherein the bearer_entries string-array has an appropriate list of bearers.
+We perhaps should add code where if the bearer_values array only has one non-zero value we remove the bearer field altogether.</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/85463/">85463</a></li>
+	<li><b>Feature:</b> possible</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br>Patch Set 1:
+A possible fix at: https://android-review.googlesource.com/#/c/85465/</li>
+
+<br><br>
+
+
+</ul>
+
+</body>
+</html>

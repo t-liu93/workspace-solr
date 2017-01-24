@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Category: Hedges</title>
+</head>
+<body>
+
+<H2> Features examples of the Hedges category!</H2>
+
+<ul>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/212912/">212912</a></li>
+	<li><b>Feature:</b> sort of</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br>Patch Set 1:
+Can you elaborate more on what sort of error can happen here?</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/104706/">104706</a></li>
+	<li><b>Feature:</b> maybe</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br> Patch Set 1:
+(1 comment)
+Maybe we can change heap max free to ensure that we don't overflow the allocation stack, this would have the benefit of no added overhead.</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/136984/">136984</a></li>
+	<li><b>Feature:</b> may</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br> Patch Set 1: Code-Review+1
+Only caveats are that the current android selinux docs say to use permissive_or_unconfined() for new domain development, and if we provide no definition of unconfined, then they may try to roll their own which could be worse.  However, I suppose we could just have them use userdebug_or_eng(`permissive foo;') instead or perhaps provide a simpler macro that does that, and if they do try to roll their own unconfined domain, it can't break any of the neverallows so it should be ok.</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/11123/">11123</a></li>
+	<li><b>Feature:</b> might</li>
+	<li><b>Number of comment:</b> 1</li>
+	<li><b>Comment:</b><br> Patch Set 1: No score; I would prefer that you didn't submit this
+The way this is solved in the rest of the code is to prefix strings that might start with "-" with "x". This is a practice that is explicitly recommended in the POSIX spec, IIRC. And there is an example of it one line up, even!</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/20821/">20821</a></li>
+	<li><b>Feature:</b> doubt</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br> Patch Set 2: Looks good to me, approved
+LGTM, though I doubt we're going to see Cupcake-based x86 devices in the near future.</li>
+
+<br><br>
+
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/58861/">58861</a></li>
+	<li><b>Feature:</b> can</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br> Patch Set 1: Code-Review+1
+Shouldn't this have a BROKEN_BUILD tag so we can submit it right now, and remove it when the compiler is fixed?</li>
+
+<br><br>
+
+
+
+</ul>
+
+</body>
+</html>
