@@ -21,6 +21,10 @@ public class Constants {
 	public static String MESSAGES_ID = "messages.id";
 
 	public static String MESSAGES_MESSAGE = "messages.message";
+	
+	public static String MESSAGES_AUTHOR_ID = "messages.author._account_id";
+	
+	public static String MESSAGES_AUTHOR_NAME = "messages.author.name";
 
 	public static String SEMICOLON = ";";
 
@@ -57,4 +61,25 @@ public class Constants {
 	public static int _20000 = 20000;
 	
 	public static int _50000 = 50000;
+	
+	// android bot: Treehugger Robot => id = 1062513
+	public static final int ANDROID_BOT_TREEHUGGER = 1062513;
+	
+	// android bot: Deckard Autoverifier => id = 1062513
+	public static final int ANDROID_BOT_DECKARD = 1006433;
+	
+	// android bot: Anonymous Coward  => id = 1017753
+	public static final int ANDROID_BOT_ANONYMOUS = 1017753;
+	
+	// android bot: Bionic Buildbot  => id = 1057783
+	public static final int ANDROID_BOT_BIONIC = 1057783;
+	
+	// android bot: Android Merger  => id = 1041063
+	public static final int ANDROID_BOT_ANDROID_MERGER = 1041063;
+	
+	// android bot: Android Devtools Build  => id = 1076253
+	public static final int ANDROID_BOT_ANDROID_DEVTOOLS = 1076253;
+	
+	// android bot:  Gerrit Code Review => id = -1
+	public static final int ANDROID_BOT_GERRIT = -1;
 }

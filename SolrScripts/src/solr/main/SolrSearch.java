@@ -34,6 +34,7 @@ public class SolrSearch {
 	 * 
 	 * @param framework
 	 */
+	@SuppressWarnings("unchecked")
 	public static void countFeaturesOccurrences(String framework) {
 
 		// the path for the framework file
@@ -64,23 +65,25 @@ public class SolrSearch {
 				// "/.*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*/"
 
 
-				solrQuery = solrQuery + feature + Constants.DOUBLE_QUOTES;
+				String solrQueryString = solrQuery + feature + Constants.DOUBLE_QUOTES;
+				
+				System.out.println(solrQueryString);
 
 				int numTotalHits = Constants._0;
 
-				System.out.println("Searching for feature: " + solrQuery);
+				System.out.println("Searching for feature: " + solrQueryString);
 
 				// add the feature to the string buffer
-				sb.append(solrQuery + Constants.SEMICOLON);
+				sb.append(feature + Constants.SEMICOLON);
 
 				// create the query object
 				SolrQuery query = new SolrQuery();
 
 				// set the query
-				query.setQuery(solrQuery);
+				query.setQuery(solrQueryString);
 
 				// set the fields to be returned from the json
-				query.setFields(Constants._NUMBER, Constants.MESSAGES_MESSAGE);
+				query.setFields(Constants._NUMBER, Constants.MESSAGES_MESSAGE, Constants.MESSAGES_AUTHOR_ID, Constants.MESSAGES_AUTHOR_NAME);
 
 				int pageNum = 1;
 				int numItemsPerPage = Constants._20000;
@@ -104,34 +107,36 @@ public class SolrSearch {
 					pagination = true;
 				}
 
-				// add the number of code reviews to the string buffer
-				sb.append(numCodeReviewsFound + Constants.SEMICOLON);
-
 				// iterate over each code review
 				for (int i = 0; i < results.size(); ++i) {
 
 					// create the Solr code review object
 					SolrDocument codeReview = results.get(i);
 
-					@SuppressWarnings("unchecked")
 					// get the messages.message field
 					List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
+					
+					// get the messages.message field
+					List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Constants.MESSAGES_AUTHOR_ID));
 
 					int numMessagesFound = Constants._0;
 
 					// iterate over the messages.message object to count the
 					// number of features within it
-					for (String message : messages) {
-
-						Pattern pattern = Pattern.compile(feature);
-
-						Matcher matcher = pattern.matcher(message);
-
-						while (matcher.find()) {
-							numMessagesFound++;
+					for (int j = 0; j < messages.size(); j++) {
+						
+						if (!isBot(authorsID.get(j))) {
+							
+							Pattern pattern = Pattern.compile(feature.toLowerCase());
+							
+							Matcher matcher = pattern.matcher(messages.get(j).toLowerCase());
+							
+							while (matcher.find()) {
+								numMessagesFound++;
+							}
 						}
 					}
-
+					
 					numTotalHits = numTotalHits + numMessagesFound;
 				}
 
@@ -152,30 +157,35 @@ public class SolrSearch {
 						// create the Solr code review object
 						SolrDocument codeReview = results.get(i);
 
-						@SuppressWarnings("unchecked")
 						// get the messages.message field
 						List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
 
+						// get the messages.message field
+						List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Constants.MESSAGES_AUTHOR_ID));
+						
 						int numMessagesFound = Constants._0;
 
 						// iterate over the messages.message object to count the
 						// number of features within it
-						for (String message : messages) {
-
-							Pattern pattern = Pattern.compile(feature);
-
-							Matcher matcher = pattern.matcher(message);
-
-							while (matcher.find()) {
-								numMessagesFound++;
+						for (int j = 0; j < messages.size(); j++) {
+							
+							if (!isBot(authorsID.get(j))) {
+							
+								Pattern pattern = Pattern.compile(feature.toLowerCase());
+	
+								Matcher matcher = pattern.matcher(messages.get(j).toLowerCase());
+	
+								while (matcher.find()) {
+									numMessagesFound++;
+								}
 							}
 						}
-
+						
 						numTotalHits = numTotalHits + numMessagesFound;
 					}
 
 					sumRead = sumRead + results.size();
-					System.out.println("Number of sum read => " + sumRead);
+					// System.out.println("Number of sum read => " + sumRead);
 				}
 
 				// add the number of code reviews to the string buffer
@@ -200,6 +210,23 @@ public class SolrSearch {
 		System.out.println("Done...");
 	}
 
+	private static boolean isBot(Long authorID) {
+		
+		boolean isBot = false;
+		
+		if (authorID == Constants.ANDROID_BOT_TREEHUGGER
+				|| authorID == Constants.ANDROID_BOT_DECKARD
+				|| authorID == Constants.ANDROID_BOT_ANONYMOUS
+				|| authorID == Constants.ANDROID_BOT_BIONIC
+				|| authorID == Constants.ANDROID_BOT_ANDROID_MERGER
+				|| authorID == Constants.ANDROID_BOT_ANDROID_DEVTOOLS
+				|| authorID == Constants.ANDROID_BOT_GERRIT) {
+			isBot = true;
+		} 
+		
+		return isBot;
+	}
+
 	/**
 	 * This is the main method which makes use of all Solr methods.
 	 * 
@@ -210,7 +237,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// the framework
-		String framework = "probables";
+		String framework = "hedges";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);

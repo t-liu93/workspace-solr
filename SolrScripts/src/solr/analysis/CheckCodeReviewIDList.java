@@ -135,9 +135,9 @@ public class CheckCodeReviewIDList {
 
 	public static void main(String[] args) {
 
-		// printAllCodeReviewsIndexed();
+		printAllCodeReviewsIndexed();
 
-		checkMissingCodeReviews();
+		// checkMissingCodeReviews();
 		
 		// createSolrIndexingCmds();
 

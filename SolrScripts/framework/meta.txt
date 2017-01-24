@@ -4,10 +4,14 @@ argues that
 claims that
 contends that
 maintains that
-there is a probability
-there is a likelihood
-there is a possibility
-there is a chance
+There is a probability
+There is a likelihood
+There is a possibility
+There is a chance
+There's a probability
+There's a likelihood
+There's a possibility
+There's a chance
 I didn't understand
 I did not understand
 I didn't know
