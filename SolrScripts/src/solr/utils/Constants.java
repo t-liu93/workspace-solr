@@ -50,6 +50,8 @@ public class Constants {
 	
 	public static String _OUT = "-out";
 	
+	public static String _ID = "-ID";
+	
 	public static String _UTF_8 = "UTF-8";
 	
 	public static String NEW_LINE = "\n";

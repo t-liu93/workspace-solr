@@ -11,4 +11,20 @@ code reviews downloaded: 140,006
 
 code reviews with inline comments: 28,091 (20%)
 
+====
+
 general comments: 899,105
+
+meta: 1,465
+
+nonverbals: 1,596
+
+I-statements: 8,744
+
+probables: 10,466
+
+hypotheticals: 256
+
+hedges: 90,064
+
+total: 91,958 (10.22%)
