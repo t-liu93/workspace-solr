@@ -1,52 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Category: Nonverbals</title>
+<title>Category: Hypotheticals</title>
 </head>
 <body>
 
-<H2> Features examples of the Nonverbals category!</H2>
+<H2> Features examples of the Hypotheticals category!</H2>
 
 <ul>
-	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/XXXXXX/">XXXXXX</a></li>
-	<li><b>Feature:</b> </li>
-	<li><b>Number of comment:</b> </li>
-	<li><b>Comment:</b><br> </li>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/129972/">129972</a></li>
+	<li><b>Feature:</b> I can't imagine</li>
+	<li><b>Number of comment:</b> 3</li>
+	<li><b>Comment:</b><br> Patch Set 1: Verified+1
+i've no idea, and that's what i said last time this was reported, but two different developers going to the trouble of reporting this as a bug...
+the only thing i can think of is that there is one special case: the two-argument constructor allows the first (directory) argument to be null. so maybe that screws with people's mental model and leaves them thinking "all bets are off". but even then, i can't imagine what they think File(null) would actually mean.</li>
 
 <br><br>
 
-	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/XXXXXX/">XXXXXX</a></li>
-	<li><b>Feature:</b> </li>
-	<li><b>Number of comment:</b> </li>
-	<li><b>Comment:</b><br> </li>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/209881/">209881</a></li>
+	<li><b>Feature:</b> What if</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br> Patch Set 1:
+What if we're initializing classes (AOT with boot/app image)? We're running code in that situation, so we may actually need the ImtConflictTable, right?</li>
 
 <br><br>
 
-	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/XXXXXX/">XXXXXX</a></li>
-	<li><b>Feature:</b> </li>
-	<li><b>Number of comment:</b> </li>
-	<li><b>Comment:</b><br> </li>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/153430/">153430</a></li>
+	<li><b>Feature:</b> Imagine</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br> Patch Set 2:
+Is there a reason you want this on our side, not in ATSL? I imagine this is really testing if the runner from ATSL works correctly.</li>
 
 <br><br>
 
-	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/XXXXXX/">XXXXXX</a></li>
-	<li><b>Feature:</b> </li>
-	<li><b>Number of comment:</b> </li>
-	<li><b>Comment:</b><br> </li>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/143711/">143711</a></li>
+	<li><b>Feature:</b> I was wondering</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br> Patch Set 1: Verified+1
+Hey Tor,
+Raymond introduced Truth back into our project for use in Gradle tests. and it's sitting there, in our prebuilts directory.
+I was wondering if we could expose it for use in our own IDE tests as well?</li>
 
 <br><br>
 
-	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/XXXXXX/">XXXXXX</a></li>
-	<li><b>Feature:</b> </li>
-	<li><b>Number of comment:</b> </li>
-	<li><b>Comment:</b><br> </li>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/87499/">87499</a></li>
+	<li><b>Feature:</b> What if</li>
+	<li><b>Number of comment:</b> 4</li>
+	<li><b>Comment:</b><br> Patch Set 2:
+To stir the pot a bit, what if we reduce the number of current app domains in our policy. In certain cases there doesn't seem to be a real distinction that needs to be drawn among certain app domains.
+I believe there remains a need for the named uid app domains (bluetooth, nfc, radio, system_app) given that those apps typically need access to security critical pieces of the system, i.e the radio app needs access to the radio socket. 
+The platform_app domain can likely stay as well given that it represents the platform cert on the phone. These apps typically need access to certain areas of the file system such as asec and app install directories which are critical to the security ofthe device. Plus theses apps are usually the ones referred to one when talking about signature middleware permissions which open up other access vectors that might need to be granted.
+But as it stands I'm not seeing a real need to keep separate domains for shared, release, and media apps. Seems like we could coalesce these in some way. Would it make sense for these to be untrusted? Lastly, we can use this script to label the apps under /system/priv-app. This seems to be needed given that apps under /system/priv-app typically are using a system middleware permission which grants certain access rights not afforded to other apps (i.e access to /cache). Plus, a lot of apps under /system/priv-app are Gapps that are causing denials because they are being labeled as untrusted. 
+For those keeping score:
+(named uid app domains), (platform signed apps domain), (apps in /system/priv-app), (other apps under /system/app ?= untrusted),(third party)
+This labeling model would seem to reinforce the current model that Android is using for apps. Thoughts?</li>
 
 <br><br>
 
-	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/XXXXXX/">XXXXXX</a></li>
-	<li><b>Feature:</b> </li>
-	<li><b>Number of comment:</b> </li>
-	<li><b>Comment:</b><br> </li>
+	<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/96581/">96581</a></li>
+	<li><b>Feature:</b> I can't imagine</li>
+	<li><b>Number of comment:</b> 2</li>
+	<li><b>Comment:</b><br> Patch Set 1:
+I can't imagine how this is happening. Your cache directory is disappearing in the middle of the app running?</li>
 
 <br><br>
 

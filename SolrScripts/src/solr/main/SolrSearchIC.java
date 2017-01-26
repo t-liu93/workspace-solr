@@ -22,7 +22,7 @@ import org.apache.solr.common.SolrDocumentList;
 
 import solr.utils.Constants;
 
-public class SolrSearch {
+public class SolrSearchIC {
 
 	/**
 	 * This method counts the occurrences of each feature in the framework and
@@ -274,7 +274,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// the framework
-		String framework = "hedges";
+		String framework = "hypotheticals";
 
 		// count the occurrences
 		countFeaturesOccurrences(framework);
