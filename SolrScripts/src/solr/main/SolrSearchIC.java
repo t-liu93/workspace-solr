@@ -20,7 +20,8 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
-import solr.utils.Constants;
+import solr.utils.Const;
+import solr.utils.Utils;
 
 public class SolrSearchIC {
 
@@ -30,7 +31,7 @@ public class SolrSearchIC {
 	 * pattern "framework-out.csv".
 	 * 
 	 * Note: Solr API does not provide the number of features within a code
-	 * review, that's why we need to do call contains in the messages.message
+	 * review, that's why we need to do call contains in the files.comments.message
 	 * object.
 	 * 
 	 * @param framework
@@ -39,16 +40,16 @@ public class SolrSearchIC {
 	public static void countFeaturesOccurrences(String framework) {
 
 		// the path for the framework file
-		String frameworkPath = Constants.DIR_FRAMEWORK + framework + Constants._TXT;
+		String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
 
 		System.out.println("Searching for framework: " + frameworkPath);
 
 		try {
 			// call the Solr Cloud URL
-			SolrClient solr = new HttpSolrClient.Builder(Constants.URL_SORL).build();
+			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
 
 			// create the Solr query string base
-			String solrQuery = Constants.MESSAGES_MESSAGE + Constants.TWO_DOTS + Constants.DOUBLE_QUOTES;
+			String solrQuery = Const.FILES_COMMENTS_MESSAGE + Const.TWO_DOTS + Const.DOUBLE_QUOTES;
 
 			// read the framework file
 			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
@@ -59,28 +60,21 @@ public class SolrSearchIC {
 
 			List<String> featuresIDs = new ArrayList<String>();
 			
-			Long _number = (long) 0;
+			String codeReviewID = "";
 
 			// iterate over each feature
 			for (String feature : features) {
 
-				// Escaping Special Characters:
-				// The current list special characters are:
-				// + - && || ! ( ) { } [ ] ^ " ~ * ? : \
-				// To escape these character use the \ before the character.
-
-				// "/.*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*/"
-
-				String solrQueryString = solrQuery + feature + Constants.DOUBLE_QUOTES;
+				String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
 
 				System.out.println(solrQueryString);
 
-				int numTotalHits = Constants._0;
+				int numTotalHits = Const._0;
 
 				System.out.println("Searching for feature: " + solrQueryString);
 
 				// add the feature to the string buffer
-				sbFeaturesOutput.append(feature + Constants.SEMICOLON);
+				sbFeaturesOutput.append(feature + Const.SEMICOLON);
 
 				// create the query object
 				SolrQuery query = new SolrQuery();
@@ -89,11 +83,11 @@ public class SolrSearchIC {
 				query.setQuery(solrQueryString);
 
 				// set the fields to be returned from the json
-				query.setFields(Constants._NUMBER, Constants.MESSAGES_MESSAGE, Constants.MESSAGES_AUTHOR_ID,
-						Constants.MESSAGES_ID);
+				query.setFields(Const.ID, Const.FILES_COMMENTS_MESSAGE, Const.FILES_COMMENTS_AUTHOR_ID,
+						Const.FILES_COMMENTS_PATCH_SET, Const.FILES_COMMENTS_ID);
 
 				int pageNum = 1;
-				int numItemsPerPage = Constants._20000;
+				int numItemsPerPage = Const._20000;
 				int sumRead = numItemsPerPage;
 				query.setStart((pageNum - 1) * numItemsPerPage);
 				query.setRows(numItemsPerPage);
@@ -107,7 +101,7 @@ public class SolrSearchIC {
 				// count the number of code reviews with the feature
 				long numCodeReviewsFound = results.getNumFound();
 
-				System.out.println("Number of code reviews => " + numCodeReviewsFound);
+				System.out.println("Number of inline comments => " + numCodeReviewsFound);
 
 				boolean pagination = false;
 				if (numCodeReviewsFound > results.size()) {
@@ -120,23 +114,23 @@ public class SolrSearchIC {
 					// create the Solr code review object
 					SolrDocument codeReview = results.get(i);
 
-					// get the messages.message field
-					List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
+					// get the files.comments.message field
+					List<String> messages = ((List<String>) codeReview.getFieldValue(Const.FILES_COMMENTS_MESSAGE));
 
-					// get the messages.message field
-					List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Constants.MESSAGES_AUTHOR_ID));
+					// get the files.comments.author._account_id field
+					List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Const.FILES_COMMENTS_AUTHOR_ID));
 
-					List<String> messagesID = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_ID));
+					List<String> messagesID = ((List<String>) codeReview.getFieldValue(Const.FILES_COMMENTS_ID));
 
-					_number = ((List<Long>) codeReview.getFieldValue(Constants._NUMBER)).get(0);
+					codeReviewID = (String) codeReview.getFieldValue(Const.ID);
 
-					int numMessagesFound = Constants._0;
+					int numMessagesFound = Const._0;
 
 					// iterate over the messages.message object to count the
 					// number of features within it
 					for (int j = 0; j < messages.size(); j++) {
 
-						if (!isBot(authorsID.get(j))) {
+						if (!Utils.isBot(authorsID.get(j))) {
 
 							Pattern pattern = Pattern.compile(feature.toLowerCase());
 
@@ -146,11 +140,11 @@ public class SolrSearchIC {
 								numMessagesFound++;
 								if (!featuresIDs.contains(messagesID.get(j))) {
 									featuresIDs.add(messagesID.get(j));
-									String url = Constants.URL_GERRIT + _number;
+									String url = Const.URL_GERRIT + codeReviewID;
 									int x = j + 1;
-									sbFeaturesIDs.append(feature + Constants.SEMICOLON + Constants.SPACE + _number 
-											+ Constants.SEMICOLON + Constants.SPACE + x + Constants.SEMICOLON
-											+ Constants.SPACE +  url + Constants.NEW_LINE);
+									sbFeaturesIDs.append(feature + Const.SEMICOLON + Const.SPACE + codeReviewID 
+											+ Const.SEMICOLON + Const.SPACE + x + Const.SEMICOLON
+											+ Const.SPACE +  url + Const.NEW_LINE);
 								}
 							}
 						}
@@ -176,21 +170,21 @@ public class SolrSearchIC {
 						// create the Solr code review object
 						SolrDocument codeReview = results.get(i);
 
-						// get the messages.message field
-						List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
+						// get the files.comments.message field
+						List<String> messages = ((List<String>) codeReview.getFieldValue(Const.FILES_COMMENTS_MESSAGE));
 
-						// get the messages.message field
-						List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Constants.MESSAGES_AUTHOR_ID));
+						// get the files.comments.author._account_id field
+						List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Const.FILES_COMMENTS_AUTHOR_ID));
 
-						List<String> messagesID = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_ID));
+						List<String> messagesID = ((List<String>) codeReview.getFieldValue(Const.FILES_COMMENTS_ID));
 
-						int numMessagesFound = Constants._0;
+						int numMessagesFound = Const._0;
 
 						// iterate over the messages.message object to count the
 						// number of features within it
 						for (int j = 0; j < messages.size(); j++) {
 
-							if (!isBot(authorsID.get(j))) {
+							if (!Utils.isBot(authorsID.get(j))) {
 
 								Pattern pattern = Pattern.compile(feature.toLowerCase());
 
@@ -200,11 +194,11 @@ public class SolrSearchIC {
 									numMessagesFound++;
 									if (!featuresIDs.contains(messagesID.get(j))) {
 										featuresIDs.add(messagesID.get(j));
-										String url = Constants.URL_GERRIT + _number;
+										String url = Const.URL_GERRIT + codeReviewID;
 										int x = j + 1;
-										sbFeaturesIDs.append(feature + Constants.SEMICOLON + Constants.SPACE + _number 
-												+ Constants.SEMICOLON + Constants.SPACE + x + Constants.SEMICOLON
-												+ Constants.SPACE +  url + Constants.NEW_LINE);
+										sbFeaturesIDs.append(feature + Const.SEMICOLON + Const.SPACE + codeReviewID 
+												+ Const.SEMICOLON + Const.SPACE + x + Const.SEMICOLON
+												+ Const.SPACE +  url + Const.NEW_LINE);
 									}
 								}
 							}
@@ -218,29 +212,29 @@ public class SolrSearchIC {
 				}
 
 				// add the number of code reviews to the string buffer
-				sbFeaturesOutput.append(numTotalHits + Constants.NEW_LINE);
+				sbFeaturesOutput.append(numTotalHits + Const.NEW_LINE);
 
 				System.out.println("Number of general messages => " + numTotalHits);
 				System.out.println("===========================");
 			}
 
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(Constants.DIR_FRAMEWORK + framework + Constants._OUT + Constants._CSV),
-					Constants._UTF_8))) {
+					new FileOutputStream(Const.DIR_FRAMEWORK + Const._IC  + framework + Const._IC 
+							+ Const._OUT + Const._CSV), Const._UTF_8))) {
 				writer.write(sbFeaturesOutput.toString());
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(Constants.DIR_FRAMEWORK + framework + Constants._ID + Constants._TXT),
-					Constants._UTF_8))) {
+					new FileOutputStream(Const.DIR_FRAMEWORK + Const._IC  + framework + Const._IC 
+							+ Const._ID + Const._TXT), Const._UTF_8))) {
 				writer.write(sbFeaturesIDs.toString());
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 
-			System.out.println("Total of general messages: " + featuresIDs.size());
+			System.out.println("Total of inline comments: " + featuresIDs.size());
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
@@ -248,20 +242,6 @@ public class SolrSearchIC {
 
 		System.out.println("Done...");
 
-	}
-
-	private static boolean isBot(Long authorID) {
-
-		boolean isBot = false;
-
-		if (authorID == Constants.ANDROID_BOT_TREEHUGGER || authorID == Constants.ANDROID_BOT_DECKARD
-				|| authorID == Constants.ANDROID_BOT_ANONYMOUS || authorID == Constants.ANDROID_BOT_BIONIC
-				|| authorID == Constants.ANDROID_BOT_ANDROID_MERGER
-				|| authorID == Constants.ANDROID_BOT_ANDROID_DEVTOOLS || authorID == Constants.ANDROID_BOT_GERRIT) {
-			isBot = true;
-		}
-
-		return isBot;
 	}
 
 	/**

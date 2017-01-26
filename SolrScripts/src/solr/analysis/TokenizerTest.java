@@ -14,13 +14,12 @@ public class TokenizerTest {
 				+ "that is explicitly recommended in the POSIX spec, IIRC. And there "
 				+ "is an example of it one line up, even!;";
 		
-		String feature = "i would";
+		//String feature = "i would";
 		
 		StreamTokenizer tf = new StreamTokenizer(new StringReader(tmp));
 		tf.lowerCaseMode(true);
 		
 		try {
-			
 			while (tf.nextToken() != StreamTokenizer.TT_EOF) {
 				System.out.println(tf);
 			}

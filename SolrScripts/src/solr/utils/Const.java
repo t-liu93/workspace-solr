@@ -12,21 +12,31 @@ package solr.utils;
  * @version 0.1
  * @since 2016-12-23
  */
-public class Constants {
+public class Const {
 
 	public static String URL_SORL = "http://localhost:8983/solr/gettingstarted";
 	
 	public static String URL_GERRIT = "https://android-review.googlesource.com/#/c/";
 
 	public static String _NUMBER = "_number";
+	
+	public static String ID = "id";
 
 	public static String MESSAGES_ID = "messages.id";
 
 	public static String MESSAGES_MESSAGE = "messages.message";
 	
+	public static String FILES_COMMENTS_ID = "files.comments.id";
+	
 	public static String MESSAGES_AUTHOR_ID = "messages.author._account_id";
 	
+	public static String FILES_COMMENTS_AUTHOR_ID = "files.comments.author._account_id";
+	
 	public static String MESSAGES_AUTHOR_NAME = "messages.author.name";
+	
+	public static String FILES_COMMENTS_MESSAGE = "files.comments.message";
+	
+	public static String FILES_COMMENTS_PATCH_SET = "files.comments.patch_set";
 
 	public static String SEMICOLON = ";";
 	
@@ -53,6 +63,10 @@ public class Constants {
 	public static String _CSV = ".csv";
 	
 	public static String _OUT = "-out";
+	
+	public static String _IC = "-ic";
+	
+	public static String _GC = "-gc";
 	
 	public static String _ID = "-ID";
 	

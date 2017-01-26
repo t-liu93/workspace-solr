@@ -20,7 +20,8 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
-import solr.utils.Constants;
+import solr.utils.Const;
+import solr.utils.Utils;
 
 public class SolrSearchGC {
 
@@ -39,16 +40,16 @@ public class SolrSearchGC {
 	public static void countFeaturesOccurrences(String framework) {
 
 		// the path for the framework file
-		String frameworkPath = Constants.DIR_FRAMEWORK + framework + Constants._TXT;
+		String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
 
 		System.out.println("Searching for framework: " + frameworkPath);
 
 		try {
 			// call the Solr Cloud URL
-			SolrClient solr = new HttpSolrClient.Builder(Constants.URL_SORL).build();
+			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
 
 			// create the Solr query string base
-			String solrQuery = Constants.MESSAGES_MESSAGE + Constants.TWO_DOTS + Constants.DOUBLE_QUOTES;
+			String solrQuery = Const.MESSAGES_MESSAGE + Const.TWO_DOTS + Const.DOUBLE_QUOTES;
 
 			// read the framework file
 			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
@@ -71,16 +72,16 @@ public class SolrSearchGC {
 
 				// "/.*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*/"
 
-				String solrQueryString = solrQuery + feature + Constants.DOUBLE_QUOTES;
+				String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
 
 				System.out.println(solrQueryString);
 
-				int numTotalHits = Constants._0;
+				int numTotalHits = Const._0;
 
 				System.out.println("Searching for feature: " + solrQueryString);
 
 				// add the feature to the string buffer
-				sbFeaturesOutput.append(feature + Constants.SEMICOLON);
+				sbFeaturesOutput.append(feature + Const.SEMICOLON);
 
 				// create the query object
 				SolrQuery query = new SolrQuery();
@@ -89,11 +90,11 @@ public class SolrSearchGC {
 				query.setQuery(solrQueryString);
 
 				// set the fields to be returned from the json
-				query.setFields(Constants._NUMBER, Constants.MESSAGES_MESSAGE, Constants.MESSAGES_AUTHOR_ID,
-						Constants.MESSAGES_ID);
+				query.setFields(Const._NUMBER, Const.MESSAGES_MESSAGE, Const.MESSAGES_AUTHOR_ID,
+						Const.MESSAGES_ID);
 
 				int pageNum = 1;
-				int numItemsPerPage = Constants._20000;
+				int numItemsPerPage = Const._20000;
 				int sumRead = numItemsPerPage;
 				query.setStart((pageNum - 1) * numItemsPerPage);
 				query.setRows(numItemsPerPage);
@@ -121,22 +122,22 @@ public class SolrSearchGC {
 					SolrDocument codeReview = results.get(i);
 
 					// get the messages.message field
-					List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
+					List<String> messages = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_MESSAGE));
 
 					// get the messages.message field
-					List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Constants.MESSAGES_AUTHOR_ID));
+					List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Const.MESSAGES_AUTHOR_ID));
 
-					List<String> messagesID = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_ID));
+					List<String> messagesID = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_ID));
 
-					_number = ((List<Long>) codeReview.getFieldValue(Constants._NUMBER)).get(0);
+					_number = ((List<Long>) codeReview.getFieldValue(Const._NUMBER)).get(0);
 
-					int numMessagesFound = Constants._0;
+					int numMessagesFound = Const._0;
 
 					// iterate over the messages.message object to count the
 					// number of features within it
 					for (int j = 0; j < messages.size(); j++) {
 
-						if (!isBot(authorsID.get(j))) {
+						if (!Utils.isBot(authorsID.get(j))) {
 
 							Pattern pattern = Pattern.compile(feature.toLowerCase());
 
@@ -146,11 +147,11 @@ public class SolrSearchGC {
 								numMessagesFound++;
 								if (!featuresIDs.contains(messagesID.get(j))) {
 									featuresIDs.add(messagesID.get(j));
-									String url = Constants.URL_GERRIT + _number;
+									String url = Const.URL_GERRIT + _number;
 									int x = j + 1;
-									sbFeaturesIDs.append(feature + Constants.SEMICOLON + Constants.SPACE + _number 
-											+ Constants.SEMICOLON + Constants.SPACE + x + Constants.SEMICOLON
-											+ Constants.SPACE +  url + Constants.NEW_LINE);
+									sbFeaturesIDs.append(feature + Const.SEMICOLON + Const.SPACE + _number 
+											+ Const.SEMICOLON + Const.SPACE + x + Const.SEMICOLON
+											+ Const.SPACE +  url + Const.NEW_LINE);
 								}
 							}
 						}
@@ -177,20 +178,20 @@ public class SolrSearchGC {
 						SolrDocument codeReview = results.get(i);
 
 						// get the messages.message field
-						List<String> messages = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_MESSAGE));
+						List<String> messages = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_MESSAGE));
 
 						// get the messages.message field
-						List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Constants.MESSAGES_AUTHOR_ID));
+						List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Const.MESSAGES_AUTHOR_ID));
 
-						List<String> messagesID = ((List<String>) codeReview.getFieldValue(Constants.MESSAGES_ID));
+						List<String> messagesID = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_ID));
 
-						int numMessagesFound = Constants._0;
+						int numMessagesFound = Const._0;
 
 						// iterate over the messages.message object to count the
 						// number of features within it
 						for (int j = 0; j < messages.size(); j++) {
 
-							if (!isBot(authorsID.get(j))) {
+							if (!Utils.isBot(authorsID.get(j))) {
 
 								Pattern pattern = Pattern.compile(feature.toLowerCase());
 
@@ -200,11 +201,11 @@ public class SolrSearchGC {
 									numMessagesFound++;
 									if (!featuresIDs.contains(messagesID.get(j))) {
 										featuresIDs.add(messagesID.get(j));
-										String url = Constants.URL_GERRIT + _number;
+										String url = Const.URL_GERRIT + _number;
 										int x = j + 1;
-										sbFeaturesIDs.append(feature + Constants.SEMICOLON + Constants.SPACE + _number 
-												+ Constants.SEMICOLON + Constants.SPACE + x + Constants.SEMICOLON
-												+ Constants.SPACE +  url + Constants.NEW_LINE);
+										sbFeaturesIDs.append(feature + Const.SEMICOLON + Const.SPACE + _number 
+												+ Const.SEMICOLON + Const.SPACE + x + Const.SEMICOLON
+												+ Const.SPACE +  url + Const.NEW_LINE);
 									}
 								}
 							}
@@ -218,23 +219,23 @@ public class SolrSearchGC {
 				}
 
 				// add the number of code reviews to the string buffer
-				sbFeaturesOutput.append(numTotalHits + Constants.NEW_LINE);
+				sbFeaturesOutput.append(numTotalHits + Const.NEW_LINE);
 
 				System.out.println("Number of general messages => " + numTotalHits);
 				System.out.println("===========================");
 			}
 
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(Constants.DIR_FRAMEWORK + framework + Constants._OUT + Constants._CSV),
-					Constants._UTF_8))) {
+					new FileOutputStream(Const.DIR_FRAMEWORK + Const._GC + framework + Const._OUT + Const._CSV),
+					Const._UTF_8))) {
 				writer.write(sbFeaturesOutput.toString());
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(Constants.DIR_FRAMEWORK + framework + Constants._ID + Constants._TXT),
-					Constants._UTF_8))) {
+					new FileOutputStream(Const.DIR_FRAMEWORK + Const._GC + framework + Const._ID + Const._TXT),
+					Const._UTF_8))) {
 				writer.write(sbFeaturesIDs.toString());
 			} catch (Exception e) {
 				System.out.println(e);
@@ -250,19 +251,7 @@ public class SolrSearchGC {
 
 	}
 
-	private static boolean isBot(Long authorID) {
-
-		boolean isBot = false;
-
-		if (authorID == Constants.ANDROID_BOT_TREEHUGGER || authorID == Constants.ANDROID_BOT_DECKARD
-				|| authorID == Constants.ANDROID_BOT_ANONYMOUS || authorID == Constants.ANDROID_BOT_BIONIC
-				|| authorID == Constants.ANDROID_BOT_ANDROID_MERGER
-				|| authorID == Constants.ANDROID_BOT_ANDROID_DEVTOOLS || authorID == Constants.ANDROID_BOT_GERRIT) {
-			isBot = true;
-		}
-
-		return isBot;
-	}
+	
 
 	/**
 	 * This is the main method which makes use of all Solr methods.
