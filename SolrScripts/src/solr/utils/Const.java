@@ -26,17 +26,21 @@ public class Const {
 
 	public static String MESSAGES_MESSAGE = "messages.message";
 	
-	public static String FILES_COMMENTS_ID = "files.comments.id";
+	public static String COMMENTS_ID = "comments.id";
 	
 	public static String MESSAGES_AUTHOR_ID = "messages.author._account_id";
 	
-	public static String FILES_COMMENTS_AUTHOR_ID = "files.comments.author._account_id";
+	public static String COMMENTS_AUTHOR_ID = "comments.author._account_id";
 	
 	public static String MESSAGES_AUTHOR_NAME = "messages.author.name";
 	
-	public static String FILES_COMMENTS_MESSAGE = "files.comments.message";
+	public static String COMMENTS_MESSAGE = "comments.message";
 	
-	public static String FILES_COMMENTS_PATCH_SET = "files.comments.patch_set";
+	public static String COMMENTS_PATCH_SET = "comments.patch_set";
+	
+	public static String COMMENTS_LINE = "comments.line";
+	
+	public static String FILE = "file";
 
 	public static String SEMICOLON = ";";
 	
@@ -45,6 +49,8 @@ public class Const {
 	public static String TWO_DOTS = ":";
 
 	public static String SLASH = "/";
+	
+	public static String AT = "@";
 	
 	public static String DOUBLE_QUOTES = "\"";
 	
@@ -57,6 +63,8 @@ public class Const {
 	public static String JAVA_REGEX = "\\.*";
 	
 	public static String DIR_FRAMEWORK = "./framework/";
+	
+	public static String DIR_RESULTS = "./results";
 	
 	public static String _TXT = ".txt";
 	

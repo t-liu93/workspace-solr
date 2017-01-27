@@ -31,16 +31,12 @@ public class RebuildJsonICFiles {
 
 			List<File> filesInFolder = new ArrayList<>();
 
-			filesInFolder.addAll(Files.walk(Paths.get("C:/Users/Felipe/Documents/code-reviews/inline-comments"))
+			filesInFolder.addAll(Files.walk(Paths.get("C:/Users/Felipe/Documents/code-reviews/inline-comments/"))
 					.filter(Files::isRegularFile).map(Path::toFile).collect(Collectors.toList()));
 
 			for (File file : filesInFolder) {
 
-				JsonObject newJsonIC = new JsonObject();
-
 				int codeReviewID = Integer.parseInt(file.getName().substring(0, file.getName().indexOf("-")));
-
-				newJsonIC.addProperty("id", codeReviewID);
 
 				String content = new String(Files.readAllBytes(file.toPath()));
 
@@ -48,21 +44,19 @@ public class RebuildJsonICFiles {
 
 				Set<Entry<String, JsonElement>> files = jsonIC.entrySet();
 
-				JsonArray newFiles = new JsonArray();
-
 				int fileCounter = 1;
 
 				for (Iterator<Entry<String, JsonElement>> iterator = files.iterator(); iterator.hasNext();) {
 
 					Entry<String, JsonElement> entry = (Entry<String, JsonElement>) iterator.next();
 
-					JsonObject newFile = new JsonObject();
+					JsonObject newJsonIC = new JsonObject();
 
-					newFile.addProperty("id", fileCounter);
-
+					newJsonIC.addProperty("id", codeReviewID + "." + fileCounter);
+					
 					String fileName = entry.getKey();
-
-					newFile.addProperty("file", fileName);
+					
+					newJsonIC.addProperty("file", fileName);
 
 					JsonArray comments = entry.getValue().getAsJsonArray();
 
@@ -88,9 +82,11 @@ public class RebuildJsonICFiles {
 
 						newComment.add("id", id);
 
-						JsonElement line = jsonObj.get("line");
-
-						newComment.add("line", line);
+						if (jsonObj.get("line") != null) {
+							newComment.add("line", jsonObj.get("line"));
+						} else {
+							newComment.addProperty("line", -1);
+						}
 
 						JsonObject range = new JsonObject();
 
@@ -117,7 +113,7 @@ public class RebuildJsonICFiles {
 
 						} else {
 
-							newComment.addProperty("in_reply_to", -1);
+							newComment.addProperty("in_reply_to", "0");
 						}
 
 						JsonElement updated = jsonObj.get("updated");
@@ -131,24 +127,24 @@ public class RebuildJsonICFiles {
 						newComments.add(newComment);
 					}
 
+					newJsonIC.add("comments", newComments);
+
+					Gson gson = new GsonBuilder().setPrettyPrinting().create();
+					
+					String json = gson.toJson(newJsonIC);
+					
+					String filePath = file.getAbsolutePath().replace(codeReviewID + "-", codeReviewID + "-" + fileCounter + "-");
+					
+					try (Writer writer = new BufferedWriter(
+							new OutputStreamWriter(new FileOutputStream(filePath), "UTF-8"))) {
+						writer.write(json);
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					
+					file.delete();
+
 					fileCounter = fileCounter + 1;
-
-					newFile.add("comments", newComments);
-
-					newFiles.add(newFile);
-				}
-
-				newJsonIC.add("files", newFiles);
-
-				Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-				String json = gson.toJson(newJsonIC);
-
-				try (Writer writer = new BufferedWriter(
-						new OutputStreamWriter(new FileOutputStream(file.getAbsolutePath()), "UTF-8"))) {
-					writer.write(json);
-				} catch (Exception e) {
-					System.out.println(e);
 				}
 
 				System.out.println("finished: " + file.getName());

@@ -74,8 +74,6 @@ public class SolrSearchGC {
 
 				String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
 
-				System.out.println(solrQueryString);
-
 				int numTotalHits = Const._0;
 
 				System.out.println("Searching for feature: " + solrQueryString);
@@ -226,7 +224,7 @@ public class SolrSearchGC {
 			}
 
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(Const.DIR_FRAMEWORK + Const._GC + framework + Const._OUT + Const._CSV),
+					new FileOutputStream(Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._OUT + Const._CSV),
 					Const._UTF_8))) {
 				writer.write(sbFeaturesOutput.toString());
 			} catch (Exception e) {
@@ -234,7 +232,7 @@ public class SolrSearchGC {
 			}
 
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(Const.DIR_FRAMEWORK + Const._GC + framework + Const._ID + Const._TXT),
+					new FileOutputStream(Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._ID + Const._TXT),
 					Const._UTF_8))) {
 				writer.write(sbFeaturesIDs.toString());
 			} catch (Exception e) {
