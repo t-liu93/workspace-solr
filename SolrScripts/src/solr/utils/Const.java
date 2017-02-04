@@ -47,6 +47,8 @@ public class Const {
 	public static String SPACE = " ";
 
 	public static String TWO_DOTS = ":";
+	
+	public static final String DOT = ".";
 
 	public static String SLASH = "/";
 	
@@ -89,6 +91,12 @@ public class Const {
 	public static int _20000 = 20000;
 	
 	public static int _50000 = 50000;
+	
+	public static final String LOG_DATE_FORMAT = "y-MM-dd-hhmmss";
+	
+	public static final String DIR_LOGS = "./logs/";
+	
+	public static final String LOG_EXTENSION = ".log";
 	
 	// android bot: Treehugger Robot => id = 1062513
 	public static final int ANDROID_BOT_TREEHUGGER = 1062513;

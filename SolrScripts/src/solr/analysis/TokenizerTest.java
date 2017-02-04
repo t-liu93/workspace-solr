@@ -8,20 +8,45 @@ public class TokenizerTest {
 
 	public static void main(String[] args) {
 
-		String tmp = "Patch Set 1: Code-Review+1 No score; I would prefer that you didn't submit "
-				+ "this The way this is solved in the rest of the code is to prefix "
-				+ "strings that might start with \"-\" with \"x\". This is a practice "
-				+ "that is explicitly recommended in the POSIX spec, IIRC. And there "
-				+ "is an example of it one line up, even!;";
+		String tmp = "mm, oh my! I didn't understand, why did you do that?;";
 		
-		//String feature = "i would";
+		String[] feature = "I didn't understand".split("\\s");
+		
+		int featureSize = feature.length;
 		
 		StreamTokenizer tf = new StreamTokenizer(new StringReader(tmp));
+		
 		tf.lowerCaseMode(true);
 		
 		try {
+			
+			String[] lastTokens = new String[featureSize];
+			
 			while (tf.nextToken() != StreamTokenizer.TT_EOF) {
-				System.out.println(tf);
+				
+				if (tf.sval != null) {
+					
+					for (int i = 0; i < feature.length; i++) {
+						
+						System.out.println(tf.sval + " == " + feature[i]);
+						
+						
+						if (tf.sval.equalsIgnoreCase(feature[i])) {
+							
+							lastTokens[i] = tf.sval;
+							
+							tf.nextToken();
+							
+							if (lastTokens[featureSize - 1] != null) {
+								System.out.println("found!!!");
+								lastTokens = new String[featureSize];
+							}
+							
+						} else if (!tf.sval.equalsIgnoreCase(feature[i])) {
+							break;
+						}
+					}
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
