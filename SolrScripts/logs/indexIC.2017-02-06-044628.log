@@ -1,0 +1,66 @@
+fev 06, 2017 4:46:57 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: indexing file: 1362
+fev 06, 2017 4:46:59 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z51bd512125a0a331565839234953bc0b"
+fev 06, 2017 4:47:00 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z51bd512125a0a331565839234953bc0b"
+fev 06, 2017 4:47:00 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z2eb0c3fd97c340c46a78f0300b9be8ac"
+fev 06, 2017 4:47:00 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z2eb0c3fd97c340c46a78f0300b9be8ac"
+fev 06, 2017 4:47:00 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished file: 1362-comments.json
+fev 06, 2017 4:47:26 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: indexing file: 1527
+fev 06, 2017 4:47:32 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z4f375ce731809645321708b40aaae7a9"
+fev 06, 2017 4:47:33 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z4f375ce731809645321708b40aaae7a9"
+fev 06, 2017 4:47:33 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "zd8a36e55a5ddc03d0979f227e3c1f102"
+fev 06, 2017 4:47:33 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "zd8a36e55a5ddc03d0979f227e3c1f102"
+fev 06, 2017 4:47:33 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished file: 1527-comments.json
+fev 06, 2017 4:47:50 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: indexing file: 1624
+fev 06, 2017 4:47:50 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z3961342bcdd56431ffd0d85b34a9aa9f"
+fev 06, 2017 4:47:50 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z3961342bcdd56431ffd0d85b34a9aa9f"
+fev 06, 2017 4:47:50 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z72c845d0a4a46cbf9d628c73c87c647c"
+fev 06, 2017 4:47:51 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z72c845d0a4a46cbf9d628c73c87c647c"
+fev 06, 2017 4:47:51 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "zd05514e1c984e27f926d8ec7f739b8cf"
+fev 06, 2017 4:47:52 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "zd05514e1c984e27f926d8ec7f739b8cf"
+fev 06, 2017 4:47:52 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "ze1395e33be5f78ee5a8f9f133fefdd5d"
+fev 06, 2017 4:47:53 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "ze1395e33be5f78ee5a8f9f133fefdd5d"
+fev 06, 2017 4:47:53 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "zfb12ae3a7f7f452d7ce486fcb0d5a686"
+fev 06, 2017 4:47:54 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "zfb12ae3a7f7f452d7ce486fcb0d5a686"
+fev 06, 2017 4:47:54 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z25395f0a4b409b47c9e78770bf002de3"
+fev 06, 2017 4:47:55 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z25395f0a4b409b47c9e78770bf002de3"
+fev 06, 2017 4:47:55 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z289d6fb3c217e51d43ead9e12ee3df7a"
+fev 06, 2017 4:47:56 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z289d6fb3c217e51d43ead9e12ee3df7a"
+fev 06, 2017 4:47:56 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z0934d748a62b4fbbfaae90dad495dd3a"
+fev 06, 2017 4:47:58 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z0934d748a62b4fbbfaae90dad495dd3a"
+fev 06, 2017 4:47:58 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "za196f36d546a3bafc7d851dd1aea6d96"
+fev 06, 2017 4:47:58 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "za196f36d546a3bafc7d851dd1aea6d96"
+fev 06, 2017 4:47:58 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished file: 1624-comments.json
+fev 06, 2017 4:47:58 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished all!!!

@@ -1,0 +1,40 @@
+fev 06, 2017 4:35:20 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: indexing file: 1241
+fev 06, 2017 4:35:20 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z4f8ae7dda47a90a65086068ed74f0097"
+fev 06, 2017 4:35:21 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z4f8ae7dda47a90a65086068ed74f0097"
+fev 06, 2017 4:35:21 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished file: 1241-comments.json
+fev 06, 2017 4:35:21 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: indexing file: 1251
+fev 06, 2017 4:35:21 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "AAAAMH%2F%2F%2F%2B4%3D"
+fev 06, 2017 4:35:22 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "AAAAMH%2F%2F%2F%2B4%3D"
+fev 06, 2017 4:35:22 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "AAAAMH%2F%2F%2F%2B0%3D"
+fev 06, 2017 4:35:23 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "AAAAMH%2F%2F%2F%2B0%3D"
+fev 06, 2017 4:35:23 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished file: 1251-comments.json
+fev 06, 2017 4:35:23 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: indexing file: 1276
+fev 06, 2017 4:35:23 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z3812236589357315929df9e8632960b2"
+fev 06, 2017 4:35:24 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z3812236589357315929df9e8632960b2"
+fev 06, 2017 4:35:24 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "zde766d12c03e3d0b2a27fb72f230bbeb"
+fev 06, 2017 4:35:24 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "zde766d12c03e3d0b2a27fb72f230bbeb"
+fev 06, 2017 4:35:24 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished file: 1276-comments.json
+fev 06, 2017 4:35:24 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: response: 0 for IC: "z98134654e0b399a453d92c8fe077793f"
+fev 06, 2017 4:35:25 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished IC: "z98134654e0b399a453d92c8fe077793f"
+fev 06, 2017 4:35:25 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished file: 1276-comments.json
+fev 06, 2017 4:35:25 PM solr.utils.Log doInfoLogging
+INFORMAÇÕES: finished all!!!
