@@ -12,7 +12,7 @@ import java.util.List;
 
 import solr.utils.HtmlRequests;
 
-public class CheckCodeReviewIDList {
+public class CheckSolrGC {
 
 	public static void printAllCodeReviewsIndexed() {
 
