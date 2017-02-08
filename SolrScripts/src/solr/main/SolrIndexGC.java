@@ -25,7 +25,7 @@ public class SolrIndexGC {
 
 		SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
 
-		Log log = new Log("indexGC-" +  start + "-" + end);
+		Log log = new Log("indexGC-[" +  start + "]-" + end);
 
 		long totalGC = 0;
 
@@ -148,7 +148,7 @@ public class SolrIndexGC {
 
 		int start = 0;
 
-		int end = 1;
+		int end = 3;
 
 		indexGeneralComments(start, end);
 	}
