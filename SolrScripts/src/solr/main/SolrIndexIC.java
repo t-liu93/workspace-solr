@@ -13,12 +13,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.solr.client.solrj.SolrClient;
-import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
-import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.UpdateResponse;
-import org.apache.solr.common.SolrDocumentList;
 import org.apache.solr.common.SolrInputDocument;
 
 import com.google.gson.JsonArray;
@@ -28,39 +25,9 @@ import com.google.gson.JsonParser;
 
 import solr.utils.Const;
 import solr.utils.Log;
+import solr.utils.Utils;
 
 public class SolrIndexIC {
-
-	public static boolean checkCodeReview(SolrClient solr, int codeReviewID) {
-
-		boolean exists = false;
-
-		try {
-
-			String queryString = "code_review:" + codeReviewID;
-
-			SolrQuery query = new SolrQuery();
-
-			query.setQuery(queryString);
-
-			query.setFields("code_review");
-
-			QueryResponse response = solr.query(query);
-
-			SolrDocumentList results = response.getResults();
-
-			long numCodeReviewsFound = results.getNumFound();
-
-			if (numCodeReviewsFound > 0) {
-				exists = true;
-			}
-
-		} catch (SolrServerException | IOException e) {
-			e.printStackTrace();
-		}
-
-		return exists;
-	}
 
 	public static void indexInlineComments() {
 
@@ -81,7 +48,7 @@ public class SolrIndexIC {
 
 				log.doInfoLogging("indexing file: " + codeReviewID);
 
-				boolean commentExist = checkCodeReview(solr, codeReviewID);
+				boolean commentExist = Utils.checkCodeReview(solr, codeReviewID);
 
 				if (commentExist) {
 					

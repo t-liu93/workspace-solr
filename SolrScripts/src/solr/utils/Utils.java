@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocumentList;
+
 public class Utils {
 
 	public static boolean isBot(Long authorID) {
@@ -51,5 +57,36 @@ public class Utils {
 		}
 
 		return sentences;
+	}
+	
+	public static boolean checkCodeReview(SolrClient solr, int codeReviewID) {
+
+		boolean exists = false;
+
+		try {
+
+			String queryString = "code_review:" + codeReviewID;
+
+			SolrQuery query = new SolrQuery();
+
+			query.setQuery(queryString);
+
+			query.setFields("code_review");
+
+			QueryResponse response = solr.query(query);
+
+			SolrDocumentList results = response.getResults();
+
+			long numCodeReviewsFound = results.getNumFound();
+
+			if (numCodeReviewsFound > 0) {
+				exists = true;
+			}
+
+		} catch (SolrServerException | IOException e) {
+			e.printStackTrace();
+		}
+
+		return exists;
 	}
 }
