@@ -12,11 +12,11 @@ code reviews downloaded: 140,006
 code reviews with inline comments: 28,091 (20%)
 
 
-general comments: 899,105 (79%)
+general comments: 899,105 (80%)
 
-inline comments: 238,236 (21%)
+inline comments: 232,471 (20%)
 
-total of comments: 1,137,341
+total of comments: 1,131,576
 
 ==================
 
