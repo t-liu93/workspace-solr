@@ -29,7 +29,7 @@ public class CheckSolrIC {
 
 			List<File> filesInFolder = new ArrayList<>();
 
-			filesInFolder.addAll(Files.walk(Paths.get("C:/Users/Felipe/Documents/code-reviews/tmp"))
+			filesInFolder.addAll(Files.walk(Paths.get("C:/Users/Felipe/Documents/code-reviews/details/inline-comments"))
 					.filter(Files::isRegularFile).map(Path::toFile).collect(Collectors.toList()));
 
 			for (File fileIC : filesInFolder) {
@@ -53,6 +53,8 @@ public class CheckSolrIC {
 				}
 			}
 			
+			System.out.println("finished reading...");
+			
 			try (BufferedWriter bw = new BufferedWriter(new FileWriter("./results/inline-comments-id-list.txt"))) {
 
 				for (String id : icIDs) {
@@ -66,10 +68,13 @@ public class CheckSolrIC {
 			e.printStackTrace();
 		}
 
-		System.out.println("finished all!!!");
+		System.out.println("finished printing!!!");
+		
+		System.out.println("# of inline comments: " + icIDs.size());
 	}
 
 	public static void main(String[] args) {
 
+		printJsonICIDs();
 	}
 }

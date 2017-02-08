@@ -1,5 +1,8 @@
 package solr.utils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +22,18 @@ public class Utils {
 		}
 
 		return isBot;
+	}
+
+	public static List<String> getCodeReviewIDs() {
+
+		List<String> codeReviewIDs = new ArrayList<String>();
+
+		try {
+			codeReviewIDs = Files.readAllLines(Paths.get("./results/code-review-id-list.txt"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return codeReviewIDs;
 	}
 
 	public static List<String> splitParagraphIntoSentences(String text) {

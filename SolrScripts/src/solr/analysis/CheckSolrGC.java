@@ -10,10 +10,59 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import solr.utils.HtmlRequests;
+import solr.utils.Utils;
 
 public class CheckSolrGC {
 
+	public static void printJsonGCIDs() {
+		
+		List<String> gcIDs = new ArrayList<String>();
+
+		List<String> codeReviewIDs = Utils.getCodeReviewIDs();
+
+		for (String codeReviewID : codeReviewIDs) {
+
+			try {
+				
+				String content = new String(Files.readAllBytes(
+						Paths.get("C:/Users/Felipe/Documents/code-reviews/details/" + codeReviewID + ".json")));
+				
+				JsonObject jsonGC = (JsonObject) new JsonParser().parse(content);
+				
+				JsonArray generalComments = (JsonArray) jsonGC.get("messages");
+				
+				for (JsonElement comment : generalComments) {
+					
+					gcIDs.add(comment.getAsJsonObject().get("id").getAsString());
+				}
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		System.out.println("finished reading...");
+
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter("./results/general-comments-id-list.txt"))) {
+
+			for (String id : gcIDs) {
+				bw.write(id + "\n");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("finished printing!!!");
+		
+		System.out.println("# of general comments: " + gcIDs.size());
+	}
+	
 	public static void printAllCodeReviewsIndexed() {
 
 		String url = "http://localhost:8983/solr/gettingstarted/select?fl=_number&indent=on&q=*:*&wt=csv&rows=20000&start=";
@@ -45,13 +94,7 @@ public class CheckSolrGC {
 
 	public static void createSolrIndexingCmds() {
 
-		List<String> codeReviewIDs = new ArrayList<String>();
-
-		try {
-			codeReviewIDs = Files.readAllLines(Paths.get("./results/code-review-id-list.txt"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		List<String> codeReviewIDs = Utils.getCodeReviewIDs();
 
 		List<String> solrIndexCmds = new ArrayList<String>();
 
@@ -95,15 +138,10 @@ public class CheckSolrGC {
 
 	public static void checkMissingCodeReviews() {
 
-		List<String> codeReviewIDs = new ArrayList<String>();
-
-		try {
-			codeReviewIDs = Files.readAllLines(Paths.get("./results/code-review-id-list.txt"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		List<String> codeReviewIDs = Utils.getCodeReviewIDs();
 
 		BufferedReader br2 = null;
+
 		try {
 			br2 = new BufferedReader(new FileReader("./results/code-review-id-solr.txt"));
 			String line = br2.readLine();
@@ -135,13 +173,14 @@ public class CheckSolrGC {
 
 	public static void main(String[] args) {
 
-		printAllCodeReviewsIndexed();
+		// printAllCodeReviewsIndexed();
 
 		// checkMissingCodeReviews();
-		
+
 		// createSolrIndexingCmds();
 
 		// runSolrIndexCmds();
 
+		printJsonGCIDs();
 	}
 }
