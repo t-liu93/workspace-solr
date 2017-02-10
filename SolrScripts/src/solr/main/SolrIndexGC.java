@@ -25,7 +25,7 @@ public class SolrIndexGC {
 
 		SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
 
-		Log log = new Log("indexGC-[" +  start + "]-" + end);
+		Log log = new Log("indexGC-[" +  start + "-" + end + "]");
 
 		long totalGC = 0;
 
@@ -40,7 +40,7 @@ public class SolrIndexGC {
 				log.doInfoLogging("indexing file: " + codeReviewID);
 				
 				String content = new String(Files.readAllBytes(
-						Paths.get("C:/Users/Felipe/Documents/code-reviews/tmp/" + codeReviewID + ".json")));
+						Paths.get("C:/Users/Felipe/Documents/code-reviews/details/" + codeReviewID + ".json")));
 				
 				JsonObject jsonGC = (JsonObject) new JsonParser().parse(content);
 
@@ -141,14 +141,17 @@ public class SolrIndexGC {
 
 		log.doInfoLogging("finished all!!!");
 
-		log.doInfoLogging("total of general comments: " + totalGC);
+		log.doInfoLogging("total of general comments from " + start + " to " + end + ": " + totalGC);
 	}
 
 	public static void main(String[] args) {
 
+		// Work Done:
+		// 0 		- 10000 		=>		=> 
+		
 		int start = 0;
 
-		int end = 3;
+		int end = 10000;
 
 		indexGeneralComments(start, end);
 	}

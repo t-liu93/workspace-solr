@@ -1,6 +1,8 @@
 package solr.analysis;
 
 import java.io.StringReader;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -16,6 +18,7 @@ import edu.stanford.nlp.ling.CoreAnnotations.TextAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.ling.IndexedWord;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.parser.nndep.DependencyParser;
 import edu.stanford.nlp.pipeline.Annotation;
@@ -31,6 +34,7 @@ import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import edu.stanford.nlp.trees.GrammaticalStructure;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
+import edu.stanford.nlp.trees.TypedDependency;
 import edu.stanford.nlp.util.CoreMap;
 import edu.stanford.nlp.util.PropertiesUtils;
 import solr.utils.Utils;
@@ -48,7 +52,8 @@ public class StanfordNLPTest {
 
 		DependencyParser parser = DependencyParser.loadFromModelFile(modelPath);
 
-		String text = "It's is a test... Why?! Wait, I will!!! This is a T.L.A. test. Now with a Dr. in it.";
+		//String text = "It's is a test... Why?! Wait, I will!!! This is a T.L.A. test. Now with a Dr. in it.";
+		String text = "does he play tennis?";
 
 		List<String> sentences = Utils.splitParagraphIntoSentences(text);
 
@@ -61,6 +66,23 @@ public class StanfordNLPTest {
 				List<TaggedWord> tagged = tagger.tagSentence(phrase);
 
 				GrammaticalStructure gs = parser.predict(tagged);
+
+				Collection<TypedDependency> tdl = gs.typedDependenciesCollapsed();
+
+				for (Iterator<TypedDependency> iter = tdl.iterator(); iter.hasNext();) {
+					TypedDependency var = iter.next();
+
+					IndexedWord dep = var.dep();
+					IndexedWord gov = var.gov();
+
+					// All useful information for a node in the tree
+					String reln = var.reln().getShortName();
+					
+					int depIdx = var.dep().index();
+					int govIdx = var.gov().index();
+					
+					System.out.println(depIdx);
+				}
 
 				System.out.println(gs);
 			}
@@ -158,6 +180,7 @@ public class StanfordNLPTest {
 			// this is the Stanford dependency graph of the current sentence
 			SemanticGraph dependencies = sentence.get(CollapsedCCProcessedDependenciesAnnotation.class);
 			System.out.println("dependency graph:\n" + dependencies);
+
 		}
 
 		// This is the coreference link graph
@@ -165,19 +188,19 @@ public class StanfordNLPTest {
 		// along with a method for getting the most representative mention
 		// Both sentence and token offsets start at 1!
 		Map<Integer, CorefChain> graph = document.get(CorefChainAnnotation.class);
-		
+
 		System.out.println(graph.size());
 
 	}
 
 	public static void main(String[] args) {
 
-		// parseNNDependencies();
+		parseNNDependencies();
 
 		// parseCoreNLPNNDependencies();
 
 		// parseCodeNLPDemo();
-		
-		parseTest();
+
+		// parseTest();
 	}
 }
