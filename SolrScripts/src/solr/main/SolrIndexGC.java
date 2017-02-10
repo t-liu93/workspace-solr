@@ -147,11 +147,13 @@ public class SolrIndexGC {
 	public static void main(String[] args) {
 
 		// Work Done:
-		// 0 		- 10000 		=>		=> 
+		// 0 		- 10000 		=>	OK	=> indexGC-[0-10000].2017-02-08-013135.log
+		// 10000	- 20000 		=>		=> 
+		// 20000 	- 30000 		=>		=> 
 		
-		int start = 0;
+		int start = 10000;
 
-		int end = 10000;
+		int end = 20000;
 
 		indexGeneralComments(start, end);
 	}

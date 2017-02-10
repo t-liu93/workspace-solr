@@ -22,13 +22,13 @@ public class Const {
 	
 	public static String ID = "id";
 
-	public static String MESSAGES_ID = "messages.id";
+	public static String CODE_REVIEW_ID = "code_review";
 
-	public static String MESSAGES_MESSAGE = "messages.message";
+	public static String MESSAGE = "message";
 	
 	public static String COMMENTS_ID = "comments.id";
 	
-	public static String MESSAGES_AUTHOR_ID = "messages.author._account_id";
+	public static String MESSAGES_AUTHOR_ID = "author._account_id";
 	
 	public static String COMMENTS_AUTHOR_ID = "comments.author._account_id";
 	

@@ -65,13 +65,6 @@ public class SolrSearchGC {
 			// iterate over each feature
 			for (String feature : features) {
 
-				// Escaping Special Characters:
-				// The current list special characters are:
-				// + - && || ! ( ) { } [ ] ^ " ~ * ? : \
-				// To escape these character use the \ before the character.
-
-				// "/.*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*/"
-
 				String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
 
 				int numTotalHits = Const._0;
@@ -88,8 +81,8 @@ public class SolrSearchGC {
 				query.setQuery(solrQueryString);
 
 				// set the fields to be returned from the json
-				query.setFields(Const._NUMBER, Const.MESSAGES_MESSAGE, Const.MESSAGES_AUTHOR_ID,
-						Const.MESSAGES_ID);
+				query.setFields(Const.ID, Const.MESSAGE, Const.MESSAGES_AUTHOR_ID,
+						Const.CODE_REVIEW_ID);
 
 				int pageNum = 1;
 				int numItemsPerPage = Const._20000;
@@ -104,12 +97,12 @@ public class SolrSearchGC {
 				SolrDocumentList results = response.getResults();
 
 				// count the number of code reviews with the feature
-				long numCodeReviewsFound = results.getNumFound();
+				long numgGCFound = results.getNumFound();
 
-				System.out.println("Number of code reviews => " + numCodeReviewsFound);
+				System.out.println("Number of general comments => " + numgGCFound);
 
 				boolean pagination = false;
-				if (numCodeReviewsFound > results.size()) {
+				if (numgGCFound > results.size()) {
 					pagination = true;
 				}
 
@@ -160,7 +153,7 @@ public class SolrSearchGC {
 
 				while (pagination) {
 
-					if (sumRead >= numCodeReviewsFound) {
+					if (sumRead >= numgGCFound) {
 						break;
 					}
 
