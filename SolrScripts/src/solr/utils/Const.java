@@ -35,6 +35,8 @@ public class Const {
 	public static String FILES_COMMENTS_MESSAGE = "files.comments.message";
 	
 	public static String FILES_COMMENTS_PATCH_SET = "files.comments.patch_set";
+	
+	public static String REVISION_NUMBER = "_revision_number";
 
 	public static String MESSAGE = "message";
 	
