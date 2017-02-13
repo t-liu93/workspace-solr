@@ -23,6 +23,18 @@ public class Const {
 	public static String ID = "id";
 
 	public static String CODE_REVIEW_ID = "code_review";
+	
+	public static String MESSAGES_ID = "messages.id";
+
+	public static String MESSAGES_MESSAGE = "messages.message";
+	
+	public static String FILES_COMMENTS_ID = "files.comments.id";
+	
+	public static String FILES_COMMENTS_AUTHOR_ID = "files.comments.author._account_id";
+	
+	public static String FILES_COMMENTS_MESSAGE = "files.comments.message";
+	
+	public static String FILES_COMMENTS_PATCH_SET = "files.comments.patch_set";
 
 	public static String MESSAGE = "message";
 	

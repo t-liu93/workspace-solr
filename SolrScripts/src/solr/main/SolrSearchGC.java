@@ -40,205 +40,214 @@ public class SolrSearchGC {
 	public static void countFeaturesOccurrences(String framework) {
 
 		// the path for the framework file
-		String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
+				String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
 
-		System.out.println("Searching for framework: " + frameworkPath);
+				System.out.println("Searching for framework: " + frameworkPath);
 
-		try {
-			// call the Solr Cloud URL
-			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
+				try {
+					// call the Solr Cloud URL
+					SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
 
-			// create the Solr query string base
-			String solrQuery = Const.MESSAGES_MESSAGE + Const.TWO_DOTS + Const.DOUBLE_QUOTES;
+					// create the Solr query string base
+					String solrQuery = Const.MESSAGES_MESSAGE + Const.TWO_DOTS + Const.DOUBLE_QUOTES;
 
-			// read the framework file
-			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
+					// read the framework file
+					List<String> features = Files.readAllLines(Paths.get(frameworkPath));
 
-			StringBuffer sbFeaturesOutput = new StringBuffer();
+					StringBuffer sbFeaturesOutput = new StringBuffer();
 
-			StringBuffer sbFeaturesIDs = new StringBuffer();
+					StringBuffer sbFeaturesIDs = new StringBuffer();
 
-			List<String> featuresIDs = new ArrayList<String>();
-			
-			Long _number = (long) 0;
+					List<String> featuresIDs = new ArrayList<String>();
+					
+					Long _number = (long) 0;
 
-			// iterate over each feature
-			for (String feature : features) {
+					// iterate over each feature
+					for (String feature : features) {
 
-				String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
+						// Escaping Special Characters:
+						// The current list special characters are:
+						// + - && || ! ( ) { } [ ] ^ " ~ * ? : \
+						// To escape these character use the \ before the character.
 
-				int numTotalHits = Const._0;
+						// "/.*[^a-zA-Z0-9][Ss]ort[ \t\n]of.*/"
 
-				System.out.println("Searching for feature: " + solrQueryString);
+						String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
 
-				// add the feature to the string buffer
-				sbFeaturesOutput.append(feature + Const.SEMICOLON);
+						System.out.println(solrQueryString);
 
-				// create the query object
-				SolrQuery query = new SolrQuery();
+						int numTotalHits = Const._0;
 
-				// set the query
-				query.setQuery(solrQueryString);
+						System.out.println("Searching for feature: " + solrQueryString);
 
-				// set the fields to be returned from the json
-				query.setFields(Const.ID, Const.MESSAGE, Const.MESSAGES_AUTHOR_ID,
-						Const.CODE_REVIEW_ID);
+						// add the feature to the string buffer
+						sbFeaturesOutput.append(feature + Const.SEMICOLON);
 
-				int pageNum = 1;
-				int numItemsPerPage = Const._20000;
-				int sumRead = numItemsPerPage;
-				query.setStart((pageNum - 1) * numItemsPerPage);
-				query.setRows(numItemsPerPage);
+						// create the query object
+						SolrQuery query = new SolrQuery();
 
-				// call the query
-				QueryResponse response = solr.query(query);
+						// set the query
+						query.setQuery(solrQueryString);
 
-				// get the results
-				SolrDocumentList results = response.getResults();
+						// set the fields to be returned from the json
+						query.setFields(Const._NUMBER, Const.MESSAGES_MESSAGE, Const.MESSAGES_AUTHOR_ID,
+								Const.MESSAGES_ID);
 
-				// count the number of code reviews with the feature
-				long numgGCFound = results.getNumFound();
+						int pageNum = 1;
+						int numItemsPerPage = Const._20000;
+						int sumRead = numItemsPerPage;
+						query.setStart((pageNum - 1) * numItemsPerPage);
+						query.setRows(numItemsPerPage);
 
-				System.out.println("Number of general comments => " + numgGCFound);
+						// call the query
+						QueryResponse response = solr.query(query);
 
-				boolean pagination = false;
-				if (numgGCFound > results.size()) {
-					pagination = true;
-				}
+						// get the results
+						SolrDocumentList results = response.getResults();
 
-				// iterate over each code review
-				for (int i = 0; i < results.size(); ++i) {
+						// count the number of code reviews with the feature
+						long numCodeReviewsFound = results.getNumFound();
 
-					// create the Solr code review object
-					SolrDocument codeReview = results.get(i);
+						System.out.println("Number of code reviews => " + numCodeReviewsFound);
 
-					// get the messages.message field
-					List<String> messages = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_MESSAGE));
-
-					// get the messages.message field
-					List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Const.MESSAGES_AUTHOR_ID));
-
-					List<String> messagesID = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_ID));
-
-					_number = ((List<Long>) codeReview.getFieldValue(Const._NUMBER)).get(0);
-
-					int numMessagesFound = Const._0;
-
-					// iterate over the messages.message object to count the
-					// number of features within it
-					for (int j = 0; j < messages.size(); j++) {
-
-						if (!Utils.isBot(authorsID.get(j))) {
-
-							Pattern pattern = Pattern.compile(feature.toLowerCase());
-
-							Matcher matcher = pattern.matcher(messages.get(j).toLowerCase());
-
-							while (matcher.find()) {
-								numMessagesFound++;
-								if (!featuresIDs.contains(messagesID.get(j))) {
-									featuresIDs.add(messagesID.get(j));
-									String url = Const.URL_GERRIT + _number;
-									int x = j + 1;
-									sbFeaturesIDs.append(feature + Const.SEMICOLON + Const.SPACE + _number 
-											+ Const.SEMICOLON + Const.SPACE + x + Const.SEMICOLON
-											+ Const.SPACE +  url + Const.NEW_LINE);
-								}
-							}
+						boolean pagination = false;
+						if (numCodeReviewsFound > results.size()) {
+							pagination = true;
 						}
-					}
 
-					numTotalHits = numTotalHits + numMessagesFound;
-				}
+						// iterate over each code review
+						for (int i = 0; i < results.size(); ++i) {
 
-				while (pagination) {
+							// create the Solr code review object
+							SolrDocument codeReview = results.get(i);
 
-					if (sumRead >= numgGCFound) {
-						break;
-					}
+							// get the messages.message field
+							List<String> messages = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_MESSAGE));
 
-					pageNum++;
-					query.setStart((pageNum - 1) * numItemsPerPage);
-					response = solr.query(query);
-					results = response.getResults();
+							// get the messages.message field
+							List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Const.MESSAGES_AUTHOR_ID));
 
-					// iterate over each code review
-					for (int i = 0; i < results.size(); ++i) {
+							List<String> messagesID = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_ID));
 
-						// create the Solr code review object
-						SolrDocument codeReview = results.get(i);
+							_number = ((List<Long>) codeReview.getFieldValue(Const._NUMBER)).get(0);
 
-						// get the messages.message field
-						List<String> messages = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_MESSAGE));
+							int numMessagesFound = Const._0;
 
-						// get the messages.message field
-						List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Const.MESSAGES_AUTHOR_ID));
+							// iterate over the messages.message object to count the
+							// number of features within it
+							for (int j = 0; j < messages.size(); j++) {
 
-						List<String> messagesID = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_ID));
+								if (!Utils.isBot(authorsID.get(j))) {
 
-						int numMessagesFound = Const._0;
+									Pattern pattern = Pattern.compile(feature.toLowerCase());
 
-						// iterate over the messages.message object to count the
-						// number of features within it
-						for (int j = 0; j < messages.size(); j++) {
+									Matcher matcher = pattern.matcher(messages.get(j).toLowerCase());
 
-							if (!Utils.isBot(authorsID.get(j))) {
-
-								Pattern pattern = Pattern.compile(feature.toLowerCase());
-
-								Matcher matcher = pattern.matcher(messages.get(j).toLowerCase());
-
-								while (matcher.find()) {
-									numMessagesFound++;
-									if (!featuresIDs.contains(messagesID.get(j))) {
-										featuresIDs.add(messagesID.get(j));
-										String url = Const.URL_GERRIT + _number;
-										int x = j + 1;
-										sbFeaturesIDs.append(feature + Const.SEMICOLON + Const.SPACE + _number 
-												+ Const.SEMICOLON + Const.SPACE + x + Const.SEMICOLON
-												+ Const.SPACE +  url + Const.NEW_LINE);
+									while (matcher.find()) {
+										numMessagesFound++;
+										if (!featuresIDs.contains(messagesID.get(j))) {
+											featuresIDs.add(messagesID.get(j));
+											String url = Const.URL_GERRIT + _number;
+											int x = j + 1;
+											sbFeaturesIDs.append(feature + Const.SEMICOLON + Const.SPACE + _number 
+													+ Const.SEMICOLON + Const.SPACE + x + Const.SEMICOLON
+													+ Const.SPACE +  url + Const.NEW_LINE);
+										}
 									}
 								}
 							}
+
+							numTotalHits = numTotalHits + numMessagesFound;
 						}
 
-						numTotalHits = numTotalHits + numMessagesFound;
+						while (pagination) {
+
+							if (sumRead >= numCodeReviewsFound) {
+								break;
+							}
+
+							pageNum++;
+							query.setStart((pageNum - 1) * numItemsPerPage);
+							response = solr.query(query);
+							results = response.getResults();
+
+							// iterate over each code review
+							for (int i = 0; i < results.size(); ++i) {
+
+								// create the Solr code review object
+								SolrDocument codeReview = results.get(i);
+
+								// get the messages.message field
+								List<String> messages = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_MESSAGE));
+
+								// get the messages.message field
+								List<Long> authorsID = ((List<Long>) codeReview.getFieldValue(Const.MESSAGES_AUTHOR_ID));
+
+								List<String> messagesID = ((List<String>) codeReview.getFieldValue(Const.MESSAGES_ID));
+
+								int numMessagesFound = Const._0;
+
+								// iterate over the messages.message object to count the
+								// number of features within it
+								for (int j = 0; j < messages.size(); j++) {
+
+									if (!Utils.isBot(authorsID.get(j))) {
+
+										Pattern pattern = Pattern.compile(feature.toLowerCase());
+
+										Matcher matcher = pattern.matcher(messages.get(j).toLowerCase());
+
+										while (matcher.find()) {
+											numMessagesFound++;
+											if (!featuresIDs.contains(messagesID.get(j))) {
+												featuresIDs.add(messagesID.get(j));
+												String url = Const.URL_GERRIT + _number;
+												int x = j + 1;
+												sbFeaturesIDs.append(feature + Const.SEMICOLON + Const.SPACE + _number 
+														+ Const.SEMICOLON + Const.SPACE + x + Const.SEMICOLON
+														+ Const.SPACE +  url + Const.NEW_LINE);
+											}
+										}
+									}
+								}
+
+								numTotalHits = numTotalHits + numMessagesFound;
+							}
+
+							sumRead = sumRead + results.size();
+							// System.out.println("Number of sum read => " + sumRead);
+						}
+
+						// add the number of code reviews to the string buffer
+						sbFeaturesOutput.append(numTotalHits + Const.NEW_LINE);
+
+						System.out.println("Number of general messages => " + numTotalHits);
+						System.out.println("===========================");
 					}
 
-					sumRead = sumRead + results.size();
-					// System.out.println("Number of sum read => " + sumRead);
+					try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+							new FileOutputStream(Const.DIR_FRAMEWORK + Const._GC + framework + Const._OUT + Const._CSV),
+							Const._UTF_8))) {
+						writer.write(sbFeaturesOutput.toString());
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+
+					try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+							new FileOutputStream(Const.DIR_FRAMEWORK + Const._GC + framework + Const._ID + Const._TXT),
+							Const._UTF_8))) {
+						writer.write(sbFeaturesIDs.toString());
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+
+					System.out.println("Total of general messages: " + featuresIDs.size());
+
+				} catch (SolrServerException | IOException e) {
+					e.printStackTrace();
 				}
 
-				// add the number of code reviews to the string buffer
-				sbFeaturesOutput.append(numTotalHits + Const.NEW_LINE);
-
-				System.out.println("Number of general messages => " + numTotalHits);
-				System.out.println("===========================");
-			}
-
-			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._OUT + Const._CSV),
-					Const._UTF_8))) {
-				writer.write(sbFeaturesOutput.toString());
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-
-			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._ID + Const._TXT),
-					Const._UTF_8))) {
-				writer.write(sbFeaturesIDs.toString());
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-
-			System.out.println("Total of general messages: " + featuresIDs.size());
-
-		} catch (SolrServerException | IOException e) {
-			e.printStackTrace();
-		}
-
-		System.out.println("Done...");
+				System.out.println("Done...");
 
 	}
 
