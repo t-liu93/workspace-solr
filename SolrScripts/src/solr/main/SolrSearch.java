@@ -99,7 +99,7 @@ public class SolrSearch {
 
 	public static void main(String[] args) {
 
-		String framework = "hypotheticals";
+		String framework = "hedges";
 
 		String commentType = "inline";
 
