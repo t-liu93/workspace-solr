@@ -159,6 +159,8 @@ public class SolrSearch {
 					List<Long> line = ((List<Long>) codeReview.getFieldValue(Const.LINE));
 
 					List<Long> patchSet = ((List<Long>) codeReview.getFieldValue(Const.PATCH_SET));
+					
+					//TODO handle when it is General Comment
 
 					String url = Const.URL_GERRIT + codeReviewID.get(0) + Const.SLASH + patchSet.get(0) + Const.SLASH
 							+ file.get(0) + Const.AT + line.get(0);
