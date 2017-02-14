@@ -36,6 +36,8 @@ public class Const {
 	
 	public static String FILES_COMMENTS_PATCH_SET = "files.comments.patch_set";
 	
+	public static String PATCH_SET = "patch_set";
+	
 	public static String REVISION_NUMBER = "_revision_number";
 
 	public static String MESSAGE = "message";
@@ -54,9 +56,13 @@ public class Const {
 	
 	public static String COMMENTS_LINE = "comments.line";
 	
+	public static String LINE = "line";
+	
 	public static String FILE = "file";
 
 	public static String SEMICOLON = ";";
+	
+	public static String TRIPLE_HASTAG = "###";
 	
 	public static String SPACE = " ";
 
@@ -86,7 +92,11 @@ public class Const {
 	
 	public static String _CSV = ".csv";
 	
+	public static String _HTML = ".html";
+	
 	public static String _OUT = "-out";
+	
+	public static String _EX = "-ex";
 	
 	public static String _IC = "-ic";
 	

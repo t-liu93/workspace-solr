@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+ Category: meta</title>
+</head>
+<body>
+<H2> Features examples of themeta category!</H2>
+<ul><li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/100498/11/drmserver.te@52">100498</a></li>
+<li><b>Feature:</b> It appears</li>
+<li><b>Comment:</b><br>It appears so.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/57672/1/crypto/src/main/java/org/conscrypt/SSLEngineAppData.java@27">57672</a></li>
+<li><b>Feature:</b> It appears</li>
+<li><b>Comment:</b><br>It appears to.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/106762/1/jack/src/com/android/jack/Jack.java@1123">106762</a></li>
+<li><b>Feature:</b> It appears</li>
+<li><b>Comment:</b><br>Really useful since it appears after OneDexPerTypeWriter ?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/120840/3/android/src/com/android/tools/idea/avdmanager/ConfigureAvdOptionsStep.java@105">120840</a></li>
+<li><b>Feature:</b> It seems</li>
+<li><b>Comment:</b><br>It seems unused.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/87696/2/luni/src/main/java/java/nio/channels/FileLock.java@125">87696</a></li>
+<li><b>Feature:</b> It seems</li>
+<li><b>Comment:</b><br>No - it seems not.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/157850/1/dexdump/dexdump_test.cc@64">157850</a></li>
+<li><b>Feature:</b> It seems</li>
+<li><b>Comment:</b><br>It seems to work well.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/195063/1/android/skin/qt/winsys-qt.cpp@103">195063</a></li>
+<li><b>Feature:</b> claims that</li>
+<li><b>Comment:</b><br>Qt documentation claims that the main loop will exit if Qt has no more work to do. In this case, you may not be sending Qt any signals at all while the emulator is running. Why is that not a problem?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/205996/2/daemon/gpio_driver.h@46">205996</a></li>
+<li><b>Feature:</b> claims that</li>
+<li><b>Comment:</b><br>If we had a bought with memory mapped GPIO we might not have an fd. Should the method be more of a GetPollingFd() - where we don't expose its implementation or make claims that it is the fd for the value sysfs file. Just that you can poll on it?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/83999/1/libc/dns/nameser/ns_samedomain.c@34">83999</a></li>
+<li><b>Feature:</b> claims that</li>
+<li><b>Comment:</b><br>netbsd pathces claims that this is not usually build in libc. As we don't define _LIBRESOLV but we do define _LIBC (based on make showcommands) the statements are equivalent.
+
+I'm not sure why it was done like this. IMO we can define these in libc.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/155452/1/android/src/org/jetbrains/android/actions/AndroidProcessChooserDialog.java@151">155452</a></li>
+<li><b>Feature:</b> maintains that</li>
+<li><b>Comment:</b><br>Indeed, we'd lose that selection. The existing selection code (see lines 330-331) only applies a selection if a client is selected, so this maintains that. And it is probably not a big deal anyway since in this dialog you have to select a process, not a device.
+
+However, fixing it to restore just the device isn't going to be hard either. I'll do that.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/288950/3/test/main.cpp@274">288950</a></li>
+<li><b>Feature:</b> There is a possibility</li>
+<li><b>Comment:</b><br>Well, of course there is a possibility that such case will happen (like if you intentionally write wrong code that returns success always). But if we do something wrong unintentionally, it should not succeed and should have an error status / segfaults / SIGABRTs / whatever. So I think the test would then be necessary (to guard unintentional programmer errors)</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/82521/12/src/java/com/android/internal/telephony/CallManager.java@991">82521</a></li>
+<li><b>Feature:</b> There is a possibility</li>
+<li><b>Comment:</b><br>In some cases there is a possibility of two phones having same subscription id, in such cases its required to traverse through all phones.
+
+Example is: We cannot assign separate subscription id for SIPPhone,  so SIPPhone will hold the subscription id of any available CS Phone(either subscription id_1  OR subscription id_2) Phone.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/298179/7/src/java/com/android/internal/telephony/RIL.java@762">298179</a></li>
+<li><b>Feature:</b> There is a possibility</li>
+<li><b>Comment:</b><br>It releases RilRequest object for EVENT_SEND_ACK every time. see line 477 in ril.java.
+If we release it here then there is a possibility of race condition leading to crash. 
+1) resposne.release gets called
+2) Released RilRequest object is reused by calling Obtain()
+3) EVENT_SEND_ACK is handled making rr.mParcel = null
+4) Context is switched back to obtain function leading to crash while accessing mParcel.
+
+Actually I have already merged CL for new hal api for sending ack. You can just call that function directly here and in that case we can eliminate above code.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/111500/7/services/core/java/com/android/server/wm/WindowManagerService.java@6105">111500</a></li>
+<li><b>Feature:</b> There is a chance</li>
+<li><b>Comment:</b><br>It would be simpler to just add winAnim.mSurfaceShown to this conditional. Do not set screenshotReady true unless mSurfaceShown is also true. There is a chance that on retry the surface will be shown.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/34300/11/services/jni/com_android_server_location_GpsLocationProvider.cpp@224">34300</a></li>
+<li><b>Feature:</b> There is a chance</li>
+<li><b>Comment:</b><br>there is a chance byteArray is null at the end, I don't think we should invoke the callback in that case, it is useless for the client, and they will have to do work to discard it</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/207968/1/compiler/optimizing/inliner.cc@916">207968</a></li>
+<li><b>Feature:</b> There is a chance</li>
+<li><b>Comment:</b><br>I think a NullConstant should return true for IsZeroBitPattern, unless you think that there is a chance of null not being 0.  You can then simplify this.
+
+I have heard of machines with non-0 NULL pointers, but not in the last 30 years or so.  Perhaps you can add a static_assert for this.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/271655/3/ojluni/src/main/java/java/io/File.java@1896">271655</a></li>
+<li><b>Feature:</b> There's a possibility</li>
+<li><b>Comment:</b><br>Not much info in repo history. My guess is security by obscurity? If security manager is present and there's a possibility to run untrusted code, we don't want to leak temp filenames?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/89392/4/android/src/com/android/tools/idea/gradle/project/GradleProjectImporter.java@656">89392</a></li>
+<li><b>Feature:</b> There's a possibility</li>
+<li><b>Comment:</b><br>You might want to file a bug for a future feature request that it try to deduplicate modules that are already in the project. A significant number of our developers will have library modules that are included in multiple projects, so there's a possibility in a case like that where we could import the same module a second time.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/173845/5/libart/src/main/java/java/lang/Daemons.java@246">173845</a></li>
+<li><b>Feature:</b> There's a chance</li>
+<li><b>Comment:</b><br>Does this mean that there's a chance that we could report a wrong finalizable object for a timeout?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/185135/2/runtime/class_linker.cc@1026">185135</a></li>
+<li><b>Feature:</b> There's a chance</li>
+<li><b>Comment:</b><br>OK. Maybe on a compiler option if there's a chance that we may go back to not having the class table?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/195787/15/android/crashreport/CrashService_common.cpp@326">195787</a></li>
+<li><b>Feature:</b> There's a chance</li>
+<li><b>Comment:</b><br>please use case-insensitive search, at least on Windows - its file system is always case-insensitive. There's a chance it's the same on Mac</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/93429/2/debuggerd/tombstone.cpp@767">93429</a></li>
+<li><b>Feature:</b> I didn't understand</li>
+<li><b>Comment:</b><br>(i didn't understand your comment here.)</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/148625/6/simpleperf/utils.h@59">148625</a></li>
+<li><b>Feature:</b> I didn't understand</li>
+<li><b>Comment:</b><br>i didn't understand why this isn't in Command.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/19535/1/services/java/com/android/server/am/ActivityManagerService.java@11392">19535</a></li>
+<li><b>Feature:</b> I didn't understand</li>
+<li><b>Comment:</b><br>I didn't understand this comment, could you elaborate?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/55600/3/res/values/strings.xml@101">55600</a></li>
+<li><b>Feature:</b> I did not understand</li>
+<li><b>Comment:</b><br>Sorry, I did not understand why this has to be changed.Can you please clarify what is expected now?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/251312/3//COMMIT_MSG@14">251312</a></li>
+<li><b>Feature:</b> I did not understand</li>
+<li><b>Comment:</b><br>ÃƒÅ“ber-nit: I had to read this commit message several times because I did not understand it until I realized that ClassA was extending ClassB, not the converse (B extends A), which I think is a more common pattern.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/153761/11/jack/src/com/android/jack/transformations/enums/synthetic/SyntheticClassReclaimer.java@30">153761</a></li>
+<li><b>Feature:</b> I did not understand</li>
+<li><b>Comment:</b><br>I did not understand the reason. Can you drop me some line about that (email or here)? I think there is a misunderstanding about how Jack works. What is a Global object for you? JSession is not global, it is local to a compilation.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/114274/5/compiler/optimizing/code_generator_x86_64.cc@1371">114274</a></li>
+<li><b>Feature:</b> I didn't know</li>
+<li><b>Comment:</b><br>Thanks! I didn't know that. :)</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/124602/1/compiler/optimizing/code_generator_arm.cc@510">124602</a></li>
+<li><b>Feature:</b> I didn't know</li>
+<li><b>Comment:</b><br>Oh, I didn't know about ffs.  Nice!</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/153239/8/service/uuid.cpp@77">153239</a></li>
+<li><b>Feature:</b> I didn't know</li>
+<li><b>Comment:</b><br>Thanks, I didn't know about it.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/305482/3/tools/fs_config/fs_config_generator.py@1302">305482</a></li>
+<li><b>Feature:</b> I did not know</li>
+<li><b>Comment:</b><br>Oh really, I did not know that.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/196596/4/runtime/jit/jit.cc@206">196596</a></li>
+<li><b>Feature:</b> I did not know</li>
+<li><b>Comment:</b><br>Done (std::unique_ptr overloads it, I did not know that)</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/202186/1/android/base/files/FilePath_linux.cpp@21">202186</a></li>
+<li><b>Feature:</b> I did not know</li>
+<li><b>Comment:</b><br>I did not know about that, that's great, will do!</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/151950/1/adb/services.cpp@313">151950</a></li>
+<li><b>Feature:</b> I didn't get it</li>
+<li><b>Comment:</b><br>(where by "ages" i mean "i didn't get it at all until i read this comment".)</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/82521/12/src/java/com/android/internal/telephony/CallManager.java@945">82521</a></li>
+<li><b>Feature:</b> I did not get it</li>
+<li><b>Comment:</b><br>I did not get it clearly,  this code belongs to dial() method the mentioned usecase does not belong here. Could you please clarify more on this.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/148396/4/services/core/java/com/android/server/ConnectivityService.java@1753">148396</a></li>
+<li><b>Feature:</b> It turns out</li>
+<li><b>Comment:</b><br>This code is dead; it turns out nobody sends CMD_CHANNEL_DISCONNECT.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/207292/12/distrib/android-emugl/host/libs/libOpenglRender/RenderControl.cpp@94">207292</a></li>
+<li><b>Feature:</b> It turns out</li>
+<li><b>Comment:</b><br>it turns out the extension string we get always have a space at the end.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/115752/3/src/main/java/com/android/volley/RequestQueue.java@126">115752</a></li>
+<li><b>Feature:</b> It turns out</li>
+<li><b>Comment:</b><br>good point. actually it turns out this isn't even needed, so just removed it entirely</li><br><br>
+</ul>
+</body>
+</html>

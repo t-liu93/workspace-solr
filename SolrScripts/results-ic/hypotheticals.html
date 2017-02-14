@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+ Category: hypotheticals</title>
+</head>
+<body>
+<H2> Features examples of thehypotheticals category!</H2>
+<ul><li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/110820/1/include/jemalloc/internal/atomic.h@160">110820</a></li>
+<li><b>Feature:</b> I can't imagine</li>
+<li><b>Comment:</b><br>It should be using standard C11 atomics.  Otherwise I can't imagine that upstream would take it.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/137250/1/sdklib/src/main/java/com/android/sdklib/SdkVersionInfo.java@117">137250</a></li>
+<li><b>Feature:</b> I can't imagine</li>
+<li><b>Comment:</b><br>I can't imagine that it would be... and code search turns up few hits for "icecreamsandwich". But I'll do as you recommend, depending on where it gets checked in.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/121009/1/adb/remount_service.c@115">121009</a></li>
+<li><b>Feature:</b> I can't imagine</li>
+<li><b>Comment:</b><br>this seems like a bad idea. there are only two callers and they pass the addresses of globals. i can't imagine any circumstance under which you'd want this function to be a no-op.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/111054/13/logd/LogKlog.cpp@424">111054</a></li>
+<li><b>Feature:</b> I can not imagine</li>
+<li><b>Comment:</b><br>Everything above is used to calculate/parse/sniff all the pieces from the incoming dmesg line buffer and generate the internal log buffer format:
+
+<pri><tag>\0<message>\0
+
+All the vars would have to passed to a break-out function:
+
+pri
+now
+uid
+pid
+tid
+message (buf, tag, l)
+length
+
+I can not imagine the break-out to result in anything that looks less complicated.
+
+The above parse/sniff routines are far better candidates for break-out. I will try that, and make this section look more linear.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/304798/2/include/log/log.h@966">304798</a></li>
+<li><b>Feature:</b> I can not imagine</li>
+<li><b>Comment:</b><br>I am glad you broached this question. I have had troubles engaging anyone on how to architect this.
+
+This #ifdef is to prevent the definition of this method if one does not include the private API. This file is being cultivate/curated to be _the_ Vendor API.
+
+If a class can completely be defined inline, it can be used by a vendor. If I implement that class details in a library, we can not allow a vendor to use it because its shape carries the risk of changing from release to release. (I should add a comment at the top of the class to 'spain that goal)
+
+The options are:
+
+- two classes, one with, and one without. The one with in private Is-A of the one without defined here. (Google coding standard asks that we stay away from Is-A and implement Has-A instead which will be exceedingly noisy)
+- Make this a public API. (However, I do not feel comfortable making android_log_write_list_buffer vendor public)
+- forgo adding this to the class, leave the android_log_write_list_buffer private, native, and C. (works too, class operator to return android_log_context reference)
+
+NB: there will be exactly _one_ internal user of this API. I can not imagine more, but imagination should not stifle planning.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/155896/2/cc/gapii/spy_base.cpp@44">155896</a></li>
+<li><b>Feature:</b> What if</li>
+<li><b>Comment:</b><br>What if observations.mData != nullptr?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/156066/1/adb/adb.cpp@841">156066</a></li>
+<li><b>Feature:</b> What if</li>
+<li><b>Comment:</b><br>What if these fail?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/172111/2/android/opengles.c@218">172111</a></li>
+<li><b>Feature:</b> What if</li>
+<li><b>Comment:</b><br>what if begin > end?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/152279/35/jack-server/src/com/android/jack/server/tasks/JackTask.java@114">152279</a></li>
+<li><b>Feature:</b> Imagine</li>
+<li><b>Comment:</b><br>I imagine we need a charset somewhere</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/153151/2/jack/src/com/android/jack/ir/ast/JPackage.java@96">153151</a></li>
+<li><b>Feature:</b> Imagine</li>
+<li><b>Comment:</b><br>nit: deletedItems is OK I imagine, no?</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/52060/2/luni/src/main/java/org/apache/harmony/security/provider/cert/X509CertPathImpl.java@214">52060</a></li>
+<li><b>Feature:</b> Imagine</li>
+<li><b>Comment:</b><br>It could, but I imagine the CertPathValidator just doesn't work.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/113777/2/build/Android.gtest.mk@65">113777</a></li>
+<li><b>Feature:</b> I was wondering</li>
+<li><b>Comment:</b><br>thanks, I was wondering about that. I'll remove these too.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/248003/12/compiler/optimizing/register_allocator_test.cc@545">248003</a></li>
+<li><b>Feature:</b> I was wondering</li>
+<li><b>Comment:</b><br>I was wondering what the character limit was :-)
+Done.</li><br><br>
+<li><b>Code Review ID:</b> <a href="https://android-review.googlesource.com/#/c/137721/5/src/devices/tech/dalvik/constraints.jd@479">137721</a></li>
+<li><b>Feature:</b> I was wondering</li>
+<li><b>Comment:</b><br>this seems okay, but I was wondering if it would be safer as &lt;</li><br><br>
+</ul>
+</body>
+</html>
