@@ -12,7 +12,6 @@ import edu.stanford.nlp.dcoref.CorefCoreAnnotations.CorefChainAnnotation;
 import edu.stanford.nlp.io.IOUtils;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
-import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.HasWord;
 import edu.stanford.nlp.ling.IndexedWord;
 import edu.stanford.nlp.ling.TaggedWord;
@@ -24,7 +23,6 @@ import edu.stanford.nlp.process.DocumentPreprocessor;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations;
 import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations.CollapsedCCProcessedDependenciesAnnotation;
-import edu.stanford.nlp.semgraph.SemanticGraphEdge;
 import edu.stanford.nlp.simple.Document;
 import edu.stanford.nlp.simple.Sentence;
 import edu.stanford.nlp.tagger.maxent.MaxentTagger;
@@ -138,13 +136,13 @@ public class StanfordNLPTest {
 	public static void parseQuestions() {
 
 		Properties props = new Properties();
-		props.put("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+		props.put("annotators", "tokenize, ssplit, parse");
 		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
 		// String text = "Good I’m feeling rather tired. Bad It would be better
 		// to make a decision now, rather than leave it until later. I'd rather
 		// go.";
-		String text = "I'm right. Am I right?";
+		String text = "I'd rather go.";
 
 		Annotation document = new Annotation(text);
 
@@ -162,34 +160,6 @@ public class StanfordNLPTest {
 			Tree c = tree.getChild(0);
 			System.out.println("root label: " + c.label());
 
-			if (c.label().value().equalsIgnoreCase("S")) {
-
-				SemanticGraph sg = sentence.get(SemanticGraphCoreAnnotations.BasicDependenciesAnnotation.class);
-
-				Iterable<SemanticGraphEdge> edge_set1 = sg.edgeIterable();
-
-				for (Iterator<SemanticGraphEdge> iterator = edge_set1.iterator(); iterator.hasNext();) {
-
-					SemanticGraphEdge edge = iterator.next();
-
-					if (edge.getRelation().getShortName().equalsIgnoreCase("nsubj")) {
-
-						CoreLabel sourceCL = edge.getSource().backingLabel();
-
-						String sourceTag = sourceCL.tag();
-
-						int sourceIndex = sourceCL.index();
-
-						CoreLabel tagetCL = edge.getTarget().backingLabel();
-
-						String targetTag = tagetCL.tag();
-
-						int targetIndex = tagetCL.index();
-
-						System.out.println(edge.getRelation());
-					}
-				}
-			}
 		}
 	}
 
