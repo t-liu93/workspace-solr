@@ -133,36 +133,6 @@ public class StanfordNLPTest {
 		}
 	}
 
-	public static void parseQuestions() {
-
-		Properties props = new Properties();
-		props.put("annotators", "tokenize, ssplit, parse");
-		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-
-		// String text = "Good I’m feeling rather tired. Bad It would be better
-		// to make a decision now, rather than leave it until later. I'd rather
-		// go.";
-		String text = "I'd rather go.";
-
-		Annotation document = new Annotation(text);
-
-		pipeline.annotate(document);
-
-		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-
-		for (CoreMap sentence : sentences) {
-
-			System.out.println("sentence: " + sentence);
-
-			Tree tree = sentence.get(TreeAnnotation.class);
-			System.out.println("parse tree: " + tree);
-
-			Tree c = tree.getChild(0);
-			System.out.println("root label: " + c.label());
-
-		}
-	}
-
 	public static void parseTest() {
 
 		// creates a StanfordCoreNLP object, with POS tagging, lemmatization,
@@ -225,6 +195,41 @@ public class StanfordNLPTest {
 
 		System.out.println(graph.size());
 
+	}
+
+	public static void parseQuestions() {
+	
+		Properties props = new Properties();
+		props.put("annotators", "tokenize, ssplit, parse");
+		StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+		
+		// id = f903bbc38dcc55e5d6b313f3139d06b51a5760d7
+	
+		String text = "Hi Romain,\n\nCould you suggest a proper way to submit change of font?\n"
+				+ "Is it find if we use fontforge file format?\n\nOn 2008/11/11 06:56:41, "
+				+ "\"Romain Guy\" <romainguy wrote:\n> I would prefer that you didn't submit "
+				+ "this.\n> \n> Thanks for your submission, but I would like to know what did "
+				+ "you change in the fonts?";
+	
+		Annotation document = new Annotation(text);
+	
+		pipeline.annotate(document);
+	
+		List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+	
+		for (CoreMap sentence : sentences) {
+	
+			System.out.println("sentence: " + sentence);
+	
+			Tree tree = sentence.get(TreeAnnotation.class);
+			System.out.println("parse tree: " + tree);
+	
+			Tree c = tree.getChild(0);
+			System.out.println("root label: " + c.label());
+	
+			System.out.println("=========================");
+	
+		}
 	}
 
 	public static void main(String[] args) {
