@@ -156,10 +156,13 @@ public class SolrIndexGC {
 		// 40000 	- 50000 		=>	62731	=> indexGC-[40000-50000].2017-02-17-114127.log
 		// 50000 	- 60000 		=>	62437	=> indexGC-[50000-60000].2017-02-19-093959.log
 		// subtotal					=> 335111
+		// 60000 	- 70000 		=> 65970	=> indexGC-[60000-70000].2017-02-27-013005.log
+		// 70000 	- 80000 		=> 62783	=> indexGC-[70000-80000].2017-02-28-031746.log
+		// subtotal					=> 463864
 		
-		int start = 50000;
+		int start = 70000;
 
-		int end = 60000;
+		int end = 80000;
 
 		indexGeneralComments(start, end);
 	}
