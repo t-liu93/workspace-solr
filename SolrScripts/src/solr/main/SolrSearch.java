@@ -82,6 +82,8 @@ public class SolrSearch {
 					}
 				}
 
+				// TODO write the IDs in a separate file?! (only the IDs?) 
+				
 				// String filePath = "";
 				//
 				// if (commentType.equalsIgnoreCase("general")) {
