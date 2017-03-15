@@ -40,3 +40,5 @@ total: 91,958 (10.22%)
 
 Inline Comments results:
 
+total: 104,600 (44.99%)
+

@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrClient;
@@ -20,6 +21,97 @@ import org.apache.solr.common.SolrDocumentList;
 import solr.utils.Const;
 
 public class SolrSearch {
+
+	public static void countAllFeaturesOccurrences(String commentType) {
+
+		List<String> listIDs = new ArrayList<String>();
+
+		for (int i = 0; i < Const.features.length; i++) {
+
+			String framework = Const.features[i];
+
+			String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
+
+			System.out.println("Searching for framework: " + frameworkPath);
+
+			try {
+
+				SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
+
+				String solrQuery = Const.MESSAGE + Const.TWO_DOTS + Const.DOUBLE_QUOTES;
+
+				List<String> features = Files.readAllLines(Paths.get(frameworkPath));
+
+				for (String feature : features) {
+
+					String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
+
+					String excludeBots = " NOT author._account_id:" + Const.ANDROID_BOT_TREEHUGGER
+							+ " NOT author._account_id:" + Const.ANDROID_BOT_DECKARD + " NOT author._account_id:"
+							+ Const.ANDROID_BOT_ANONYMOUS + " NOT author._account_id:" + Const.ANDROID_BOT_BIONIC
+							+ " NOT author._account_id:" + Const.ANDROID_BOT_ANDROID_MERGER + " NOT author._account_id:"
+							+ Const.ANDROID_BOT_ANDROID_DEVTOOLS + " NOT author._account_id:\\"
+							+ Const.ANDROID_BOT_GERRIT;
+
+					SolrQuery query = new SolrQuery();
+
+					query.setQuery(solrQueryString + excludeBots);
+
+					query.setFields(Const.ID);
+
+					query.setRows(Const._50000);
+
+					QueryResponse response = solr.query(query);
+
+					SolrDocumentList results = response.getResults();
+
+					long numCommentsFound = results.getNumFound();
+
+					System.out.println("Number of comments for " + feature + " => " + numCommentsFound);
+
+					for (int j = 0; j < results.size(); ++j) {
+
+						SolrDocument codeReview = results.get(j);
+
+						String id = (String) codeReview.getFieldValue(Const.ID);
+
+						if (!listIDs.contains(id)) {
+
+							listIDs.add(id);
+						}
+					}
+				}
+
+				// String filePath = "";
+				//
+				// if (commentType.equalsIgnoreCase("general")) {
+				//
+				// filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH +
+				// framework + Const._OUT + Const._CSV;
+				//
+				// } else if (commentType.equalsIgnoreCase("inline")) {
+				//
+				// filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH +
+				// framework + Const._OUT + Const._CSV;
+				// }
+				//
+				// try (Writer writer = new BufferedWriter(
+				// new OutputStreamWriter(new FileOutputStream(filePath),
+				// Const._UTF_8))) {
+				// writer.write(sbFeaturesOutput.toString());
+				// } catch (Exception e) {
+				// System.out.println(e);
+				// }
+
+			} catch (SolrServerException | IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println("Done...");
+		
+		System.out.println("Total os comments: " + listIDs.size());
+	}
 
 	public static void countFeaturesOccurrences(String framework, String commentType) {
 
@@ -95,7 +187,6 @@ public class SolrSearch {
 		}
 
 		System.out.println("Done...");
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -159,14 +250,14 @@ public class SolrSearch {
 					List<Long> line = ((List<Long>) codeReview.getFieldValue(Const.LINE));
 
 					List<Long> patchSet = ((List<Long>) codeReview.getFieldValue(Const.PATCH_SET));
-					
-					//TODO handle when it is General Comment
+
+					// TODO handle when it is General Comment
 
 					String url = Const.URL_GERRIT + codeReviewID.get(0) + Const.SLASH + patchSet.get(0) + Const.SLASH
 							+ file.get(0) + Const.AT + line.get(0);
 
-					sbExamplesHtmlOutput.append(printBodyHtml(String.valueOf(codeReviewID.get(0)), message.get(0), feature, url));
-					
+					sbExamplesHtmlOutput
+							.append(printBodyHtml(String.valueOf(codeReviewID.get(0)), message.get(0), feature, url));
 
 				}
 			}
@@ -204,7 +295,7 @@ public class SolrSearch {
 		String html = "<li><b>Code Review ID:</b> <a href=\"" + url + "\">" + codeReviewID + "</a></li>\n";
 
 		html = html + "<li><b>Feature:</b> " + feature + "</li>\n";
-		
+
 		html = html + "<li><b>Comment:</b><br>" + msg + "</li><br><br>\n";
 
 		return html;
@@ -221,12 +312,12 @@ public class SolrSearch {
 
 	public static void main(String[] args) {
 
-		String framework = "hedges";
-
+		// String framework = "nonverbals";
 		String commentType = "inline";
-
 		// countFeaturesOccurrences(framework, commentType);
 
-		printSomeExamples(framework, commentType, 3);
+		countAllFeaturesOccurrences(commentType);
+
+		// printSomeExamples(framework, commentType, 3);
 	}
 }

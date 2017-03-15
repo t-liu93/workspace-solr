@@ -13,6 +13,8 @@ package solr.utils;
  * @since 2016-12-23
  */
 public class Const {
+	
+	public static String[] features = {"nonverbals", "meta", "I-statements", "hedges", "hypotheticals", "probables"}; 
 
 	public static String URL_SORL = "http://localhost:8983/solr/gettingstarted";
 	
