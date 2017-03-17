@@ -36,9 +36,12 @@ General Comments results:
 
 total: 91,958 (10.22%)
 
+total (features without questions): 90,520 (10,06%)
+
+
 ==================
 
 Inline Comments results:
 
-total: 104,600 (44.99%)
+total (features without questions): 104,600 (44.99%)
 

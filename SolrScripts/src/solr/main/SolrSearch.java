@@ -66,7 +66,7 @@ public class SolrSearch {
 					SolrDocumentList results = response.getResults();
 
 					long numCommentsFound = results.getNumFound();
-
+					
 					System.out.println("Number of comments for " + feature + " => " + numCommentsFound);
 
 					for (int j = 0; j < results.size(); ++j) {
@@ -315,7 +315,7 @@ public class SolrSearch {
 	public static void main(String[] args) {
 
 		// String framework = "nonverbals";
-		String commentType = "inline";
+		String commentType = "general";
 		// countFeaturesOccurrences(framework, commentType);
 
 		countAllFeaturesOccurrences(commentType);
