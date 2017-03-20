@@ -70,6 +70,8 @@ public class Const {
 
 	public static String TWO_DOTS = ":";
 	
+	public static String STAR_TWODOTS_START = "*:*";
+	
 	public static final String DOT = ".";
 
 	public static String SLASH = "/";

@@ -1,9 +1,4 @@
-how
-what
-when
-where
-which
-who
-why
-whom
-whose
+Stanford NLP:
+
+SBARQ
+SQ
