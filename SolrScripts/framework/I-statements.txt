@@ -5,11 +5,6 @@ I am not sure
 I'm curious
 I am curious
 I bet
-I wonder
-I'm not sure
-I am not sure
-I'm curious
-I am curious
 I would guess not
 I'm confused
 I am confused
@@ -17,7 +12,6 @@ I guess
 I doubt
 I think
 I believe
-I guess
 I reckon
 I suppose
 I suspect

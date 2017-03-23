@@ -1,7 +1,5 @@
 likely
 sometimes
-likely
-sometimes
 probably
 frequently
 could have
@@ -9,29 +7,24 @@ often
 apparently
 arguably
 conceivably
-likely
 ostensibly
 perhaps
 possibly
 potentially
 presumably
-probably
 seemingly
 supposedly
 tentatively
 theoretically
 unlikely
 commonly
-frequently
 generally
 normally
 occasionally
-often
 oftentimes
 rarely
 routinely
 seldom
-sometimes
 typically
 usually
 apparent
@@ -42,7 +35,6 @@ hypothetical
 implausible
 improbable
 indicative
-likely
 plausible
 possible
 potential
@@ -54,7 +46,6 @@ putative
 speculative
 suggestive
 theoretical
-unlikely
 characteristic
 common
 commonplace

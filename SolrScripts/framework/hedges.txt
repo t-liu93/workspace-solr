@@ -3,13 +3,10 @@ maybe
 may
 might
 perhaps
-maybe
-sort of
 could
 seems
 seems like
 might feel a bit
-sort of
 kind of
 loosely speaking
 more or less
@@ -80,9 +77,6 @@ pseudo
 crypto-
 crypto
 can
-could
-may
-might
 must
 should
 will
@@ -272,7 +266,6 @@ imagines
 imagined
 imagining
 infer
-infer
 infered
 inferred
 infering
@@ -293,10 +286,6 @@ perceive
 perceives
 perceived
 perceiving
-postulate
-postulates
-postulated
-postulating
 presume
 presumes
 presumed
@@ -367,7 +356,6 @@ looks
 looked
 looking
 seem
-seems
 seemed
 seeming
 sound
@@ -384,44 +372,32 @@ drastically
 fairly
 greatly
 highly
-largely
 mainly
 markedly
 massively
 moderately
 modestly
-mostly
 partially
 partly
 predominantly
 predominately
 primarily
-principally
 quite
-rather
 reasonably
-relatively
 shortly
 significantly
 slightly
-somewhat
 strongly
 substantially
 vastly
 widely
 about
-almost
 approximately
 around
-basically
 closely
-essentially
 just
 nearly
-practically
-roughly
 some
-virtually
 appreciable
 central
 considerable
@@ -450,7 +426,6 @@ small
 substantial
 tiny
 tremendous
-approximate
 close
 gross
 proximate
@@ -461,23 +436,15 @@ allegations
 argument
 arguments 
 assertion
-assertions
-charge
-charges
-claim
-claims 
+assertions 
 clue
 clues
 contention
 contentions
-hint
-hints
 implication
 implications
 indication
 indications
-postulate
-postulates
 prediction
 predictions
 proposal
@@ -506,8 +473,6 @@ construct
 constructs
 deduction
 deductions
-estimate
-estimates
 estimation
 estimations
 evaluation
@@ -518,11 +483,8 @@ expectation
 expectations
 fantasy
 fantasies
-fear
 guess
 guesses
-hope
-hopes
 hunch
 hunches
 hypothesis
@@ -573,12 +535,8 @@ theory
 theories
 thesis
 theses
-thinking
 thinkings
-thought
 thoughts
-view
-views
 viewpoint
 viewpoints
 vision
