@@ -21,6 +21,11 @@ import org.apache.solr.common.SolrDocumentList;
 import solr.utils.Const;
 
 public class SolrSearch {
+	
+	// Escaping Special Characters:
+	// The current list special characters are:
+	// + - && || ! ( ) { } [ ] ^ " ~ * ? : \
+	// To escape these character use the \ before the character.
 
 	public static void countAllFeaturesOccurrences(String commentType) {
 
