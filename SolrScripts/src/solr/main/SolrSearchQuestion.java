@@ -35,15 +35,9 @@ public class SolrSearchQuestion {
 
 			String solrQuery = Const.STAR_TWODOTS_START;
 
-			String excludeBots = " NOT author._account_id:" + Const.ANDROID_BOT_TREEHUGGER + " NOT author._account_id:"
-					+ Const.ANDROID_BOT_DECKARD + " NOT author._account_id:" + Const.ANDROID_BOT_ANONYMOUS
-					+ " NOT author._account_id:" + Const.ANDROID_BOT_BIONIC + " NOT author._account_id:"
-					+ Const.ANDROID_BOT_ANDROID_MERGER + " NOT author._account_id:" + Const.ANDROID_BOT_ANDROID_DEVTOOLS
-					+ " NOT author._account_id:\\" + Const.ANDROID_BOT_GERRIT;
-
 			SolrQuery query = new SolrQuery();
 			
-			query.setQuery(solrQuery + excludeBots);
+			query.setQuery(solrQuery + Const.excludeBots);
 
 			query.setFields(Const.MESSAGE);
 
