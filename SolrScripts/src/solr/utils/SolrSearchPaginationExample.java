@@ -1,4 +1,4 @@
-package solr.main;
+package solr.utils;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -20,10 +20,7 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
-import solr.utils.Const;
-import solr.utils.Utils;
-
-public class SolrSearchIC {
+public class SolrSearchPaginationExample {
 
 	/**
 	 * This method counts the occurrences of each feature in the framework and
