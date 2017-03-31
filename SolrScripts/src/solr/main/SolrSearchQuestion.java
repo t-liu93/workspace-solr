@@ -21,7 +21,7 @@ import edu.stanford.nlp.util.CoreMap;
 import solr.utils.Const;
 
 public class SolrSearchQuestion {
-
+	
 	@SuppressWarnings("unchecked")
 	public static void printSomeExamples() {
 

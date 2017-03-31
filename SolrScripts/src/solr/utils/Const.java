@@ -16,6 +16,8 @@ public class Const {
 
 	public static String[] features = { "nonverbals", "meta", "I-statements", "hedges", "hypotheticals", "probables" };
 
+	public static String[] featuresTest = { "meta" };
+
 	public static String excludeBots = " NOT author._account_id:" + Const.ANDROID_BOT_TREEHUGGER
 			+ " NOT author._account_id:" + Const.ANDROID_BOT_DECKARD + " NOT author._account_id:"
 			+ Const.ANDROID_BOT_ANONYMOUS + " NOT author._account_id:" + Const.ANDROID_BOT_BIONIC
@@ -121,6 +123,10 @@ public class Const {
 	public static int _0 = 0;
 
 	public static int _500 = 500;
+
+	public static int _3000 = 3000;
+	
+	public static int _5000 = 5000;
 
 	public static int _20000 = 20000;
 
