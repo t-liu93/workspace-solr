@@ -401,6 +401,67 @@ public class SolrSearch {
 
 		return html;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static void printSomeQuestionFeatureExamples() {
+
+		try {
+			
+			Properties props = new Properties();
+			props.put("annotators", "tokenize, ssplit, parse");
+			StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+
+			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
+
+			String solrQuery = Const.STAR_TWODOTS_START;
+
+			SolrQuery query = new SolrQuery();
+			
+			query.setQuery(solrQuery + Const.excludeBots);
+
+			query.setFields(Const.MESSAGE);
+
+			query.setRows(500);
+
+			QueryResponse response = solr.query(query);
+
+			SolrDocumentList results = response.getResults();
+
+			for (int j = 0; j < results.size(); ++j) {
+
+				SolrDocument codeReview = results.get(j);
+
+				List<String> message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE));
+				
+				Annotation document = new Annotation(message.get(0));
+				
+				pipeline.annotate(document);
+			
+				List<CoreMap> sentences = document.get(SentencesAnnotation.class);
+			
+				for (CoreMap sentence : sentences) {
+			
+					Tree tree = sentence.get(TreeAnnotation.class);
+					Tree c = tree.getChild(0);
+					
+					// SBARQ and SQ
+					
+					if (c.label().toString().equalsIgnoreCase("SBARQ") 
+							|| c.label().toString().equalsIgnoreCase("SQ") ) {
+						
+						System.out.println("sentence: " + sentence);
+						System.out.println("parse tree: " + tree);
+						System.out.println("root label: " + c.label());
+						System.out.println("=========================");
+					}
+				}
+			}
+		} catch (SolrServerException | IOException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("Done...");
+	}
 
 	public static void main(String[] args) {
 
