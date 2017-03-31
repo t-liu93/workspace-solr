@@ -31,10 +31,14 @@ import solr.utils.Const;
 
 public class SolrSearch {
 
-	// Escaping Special Characters:
-	// The current list special characters are:
-	// + - && || ! ( ) { } [ ] ^ " ~ * ? : \
-	// To escape these character use the \ before the character.
+	/**
+	 * Solr - Escaping Special Characters
+	 * 
+	 * The current list special characters are: * + - && || ! ( ) { } [ ] ^ " ~ * ? : \
+	 * 
+	 * To escape these character use the \ before the character.
+	 * 
+	 */
 
 	@SuppressWarnings("unchecked")
 	public static void countAllFeaturesOccurences(String commentType) {
@@ -122,7 +126,7 @@ public class SolrSearch {
 
 		System.out.println("Done...");
 		
-		System.out.println("Total os comments (except question): " + listIDs.size());
+		System.out.println("Total os comments: " + listIDs.size());
 	}
 
 	public static List<String> countAllFeaturesOccurrencesExceptQuestions(String commentType) {
