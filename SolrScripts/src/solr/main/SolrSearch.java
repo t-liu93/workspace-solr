@@ -29,17 +29,18 @@ import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
 import edu.stanford.nlp.util.CoreMap;
 import solr.utils.Const;
 
+/**
+ * Solr - Escaping Special Characters
+ * 
+ * The current list special characters are: * + - && || ! ( ) { } [ ] ^ " ~ * ? : \
+ * 
+ * To escape these character use the \ before the character.
+ * 
+ */
+
 public class SolrSearch {
 
-	/**
-	 * Solr - Escaping Special Characters
-	 * 
-	 * The current list special characters are: * + - && || ! ( ) { } [ ] ^ " ~ * ? : \
-	 * 
-	 * To escape these character use the \ before the character.
-	 * 
-	 */
-
+	
 	@SuppressWarnings("unchecked")
 	public static void countAllFeaturesOccurences(String commentType) {
 
