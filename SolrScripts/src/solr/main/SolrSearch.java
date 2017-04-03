@@ -45,24 +45,29 @@ public class SolrSearch {
 
 	public static void countAllFeatures(String commentType) {
 
-		//List<String> listIDs_hedges = countFeatures(Const.HEDGES, commentType);
+		FeatureResult results_hedges = countFeatures(Const.HEDGES, commentType);
+		System.out.println(results_hedges.getTotalNumCommentsFound());
 		
-		//List<String> listIDs_hypotheticals = countFeatures(Const.HYPOTHETICALS, commentType);
+		FeatureResult results_hypotheticals = countFeatures(Const.HYPOTHETICALS, commentType);
+		System.out.println(results_hypotheticals.getTotalNumCommentsFound());
 		
-		//List<String> listIDs_I_statements = countFeatures(Const.I_STATEMENTS, commentType);
+		FeatureResult results_I_statements = countFeatures(Const.I_STATEMENTS, commentType);
+		System.out.println(results_I_statements.getTotalNumCommentsFound());
 		
-		List<String> listIDs_meta = countFeatures(Const.META, commentType);
+		FeatureResult results_meta = countFeatures(Const.META, commentType);
+		System.out.println(results_meta.getTotalNumCommentsFound());
 		
-		System.out.println(listIDs_meta.size());
+		FeatureResult results_nonverbals = countFeatures(Const.NONVERBALS, commentType);
+		System.out.println(results_nonverbals.getTotalNumCommentsFound());
 		
-		//List<String> listI_nonverbals = countFeatures(Const.NONVERBALS, commentType);
-		
-		//List<String> listI_probables = countFeatures(Const.PROBABLES, commentType);
-
+		FeatureResult results_probables = countFeatures(Const.PROBABLES, commentType);
+		System.out.println(results_probables.getTotalNumCommentsFound());
 	}
 
 	@SuppressWarnings("unchecked")
-	public static List<String> countFeatures(String framework, String commentType) {
+	public static FeatureResult countFeatures(String framework, String commentType) {
+		
+		FeatureResult result = new FeatureResult();
 
 		List<String> listIDs = new ArrayList<String>();
 
@@ -158,6 +163,14 @@ public class SolrSearch {
 			
 			sbFeaturesOutput.append(Const.NEW_LINE);
 			
+			result.setFramework(frameworkPath);
+			
+			result.setListIDs(listIDs);
+			
+			result.setTotalNumCommentsFound(listIDs.size());
+			
+			result.setTotalNumFeaturesFound(totalNumFeaturesFound);
+			
 			String filePath = "";
 
 			if (commentType.equalsIgnoreCase("general")) {
@@ -182,7 +195,7 @@ public class SolrSearch {
 
 		// System.out.println("Done...");
 
-		return listIDs;
+		return result;
 	}
 
 	@SuppressWarnings("unchecked")

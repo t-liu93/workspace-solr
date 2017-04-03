@@ -1,8 +1,10 @@
-hm;70
-hmm;529
-hmmm;74
-hmmmm;7
-mm;62
-mmm;45
-oh;800
-ooh;15
+feature;Number of comments;Number of features
+hm;70;71
+hmm;529;530
+hmmm;74;74
+hmmmm;7;7
+mm;62;77
+mmm;45;48
+oh;800;804
+ooh;15;15
+Total;1575;1626

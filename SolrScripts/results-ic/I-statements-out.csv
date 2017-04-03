@@ -1,33 +1,29 @@
-I wonder;402
-I struggle;3
-I'm not sure;1288
-I am not sure;295
-I'm curious;65
-I am curious;10
-I bet;27
-I wonder;402
-I'm not sure;1288
-I am not sure;295
-I'm curious;65
-I am curious;10
-I would guess not;0
-I'm confused;79
-I am confused;18
-I guess;1450
-I doubt;83
-I think;8290
-I believe;722
-I guess;1450
-I reckon;0
-I suppose;293
-I suspect;250
-I don't understand;365
-I do not understand;30
-I couldn't understand;0
-I could not understand;0
-I don't know;738
-I do not know;30
-I don't get it;8
-I do not get it;0
-I'm unsure;20
-I am unsure;6
+feature;Number of comments;Number of features
+I wonder;402;405
+I struggle;3;3
+I'm not sure;1288;1307
+I am not sure;295;298
+I'm curious;65;65
+I am curious;10;10
+I bet;27;28
+I would guess not;0;0
+I'm confused;79;80
+I am confused;18;18
+I guess;1450;1480
+I doubt;83;83
+I think;8290;8761
+I believe;722;735
+I reckon;0;0
+I suppose;293;299
+I suspect;250;252
+I don't understand;365;367
+I do not understand;30;30
+I couldn't understand;0;0
+I could not understand;0;0
+I don't know;738;748
+I do not know;30;30
+I don't get it;8;8
+I do not get it;0;0
+I'm unsure;20;20
+I am unsure;6;6
+Total;13754;15033
