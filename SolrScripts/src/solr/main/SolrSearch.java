@@ -62,6 +62,13 @@ public class SolrSearch {
 		
 		FeatureResult results_probables = countFeatures(Const.PROBABLES, commentType);
 		System.out.println(results_probables.getTotalNumCommentsFound());
+		
+		// TODO add question feature analysis
+		
+		// TODO check the list of unique IDs for each features 
+		// need to remove the duplicated between the features!!!
+		
+		// TODO print a spreadsheet with the results!
 	}
 
 	@SuppressWarnings("unchecked")
