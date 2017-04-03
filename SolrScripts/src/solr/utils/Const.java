@@ -29,11 +29,17 @@ public class Const {
 	public static String _NUMBER = "_number";
 	
 	public static String HEDGES = "hedges";
+	
 	public static String HYPOTHETICALS = "hypotheticals";
+	
 	public static String I_STATEMENTS = "I-statements";
+	
 	public static String META = "meta";
+	
 	public static String NONVERBALS = "nonverbals";
+	
 	public static String PROBABLES = "probables";
+	
 	public static String QUESTIONS = "questions";
 
 	public static String ID = "id";
@@ -75,6 +81,8 @@ public class Const {
 	public static String LINE = "line";
 
 	public static String FILE = "file";
+	
+	public static String TOTAL = "Total";
 
 	public static String SEMICOLON = ";";
 

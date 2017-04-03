@@ -28,12 +28,14 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
 import edu.stanford.nlp.util.CoreMap;
 import solr.utils.Const;
+import solr.utils.Utils;
 
 /**
  * Solr - Escaping Special Characters
  * 
- * The current list special characters are: * + - && || ! ( ) { } [ ] ^ " ~ * ?
- * : \
+ * The current list special characters are:
+ * 
+ * * + - && || ! ( ) { } [ ] ^ " ~ * ? : \
  * 
  * To escape these character use the \ before the character.
  * 
@@ -41,24 +43,38 @@ import solr.utils.Const;
 
 public class SolrSearch {
 
-	private void countAllFeatures(String commentType) {
+	public static void countAllFeatures(String commentType) {
 
-		List<String> listIDs_hedges = countFeatures(Const.HEDGES, commentType);
-		List<String> listIDs_hypotheticals = countFeatures(Const.HYPOTHETICALS, commentType);
-		List<String> listIDs_I_statements = countFeatures(Const.I_STATEMENTS, commentType);
+		//List<String> listIDs_hedges = countFeatures(Const.HEDGES, commentType);
+		
+		//List<String> listIDs_hypotheticals = countFeatures(Const.HYPOTHETICALS, commentType);
+		
+		//List<String> listIDs_I_statements = countFeatures(Const.I_STATEMENTS, commentType);
+		
 		List<String> listIDs_meta = countFeatures(Const.META, commentType);
-		List<String> listI_nonverbals = countFeatures(Const.NONVERBALS, commentType);
-		List<String> listI_probables = countFeatures(Const.PROBABLES, commentType);
+		
+		System.out.println(listIDs_meta.size());
+		
+		//List<String> listI_nonverbals = countFeatures(Const.NONVERBALS, commentType);
+		
+		//List<String> listI_probables = countFeatures(Const.PROBABLES, commentType);
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<String> countFeatures(String framework, String commentType) {
 
 		List<String> listIDs = new ArrayList<String>();
 
 		String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
 
-		System.out.println("Searching for framework: " + frameworkPath);
+		// System.out.println("Searching for framework: " + frameworkPath);
+		
+		StringBuffer sbFeaturesOutput = new StringBuffer();
+		
+		sbFeaturesOutput.append("feature;Number of comments;Number of features");
+		
+		sbFeaturesOutput.append(Const.NEW_LINE);
 
 		try {
 
@@ -67,6 +83,8 @@ public class SolrSearch {
 			String solrQuery = Const.MESSAGE + Const.TWO_DOTS + Const.DOUBLE_QUOTES;
 
 			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
+			
+			long totalNumFeaturesFound = 0;
 
 			for (String feature : features) {
 
@@ -75,17 +93,21 @@ public class SolrSearch {
 				SolrQuery query = new SolrQuery();
 
 				query.setQuery(solrQueryString + Const.excludeBots);
-				
-				query.setSort(SortClause.asc("id"));
+
+				query.setSort(SortClause.asc(Const.ID));
 
 				query.setFields(Const.ID, Const.MESSAGE);
 
-				query.setRows(Const._3000);
-				
+				query.setRows(Const._5000);
+
 				String cursorMark = CursorMarkParams.CURSOR_MARK_START;
-				
+
 				boolean done = false;
+
+				long numFeaturesFound = 0;
 				
+				long numCommentsFound = 0;
+
 				while (!done) {
 
 					query.set(CursorMarkParams.CURSOR_MARK_PARAM, cursorMark);
@@ -96,60 +118,69 @@ public class SolrSearch {
 
 					SolrDocumentList results = response.getResults();
 
-					long numCommentsFound = results.getNumFound();
-					
-					System.out.println("Number of comments for " + feature + " => " + numCommentsFound);
+					numCommentsFound = results.getNumFound();
 					
 					for (int j = 0; j < results.size(); ++j) {
-						
+
 						SolrDocument codeReview = results.get(j);
-						
+
 						String id = (String) codeReview.getFieldValue(Const.ID);
 						
 						if (!listIDs.contains(id)) {
-							
+
 							listIDs.add(id);
 						}
+
+						String comment = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
+						
+						numFeaturesFound = numFeaturesFound + Utils.countWordFrequency(feature, comment);
 					}
 					
 					if (cursorMark.equals(nextCursorMark)) {
 						done = true;
 					}
-					
+
 					cursorMark = nextCursorMark;
 				}
+
+				// System.out.println("Number of comments with " + feature + " => " + numCommentsFound);
+
+				// System.out.println("Number of features: " + feature + " => " + numFeaturesFound);
+				
+				sbFeaturesOutput.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
+				
+				sbFeaturesOutput.append(Const.NEW_LINE);
+				
+				totalNumFeaturesFound = totalNumFeaturesFound + numFeaturesFound;
 			}
 
-			// TODO write the IDs in a separate file?! (only the IDs?)
+			sbFeaturesOutput.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
+			
+			sbFeaturesOutput.append(Const.NEW_LINE);
+			
+			String filePath = "";
 
-			// String filePath = "";
-			//
-			// if (commentType.equalsIgnoreCase("general")) {
-			//
-			// filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH +
-			// framework + Const._OUT + Const._CSV;
-			//
-			// } else if (commentType.equalsIgnoreCase("inline")) {
-			//
-			// filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH +
-			// framework + Const._OUT + Const._CSV;
-			// }
-			//
-			// try (Writer writer = new BufferedWriter(
-			// new OutputStreamWriter(new FileOutputStream(filePath),
-			// Const._UTF_8))) {
-			// writer.write(sbFeaturesOutput.toString());
-			// } catch (Exception e) {
-			// System.out.println(e);
-			// }
+			if (commentType.equalsIgnoreCase("general")) {
+
+				filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._OUT + Const._CSV;
+
+			} else if (commentType.equalsIgnoreCase("inline")) {
+
+				filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._OUT + Const._CSV;
+			}
+
+			try (Writer writer = new BufferedWriter(
+					new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+				writer.write(sbFeaturesOutput.toString());
+			} catch (Exception e) {
+				System.out.println(e);
+			}
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
 
-		System.out.println("Done...");
-
-		System.out.println("Total os comments for " + framework + ": " + listIDs.size());
+		// System.out.println("Done...");
 
 		return listIDs;
 	}
@@ -581,12 +612,14 @@ public class SolrSearch {
 		// String framework = "nonverbals";
 		// countFeaturesOccurrences(framework, commentType);
 
-		String commentType = "general";
+		String commentType = "inline";
 
 		// countAllFeaturesOccurrencesExceptQuestions(commentType);
 
-		countAllFeaturesOccurences(commentType);
+		// countAllFeaturesOccurences(commentType);
 
 		// printSomeExamples(framework, commentType, 3);
+		
+		countAllFeatures(commentType);
 	}
 }

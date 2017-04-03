@@ -7,6 +7,8 @@ import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -30,6 +32,19 @@ public class Utils {
 		return isBot;
 	}
 
+	public static int countWordFrequency(String feature, String comment) {
+		
+		int matches = 0;
+
+		Matcher matcher = Pattern.compile("\\b" + feature + "\\b", Pattern.CASE_INSENSITIVE).matcher(comment);
+
+		while (matcher.find()) {
+			matches++;
+		}
+		
+		return matches;		
+	}
+	
 	public static List<String> getCodeReviewIDs() {
 
 		List<String> codeReviewIDs = new ArrayList<String>();

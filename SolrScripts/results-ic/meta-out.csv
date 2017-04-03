@@ -1,21 +1,23 @@
-It appears;109
-It seems;1509
-argues that;0
-claims that;9
-contends that;0
-maintains that;1
-There is a probability;0
-There is a likelihood;0
-There is a possibility;3
-There is a chance;7
-There's a probability;0
-There's a likelihood;0
-There's a possibility;2
-There's a chance;18
-I didn't understand;12
-I did not understand;5
-I didn't know;89
-I did not know;17
-I didn't get it;1
-I did not get it;1
-It turns out;85
+feature;Number of comments;Number of features
+It appears;109;109
+It seems;1509;1544
+argues that;0;0
+claims that;9;8
+contends that;0;0
+maintains that;1;1
+There is a probability;0;0
+There is a likelihood;0;0
+There is a possibility;3;3
+There is a chance;7;7
+There's a probability;0;0
+There's a likelihood;0;0
+There's a possibility;2;2
+There's a chance;18;18
+I didn't understand;12;12
+I did not understand;5;5
+I didn't know;89;90
+I did not know;17;17
+I didn't get it;1;1
+I did not get it;1;1
+It turns out;85;85
+Total;1860;1903
