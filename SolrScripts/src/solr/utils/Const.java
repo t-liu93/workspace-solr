@@ -16,7 +16,7 @@ public class Const {
 
 	public static String[] features = { "nonverbals", "meta", "I-statements", "hedges", "hypotheticals", "probables" };
 
-	public static String excludeBots = " NOT author._account_id:" + Const.ANDROID_BOT_TREEHUGGER
+	public static String EXCLUDE_BOTS = " NOT author._account_id:" + Const.ANDROID_BOT_TREEHUGGER
 			+ " NOT author._account_id:" + Const.ANDROID_BOT_DECKARD + " NOT author._account_id:"
 			+ Const.ANDROID_BOT_ANONYMOUS + " NOT author._account_id:" + Const.ANDROID_BOT_BIONIC
 			+ " NOT author._account_id:" + Const.ANDROID_BOT_ANDROID_MERGER + " NOT author._account_id:"
@@ -83,6 +83,12 @@ public class Const {
 	public static String FILE = "file";
 	
 	public static String TOTAL = "Total";
+	
+	public static String CSV_HEADLINE = "Feature;Number of comments;Number of features";
+	
+	public static String GENERAL = "general";
+	
+	public static String INLINE = "inline";
 
 	public static String SEMICOLON = ";";
 
@@ -127,6 +133,8 @@ public class Const {
 	public static String _IC = "-ic";
 
 	public static String _GC = "-gc";
+	
+	public static String _RESULTS = "-results";
 
 	public static String _ID = "-ID";
 

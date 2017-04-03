@@ -45,35 +45,79 @@ public class SolrSearch {
 
 	public static void countAllFeatures(String commentType) {
 
-		FeatureResult results_hedges = countFeatures(Const.HEDGES, commentType);
-		System.out.println(results_hedges.getTotalNumCommentsFound());
-		
-		FeatureResult results_hypotheticals = countFeatures(Const.HYPOTHETICALS, commentType);
-		System.out.println(results_hypotheticals.getTotalNumCommentsFound());
-		
-		FeatureResult results_I_statements = countFeatures(Const.I_STATEMENTS, commentType);
-		System.out.println(results_I_statements.getTotalNumCommentsFound());
-		
-		FeatureResult results_meta = countFeatures(Const.META, commentType);
-		System.out.println(results_meta.getTotalNumCommentsFound());
-		
-		FeatureResult results_nonverbals = countFeatures(Const.NONVERBALS, commentType);
-		System.out.println(results_nonverbals.getTotalNumCommentsFound());
-		
-		FeatureResult results_probables = countFeatures(Const.PROBABLES, commentType);
-		System.out.println(results_probables.getTotalNumCommentsFound());
-		
+		StringBuffer sbResults = new StringBuffer();
+
+		sbResults.append(Const.CSV_HEADLINE);
+
+		sbResults.append(Const.NEW_LINE);
+
+		long totalFeatures = 0;
+
+		FeatureResult hedges = countFeatures(Const.HEDGES, commentType);
+		sbResults.append(Const.HEDGES + Const.SEMICOLON + hedges.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ hedges.getTotalNumFeaturesFound());
+		sbResults.append(Const.NEW_LINE);
+
+		FeatureResult hypo = countFeatures(Const.HYPOTHETICALS, commentType);
+		sbResults.append(Const.HYPOTHETICALS + Const.SEMICOLON + hypo.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ hypo.getTotalNumFeaturesFound());
+		sbResults.append(Const.NEW_LINE);
+
+		FeatureResult I_statements = countFeatures(Const.I_STATEMENTS, commentType);
+		sbResults.append(Const.I_STATEMENTS + Const.SEMICOLON + I_statements.getTotalNumCommentsFound()
+				+ Const.SEMICOLON + I_statements.getTotalNumFeaturesFound());
+		sbResults.append(Const.NEW_LINE);
+
+		FeatureResult meta = countFeatures(Const.META, commentType);
+		sbResults.append(Const.META + Const.SEMICOLON + meta.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ meta.getTotalNumFeaturesFound());
+		sbResults.append(Const.NEW_LINE);
+
+		FeatureResult nonverbals = countFeatures(Const.NONVERBALS, commentType);
+		sbResults.append(Const.NONVERBALS + Const.SEMICOLON + nonverbals.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ nonverbals.getTotalNumFeaturesFound());
+		sbResults.append(Const.NEW_LINE);
+
+		FeatureResult probables = countFeatures(Const.PROBABLES, commentType);
+		sbResults.append(Const.PROBABLES + Const.SEMICOLON + probables.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ probables.getTotalNumFeaturesFound());
+		sbResults.append(Const.NEW_LINE);
+
+		totalFeatures = hedges.getTotalNumFeaturesFound() + hypo.getTotalNumFeaturesFound()
+				+ I_statements.getTotalNumFeaturesFound() + meta.getTotalNumFeaturesFound()
+				+ nonverbals.getTotalNumFeaturesFound() + probables.getTotalNumFeaturesFound();
+
+		sbResults.append(Const.TOTAL + Const.SEMICOLON + "TODO YET" + Const.SEMICOLON + totalFeatures);
+		sbResults.append(Const.NEW_LINE);
+
+		String filePath = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.GENERAL + Const._RESULTS + Const._CSV;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.INLINE + Const._RESULTS + Const._CSV;
+		}
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+			writer.write(sbResults.toString());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 		// TODO add question feature analysis
-		
-		// TODO check the list of unique IDs for each features 
+
+		// TODO check the list of unique IDs for each features
 		// need to remove the duplicated between the features!!!
-		
-		// TODO print a spreadsheet with the results!
+
+		System.out.println("Done with countAllFeatures...");
 	}
 
 	@SuppressWarnings("unchecked")
 	public static FeatureResult countFeatures(String framework, String commentType) {
-		
+
 		FeatureResult result = new FeatureResult();
 
 		List<String> listIDs = new ArrayList<String>();
@@ -81,11 +125,11 @@ public class SolrSearch {
 		String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
 
 		// System.out.println("Searching for framework: " + frameworkPath);
-		
+
 		StringBuffer sbFeaturesOutput = new StringBuffer();
-		
-		sbFeaturesOutput.append("feature;Number of comments;Number of features");
-		
+
+		sbFeaturesOutput.append(Const.CSV_HEADLINE);
+
 		sbFeaturesOutput.append(Const.NEW_LINE);
 
 		try {
@@ -95,7 +139,7 @@ public class SolrSearch {
 			String solrQuery = Const.MESSAGE + Const.TWO_DOTS + Const.DOUBLE_QUOTES;
 
 			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
-			
+
 			long totalNumFeaturesFound = 0;
 
 			for (String feature : features) {
@@ -104,7 +148,7 @@ public class SolrSearch {
 
 				SolrQuery query = new SolrQuery();
 
-				query.setQuery(solrQueryString + Const.excludeBots);
+				query.setQuery(solrQueryString + Const.EXCLUDE_BOTS);
 
 				query.setSort(SortClause.asc(Const.ID));
 
@@ -117,7 +161,7 @@ public class SolrSearch {
 				boolean done = false;
 
 				long numFeaturesFound = 0;
-				
+
 				long numCommentsFound = 0;
 
 				while (!done) {
@@ -131,23 +175,23 @@ public class SolrSearch {
 					SolrDocumentList results = response.getResults();
 
 					numCommentsFound = results.getNumFound();
-					
+
 					for (int j = 0; j < results.size(); ++j) {
 
 						SolrDocument codeReview = results.get(j);
 
 						String id = (String) codeReview.getFieldValue(Const.ID);
-						
+
 						if (!listIDs.contains(id)) {
 
 							listIDs.add(id);
 						}
 
 						String comment = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
-						
+
 						numFeaturesFound = numFeaturesFound + Utils.countWordFrequency(feature, comment);
 					}
-					
+
 					if (cursorMark.equals(nextCursorMark)) {
 						done = true;
 					}
@@ -155,36 +199,40 @@ public class SolrSearch {
 					cursorMark = nextCursorMark;
 				}
 
-				// System.out.println("Number of comments with " + feature + " => " + numCommentsFound);
+				// System.out.println("Number of comments with " + feature + "
+				// => " + numCommentsFound);
 
-				// System.out.println("Number of features: " + feature + " => " + numFeaturesFound);
-				
-				sbFeaturesOutput.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
-				
+				// System.out.println("Number of features: " + feature + " => "
+				// + numFeaturesFound);
+
+				sbFeaturesOutput
+						.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
+
 				sbFeaturesOutput.append(Const.NEW_LINE);
-				
+
 				totalNumFeaturesFound = totalNumFeaturesFound + numFeaturesFound;
 			}
 
-			sbFeaturesOutput.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
-			
+			sbFeaturesOutput
+					.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
+
 			sbFeaturesOutput.append(Const.NEW_LINE);
-			
+
 			result.setFramework(frameworkPath);
-			
+
 			result.setListIDs(listIDs);
-			
+
 			result.setTotalNumCommentsFound(listIDs.size());
-			
+
 			result.setTotalNumFeaturesFound(totalNumFeaturesFound);
-			
+
 			String filePath = "";
 
-			if (commentType.equalsIgnoreCase("general")) {
+			if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
 				filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._OUT + Const._CSV;
 
-			} else if (commentType.equalsIgnoreCase("inline")) {
+			} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
 				filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._OUT + Const._CSV;
 			}
@@ -220,7 +268,7 @@ public class SolrSearch {
 
 			SolrQuery query = new SolrQuery();
 
-			String queryString = Const.STAR_TWODOTS_START + Const.excludeBots;
+			String queryString = Const.STAR_TWODOTS_START + Const.EXCLUDE_BOTS;
 
 			query.setQuery(queryString);
 
@@ -320,7 +368,7 @@ public class SolrSearch {
 
 					SolrQuery query = new SolrQuery();
 
-					query.setQuery(solrQueryString + Const.excludeBots);
+					query.setQuery(solrQueryString + Const.EXCLUDE_BOTS);
 
 					query.setFields(Const.ID, Const.MESSAGE);
 
@@ -402,7 +450,7 @@ public class SolrSearch {
 
 				String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
 
-				System.out.println(solrQueryString + Const.excludeBots);
+				System.out.println(solrQueryString + Const.EXCLUDE_BOTS);
 
 				System.out.println("Searching for feature: " + solrQueryString);
 
@@ -410,7 +458,7 @@ public class SolrSearch {
 
 				SolrQuery query = new SolrQuery();
 
-				query.setQuery(solrQueryString + Const.excludeBots);
+				query.setQuery(solrQueryString + Const.EXCLUDE_BOTS);
 
 				query.setFields(Const.ID);
 
@@ -429,11 +477,11 @@ public class SolrSearch {
 
 			String filePath = "";
 
-			if (commentType.equalsIgnoreCase("general")) {
+			if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
 				filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._OUT + Const._CSV;
 
-			} else if (commentType.equalsIgnoreCase("inline")) {
+			} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
 				filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._OUT + Const._CSV;
 			}
@@ -479,11 +527,11 @@ public class SolrSearch {
 
 				SolrQuery query = new SolrQuery();
 
-				query.setQuery(solrQueryString + Const.excludeBots);
+				query.setQuery(solrQueryString + Const.EXCLUDE_BOTS);
 
-				if (commentType.equalsIgnoreCase("general")) {
+				if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
-				} else if (commentType.equalsIgnoreCase("inline")) {
+				} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
 					query.setFields(Const.CODE_REVIEW_ID, Const.MESSAGE, Const.PATCH_SET, Const.FILE, Const.LINE);
 				}
@@ -523,11 +571,11 @@ public class SolrSearch {
 
 			String filePath = "";
 
-			if (commentType.equalsIgnoreCase("general")) {
+			if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
 				filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._HTML;
 
-			} else if (commentType.equalsIgnoreCase("inline")) {
+			} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
 				filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._HTML;
 			}
@@ -582,7 +630,7 @@ public class SolrSearch {
 
 			SolrQuery query = new SolrQuery();
 
-			query.setQuery(solrQuery + Const.excludeBots);
+			query.setQuery(solrQuery + Const.EXCLUDE_BOTS);
 
 			query.setFields(Const.MESSAGE);
 
@@ -632,14 +680,14 @@ public class SolrSearch {
 		// String framework = "nonverbals";
 		// countFeaturesOccurrences(framework, commentType);
 
-		String commentType = "inline";
+		String commentType = Const.INLINE;
 
 		// countAllFeaturesOccurrencesExceptQuestions(commentType);
 
 		// countAllFeaturesOccurences(commentType);
 
 		// printSomeExamples(framework, commentType, 3);
-		
+
 		countAllFeatures(commentType);
 	}
 }
