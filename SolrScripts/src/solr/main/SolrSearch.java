@@ -32,7 +32,8 @@ import solr.utils.Const;
 /**
  * Solr - Escaping Special Characters
  * 
- * The current list special characters are: * + - && || ! ( ) { } [ ] ^ " ~ * ? : \
+ * The current list special characters are: * + - && || ! ( ) { } [ ] ^ " ~ * ?
+ * : \
  * 
  * To escape these character use the \ before the character.
  * 
@@ -40,7 +41,119 @@ import solr.utils.Const;
 
 public class SolrSearch {
 
-	
+	private void countAllFeatures(String commentType) {
+
+		List<String> listIDs_hedges = countFeatures(Const.HEDGES, commentType);
+		List<String> listIDs_hypotheticals = countFeatures(Const.HYPOTHETICALS, commentType);
+		List<String> listIDs_I_statements = countFeatures(Const.I_STATEMENTS, commentType);
+		List<String> listIDs_meta = countFeatures(Const.META, commentType);
+		List<String> listI_nonverbals = countFeatures(Const.NONVERBALS, commentType);
+		List<String> listI_probables = countFeatures(Const.PROBABLES, commentType);
+
+	}
+
+	public static List<String> countFeatures(String framework, String commentType) {
+
+		List<String> listIDs = new ArrayList<String>();
+
+		String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
+
+		System.out.println("Searching for framework: " + frameworkPath);
+
+		try {
+
+			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
+
+			String solrQuery = Const.MESSAGE + Const.TWO_DOTS + Const.DOUBLE_QUOTES;
+
+			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
+
+			for (String feature : features) {
+
+				String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
+
+				SolrQuery query = new SolrQuery();
+
+				query.setQuery(solrQueryString + Const.excludeBots);
+				
+				query.setSort(SortClause.asc("id"));
+
+				query.setFields(Const.ID, Const.MESSAGE);
+
+				query.setRows(Const._3000);
+				
+				String cursorMark = CursorMarkParams.CURSOR_MARK_START;
+				
+				boolean done = false;
+				
+				while (!done) {
+
+					query.set(CursorMarkParams.CURSOR_MARK_PARAM, cursorMark);
+
+					QueryResponse response = solr.query(query);
+
+					String nextCursorMark = response.getNextCursorMark();
+
+					SolrDocumentList results = response.getResults();
+
+					long numCommentsFound = results.getNumFound();
+					
+					System.out.println("Number of comments for " + feature + " => " + numCommentsFound);
+					
+					for (int j = 0; j < results.size(); ++j) {
+						
+						SolrDocument codeReview = results.get(j);
+						
+						String id = (String) codeReview.getFieldValue(Const.ID);
+						
+						if (!listIDs.contains(id)) {
+							
+							listIDs.add(id);
+						}
+					}
+					
+					if (cursorMark.equals(nextCursorMark)) {
+						done = true;
+					}
+					
+					cursorMark = nextCursorMark;
+				}
+			}
+
+			// TODO write the IDs in a separate file?! (only the IDs?)
+
+			// String filePath = "";
+			//
+			// if (commentType.equalsIgnoreCase("general")) {
+			//
+			// filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH +
+			// framework + Const._OUT + Const._CSV;
+			//
+			// } else if (commentType.equalsIgnoreCase("inline")) {
+			//
+			// filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH +
+			// framework + Const._OUT + Const._CSV;
+			// }
+			//
+			// try (Writer writer = new BufferedWriter(
+			// new OutputStreamWriter(new FileOutputStream(filePath),
+			// Const._UTF_8))) {
+			// writer.write(sbFeaturesOutput.toString());
+			// } catch (Exception e) {
+			// System.out.println(e);
+			// }
+
+		} catch (SolrServerException | IOException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("Done...");
+
+		System.out.println("Total os comments for " + framework + ": " + listIDs.size());
+
+		return listIDs;
+	}
+
 	@SuppressWarnings("unchecked")
 	public static void countAllFeaturesOccurences(String commentType) {
 
@@ -102,10 +215,10 @@ public class SolrSearch {
 						if (c.label().toString().equalsIgnoreCase("SBARQ")
 								|| c.label().toString().equalsIgnoreCase("SQ")) {
 
-//							System.out.println("sentence: " + sentence);
-//							System.out.println("parse tree: " + tree);
-//							System.out.println("root label: " + c.label());
-//							System.out.println("=========================");
+							// System.out.println("sentence: " + sentence);
+							// System.out.println("parse tree: " + tree);
+							// System.out.println("root label: " + c.label());
+							// System.out.println("=========================");
 
 							if (!listIDs.contains(id)) {
 
@@ -126,7 +239,7 @@ public class SolrSearch {
 		}
 
 		System.out.println("Done...");
-		
+
 		System.out.println("Total os comments: " + listIDs.size());
 	}
 
@@ -402,12 +515,12 @@ public class SolrSearch {
 
 		return html;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static void printSomeQuestionFeatureExamples() {
 
 		try {
-			
+
 			Properties props = new Properties();
 			props.put("annotators", "tokenize, ssplit, parse");
 			StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
@@ -417,7 +530,7 @@ public class SolrSearch {
 			String solrQuery = Const.STAR_TWODOTS_START;
 
 			SolrQuery query = new SolrQuery();
-			
+
 			query.setQuery(solrQuery + Const.excludeBots);
 
 			query.setFields(Const.MESSAGE);
@@ -433,23 +546,22 @@ public class SolrSearch {
 				SolrDocument codeReview = results.get(j);
 
 				List<String> message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE));
-				
+
 				Annotation document = new Annotation(message.get(0));
-				
+
 				pipeline.annotate(document);
-			
+
 				List<CoreMap> sentences = document.get(SentencesAnnotation.class);
-			
+
 				for (CoreMap sentence : sentences) {
-			
+
 					Tree tree = sentence.get(TreeAnnotation.class);
 					Tree c = tree.getChild(0);
-					
+
 					// SBARQ and SQ
-					
-					if (c.label().toString().equalsIgnoreCase("SBARQ") 
-							|| c.label().toString().equalsIgnoreCase("SQ") ) {
-						
+
+					if (c.label().toString().equalsIgnoreCase("SBARQ") || c.label().toString().equalsIgnoreCase("SQ")) {
+
 						System.out.println("sentence: " + sentence);
 						System.out.println("parse tree: " + tree);
 						System.out.println("root label: " + c.label());

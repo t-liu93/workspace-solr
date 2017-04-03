@@ -16,8 +16,6 @@ public class Const {
 
 	public static String[] features = { "nonverbals", "meta", "I-statements", "hedges", "hypotheticals", "probables" };
 
-	public static String[] featuresTest = { "meta" };
-
 	public static String excludeBots = " NOT author._account_id:" + Const.ANDROID_BOT_TREEHUGGER
 			+ " NOT author._account_id:" + Const.ANDROID_BOT_DECKARD + " NOT author._account_id:"
 			+ Const.ANDROID_BOT_ANONYMOUS + " NOT author._account_id:" + Const.ANDROID_BOT_BIONIC
@@ -29,6 +27,14 @@ public class Const {
 	public static String URL_GERRIT = "https://android-review.googlesource.com/#/c/";
 
 	public static String _NUMBER = "_number";
+	
+	public static String HEDGES = "hedges";
+	public static String HYPOTHETICALS = "hypotheticals";
+	public static String I_STATEMENTS = "I-statements";
+	public static String META = "meta";
+	public static String NONVERBALS = "nonverbals";
+	public static String PROBABLES = "probables";
+	public static String QUESTIONS = "questions";
 
 	public static String ID = "id";
 
