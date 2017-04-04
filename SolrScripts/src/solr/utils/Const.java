@@ -90,6 +90,8 @@ public class Const {
 	
 	public static String INLINE = "inline";
 	
+	public static String ALL = "all";
+	
 	public static String SQ = "SQ";
 	
 	public static String SBARQ = "SBARQ";

@@ -45,6 +45,8 @@ public class SolrSearch {
 
 	public static void countAllFeatures(String commentType) {
 
+		System.out.println("Started countAllFeatures...");
+		
 		StringBuffer sbResults = new StringBuffer();
 
 		sbResults.append(Const.CSV_HEADLINE);
@@ -54,46 +56,77 @@ public class SolrSearch {
 		long totalFeatures = 0;
 
 		FeatureResult hedges = countFeatures(Const.HEDGES, commentType);
+		
 		sbResults.append(Const.HEDGES + Const.SEMICOLON + hedges.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ hedges.getTotalNumFeaturesFound());
+		
 		sbResults.append(Const.NEW_LINE);
+		
+		System.out.println("Finished countFeatures for hedges...");
 
 		FeatureResult hypo = countFeatures(Const.HYPOTHETICALS, commentType);
+		
 		sbResults.append(Const.HYPOTHETICALS + Const.SEMICOLON + hypo.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ hypo.getTotalNumFeaturesFound());
+		
 		sbResults.append(Const.NEW_LINE);
 
+		System.out.println("Finished countFeatures for hypotheticals...");
+		
 		FeatureResult I_statements = countFeatures(Const.I_STATEMENTS, commentType);
+		
 		sbResults.append(Const.I_STATEMENTS + Const.SEMICOLON + I_statements.getTotalNumCommentsFound()
 				+ Const.SEMICOLON + I_statements.getTotalNumFeaturesFound());
+		
 		sbResults.append(Const.NEW_LINE);
 
+		System.out.println("Finished countFeatures for I-statements...");
+		
 		FeatureResult meta = countFeatures(Const.META, commentType);
+		
 		sbResults.append(Const.META + Const.SEMICOLON + meta.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ meta.getTotalNumFeaturesFound());
+		
 		sbResults.append(Const.NEW_LINE);
 
+		System.out.println("Finished countFeatures for meta...");
+		
 		FeatureResult nonverbals = countFeatures(Const.NONVERBALS, commentType);
+		
 		sbResults.append(Const.NONVERBALS + Const.SEMICOLON + nonverbals.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ nonverbals.getTotalNumFeaturesFound());
+		
 		sbResults.append(Const.NEW_LINE);
 
+		System.out.println("Finished countFeatures for nonverbals...");
+		
 		FeatureResult probables = countFeatures(Const.PROBABLES, commentType);
+		
 		sbResults.append(Const.PROBABLES + Const.SEMICOLON + probables.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ probables.getTotalNumFeaturesFound());
-		sbResults.append(Const.NEW_LINE);
 		
-		FeatureResult questions = countQuestionFeatures(Const.QUESTIONS, commentType);
-		sbResults.append(Const.QUESTIONS + Const.SEMICOLON + questions.getTotalNumCommentsFound() + Const.SEMICOLON
-				+ questions.getTotalNumFeaturesFound());
 		sbResults.append(Const.NEW_LINE);
 
+		System.out.println("Finished countFeatures for probables...");
+		
+		FeatureResult questions = countQuestionFeatures(Const.QUESTIONS, commentType);
+		
+		sbResults.append(Const.QUESTIONS + Const.SEMICOLON + questions.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ questions.getTotalNumFeaturesFound());
+		
+		sbResults.append(Const.NEW_LINE);
+
+		System.out.println("Finished countFeatures for questions...");
+		
 		totalFeatures = hedges.getTotalNumFeaturesFound() + hypo.getTotalNumFeaturesFound()
 				+ I_statements.getTotalNumFeaturesFound() + meta.getTotalNumFeaturesFound()
-				+ nonverbals.getTotalNumFeaturesFound() + probables.getTotalNumFeaturesFound() 
+				+ nonverbals.getTotalNumFeaturesFound() + probables.getTotalNumFeaturesFound()
 				+ questions.getTotalNumFeaturesFound();
-		
-		sbResults.append(Const.TOTAL + Const.SEMICOLON + "TODO YET" + Const.SEMICOLON + totalFeatures);
+
+		List<String> uniqueIDs = getUniqueIDs(commentType, hedges.getListIDs(), hypo.getListIDs(), I_statements.getListIDs(),
+				meta.getListIDs(), nonverbals.getListIDs(), probables.getListIDs(), questions.getListIDs());
+
+		sbResults.append(Const.TOTAL + Const.SEMICOLON + uniqueIDs.size() + Const.SEMICOLON + totalFeatures);
 		sbResults.append(Const.NEW_LINE);
 
 		String filePath = "";
@@ -112,10 +145,6 @@ public class SolrSearch {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-
-		// TODO print unique IDs for each features
-		
-		// TODO print unique IDs for all comments
 
 		System.out.println("Done with countAllFeatures...");
 	}
@@ -204,7 +233,8 @@ public class SolrSearch {
 					cursorMark = nextCursorMark;
 				}
 
-				sbFeaturesOutput.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
+				sbFeaturesOutput
+						.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
 
 				sbFeaturesOutput.append(Const.NEW_LINE);
 
@@ -225,6 +255,8 @@ public class SolrSearch {
 			result.setTotalNumFeaturesFound(totalNumFeaturesFound);
 
 			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
+
+			writeIDsOutputFile(framework, commentType, listIDs);
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
@@ -275,11 +307,11 @@ public class SolrSearch {
 			boolean done = false;
 
 			long numSBARQFeaturesFound = 0;
-			
+
 			long numSQFeaturesFound = 0;
-			
+
 			long numSBARQCommentsFound = 0;
-			
+
 			long numSQCommentsFound = 0;
 
 			while (!done) {
@@ -291,13 +323,13 @@ public class SolrSearch {
 				String nextCursorMark = response.getNextCursorMark();
 
 				SolrDocumentList results = response.getResults();
-				
+
 				for (int i = 0; i < results.size(); i++) {
 
 					SolrDocument codeReview = results.get(i);
 
 					String id = (String) codeReview.getFieldValue(Const.ID);
-					
+
 					String comment = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
 
 					Annotation document = new Annotation(comment);
@@ -312,18 +344,18 @@ public class SolrSearch {
 						Tree c = tree.getChild(0);
 
 						if (c.label().toString().equalsIgnoreCase(Const.SBARQ)) {
-							
+
 							numSBARQFeaturesFound = numSBARQFeaturesFound + 1;
-							
+
 							if (!listIDs.contains(id)) {
 
 								numSBARQCommentsFound = numSBARQCommentsFound + 1;
 
 								listIDs.add(id);
 							}
-							
+
 						} else if (c.label().toString().equalsIgnoreCase(Const.SQ)) {
-							
+
 							numSQFeaturesFound = numSQFeaturesFound + 1;
 
 							if (!listIDs.contains(id)) {
@@ -342,18 +374,21 @@ public class SolrSearch {
 
 				cursorMark = nextCursorMark;
 			}
-			
-			sbFeaturesOutput.append(Const.SBARQ + Const.SEMICOLON + numSBARQCommentsFound + Const.SEMICOLON + numSBARQFeaturesFound);
+
+			sbFeaturesOutput.append(
+					Const.SBARQ + Const.SEMICOLON + numSBARQCommentsFound + Const.SEMICOLON + numSBARQFeaturesFound);
 
 			sbFeaturesOutput.append(Const.NEW_LINE);
-			
-			sbFeaturesOutput.append(Const.SQ + Const.SEMICOLON + numSQCommentsFound + Const.SEMICOLON + numSQFeaturesFound);
+
+			sbFeaturesOutput
+					.append(Const.SQ + Const.SEMICOLON + numSQCommentsFound + Const.SEMICOLON + numSQFeaturesFound);
 
 			sbFeaturesOutput.append(Const.NEW_LINE);
-			
+
 			long totalNumFeaturesFound = numSQFeaturesFound + numSBARQFeaturesFound;
 
-			sbFeaturesOutput.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
+			sbFeaturesOutput
+					.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
 
 			sbFeaturesOutput.append(Const.NEW_LINE);
 
@@ -364,8 +399,10 @@ public class SolrSearch {
 			result.setTotalNumCommentsFound(listIDs.size());
 
 			result.setTotalNumFeaturesFound(totalNumFeaturesFound);
-			
+
 			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
+
+			writeIDsOutputFile(framework, commentType, listIDs);
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
@@ -376,7 +413,92 @@ public class SolrSearch {
 		return result;
 	}
 
+	public static List<String> getUniqueIDs(String commentType, List<String> hedgesIDs, List<String> hypoIDs, List<String> I_statementsIDs,
+			List<String> metaIDs, List<String> nonverbalsIDs, List<String> probablesIDs, List<String> questionsIDs) {
+
+		List<String> uniqueIDs = hedgesIDs;
+
+		for (String id : hypoIDs) {
+
+			if (!uniqueIDs.contains(id)) {
+
+				uniqueIDs.add(id);
+			}
+		}
+
+		for (String id : I_statementsIDs) {
+
+			if (!uniqueIDs.contains(id)) {
+
+				uniqueIDs.add(id);
+			}
+		}
+		
+		for (String id : metaIDs) {
+
+			if (!uniqueIDs.contains(id)) {
+
+				uniqueIDs.add(id);
+			}
+		}
+		
+		for (String id : nonverbalsIDs) {
+
+			if (!uniqueIDs.contains(id)) {
+
+				uniqueIDs.add(id);
+			}
+		}
+		
+		for (String id : probablesIDs) {
+
+			if (!uniqueIDs.contains(id)) {
+
+				uniqueIDs.add(id);
+			}
+		}
+		
+		for (String id : questionsIDs) {
+
+			if (!uniqueIDs.contains(id)) {
+
+				uniqueIDs.add(id);
+			}
+		}
+
+		writeIDsOutputFile(Const.ALL, commentType, uniqueIDs);
+		
+		return uniqueIDs;
+	}
+
+	public static void writeIDsOutputFile(String framework, String commentType, List<String> listIDs) {
+
+		String filePath = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._ID + Const._TXT;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._ID + Const._TXT;
+		}
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+
+			for (String string : listIDs) {
+
+				writer.write(string);
+
+				writer.write(Const.NEW_LINE);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
 	public static void writeCSVOutputFile(String framework, String commentType, StringBuffer sbFeaturesOutput) {
+
 		String filePath = "";
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
@@ -388,8 +510,8 @@ public class SolrSearch {
 			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._OUT + Const._CSV;
 		}
 
-		try (Writer writer = new BufferedWriter(
-				new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+
 			writer.write(sbFeaturesOutput.toString());
 		} catch (Exception e) {
 			System.out.println(e);
@@ -786,7 +908,8 @@ public class SolrSearch {
 
 					// SBARQ and SQ
 
-					if (c.label().toString().equalsIgnoreCase(Const.SBARQ) || c.label().toString().equalsIgnoreCase(Const.SQ)) {
+					if (c.label().toString().equalsIgnoreCase(Const.SBARQ)
+							|| c.label().toString().equalsIgnoreCase(Const.SQ)) {
 
 						System.out.println("sentence: " + sentence);
 						System.out.println("parse tree: " + tree);
