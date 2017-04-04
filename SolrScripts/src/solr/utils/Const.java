@@ -89,6 +89,10 @@ public class Const {
 	public static String GENERAL = "general";
 	
 	public static String INLINE = "inline";
+	
+	public static String SQ = "SQ";
+	
+	public static String SBARQ = "SBARQ";
 
 	public static String SEMICOLON = ";";
 
