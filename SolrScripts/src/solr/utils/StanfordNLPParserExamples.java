@@ -51,6 +51,10 @@ public class StanfordNLPParserExamples {
 		}
 	}
 
+	/**
+	 * This is the "regular" Stanford Parser, however the Shif-Reduce is faster than this one. 
+	 * 
+	 */
 	public static void parserDemo(String text) {
 
 		Properties props = new Properties();
