@@ -73,6 +73,15 @@ public class SolrSearch {
 
 		System.out.println("Finished countFeatures for hypotheticals...");
 		
+		FeatureResult probables = countFeatures(Const.PROBABLES, commentType);
+		
+		sbResults.append(Const.PROBABLES + Const.SEMICOLON + probables.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ probables.getTotalNumFeaturesFound());
+		
+		sbResults.append(Const.NEW_LINE);
+
+		System.out.println("Finished countFeatures for probables...");
+		
 		FeatureResult I_statements = countFeatures(Const.I_STATEMENTS, commentType);
 		
 		sbResults.append(Const.I_STATEMENTS + Const.SEMICOLON + I_statements.getTotalNumCommentsFound()
@@ -81,15 +90,6 @@ public class SolrSearch {
 		sbResults.append(Const.NEW_LINE);
 
 		System.out.println("Finished countFeatures for I-statements...");
-		
-		FeatureResult meta = countFeatures(Const.META, commentType);
-		
-		sbResults.append(Const.META + Const.SEMICOLON + meta.getTotalNumCommentsFound() + Const.SEMICOLON
-				+ meta.getTotalNumFeaturesFound());
-		
-		sbResults.append(Const.NEW_LINE);
-
-		System.out.println("Finished countFeatures for meta...");
 		
 		FeatureResult nonverbals = countFeatures(Const.NONVERBALS, commentType);
 		
@@ -100,14 +100,14 @@ public class SolrSearch {
 
 		System.out.println("Finished countFeatures for nonverbals...");
 		
-		FeatureResult probables = countFeatures(Const.PROBABLES, commentType);
+		FeatureResult meta = countFeatures(Const.META, commentType);
 		
-		sbResults.append(Const.PROBABLES + Const.SEMICOLON + probables.getTotalNumCommentsFound() + Const.SEMICOLON
-				+ probables.getTotalNumFeaturesFound());
+		sbResults.append(Const.META + Const.SEMICOLON + meta.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ meta.getTotalNumFeaturesFound());
 		
 		sbResults.append(Const.NEW_LINE);
 
-		System.out.println("Finished countFeatures for probables...");
+		System.out.println("Finished countFeatures for meta...");
 		
 		FeatureResult questions = countQuestionFeatures(Const.QUESTIONS, commentType);
 		
