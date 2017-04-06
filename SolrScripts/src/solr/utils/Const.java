@@ -77,6 +77,10 @@ public class Const {
 	public static String COMMENTS_PATCH_SET = "comments.patch_set";
 
 	public static String COMMENTS_LINE = "comments.line";
+	
+	public static String ANNOTATORS = "annotators";
+	
+	public static String STANFORD_NLP_ANNOTATORS = "tokenize, ssplit, parse";
 
 	public static String LINE = "line";
 

@@ -288,7 +288,7 @@ public class SolrSearch {
 		try {
 
 			Properties props = new Properties();
-			props.put("annotators", "tokenize, ssplit, parse");
+			props.put(Const.ANNOTATORS, Const.STANFORD_NLP_ANNOTATORS);
 			StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
 			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
@@ -529,7 +529,7 @@ public class SolrSearch {
 		try {
 
 			Properties props = new Properties();
-			props.put("annotators", "tokenize, ssplit, parse");
+			props.put(Const.ANNOTATORS, Const.STANFORD_NLP_ANNOTATORS);
 			StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
 			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
@@ -844,7 +844,7 @@ public class SolrSearch {
 		try {
 
 			Properties props = new Properties();
-			props.put("annotators", "tokenize, ssplit, parse");
+			props.put(Const.ANNOTATORS, Const.STANFORD_NLP_ANNOTATORS);
 			StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
 			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
