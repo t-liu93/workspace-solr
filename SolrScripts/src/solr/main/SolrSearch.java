@@ -582,11 +582,6 @@ public class SolrSearch {
 						if (c.label().toString().equalsIgnoreCase(Const.SBARQ)
 								|| c.label().toString().equalsIgnoreCase(Const.SQ)) {
 
-							// System.out.println("sentence: " + sentence);
-							// System.out.println("parse tree: " + tree);
-							// System.out.println("root label: " + c.label());
-							// System.out.println("=========================");
-
 							if (!listIDs.contains(id)) {
 
 								listIDs.add(id);
@@ -662,30 +657,6 @@ public class SolrSearch {
 						}
 					}
 				}
-
-				// TODO write the IDs in a separate file?! (only the IDs?)
-
-				// String filePath = "";
-				//
-				// if (commentType.equalsIgnoreCase("general")) {
-				//
-				// filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH +
-				// framework + Const._OUT + Const._CSV;
-				//
-				// } else if (commentType.equalsIgnoreCase("inline")) {
-				//
-				// filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH +
-				// framework + Const._OUT + Const._CSV;
-				// }
-				//
-				// try (Writer writer = new BufferedWriter(
-				// new OutputStreamWriter(new FileOutputStream(filePath),
-				// Const._UTF_8))) {
-				// writer.write(sbFeaturesOutput.toString());
-				// } catch (Exception e) {
-				// System.out.println(e);
-				// }
-
 			} catch (SolrServerException | IOException e) {
 				e.printStackTrace();
 			}
@@ -930,17 +901,19 @@ public class SolrSearch {
 
 	public static void main(String[] args) {
 
-		// String framework = "nonverbals";
-		// countFeaturesOccurrences(framework, commentType);
 
 		String commentType = Const.INLINE;
+
+		countAllFeatures(commentType);
+
+		
+		// String framework = "nonverbals";
+		// countFeaturesOccurrences(framework, commentType);
 
 		// countAllFeaturesOccurrencesExceptQuestions(commentType);
 
 		// countAllFeaturesOccurences(commentType);
 
 		// printSomeExamples(framework, commentType, 3);
-
-		countAllFeatures(commentType);
 	}
 }
