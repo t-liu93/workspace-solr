@@ -54,6 +54,9 @@ public class SolrSearch {
 		sbResults.append(Const.NEW_LINE);
 
 		long totalFeatures = 0;
+		
+		
+		// TODO add the percentage of the number in the result
 
 		FeatureResult hedges = countFeatures(Const.HEDGES, commentType);
 		
