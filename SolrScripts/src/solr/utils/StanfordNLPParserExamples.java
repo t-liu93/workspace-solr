@@ -80,11 +80,27 @@ public class StanfordNLPParserExamples {
 
 	public static void main(String[] args) {
 		
-		String text = "You like it, don't you? Do you like me? Why did you do that?! You are good! Am I wrong? Are you going to the party?";
+		String text = "Am I wrong? Are you fine? Am I understanding it correctly?";
 		
 		shiftReduceParserDemo(text);
 		
 		parserDemo(text);
-
+		
+		/**
+		 * It seems the Shit-Reduce Parser is not confident:
+		 * 
+		 * Text = "Am I wrong? Are you fine? Am I understanding it correctly?"
+		 * 
+		 * Results for the Shift-Reduce Parser:
+		 * (ROOT (FRAG (SQ (VBP Am) (NP (PRP I)) (ADJP (JJ wrong))) (. ?)))
+		 * (ROOT (SQ (VBP Are) (NP (PRP you)) (VP (VB fine)) (. ?)))
+		 * (ROOT (SBARQ (SQ (VBP Am) (NP (PRP I)) (S (VP (VBG understanding) (NP (PRP it)) (ADVP (RB correctly))))) (. ?)))
+		 * 
+		 * Results for the Regular Parser:
+		 * (ROOT (SQ (VP (VB Am) (S (NP (PRP I)) (ADJP (JJ wrong)))) (. ?)))
+		 * (ROOT (SQ (VBP Are) (NP (PRP you)) (ADJP (VBG fine)) (. ?)))
+		 * (ROOT (SQ (VBP Am) (NP (PRP I)) (VP (VBG understanding) (NP (PRP it)) (ADVP (RB correctly))) (. ?)))
+		 *  
+		 */
 	}
 }
