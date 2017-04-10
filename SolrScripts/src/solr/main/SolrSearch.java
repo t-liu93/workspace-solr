@@ -47,7 +47,7 @@ public class SolrSearch {
 	public static void countAllFeatures(String commentType) {
 
 		System.out.println("Started countAllFeatures...");
-		
+
 		StringBuffer sbResults = new StringBuffer();
 
 		sbResults.append(Const.CSV_HEADLINE);
@@ -55,100 +55,110 @@ public class SolrSearch {
 		sbResults.append(Const.NEW_LINE);
 
 		long totalFeatures = 0;
-		
-		
+
 		// TODO add the percentage of the number in the result
 
 		FeatureResult hedges = countFeatures(Const.HEDGES, commentType);
-		
+
 		sbResults.append(Const.HEDGES + Const.SEMICOLON + hedges.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ hedges.getTotalNumFeaturesFound());
-		
+
 		sbResults.append(Const.NEW_LINE);
-		
+
 		System.out.println("Finished countFeatures for hedges...");
 
 		FeatureResult hypo = countFeatures(Const.HYPOTHETICALS, commentType);
-		
+
 		sbResults.append(Const.HYPOTHETICALS + Const.SEMICOLON + hypo.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ hypo.getTotalNumFeaturesFound());
-		
+
 		sbResults.append(Const.NEW_LINE);
 
 		System.out.println("Finished countFeatures for hypotheticals...");
-		
+
 		FeatureResult probables = countFeatures(Const.PROBABLES, commentType);
-		
+
 		sbResults.append(Const.PROBABLES + Const.SEMICOLON + probables.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ probables.getTotalNumFeaturesFound());
-		
+
 		sbResults.append(Const.NEW_LINE);
 
 		System.out.println("Finished countFeatures for probables...");
-		
+
 		FeatureResult I_statements = countFeatures(Const.I_STATEMENTS, commentType);
-		
+
 		sbResults.append(Const.I_STATEMENTS + Const.SEMICOLON + I_statements.getTotalNumCommentsFound()
 				+ Const.SEMICOLON + I_statements.getTotalNumFeaturesFound());
-		
+
 		sbResults.append(Const.NEW_LINE);
 
 		System.out.println("Finished countFeatures for I-statements...");
-		
+
 		FeatureResult nonverbals = countFeatures(Const.NONVERBALS, commentType);
-		
+
 		sbResults.append(Const.NONVERBALS + Const.SEMICOLON + nonverbals.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ nonverbals.getTotalNumFeaturesFound());
-		
+
 		sbResults.append(Const.NEW_LINE);
 
 		System.out.println("Finished countFeatures for nonverbals...");
-		
+
 		FeatureResult meta = countFeatures(Const.META, commentType);
-		
+
 		sbResults.append(Const.META + Const.SEMICOLON + meta.getTotalNumCommentsFound() + Const.SEMICOLON
 				+ meta.getTotalNumFeaturesFound());
-		
+
 		sbResults.append(Const.NEW_LINE);
 
 		System.out.println("Finished countFeatures for meta...");
-		
-//		FeatureResult questions = countQuestionFeatures(Const.QUESTIONS, commentType);
-//		
-//		sbResults.append(Const.QUESTIONS + Const.SEMICOLON + questions.getTotalNumCommentsFound() + Const.SEMICOLON
-//				+ questions.getTotalNumFeaturesFound());
-//		
-//		sbResults.append(Const.NEW_LINE);
-//
-//		System.out.println("Finished countFeatures for questions...");
-		
+
+		// FeatureResult questions = countQuestionFeatures(Const.QUESTIONS,
+		// commentType);
+		//
+		// sbResults.append(Const.QUESTIONS + Const.SEMICOLON +
+		// questions.getTotalNumCommentsFound() + Const.SEMICOLON
+		// + questions.getTotalNumFeaturesFound());
+		//
+		// sbResults.append(Const.NEW_LINE);
+		//
+		// System.out.println("Finished countFeatures for questions...");
+
 		totalFeatures = hedges.getTotalNumFeaturesFound() + hypo.getTotalNumFeaturesFound()
 				+ I_statements.getTotalNumFeaturesFound() + meta.getTotalNumFeaturesFound()
 				+ nonverbals.getTotalNumFeaturesFound() + probables.getTotalNumFeaturesFound();
-//				+ questions.getTotalNumFeaturesFound();
+		// + questions.getTotalNumFeaturesFound();
 
-//		List<String> uniqueIDs = getUniqueIDs(commentType, hedges.getListIDs(), hypo.getListIDs(), I_statements.getListIDs(),
-//				meta.getListIDs(), nonverbals.getListIDs(), probables.getListIDs(), questions.getListIDs());
-//
-//		sbResults.append(Const.TOTAL + Const.SEMICOLON + uniqueIDs.size() + Const.SEMICOLON + totalFeatures);
-//		sbResults.append(Const.NEW_LINE);
+		// List<String> uniqueIDs = getUniqueIDs(commentType,
+		// hedges.getListIDs(), hypo.getListIDs(), I_statements.getListIDs(),
+		// meta.getListIDs(), nonverbals.getListIDs(), probables.getListIDs(),
+		// questions.getListIDs());
+		//
+		// sbResults.append(Const.TOTAL + Const.SEMICOLON + uniqueIDs.size() +
+		// Const.SEMICOLON + totalFeatures);
+		// sbResults.append(Const.NEW_LINE);
 
-//		String filePath = "";
-//
-//		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
-//
-//			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.GENERAL + Const._RESULTS + Const._CSV;
-//
-//		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
-//
-//			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.INLINE + Const._RESULTS + Const._CSV;
-//		}
-//
-//		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
-//			writer.write(sbResults.toString());
-//		} catch (Exception e) {
-//			System.out.println(e);
-//		}
+		// String filePath = "";
+		//
+		// if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+		//
+		// filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH +
+		// Const.GENERAL + Const._RESULTS + Const._CSV;
+		//
+		// } else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+		//
+		// filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.INLINE
+		// + Const._RESULTS + Const._CSV;
+		// }
+		//
+		// try (Writer writer = new BufferedWriter(new OutputStreamWriter(new
+		// FileOutputStream(filePath), Const._UTF_8))) {
+		// writer.write(sbResults.toString());
+		// } catch (Exception e) {
+		// System.out.println(e);
+		// }
+
+		getStratifiedSelection(hedges.getListTulpes(), hypo.getListTulpes(), I_statements.getListTulpes(),
+				meta.getListTulpes(), nonverbals.getListTulpes(), probables.getListTulpes());
 
 		System.out.println("Done with countAllFeatures...");
 	}
@@ -159,7 +169,7 @@ public class SolrSearch {
 		FeatureResult result = new FeatureResult();
 
 		List<Tuple> listTuples = new ArrayList<Tuple>();
-		
+
 		List<String> listIDs = new ArrayList<String>();
 
 		String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
@@ -225,11 +235,9 @@ public class SolrSearch {
 						if (!listIDs.contains(id)) {
 
 							listIDs.add(id);
+
+							listTuples.add(new Tuple(feature, id));
 						}
-						
-						Tuple tuple = new Tuple(feature, id);
-						
-						listTuples.add(tuple);
 
 						String comment = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
 
@@ -243,14 +251,16 @@ public class SolrSearch {
 					cursorMark = nextCursorMark;
 				}
 
-				sbFeaturesOutput.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
+				sbFeaturesOutput
+						.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
 
 				sbFeaturesOutput.append(Const.NEW_LINE);
 
 				totalNumFeaturesFound = totalNumFeaturesFound + numFeaturesFound;
 			}
 
-			sbFeaturesOutput.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
+			sbFeaturesOutput
+					.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
 
 			sbFeaturesOutput.append(Const.NEW_LINE);
 
@@ -262,11 +272,11 @@ public class SolrSearch {
 
 			result.setTotalNumFeaturesFound(totalNumFeaturesFound);
 
+			result.setListTulpes(listTuples);
+
 			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
 
 			writeIDsOutputFile(framework, commentType, listIDs);
-			
-			writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
@@ -423,8 +433,9 @@ public class SolrSearch {
 		return result;
 	}
 
-	public static List<String> getUniqueIDs(String commentType, List<String> hedgesIDs, List<String> hypoIDs, List<String> I_statementsIDs,
-			List<String> metaIDs, List<String> nonverbalsIDs, List<String> probablesIDs, List<String> questionsIDs) {
+	public static List<String> getUniqueIDs(String commentType, List<String> hedgesIDs, List<String> hypoIDs,
+			List<String> I_statementsIDs, List<String> metaIDs, List<String> nonverbalsIDs, List<String> probablesIDs,
+			List<String> questionsIDs) {
 
 		List<String> uniqueIDs = hedgesIDs;
 
@@ -443,7 +454,7 @@ public class SolrSearch {
 				uniqueIDs.add(id);
 			}
 		}
-		
+
 		for (String id : metaIDs) {
 
 			if (!uniqueIDs.contains(id)) {
@@ -451,7 +462,7 @@ public class SolrSearch {
 				uniqueIDs.add(id);
 			}
 		}
-		
+
 		for (String id : nonverbalsIDs) {
 
 			if (!uniqueIDs.contains(id)) {
@@ -459,7 +470,7 @@ public class SolrSearch {
 				uniqueIDs.add(id);
 			}
 		}
-		
+
 		for (String id : probablesIDs) {
 
 			if (!uniqueIDs.contains(id)) {
@@ -467,7 +478,7 @@ public class SolrSearch {
 				uniqueIDs.add(id);
 			}
 		}
-		
+
 		for (String id : questionsIDs) {
 
 			if (!uniqueIDs.contains(id)) {
@@ -477,11 +488,107 @@ public class SolrSearch {
 		}
 
 		writeIDsOutputFile(Const.ALL, commentType, uniqueIDs);
-		
+
 		return uniqueIDs;
 	}
+
+	public static void getStratifiedSelection(List<Tuple> hedges, List<Tuple> hypo, List<Tuple> I_statements,
+			List<Tuple> meta, List<Tuple> nonverbals, List<Tuple> probables) {
+
+		List<Tuple> hedgesStratified = new ArrayList<Tuple>();
+		// List<Tuple> hypoStratified = new ArrayList<Tuple>();
+		// List<Tuple> I_statementsStratified = new ArrayList<Tuple>();
+		// List<Tuple> metaStratified = new ArrayList<Tuple>();
+		// List<Tuple> nonverbalsStratified = new ArrayList<Tuple>();
+		// List<Tuple> probablesStratified = new ArrayList<Tuple>();
+
+		for (Tuple hedge : hedges) {
+
+			boolean isUnique = true;
+
+			isUnique = checkStratifiedIDSameList(hedges, hedge, isUnique);
+
+			if (isUnique) {
+				isUnique = checkStratifiedID(hypo, hedge, isUnique);
+			} else {
+				continue;
+			}
+
+			if (isUnique) {
+				isUnique = checkStratifiedID(I_statements, hedge, isUnique);
+			} else {
+				continue;
+			}
+
+			if (isUnique) {
+				isUnique = checkStratifiedID(meta, hedge, isUnique);
+			} else {
+				continue;
+			}
+
+			if (isUnique) {
+				isUnique = checkStratifiedID(nonverbals, hedge, isUnique);
+			} else {
+				continue;
+			}
+
+			if (isUnique) {
+				isUnique = checkStratifiedID(probables, hedge, isUnique);
+			} else {
+				continue;
+			}
+
+			if (isUnique) {
+				hedgesStratified.add(hedge);
+			}
+		}
+
+		System.out.println(hedgesStratified);
+	}
+
+	public static boolean checkStratifiedID(List<Tuple> tuples, Tuple tuple, boolean isUnique) {
+
+		for (Tuple tmp : tuples) {
+
+			if (tmp.getCommentID().equals(tuple.getCommentID())) {
+
+				System.out.println("is not unique: " + tuple.getCommentID());
+
+				System.out.println(tuple.toString());
+
+				System.out.println(tmp.toString());
+
+				isUnique = false;
+
+				break;
+			}
+		}
+
+		return isUnique;
+	}
 	
-	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples)  {
+	public static boolean checkStratifiedIDSameList(List<Tuple> tuples, Tuple tuple, boolean isUnique) {
+
+		for (Tuple tmp : tuples) {
+
+			if (tmp.getCommentID().equals(tuple.getCommentID())) {
+
+				System.out.println("is not unique: " + tuple.getCommentID());
+
+				System.out.println(tuple.toString());
+
+				System.out.println(tmp.toString());
+
+				isUnique = false;
+
+				break;
+			}
+		}
+
+		return isUnique;
+	}
+
+	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples) {
 
 		String filePath = "";
 
@@ -934,12 +1041,10 @@ public class SolrSearch {
 
 	public static void main(String[] args) {
 
-
 		String commentType = Const.GENERAL;
 
 		countAllFeatures(commentType);
 
-		
 		// String framework = "nonverbals";
 		// countFeaturesOccurrences(framework, commentType);
 
