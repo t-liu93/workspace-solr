@@ -506,8 +506,6 @@ public class SolrSearch {
 
 			boolean isUnique = true;
 
-			isUnique = checkStratifiedIDSameList(hedges, hedge, isUnique);
-
 			if (isUnique) {
 				isUnique = checkStratifiedID(hypo, hedge, isUnique);
 			} else {
@@ -567,27 +565,6 @@ public class SolrSearch {
 		return isUnique;
 	}
 	
-	public static boolean checkStratifiedIDSameList(List<Tuple> tuples, Tuple tuple, boolean isUnique) {
-
-		for (Tuple tmp : tuples) {
-
-			if (tmp.getCommentID().equals(tuple.getCommentID())) {
-
-				System.out.println("is not unique: " + tuple.getCommentID());
-
-				System.out.println(tuple.toString());
-
-				System.out.println(tmp.toString());
-
-				isUnique = false;
-
-				break;
-			}
-		}
-
-		return isUnique;
-	}
-
 	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples) {
 
 		String filePath = "";
