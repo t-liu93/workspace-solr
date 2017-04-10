@@ -157,8 +157,8 @@ public class SolrSearch {
 		// System.out.println(e);
 		// }
 
-		getStratifiedSelection(hedges.getListTulpes(), hypo.getListTulpes(), I_statements.getListTulpes(),
-				meta.getListTulpes(), nonverbals.getListTulpes(), probables.getListTulpes());
+//		getStratifiedSelection(hedges.getListTulpes(), hypo.getListTulpes(), I_statements.getListTulpes(),
+//				meta.getListTulpes(), nonverbals.getListTulpes(), probables.getListTulpes());
 
 		System.out.println("Done with countAllFeatures...");
 	}
@@ -277,6 +277,8 @@ public class SolrSearch {
 			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
 
 			writeIDsOutputFile(framework, commentType, listIDs);
+			
+			writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
@@ -1018,7 +1020,7 @@ public class SolrSearch {
 
 	public static void main(String[] args) {
 
-		String commentType = Const.GENERAL;
+		String commentType = Const.INLINE;
 
 		countAllFeatures(commentType);
 
