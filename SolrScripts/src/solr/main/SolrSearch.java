@@ -13,8 +13,8 @@ import java.util.Properties;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.SolrQuery.SortClause;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
@@ -28,6 +28,7 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
 import edu.stanford.nlp.util.CoreMap;
 import solr.utils.Const;
+import solr.utils.Tuple;
 import solr.utils.Utils;
 
 /**
@@ -112,42 +113,42 @@ public class SolrSearch {
 
 		System.out.println("Finished countFeatures for meta...");
 		
-		FeatureResult questions = countQuestionFeatures(Const.QUESTIONS, commentType);
-		
-		sbResults.append(Const.QUESTIONS + Const.SEMICOLON + questions.getTotalNumCommentsFound() + Const.SEMICOLON
-				+ questions.getTotalNumFeaturesFound());
-		
-		sbResults.append(Const.NEW_LINE);
-
-		System.out.println("Finished countFeatures for questions...");
+//		FeatureResult questions = countQuestionFeatures(Const.QUESTIONS, commentType);
+//		
+//		sbResults.append(Const.QUESTIONS + Const.SEMICOLON + questions.getTotalNumCommentsFound() + Const.SEMICOLON
+//				+ questions.getTotalNumFeaturesFound());
+//		
+//		sbResults.append(Const.NEW_LINE);
+//
+//		System.out.println("Finished countFeatures for questions...");
 		
 		totalFeatures = hedges.getTotalNumFeaturesFound() + hypo.getTotalNumFeaturesFound()
 				+ I_statements.getTotalNumFeaturesFound() + meta.getTotalNumFeaturesFound()
-				+ nonverbals.getTotalNumFeaturesFound() + probables.getTotalNumFeaturesFound()
-				+ questions.getTotalNumFeaturesFound();
+				+ nonverbals.getTotalNumFeaturesFound() + probables.getTotalNumFeaturesFound();
+//				+ questions.getTotalNumFeaturesFound();
 
-		List<String> uniqueIDs = getUniqueIDs(commentType, hedges.getListIDs(), hypo.getListIDs(), I_statements.getListIDs(),
-				meta.getListIDs(), nonverbals.getListIDs(), probables.getListIDs(), questions.getListIDs());
+//		List<String> uniqueIDs = getUniqueIDs(commentType, hedges.getListIDs(), hypo.getListIDs(), I_statements.getListIDs(),
+//				meta.getListIDs(), nonverbals.getListIDs(), probables.getListIDs(), questions.getListIDs());
+//
+//		sbResults.append(Const.TOTAL + Const.SEMICOLON + uniqueIDs.size() + Const.SEMICOLON + totalFeatures);
+//		sbResults.append(Const.NEW_LINE);
 
-		sbResults.append(Const.TOTAL + Const.SEMICOLON + uniqueIDs.size() + Const.SEMICOLON + totalFeatures);
-		sbResults.append(Const.NEW_LINE);
-
-		String filePath = "";
-
-		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
-
-			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.GENERAL + Const._RESULTS + Const._CSV;
-
-		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
-
-			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.INLINE + Const._RESULTS + Const._CSV;
-		}
-
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
-			writer.write(sbResults.toString());
-		} catch (Exception e) {
-			System.out.println(e);
-		}
+//		String filePath = "";
+//
+//		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+//
+//			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.GENERAL + Const._RESULTS + Const._CSV;
+//
+//		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+//
+//			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.INLINE + Const._RESULTS + Const._CSV;
+//		}
+//
+//		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+//			writer.write(sbResults.toString());
+//		} catch (Exception e) {
+//			System.out.println(e);
+//		}
 
 		System.out.println("Done with countAllFeatures...");
 	}
@@ -157,6 +158,8 @@ public class SolrSearch {
 
 		FeatureResult result = new FeatureResult();
 
+		List<Tuple> listTuples = new ArrayList<Tuple>();
+		
 		List<String> listIDs = new ArrayList<String>();
 
 		String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
@@ -223,6 +226,10 @@ public class SolrSearch {
 
 							listIDs.add(id);
 						}
+						
+						Tuple tuple = new Tuple(feature, id);
+						
+						listTuples.add(tuple);
 
 						String comment = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
 
@@ -236,16 +243,14 @@ public class SolrSearch {
 					cursorMark = nextCursorMark;
 				}
 
-				sbFeaturesOutput
-						.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
+				sbFeaturesOutput.append(feature + Const.SEMICOLON + numCommentsFound + Const.SEMICOLON + numFeaturesFound);
 
 				sbFeaturesOutput.append(Const.NEW_LINE);
 
 				totalNumFeaturesFound = totalNumFeaturesFound + numFeaturesFound;
 			}
 
-			sbFeaturesOutput
-					.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
+			sbFeaturesOutput.append(Const.TOTAL + Const.SEMICOLON + listIDs.size() + Const.SEMICOLON + totalNumFeaturesFound);
 
 			sbFeaturesOutput.append(Const.NEW_LINE);
 
@@ -260,6 +265,8 @@ public class SolrSearch {
 			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
 
 			writeIDsOutputFile(framework, commentType, listIDs);
+			
+			writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
@@ -472,6 +479,32 @@ public class SolrSearch {
 		writeIDsOutputFile(Const.ALL, commentType, uniqueIDs);
 		
 		return uniqueIDs;
+	}
+	
+	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples)  {
+
+		String filePath = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._TUPLES_ID + Const._TXT;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._TUPLES_ID + Const._TXT;
+		}
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+
+			for (Tuple tuple : listTuples) {
+
+				writer.write(tuple.toString());
+
+				writer.write(Const.NEW_LINE);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 
 	public static void writeIDsOutputFile(String framework, String commentType, List<String> listIDs) {

@@ -3,6 +3,8 @@ package solr.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import solr.utils.Tuple;
+
 public class FeatureResult {
 
 	private String framework;
@@ -12,6 +14,8 @@ public class FeatureResult {
 	private long totalNumFeaturesFound;
 
 	private List<String> listIDs = new ArrayList<String>();
+
+	private List<Tuple> listTulpes = new ArrayList<Tuple>();
 
 	public String getFramework() {
 		return framework;
@@ -45,4 +49,11 @@ public class FeatureResult {
 		this.listIDs = listIDs;
 	}
 
+	public List<Tuple> getListTulpes() {
+		return listTulpes;
+	}
+
+	public void setListTulpes(List<Tuple> listTulpes) {
+		this.listTulpes = listTulpes;
+	}
 }

@@ -147,6 +147,8 @@ public class Const {
 	public static String _RESULTS = "-results";
 
 	public static String _ID = "-ID";
+	
+	public static String _TUPLES_ID = "-TuplesID";
 
 	public static String _UTF_8 = "UTF-8";
 

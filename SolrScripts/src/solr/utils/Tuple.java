@@ -1,23 +1,29 @@
 package solr.utils;
 
-public class Tuple<L, R> {
+public class Tuple {
 
-	private L feature;
-	private R commentID;
-
-	public void setLeft(L left) {
-		this.feature = left;
+	private String feature;
+	
+	private String commentID;
+	
+	public Tuple(String feature, String commentID) {
+		this.feature = feature;
+		this.commentID = commentID;
 	}
 
-	public void setRight(R right) {
-		this.commentID = right;
+	public void setFeature(String feature) {
+		this.feature = feature;
 	}
 
-	public L getLeft() {
+	public void setRCommentID(String commentID) {
+		this.commentID = commentID;
+	}
+
+	public String getFeature() {
 		return feature;
 	}
 
-	public R getRight() {
+	public String getCommentID() {
 		return commentID;
 	}
 
