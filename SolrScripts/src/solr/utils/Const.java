@@ -90,6 +90,8 @@ public class Const {
 	
 	public static String CSV_HEADLINE = "Feature;Number of comments;Number of features";
 	
+	public static String CSV_HEADLINE_COMMENTS = "Feature;Number of comments";
+	
 	public static String GENERAL = "general";
 	
 	public static String INLINE = "inline";
@@ -145,6 +147,8 @@ public class Const {
 	public static String _GC = "-gc";
 	
 	public static String _RESULTS = "-results";
+	
+	public static String _STRATIFIED = "stratified";
 
 	public static String _ID = "-ID";
 	

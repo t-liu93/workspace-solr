@@ -157,8 +157,6 @@ public class SolrSearch {
 		// System.out.println(e);
 		// }
 
-//		getStratifiedSelection(hedges.getListTulpes(), hypo.getListTulpes(), I_statements.getListTulpes(),
-//				meta.getListTulpes(), nonverbals.getListTulpes(), probables.getListTulpes());
 
 		System.out.println("Done with countAllFeatures...");
 	}
@@ -494,78 +492,6 @@ public class SolrSearch {
 		return uniqueIDs;
 	}
 
-	public static void getStratifiedSelection(List<Tuple> hedges, List<Tuple> hypo, List<Tuple> I_statements,
-			List<Tuple> meta, List<Tuple> nonverbals, List<Tuple> probables) {
-
-		List<Tuple> hedgesStratified = new ArrayList<Tuple>();
-		// List<Tuple> hypoStratified = new ArrayList<Tuple>();
-		// List<Tuple> I_statementsStratified = new ArrayList<Tuple>();
-		// List<Tuple> metaStratified = new ArrayList<Tuple>();
-		// List<Tuple> nonverbalsStratified = new ArrayList<Tuple>();
-		// List<Tuple> probablesStratified = new ArrayList<Tuple>();
-
-		for (Tuple hedge : hedges) {
-
-			boolean isUnique = true;
-
-			if (isUnique) {
-				isUnique = checkStratifiedID(hypo, hedge, isUnique);
-			} else {
-				continue;
-			}
-
-			if (isUnique) {
-				isUnique = checkStratifiedID(I_statements, hedge, isUnique);
-			} else {
-				continue;
-			}
-
-			if (isUnique) {
-				isUnique = checkStratifiedID(meta, hedge, isUnique);
-			} else {
-				continue;
-			}
-
-			if (isUnique) {
-				isUnique = checkStratifiedID(nonverbals, hedge, isUnique);
-			} else {
-				continue;
-			}
-
-			if (isUnique) {
-				isUnique = checkStratifiedID(probables, hedge, isUnique);
-			} else {
-				continue;
-			}
-
-			if (isUnique) {
-				hedgesStratified.add(hedge);
-			}
-		}
-
-		System.out.println(hedgesStratified);
-	}
-
-	public static boolean checkStratifiedID(List<Tuple> tuples, Tuple tuple, boolean isUnique) {
-
-		for (Tuple tmp : tuples) {
-
-			if (tmp.getCommentID().equals(tuple.getCommentID())) {
-
-				System.out.println("is not unique: " + tuple.getCommentID());
-
-				System.out.println(tuple.toString());
-
-				System.out.println(tmp.toString());
-
-				isUnique = false;
-
-				break;
-			}
-		}
-
-		return isUnique;
-	}
 	
 	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples) {
 
