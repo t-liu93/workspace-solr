@@ -112,51 +112,43 @@ public class SolrSearch {
 
 		System.out.println("Finished countFeatures for meta...");
 
-		// FeatureResult questions = countQuestionFeatures(Const.QUESTIONS,
-		// commentType);
-		//
-		// sbResults.append(Const.QUESTIONS + Const.SEMICOLON +
-		// questions.getTotalNumCommentsFound() + Const.SEMICOLON
-		// + questions.getTotalNumFeaturesFound());
-		//
-		// sbResults.append(Const.NEW_LINE);
-		//
-		// System.out.println("Finished countFeatures for questions...");
+		FeatureResult questions = countQuestionFeatures(Const.QUESTIONS, commentType);
+
+		sbResults.append(Const.QUESTIONS + Const.SEMICOLON + questions.getTotalNumCommentsFound() + Const.SEMICOLON
+				+ questions.getTotalNumFeaturesFound());
+
+		sbResults.append(Const.NEW_LINE);
+
+		System.out.println("Finished countFeatures for questions...");
 
 		totalFeatures = hedges.getTotalNumFeaturesFound() + hypo.getTotalNumFeaturesFound()
 				+ I_statements.getTotalNumFeaturesFound() + meta.getTotalNumFeaturesFound()
-				+ nonverbals.getTotalNumFeaturesFound() + probables.getTotalNumFeaturesFound();
-		// + questions.getTotalNumFeaturesFound();
+				+ nonverbals.getTotalNumFeaturesFound() + probables.getTotalNumFeaturesFound()
+				+ questions.getTotalNumFeaturesFound();
 
-		// List<String> uniqueIDs = getUniqueIDs(commentType,
-		// hedges.getListIDs(), hypo.getListIDs(), I_statements.getListIDs(),
-		// meta.getListIDs(), nonverbals.getListIDs(), probables.getListIDs(),
-		// questions.getListIDs());
-		//
-		// sbResults.append(Const.TOTAL + Const.SEMICOLON + uniqueIDs.size() +
-		// Const.SEMICOLON + totalFeatures);
-		// sbResults.append(Const.NEW_LINE);
+		List<String> uniqueIDs = getUniqueIDs(commentType, hedges.getListIDs(), hypo.getListIDs(),
+				I_statements.getListIDs(), meta.getListIDs(), nonverbals.getListIDs(), probables.getListIDs(),
+				questions.getListIDs());
 
-		// String filePath = "";
-		//
-		// if (commentType.equalsIgnoreCase(Const.GENERAL)) {
-		//
-		// filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH +
-		// Const.GENERAL + Const._RESULTS + Const._CSV;
-		//
-		// } else if (commentType.equalsIgnoreCase(Const.INLINE)) {
-		//
-		// filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.INLINE
-		// + Const._RESULTS + Const._CSV;
-		// }
-		//
-		// try (Writer writer = new BufferedWriter(new OutputStreamWriter(new
-		// FileOutputStream(filePath), Const._UTF_8))) {
-		// writer.write(sbResults.toString());
-		// } catch (Exception e) {
-		// System.out.println(e);
-		// }
+		sbResults.append(Const.TOTAL + Const.SEMICOLON + uniqueIDs.size() + Const.SEMICOLON + totalFeatures);
+		sbResults.append(Const.NEW_LINE);
 
+		String filePath = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.GENERAL + Const._RESULTS + Const._CSV;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.INLINE + Const._RESULTS + Const._CSV;
+		}
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+			writer.write(sbResults.toString());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 
 		System.out.println("Done with countAllFeatures...");
 	}
@@ -275,7 +267,7 @@ public class SolrSearch {
 			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
 
 			writeIDsOutputFile(framework, commentType, listIDs);
-			
+
 			writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
@@ -292,6 +284,8 @@ public class SolrSearch {
 
 		FeatureResult result = new FeatureResult();
 
+		List<Tuple> listTuples = new ArrayList<Tuple>();
+		
 		List<String> listIDs = new ArrayList<String>();
 
 		// System.out.println("Searching for framework: " + framework);
@@ -372,6 +366,8 @@ public class SolrSearch {
 								numSBARQCommentsFound = numSBARQCommentsFound + 1;
 
 								listIDs.add(id);
+								
+								listTuples.add(new Tuple(Const.SBARQ, id));
 							}
 
 						} else if (c.label().toString().equalsIgnoreCase(Const.SQ)) {
@@ -383,6 +379,8 @@ public class SolrSearch {
 								numSQCommentsFound = numSQCommentsFound + 1;
 
 								listIDs.add(id);
+								
+								listTuples.add(new Tuple(Const.SQ, id));
 							}
 						}
 					}
@@ -419,10 +417,14 @@ public class SolrSearch {
 			result.setTotalNumCommentsFound(listIDs.size());
 
 			result.setTotalNumFeaturesFound(totalNumFeaturesFound);
+			
+			result.setListTulpes(listTuples);
 
 			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
 
 			writeIDsOutputFile(framework, commentType, listIDs);
+			
+			writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
@@ -492,7 +494,6 @@ public class SolrSearch {
 		return uniqueIDs;
 	}
 
-	
 	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples) {
 
 		String filePath = "";
