@@ -19,6 +19,8 @@ import solr.utils.Tuple;
 public class GetStratifiedSelection {
 
 	public static void getStratifiedSelection(String commentType) {
+		
+		// TODO add the get stratification for question feature
 
 		String filePath = "";
 
