@@ -27,8 +27,9 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations.TreeAnnotation;
 import edu.stanford.nlp.util.CoreMap;
+import solr.basics.FeatureResult;
+import solr.basics.Tuple;
 import solr.utils.Const;
-import solr.utils.Tuple;
 import solr.utils.Utils;
 
 /**

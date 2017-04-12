@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import solr.basics.Tuple;
 import solr.utils.Const;
-import solr.utils.Tuple;
 import solr.utils.Utils;
 
 public class GetStratifiedSelection {

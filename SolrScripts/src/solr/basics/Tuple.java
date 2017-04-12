@@ -1,4 +1,6 @@
-package solr.utils;
+package solr.basics;
+
+import solr.utils.Const;
 
 public class Tuple {
 

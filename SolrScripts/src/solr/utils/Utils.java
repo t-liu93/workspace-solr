@@ -16,6 +16,8 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocumentList;
 
+import solr.basics.Tuple;
+
 public class Utils {
 
 	public static boolean isBot(Long authorID) {

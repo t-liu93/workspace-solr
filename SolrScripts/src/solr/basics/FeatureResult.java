@@ -1,9 +1,7 @@
-package solr.main;
+package solr.basics;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import solr.utils.Tuple;
 
 public class FeatureResult {
 
