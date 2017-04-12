@@ -948,7 +948,7 @@ public class SolrSearch {
 
 	public static void main(String[] args) {
 
-		String commentType = Const.INLINE;
+		String commentType = Const.GENERAL;
 
 		countAllFeatures(commentType);
 
