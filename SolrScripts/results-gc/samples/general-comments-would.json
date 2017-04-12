@@ -1,0 +1,85 @@
+- not confusion for me: 17
+- unsure: 				2
+- confusion for me: 	1
+
+{
+	"id":"f1151aff2a960c8e568d58053b7661d386dc0f7f",
+	"message":["Patch Set 8: I would prefer that you didn't submit this\n\nAlso, the attribution here is all wrong; patch set 2-8 are reporting the author as the initial contribution from Google, not as from Colin.  Looks like an amend/rebase gone awry on Colin's side."]},
+	>>>> not confusion for me
+{
+	"id":"077dd7c899253f4dc837fd449067c70ab2812254",
+	"message":["Patch Set 1: I would prefer that you didn't submit this\n\nthis has been fixed, and the patch submitted to internal source tree. Thanks."]},
+	>>>> not confusion for me
+{
+	"id":"6cd7986b4eca71eb33a9e021d4e89a5e83af8d39",
+	"message":["Patch Set 1: I would prefer that you didn't submit this\n\nThis is a first cut, to make sure I have my bits lined up.\n\nI picked the tip-of-tree in CyanogenMod, I don't know how stable that is.\n\nIs there a kernel module to handle? drivers/scsi/scsi_wait_scan.ko"]},
+	>>>> not confusion for me
+{
+	"id":"53808388e33d9e82792eb6f233bd0cf345b7f255",
+	"message":["Patch Set 1:\n\nWhat restrictions are you talking about and why would they cause crashes?"]},
+	>>>> not confusion for me for the feature would!!!
+{
+	"id":"17a924410d882ed0867140d62ae4a2df6b2083da",
+	"message":["Patch Set 2:\n\ninstalld and vold are two of our most tested SELinux domains. As such, we're carefully scrutinizing every rule added to those domains.\n\nI don't understand why the additional rules are needed. There's no evidence of problems with these policies, and no clear explanation what these modifications are trying to accomplish.\n\nI would appreciate a greater understanding of what this change is trying to accomplish in order to better determine if it belongs in Android / AOSP."]},
+	>>>> unsure
+{
+	"id":"9d6267d7592b6abfb4ee193c9bcc2335eb388149",
+	"message":["Patch Set 1:\n\nThis is a cherry-pick from internal master. We would like this available in AOSP for testing purposes."]},
+	>>>> not confusion for me
+{
+	"id":"57b71ddbb5b0026f5600f15bddeb4f617f11f92d",
+	"message":["Patch Set 1: Code-Review-1\n\nPlease see the discussion in https://android-review.googlesource.com/166071 . This would break widevine DRM features."]},
+	>>>> not confusion for me
+{
+	"id":"55366b7e94a7c57235306d8f3be78fb2f53d0f80",
+	"message":["Patch Set 1:\n\n> Would be nice to get an expressive commit message...\n\nI can't find the history of the reason this test failed..."]},
+	>>>> not confusion for me for the feature would!!!
+{
+	"id":"b4d97593614bf3c5f88bc61a57ade14cad330518",
+	"message":["Patch Set 2:\n\nPTAL. Would like to get this in soon."]},
+	>>>> not confusion for me
+{
+	"id":"ff69b563ea3df44126c8c4f37542c8acaab5fe8b",
+	"message":["Patch Set 5:\n\nRebased and removed tools/makeparallel/Android.mk, now that soong exports everything. Before, the dependency verification would have complained that the host libc++ was being built in soong and make."]},
+	>>>> not confusion for me
+{
+	"id":"361a14d85be43dd7bc57663eada02e65c90f8aa1",
+	"message":["Patch Set 3:\n\nOn second thought, it would probably still fail. I'll just merge manually when the time comes."]},
+	>>>> unsure
+{
+	"id":"25782001865f0023a1c728b2c0082e2669256ad3",
+	"message":["Patch Set 5:\n\nPing... We are planning to generate new host clang prebuilts soon and would like to include a clang for Windows along with it."]},
+	>>>> not confusion for me
+{
+	"id":"a2be68120f48e00eed42f37ca903066d2b8c82a7",
+	"message":["Patch Set 2: I would prefer that you didn't submit this\n\n"]},
+	>>>> not confusion for me
+{
+	"id":"7e519e57e1ef70d3085ecf297e006d2f3330bcf4",
+	"message":["Patch Set 1: Verified\n\nWould appreciate a quick decision - the build is broken."]},
+	>>>> not confusion for me
+{
+	"id":"30003b7008fba1f346d53a2bd77bedcc7044df34",
+	"message":["Patch Set 1: I would prefer that you didn't submit this; Verified\n\nI believe that the code is indeed equivalent, but the comments are non-obvious at best, and possibly misleading. I think that the two comments need to be merged into one before the loop, explaining why it's unnecessary to clear the top 4 bits within the loop, as long as they're cleared at the end.\n\nAlso, this optimization probably fails if ints aren't 32-bit, and it'd be good to at least mention that and possibly to enforce it with a proper fixed-length type."]},
+	>>>> not confusion for me
+{
+	"id":"50edb0155923e3d2389df8b35f885c8dd387da7a",
+	"message":["Patch Set 1: I would prefer that you didn't submit this\n\nYes, this makes sense, but USB accessory is treated as if required to encourage support for it. Guru, any comments?"]},
+	>>>> not confusion for me
+{
+	"id":"87f20b3f12d84edc2feeaddc607b893e952c5e5f",
+	"message":["Patch Set 6:\n\nwould it make more sense to put these in system/netd? i feel like tests are more likely to be run the closer they are to the code they test.\n\n(i've started moving the bionic tests out of here. not least because the \"real\" bionic tests are part of CTS which makes them immensely more valuable.)"]},
+	>>>> confusion for me
+{
+	"id":"cd7909a5e135b5c72b7bfcc07c421c990b6c6807",
+	"message":["Patch Set 6:\n\nDavid, what are you waiting for? Do you want to submit everything at the same time? I would consider that a bad idea."]},
+	>>>> not confusion for me
+{
+	"id":"aa3408e72c2fdc2602deec5733342850caf6ed06",
+	"message":["Patch Set 8: Code-Review+2\n\nYeah, the original algorithm was just erroneously adding children that would cause a cycle."]},
+	>>>> not confusion for me
+{
+	"id":"8b2cd85a87afcb39a46fe6fa5e95ea1bc85530d7",
+	"message":["Patch Set 1:\n\nIt would be worth fixing this in other callers.  This is a good catch."]}]
+	>>>> not confusion for me
+}

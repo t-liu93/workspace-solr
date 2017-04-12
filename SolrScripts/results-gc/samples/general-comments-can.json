@@ -1,0 +1,85 @@
+- not confusion for me: 20
+- unsure: 				0
+- confusion for me: 	0
+
+{
+	"id":"d79d91dfbc6e5602f12a2901ae3a7abf4cbfdec6",
+	"message":["Patch Set 1:\n\nWe have a LTE device which supports voice but not supports SMS. According to CDD, this device shouldn't declare telephony.\nBecause LTE device creates a ril instance for AP and modem communication, it needs reserve Phone module. (While Wifi only device needn't ril, so Wifi only device can remove Phone module)\nThis leads android.app.cts.SystemFeaturesTest-- testTelephonyFeatures failed.\nBecuase it creates phone instance first then check which type the instance belongs to.\nWe think it should check telephony feature first. If telephony exists, then get phone instance."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"a4888b3a5de931c19f9d4b8aad506f64c651e4db",
+	"message":["Patch Set 1: Code-Review-2\n\nCan you give examples of functions that are being called from the guest even though there is no decoder on the host? That's not supposed to happen, and silently ignoring those calls isn't the right way to fix this; it'll just cause subtler and harder-to-debug problems later. We should fix whatever is causing the encoder and decoder to not match."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"3bcae73e3da4434467838dea1a374ba419c69bcb",
+	"message":["Patch Set 2: Code-Review+2\n\nI'm good with this, thanks for adding the comments! (As an aside I worry the API IntelliJ started by exposing \"isProduct\" methods can enable bad habits, but that's outside the scope of this CL)"]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"714a7dc1d790d7c99a2be693b7fc44db6be0a426",
+	"message":["Patch Set 2:\n\n> Can we add some test cases to TimelineDataTest?\n\nSure!"]},
+	>>>> not confusion for me
+{
+	"id":"0a11563819ae98e18a4bd18b8b0039c902854961",
+	"message":["Patch Set 1:\n\n> (8 comments)\n > \n > My main comment is we should consider visiting inlined methods by\n > default in the StackVisitor.\n\nI didn't make it a default because I wanted to catch all StackVisitor implementations (ie would lead to compilation error if you don't pass the flag).\n\nAlso it's unclear that the default prevails. The main user of StackVisitor is the GC and it doesn't care about the inline frames.\n\n > Ignoring them should be a special case\n > and well documented in the code.\n > \n > What do you plan to visit inlined methods by the way? Will it be\n > encoded in the oat file or inferred from the stack? Can we read\n > vregs from these methods?\n\nIt will be encoded in the oat file (the CodeInfo metadata associated with each method compiled with optimizing). And yes, we can read vregs from these methods."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"bf0cb138f4fb1d63404b01b14feb719316c2ee71",
+	"message":["Patch Set 1:\n\n(13 comments)\n\nI'm going to try and see if I can still setup a VPN tunnel with this patched in as a smoke test."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"8db2187acda734f30893c6df7aa48d848e4eb68a",
+	"message":["Patch Set 2: Code-Review+2 Verified+1\n\nMerging so that I can start new packages for testing (already approved on emu-master-dev)"]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"033c26878e5b54ac9aa6c96374394afdd0131a39",
+	"message":["Patch Set 9:\n\nWilliam: it's not unusual for devices to store device-unique identifiers, for example, in the ro.boot.* parameters. These device-unique identifiers can be used to persistently identify a device across factory resets. Limiting read access would help prevent those identifiers from leaking outside of their intended use."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"9b5369498f62c81d9a4b44987c3bebf927d46bff",
+	"message":["Patch Set 1:\n\nThis way we hit all goals:\n1. For the testing, we can easily make it appear always/never/...\n2. For the user who defaults to sending the reports, he sees the dialog only once\n3. For the guy who likes having a choice, he needs to uncheck it just once\n4. For those who never send reports - they aren't annoyed"]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"2281b64e2d3cbf1db0dca10b57208dcb1de35531",
+	"message":["Patch Set 2:\n\nOK, thanks, that shouldn't be a problem.   I was afraid you were going to say 'N', since there are some inline ext4 encryption work which we're hoping to land in N and I want to prioritize my todos.   Can you open a P2 feature request bug and assign it to me, in whatever android buganizer component would be appropriate?\n\nI'm also hoping to get upstream e2fsprogs 1.43 into 'O', and so that also tell me where to make the changes."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"0f4f37257fc36822c4bddb2f73394c85cf79f02f",
+	"message":["Patch Set 1:\n\nyou can do this in C11 too. it's just spelled _Alignas. we should probably add <stdalign.h> (which just does #define if not C++), but \"encouraging more C when folks should just be using C++ instead\" hasn't been one of my higher priorities :-)\n\nfiled http://b/29178582 anyway."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"48c311a17215c7fa6d71e41f784176195a909641",
+	"message":["Patch Set 1:\n\n> The timing isn't _that_ bad for now. I can see that formatting\n > every single enabled sensor takes a while, but after this change it\n > works stable enough to never fail during my 10 runs (is wasn't able\n > to finish a single run before)\n > sprintf() is quite well implemented, and changing the formatting to\n > only overwrite part of the string won't help at all - the rest of\n > the operation is memcpy(), which is fast\n\nGot it, thanks for the clarification!"]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"dbc735c976631553fbbcebe6a7d0c557542b2cdc",
+	"message":["Patch Set 1: (1 inline comment)\n\nHaving an API work on version X and fail on version X-1 is perfectly fine. What I would like to know however is how it impacts existing applications once they run with this patch. If the current behavior is to always crash, then we can fix it."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"49042bb492beafc428f67a9267644e1d447b878a",
+	"message":["Patch Set 1: (7 inline comments)\n\nThere are enough tiny style issues that I don't think I can mark this as verified.\n\nThe change merges fine in Google's internal tree, and it builds fine when paired with the matching frameworks/base change (I didn't test them individually). Untested."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"9990076528f570c81615f204555230deef12f2d2",
+	"message":["Patch Set 6: Code-Review+1\n\nCan you cherrypick this to MR1 and make a build for test?"]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"a2adbcb5f8a7d3dca922b0ab3831164ff062665d",
+	"message":["Patch Set 9:\n\n@Marie Janssen: Sure, it will be good if you can break out the \"use standard types\" and \"AVRC_CTLR_INCLUDED\" => \"AVRC_CTRL_INCLUDED\", as you said it will make things easier while I address other review comments."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"199c6bb7f5ff9bcc350aeb79e1baf27c6731226f",
+	"message":["Patch Set 1:\n\nI can checkbuild successfully on aosp_x86."]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"4ad5aaee0b61932d10c584e066e86d1e86fe75f1",
+	"message":["Patch Set 2: Autosubmit+1\n\nI don't have submit permission. Can somebody submit this for me?"]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"0866c17c6b30fb5c2330ed51a17fe456fdb68de1",
+	"message":["Patch Set 3:\n\n(1 comment)\n\n+2ing so that the failing tests can be fixed, but consider further cleaning up this API in a follow-up CL"]},
+	>>>> not confusion for me for the feature can!!!
+{
+	"id":"2e832eb29b252dadbade4ecd369880ec1947ba03",
+	"message":["Patch Set 3:\n\nSince DBG and VDBG flags are defined as private variables, they can only be changed at compile time."]}
+	>>>> not confusion for me for the feature can!!!
+	

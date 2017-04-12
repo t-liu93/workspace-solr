@@ -1,0 +1,84 @@
+- not confusion for me: 19
+- unsure: 				1
+- confusion: 			0
+
+{
+	"id":"80793e4183079a652058d37c39ce8c32373266e3",
+	"message":["Patch Set 1:\n\nInteresting. Technically, the _dynamic_ linker doesn't need indirect dependencies at all to load a library. It will be able to recursively find them at dlopen() time looking through its search path (usually /system/lib, except if LD_LIBRARY_PATH is defined).\n\nOn the other hand, the _static_ linker, used at build time to generate the shared library needs to access the indirect dependencies. They *don't* need to be listed on the final link command-line, but must be accessible from its library search path (i.e. -L/some/path).\n\nNormally, the Android build system ensures that the proper library search path is passed to the static linker, and that all direct dependencies, including their own dependencies, are built before the final module.\n\nIn other words, this bug is pretty weird, if as you say, libOpenSLES doesn't use any function from libcutils directly. But that's a big if."]},
+	>>>> not confusion for me
+{
+	"id":"dda2d21bb94ac56dd9eed695172997bd4551111c",
+	"message":["Patch Set 4:\n\nJake pretty big change fixing quite a few problems, please review."]},
+	>>>> not confusion for me
+{
+	"id":"f90862c31bc7059a494a65a22eaf6c03381f278e",
+	"message":["Patch Set 2:\n\n> I've read the commit message a couple times and I'm still a little\n > confused...\n > \n > Is this code all temporary until libbase is building in android? Is\n > it just for building on goobuntu? What's the lifetime of it in\n > system/bt?\n > \n > What sorts of things are we intending to use from libbase?\n\nThis CL is for building on Goobuntu only (hence the gn-build prefix). We added the GN BUILD files a while back to enable a Goobuntu build and this was also needed for Brillo at the time.\n\nSo, not temporary, this is for the parallel GN+ninja base build system that we added to system/bt.\n\nlibbase pretty much has everything we would want for C++ code, from string utilities, to threading, event loops, file management, command-line parsing, etc; it's the standard Google C++ library. Brillo is using Chromium's fork of it, which is open source and has been extended for Chrome OS and Brillo specific tasks that are common in native daemons.\n\nI want all new C++ code to use libbase for pretty much everything. This CL makes it possible to build system/bt stuff against libbase using GN but for an actual Android build this would be a simple dependency addition to any Android.mk (which works as of now by the way)."]},
+	>>>> not confusion for me for the feature pretty!!! However, the comment will be caught by question feature.
+{
+	"id":"f2caf0e0eec9cd90fc8b35980f65ed2c478db7d1",
+	"message":["Patch Set 3: Code-Review+1 Verified+1\n\nForgot to +1 (it is pretty late...we can submit it tomorrow) :-)"]},
+	>>>> not confusion for me
+{
+	"id":"4a57f96a3b7c5e99028f5755458f96ad6983da9f",
+	"message":["Patch Set 3:\n\n> For now I am actually going to pull this. I think there is some bug\n > in my patching code. Sorry. I'll upload another CL with it fixed.\n\nOK, I'm pretty sure I fixed the issue."]},
+	>>>> not confusion for me
+{
+	"id":"5470468361d0b6ec7794b7881ad90e6b577919a9",
+	"message":["Patch Set 1:\n\n\"LOCAL_CLANG_CFLAGS:=-Wno-undefined-bool-conversion\" would allow this to compile just fine, although I wouldn't personally want to add that flag to my code. Looking at the emitted thumb/ARM code by gcc, it is actually pretty atrocious. You end up with more than one NULL check on 'this' because of the way the rest of the RefBase() stuff gets called/inlined."]},
+	>>>> not confusion for me for the feature pretty!!!
+{
+	"id":"18f4ea89530b64a8bd5faa25c55bda3fe9ac3c06",
+	"message":["Patch Set 1:\n\n> date/time on eng builds -- it makes some amount of sense with 'adb\n > sync' binaries, since those can be updated piecemeal, but with\n > something like init, you can look at the boot image's build date\n > for this information.\n\nyou're assuming people know this. the most common mistake is that they don't realize they have to do more than sync.\n\n > And yes, it's not possible to set it globally to \"\" -- there are\n > some libraries that parse it. The other problem with overriding\n > __DATE__ and __TIME__ is that you have to turn off the warnings for\n > overriding built-in variables.\n > \n > We can keep the tree clean by watching for diffs, but once we've\n > got this mostly cleaned up, we can also turn on -Wdate-time /\n > -Werror=date-time globally.\n\noh, i didn't know about that warning. that helps.\n\njust unfortunate that upstream merging is now slightly harder. it would probably help if you surrounded these by __ANDROID__ like you did the mndsresponder stuff. it's pretty likely that anyone upgrading greps for that first."]},
+	>>>> not confusion for me for the feature pretty!!!
+{
+	"id":"6fb0fd9156d0b95bef59b17853ae77425be29bb5",
+	"message":["Patch Set 2:\n\n(1 comment)\n\nRepros pretty consistently when\n\na) Doing yahan@'s google apps sign in test\nb) While using https://android-review.googlesource.com/#/c/217099/ to transfer more than a page at a time, upon initializing new opengl contexts (colorbuffers) in multithreaded ways (such as on emulator startup)"]},
+	>>>> not confusion for me
+{
+	"id":"bda71bc32e764ec228fe109d1731b0e0bb945a16",
+	"message":["Patch Set 2:\n\nHi JBQ,\n\nThanks for your review. I'm pretty sure the conflict should be resolved easily. I'd like Jeff to take a look at this patch together with the dependent patch when Jeff completes the Streaming DRM stuff for JB MR2.\n\nI'm also willing to rebase this patch if JB MR2 will come before completing the review.\n\nThanks,\nAimi"]},
+	>>>> not confusion for me
+{
+	"id":"639c2f32409e1635db612a5a55e1d327303c82b7",
+	"message":["Patch Set 2: Verified+1\n\nIt is a lot faster now. Pretty close to command line builds. I'm still investigating how we make it faster."]},
+	>>>> not confusion for me
+{
+	"id":"134fb8f6a183db40d1ecd0732f628d52c9b35433",
+	"message":["Patch Set 3:\n\nSorry, I posted that comment before reading your latest.\n\nI deliberately made it a recursive mutex to prevent a deadlock in that situation.  I haven't used the sys/queue.h structures before, but they look well-behaved enough to survive somebody munging up the list during the middle of iterating it, especially since the only operation that can happen is appending a new item to the end of the list.  If so, I think we're good even if somebody calls pthread_atfork() from within a handler.  Is that a correct assessment, or is there a risk there that I'm missing?\n\nAs far as glibc's implementation of the __dso_handle stuff, I agree it's pretty arcane, but that's glibc for you.  Since bionic doesn't have a statically-linked component like that, it would be pretty invasive to implement it that way.  I do think the __builtin_return_address() thing would work, though, even though it always gives me the heebie-jeebies to do that.  It would come down to whether you wanted to introduce a secret linker function or not, since I'm pretty sure that would be required to retrieve the __dso_handle.\n\nIn any case, I'll table that for now and focus on just getting this part in.  I would appreciate comments on my first paragraph, though--I'm not sure I understand why there's a problem there."]},
+	>>>> not confusion for me for the feature pretty!!! But there is confusion in the last sentence I think.
+{
+	"id":"78a398e81e8247806241acb0115320402b58433b",
+	"message":["Patch Set 1: I would prefer that you didn't submit this\n\nDespite the change makes sense, we don't have any way to use this functionality from the framework. So without netd changes this is pretty useless and just increases our delta from mainstream hostapd code."]},
+	>>>> not confusion for me
+{
+	"id":"fbfc7b78330c5726181f7571b018f3dbb1054837",
+	"message":["Patch Set 1:\n\nPost-commit +2. It is pretty disappointing that our toolchains are so inconsistent."]},
+	>>>> not confusion for me
+{
+	"id":"42b4e2fbad9f202315ab185661189409bfdebe16",
+	"message":["Patch Set 2: Code-Review+2\n\nlooking at the history, it looks like it was duplicated from CrOS's copy (which was in sync with upstream at that point), and then started making changes on top of it\n\ni think we should get the changes made since the fork into upstream and then just reset the master to upstream, and if possible, get it to autosync with that repo (which is on Chromium's GoB instance now).  feel free to cc me on any discussions you launch.\n\nthis patch is pretty simple and should be easy to post to upstream."]},
+	>>>> not confusion for me for the feature pretty!!!
+{
+	"id":"3bc7c8af98b69e1d70759afba1ea0987e0913377",
+	"message":["Patch Set 5:\n\n> NP, no rush :) Just let me know when these are ready to re-review\n > then.\n\nAwesome. Thanks. Probably tomorrow your time, I want to make the template interface nice and pretty. I will mark as verified when it is ready for review!"]},
+	>>>> not confusion for me
+{
+	"id":"60eb2913cc3ca25c2b151bac77c4e7fdba0354c2",
+	"message":["Patch Set 2: Code-Review+2\n\nSorry, thought I'd already reviewed this. \n\nOn a side note, do you have any thoughts on maintenance/bit-rot of all these #ifdefs? They don't get even compile-checked on non-Brillo platforms, so they're pretty brittle when we make future changes."]},
+	>>>> not confusion for me for the feature pretty!!!
+{
+	"id":"ff8809f59d9d237f00be2ebce798bccec22e6f0a",
+	"message":["Patch Set 2:\n\nI did not manage to try it with a Nexus player, but I'm pretty sure it shouldn't show up.\nI did actually run it with Angler, Ryu and Volantis, though. It passed.\n\nI've posted the apk on the bug."]},
+	>>>> not confusion for me
+{
+	"id":"8b2af36af481bdb647c3835e2497477b01690054",
+	"message":["Patch Set 2:\n\n(5 comments)\n\nLooks pretty reasonable just a few more little nits."]},
+	>>>> not confusion for me
+{
+	"id":"684fbfe310d06e87b38244c609024722f57e4516",
+	"message":["Patch Set 3:\n\n(1 comment)\n\nThis looks pretty good to me, just one comment."]},
+	>>>> not confusion for me
+{
+	"id":"a84e7f33f35fef5628abdfce905602901eea43db",
+	"message":["Patch Set 2:\n\n> +danalbert, since iirc getting asserts turned on isn't easy\n\nIt really is just -UNDEBUG I'm pretty sure? something like this for bp or mk files;\n\nart/build/Android.bp\n\n    cflags: [\n        \"-UNDEBUG\",\n    ],\n\nsystem/bt/Android.mk\n\nLOCAL_CFLAGS +=\n  -UNDEBUG \\"]}
+	>>>> unsure

@@ -1,0 +1,84 @@
+- not confusion for me: 16
+- unsure: 				2
+- confusion for me: 	2
+
+{
+	"id":"22b2a7a23f3391d61b303433b535b346e26e5dc7",
+	"message":["Patch Set 2:\n\nNo worries.\n\nI am thinking about something like cancelDeviceConnect to make if different from cancelConnect.  The new one takes a particular device and the other does the current cancel of all group negotiation.\n\nWe should also have a new message internally (CANCEL_DEVICE_CONNECT?)."]},
+	>>>> not confusion for me
+{
+	"id":"fe6c13f3debff7556192468f5cdd42851e85631a",
+	"message":["Patch Set 2: Code-Review+1\n\nLGTM, but Alex should probably look at it."]},
+	>>>> not confusion for me
+{
+	"id":"5802df3b6d64c52a7ef22dd9787131d6220a00a3",
+	"message":["Patch Set 1:\n\n> I can't remember what the original reason for the revert was, so\n > don't know how to test that this is working now... was it Earth?\n\nthis is why you should add a comment on any revert :-P"]},
+	>>>> not confusion for me for the feature should!!!
+{
+	"id":"74b214c8ace044843331bf48c0eb72e68b5fa08a",
+	"message":["Patch Set 2: Code-Review+2\n\nif you're planning on keeping this available long-term, you should probably document LINT_RLOG in the .h file."]},
+	>>>> not confusion for me
+{
+	"id":"9658fe1175df56c2673baa59e8d7f7408871e8b4",
+	"message":["Patch Set 5:\n\nRemove couple of ctrl-chars introduced by editor. This should be the final version :)"]},
+	>>>> not confusion for me
+{
+	"id":"9ef13195f3416cf4e9fb12b4510d74d918d4b25c",
+	"message":["Patch Set 2:\n\nI'm still wondering why this CL is out in AOSP?  All API work should be happening on nyc-dev."]},
+	>>>> not confusion for me for the feature should!!!
+{
+	"id":"04e070d1fc51555132266e3186ed8cf0cf951a9d",
+	"message":["Patch Set 1: Code-Review+1\n\nI'm not opposed to this patch, but generally speaking I'd like a way to rebuild past versions of the kernel sources reliably, and this is making it a little bit difficult.\n\nI wonder what's the best way to achieve that, then ?\n\n1) Put build-kernel.sh in kernel/goldfish.git, so it will follow the same branching scheme. On the other hand, it depends on prebuilt toolchains that come from AOSP, so there is still potential for mismatch (as currently should I note).\n\n2) Add options or additionnal detection code to build-kernel.sh to deal with previous/older sources\n\nWhat do you think?"]},
+	>>>> not confusion for me for the feature should!!!
+	{
+	"id":"a1371e99da766e897267a5a8b1ab58044df0fcbb",
+	"message":["Patch Set 1:\n\nThis also includes the original change before the bugfix, so this should not be submitted."]},
+	>>>> not confusion for me
+{
+	"id":"4e8b41473d68adccad743914f89075af39c9bea5",
+	"message":["Patch Set 6:\n\n(1 comment)\n\nsorry, I don't have windows build environment,, \nI added \"#ifndef _WIN32\" on AssetManager.cpp.\nShould I add it on scan.cpp as well?"]},
+	>>>> confusion for me
+{
+	"id":"75393c04b1abfe5b50746b82e76ac1255a676b25",
+	"message":["Patch Set 2:\n\nTrailing spaces should be removed."]},
+	>>>> not confusion for me
+{
+	"id":"2491c5373e28b3bab1c6d577f7719521cc081f3b",
+	"message":["Patch Set 2:\n\nThank Andrew and David's advice: Replace fprintf by logcat.\n\nHowever, I think I should follow the behavior like other libraries before. Otherwise, users need to add \"-llog\" on their projects when using stlport_static/gabi++_static."]},
+	>>>> not confusion for me
+{
+	"id":"c34c126301bde8fc35d674344c73444d1bfe435a",
+	"message":["Patch Set 4:\n\nThanks, I've fixed all compiler errors, fixed a bug in the search path list management, added a few APIs, plus more functional tests.\n\nI'm considering adding or changing a few APIs related to RELRO due to remarks on the upstream Chromium bug, but it should be ok submitting this now if you prefer."]},
+	>>>> not confusion for me for the feature should!!!
+{
+	"id":"f76aa84351b7896b3590d90193f0516d016f72a9",
+	"message":["Patch Set 1:\n\nwhat we should move out of File is the time stamp stuff and the readdir stuff. so far no one has asked for direct access to either of those, so they haven't been a priority.\n\n(jsharkey asked for readlink and the (posix_)?fallocate(64)? family last week. i need to add the latter to bionic before i add them to libcore though :-) )"]},
+	>>>> not confusion for me for the feature should!!!
+{
+	"id":"7d8a79f8a7622ba6ff07cc33aa43c0bf1fb15051",
+	"message":["Patch Set 1:\n\nLGTM\n\nI am just confused, we had this for ICU 54. Without it, ICU4J's tests when run with ICU4C data should have been failing. How did that get missed?"]},
+	>>>> not confusion for me for the feature should!!!
+{
+	"id":"70083c6ff255354f50da2d787be91e014e89d3c2",
+	"message":["Patch Set 1: Verified+1\n\nBuilds fine, and should fix the whining buildbot."]},
+	>>>> not confusion for me
+{
+	"id":"6b553583715384bf37202a1ada94e864b586e7c1",
+	"message":["Patch Set 1:\n\nmips and x86 both built fine with my bionic change, so i think this should be fine too. will keep an eye out..."]},
+	>>>> unsure
+{
+	"id":"1fba36c6fa863a9e53e545e035717be7dd30f7e4",
+	"message":["Patch Set 4: Verified+1 Presubmit-Ready+1\n\n(5 comments)\n\n> But if the linter expects 2 newlines after constants even within a\n > class, then it's probably easier to just go with it than try to\n > customize linting rules for something so trivial, in which case\n > this LGTM.\n\nNope, the linter doesn't expect (nor warns against) extra newlines between class members.\n\nAlso should note, the linter is clean against the diff, but I did not yet fix up all the other linter errors in the parts of files I didn't touch, as they were more than a trivial amount.  I have a follow-up CL for those tied to the style-fix bug."]},
+	>>>> not confusion for me for the feature should!!!
+{
+	"id":"fd84dccd65f54d470e66299e63be0a1c2a9398db",
+	"message":["Patch Set 2:\n\nLGTM, but this is already changed in the internal repo.\nShould request a sync from the internal repo?"]},
+	>>>> unsure
+{
+	"id":"758a5b79de07cbbd803b05bb9e9519092637267f",
+	"message":["Patch Set 1: Code-Review+2\n\n(1 comment)\n\nI'm good having this is to remove the misleading message.\n\nHowever, I think this keeps around unneeded complexity and we should change the tests/bots to not expect compilation, or made them use DexClasssLoader."]},
+	>>>> not confusion for me for the feature should!!!
+{
+	"id":"8e09b4acdb8180c081c82184236bfffa8bb71fdc",
+	"message":["Patch Set 1:\n\nSince upstream added MIPS support now, should I port it to our Android.mk ? Or should I do it in a seperate CL?"]}
+	>>>> confusion for me

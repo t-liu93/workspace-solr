@@ -1,0 +1,85 @@
+- not confusion for me: 14
+- unsure: 				6
+- confusion for me: 	0
+
+{
+	"id":"334cca9303df858eb5ac81a75acac85f9cd39d4b",
+	"message":["Patch Set 2: No score; No score\nI am ok with exposing default in the JavaDoc. I think it helps developers to know which setting they need to override."]},
+	>>>> not confusion for me
+{
+	"id":"ead6c82753a81c2155714b5c702a38a6409ba1e1",
+	"message":["Patch Set 1: Abandoned\n\nIts been a longtime.  I think the motivation is still valid.\nBut It is too difficult for me now, to update to the new workspace and redo all the verification.  \nAbandoning."]},
+	>>>> not confusion for me
+{
+	"id":"c7168b48eecc1ab2f163715bf47cb61f50b3f49a",
+	"message":["Patch Set 1: Verified+1\n\nworks for me on maguro. (and there's only one call to _restore_, so i don't think anyone did this on purpose!)"]},
+	>>>> not confusion for me
+{
+	"id":"4230cf2586a9e8c30225618ca2eaadff320d7d80",
+	"message":["Patch Set 2: Code-Review+1\n\nI guess this is because we switched installd from doing a restorecon_recursive of all of /data/data and /data/user to doing it on a per-package basis as the packages are scanned.  I think we also need to drop the setrestoreconlast = false in restorecon_sb for the /data/data and /data/user case (but not subdirectories) or we'll restorecon them every time..."]},
+	>>>> not confusion for me
+{
+	"id":"2324b57a31fb4417637a99fdb2107b93b2f7bc92",
+	"message":["Patch Set 2:\n\nI think adding python-networkx as a build dependency is a good idea."]},
+	>>>> not confusion for me
+{
+	"id":"834c39c615bed2972b726713d589c9ee0a0a734d",
+	"message":["Patch Set 3: Code-Review-2\n\ni think the best fix is to remove the #if and skip the merge conflict (if any) where it hits a branch that already has the #if removed."]},
+	>>>> not confusion for me
+{
+	"id":"f7b917a0404382519b0d00224c3f17991e6724f3",
+	"message":["Patch Set 1:\n\n> Beware the JDWP tests: I think they need netd to be running. That's\n > why run-jdwp-target-tests (in external/apache-harmony/jdwp/Android_debug_config.mk)\n > needs to reboot the device and wait for boot.complete before\n > running them.\n\nNot when using the IP instead of the name: then we don't need DNS lookup, hence no dependency on netd. This is how it's setup for those bots."]},
+	>>>> unsure
+{
+	"id":"8e7c328360ff72b0997ce0df06b249bd9094b81d",
+	"message":["Patch Set 1:\n\nI think we need to figure out why a VM heap over 1GB doesn't work before we clamp it down."]},
+	>>>> not confusion for me
+{
+	"id":"46c386521e38e54ac6064ba42921e1933e2f756e",
+	"message":["Patch Set 3: Code-Review+2\n\ni also think it's cleaner without that. trying to avoid any regressions now."]},
+	>>>> not confusion for me
+{
+	"id":"7c1476c9bc25267eb7ccc2539581eaed779cd481",
+	"message":["Patch Set 1: Code-Review+2\n\nI think part of this change is still good even if we add filtering for getting the list of databases."]},
+	>>>> not confusion for me
+{
+	"id":"e332bccfb1d9960746d312aca80e2fd9a7f7c426",
+	"message":["Patch Set 2: Code-Review-1\n\ni think the '3' is wrong."]},
+	>>>> unsure
+{
+	"id":"63f99c07ab460e37fb0fc27891457a50d78fe4b0",
+	"message":["Patch Set 2:\n\nNew patch-set.\n\nThink I got all coding styles correct, please  comment.\n\n(added space after if\n changed to 4 space indentation\n changed to } else { )\n\nAlso updated to properly use .equals() instead of =="]},
+	>>>> not confusion for me
+{
+	"id":"24c3b830a8be0d9775fe30e4bad33e931dcba566",
+	"message":["Patch Set 3:\n\ni think so. as torne pointed out, it's not _Chrome_ that uses this, it's the platform's WebView. so that'll get recompiled anyway."]},
+	>>>> not confusion for me
+{
+	"id":"726b9997ac4e4b2add229de4656ca3f12d41c68c",
+	"message":["Patch Set 2:\n\nYes, Al's numbers look good. I hedged further by including \"or more\" when referring to multiple builds. Please let me know what you think. Thanks again for everyone's help."]},
+	>>>> not confusion for me
+{
+	"id":"19c53a9d57e9159ab2c2ec51e6f384d98db7b067",
+	"message":["Patch Set 2:\n\nI thought there where a whole mechanism in build/ to support stripping unknown flags for clang etc?\n\nsrhines showed me once I think"]},
+	>>>> unsure
+{
+	"id":"a60081939ff09b3dfea0c4b7c3438f338ea8b1b9",
+	"message":["Patch Set 7: Code-Review+1\n\nThanks Andreas. Now the move-exception at pc 0 is forbidden by the verifier, I think the interpreter check is safe."]},
+	>>>> unsure
+{
+	"id":"a2b7e14e5d2da23504c1b2ace98ff5e4163918f1",
+	"message":["Patch Set 1:\n\n(2 comments)\n\nI think this fits well in our design. I'd go for it."]},
+	>>>> not confusion for me
+{
+	"id":"b95d3811b01c12f5e0a9dc6edb47b61a121ef57a",
+	"message":["Patch Set 3: Code-Review-1\n\nI don't think what you want are the values of sizeof(a_char_pointer) and sizeof(*a_char_pointer) in the snprintf calls."]},
+	>>>> not confusion for me
+{
+	"id":"0dde0e5c823de94ada1ea2d316caa684843232bf",
+	"message":["Patch Set 1:\n\nPlease look for overrides. I think there are these:\n\nHashtable, Collections, LinkedHashMap, HashMap, ConcurrentHashMap, ConcurrentMap, ConcurrentSkipListMap, Provider."]},
+	>>>> unsure
+{
+	"id":"4bdc4dc6570e3e77e55889bd5dd83d2812450a74",
+	"message":["Patch Set 3: Code-Review+2\n\nWhile I do agree with Will's concerns, I don't think the increase in attack surface is that big since we already allow unlocking."]}]
+	>>>> unsure
+}

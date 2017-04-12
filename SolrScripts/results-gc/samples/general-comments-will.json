@@ -1,0 +1,85 @@
+- not confusion for me: 18
+- unsure: 				2
+- confusion for me: 	0
+
+{
+	"id":"019d5a56e037c6098ba56948881a8be57b122de5",
+	"message":["Patch Set 1: (2 inline comments)\n\nI'm sorry, I will upload the patch for the latest code."]},
+	>>>> not confusion for me
+{
+	"id":"c0d04fe50af1d89bed6c8a9cf3f2c77b8babcb1b",
+	"message":["Patch Set 3: I would prefer that you didn't submit this\n\n(2 inline comments)\n\nI will upload an updated Patch Set with the duplicate options removed."]},
+	>>>> not confusion for me
+{
+	"id":"f9815991716ee3c15c817d3c839baa178593797e",
+	"message":["Patch Set 1: Abandoned\n\nIncorrect commit, will resend."]},
+	>>>> not confusion for me
+{
+	"id":"0e2d48793998d9dadd016736ac92c6c4954fddb2",
+	"message":["Patch Set 4: Code-Review+1\n\nThanks. I will verify and submit today."]},
+	>>>> not confusion for me
+{
+	"id":"426440c834a399dcf7e3e5c842f30332a8b6c956",
+	"message":["Patch Set 1: Code-Review+1\n\nWill submit after https://android-review.googlesource.com/69460 is approved."]},
+	>>>> not confusion for me
+{
+	"id":"9f26f6915c7a6c2577c236b80a876f9ecc4b2ed6",
+	"message":["Patch Set 1: Code-Review+1\n\nLGTM, but will let Tor +2."]},
+	>>>> not confusion for me
+{
+	"id":"1e6a0346152e52fb69f333a911c2b6e9115b4279",
+	"message":["Patch Set 2:\n\nWill send further details and example code demonstrating the issue separately."]},
+	>>>> not confusion for me
+{
+	"id":"8e77badb9527f907c060ffd6cc32661803761b05",
+	"message":["Patch Set 2:\n\nDump application:\n  reader: system server binder thread\n  writer: application binder thread\nDump system server:\n  reader/writer: system server binder thread\n\nThe callstack when dumping system server:\nat libcore.io.Posix.writeBytes\n...\nat android.database.sqlite.SQLiteDatabase.dump\nat android.database.sqlite.SQLiteDatabase.dumpAll\nat android.database.sqlite.SQLiteDebug.dump\nat android.app.ActivityThread$ApplicationThread.dumpDbInfo <- No need IPC\nat com.android.server.am.ActivityManagerService.dumpDbInfo\nat com.android.server.am.ActivityManagerService$DbBinder.dump\nat android.os.Binder.dump\nat android.os.Binder.onTransact\n\nIf the data is more than 64KB, the callstack dump from kernel will like:\n(__schedule+0x4f8/0x5d8) from [<c0145bd0>] (pipe_wait+0x64/0x84)\n(pipe_wait+0x64/0x84) from [<c0146030>] (pipe_write+0x440/0x4bc)\n(pipe_write+0x440/0x4bc) from [<c013d6cc>] (do_sync_write+0x9c/0xd8)\n(do_sync_write+0x9c/0xd8) from [<c013e064>] (vfs_write+0xb0/0x198)\n(vfs_write+0xb0/0x198) from [<c013e37c>] (sys_write+0xa8/0x174)\n(sys_write+0xa8/0x174) from [<c000e480>] (ret_fast_syscall+0x0/0x30)"]},
+	>>>> not confusion for me for feature will!!!
+{
+	"id":"b3a78e3c1446b2ea7470973ef226ff278e529e01",
+	"message":["Patch Set 1:\n\nApparently the linker can't always find libgcc_s? WIll have to look in to this."]},
+	>>>> not confusion for me for feature will!!!
+{
+	"id":"36f8f9407c0aa174d6520df10be68992ddb4159b",
+	"message":["Patch Set 1: Verified+1\n\nWe have no +2 here, so will have to wait for one of the regular folks who work on it to accept it."]},
+	>>>> not confusion for me
+{
+	"id":"44cb5d4c29b098cda3311e6d70fb20c8d349ed40",
+	"message":["Patch Set 2:\n\n2Dave: I will add your version in the header, and keep mine in the .cpp - because your comment explains the state and mine explains transitions"]},
+	>>>> not confusion for me
+{
+	"id":"e3352b57ca2e0f445a0108573b90db1c532a4502",
+	"message":["Patch Set 1:\n\nNo, I downloaded the patch in the link and the problem we detected is still present.\n\nThe problem is a bout an exception thrown when right clicking with a mouse outside the images in a grid.\n\nTo reproduce, connect mouse via usb, open for example the vanilla browser, go into bookmark menu, right click on an area outside the images and the browser will force stop."]},
+	>>>> not confusion for me
+{
+	"id":"e0925cc7a3f06e2092adb6d0cde8850aad6bc5e8",
+	"message":["Patch Set 1:\n\nJBQ, I think you are right.\nAny module Android.mks that are included after this one would be affected.\nI will send out a fix."]},
+	>>>> not confusion for me
+{
+	"id":"2c7c8c2454baa4525b112526dd884401e22cfc5d",
+	"message":["Patch Set 8:\n\nAdded new debug feature to dump the current resources:\nyou will get something like this:\n\n# mount -t debugfs debugfs /debug/\n# cat /debug/rpmsg_resmgr/rpmsg0/resources\n\n|=============================================|                                 \n|Type:                       |  7             |                                 \n|Name:                       |  RPRM_SL2IF    |                                 \n|EndPoint source:            |  101           |                                 \n|---------------------------------------------|                                 \n|=============================================|                                 \n|Type:                       |  3             |                                 \n|Name:                       |  IVA SEQ1A     |                                 \n|EndPoint source:            |  101           |                                 \n|---------------------------------------------|                                 \n|=============================================|                                 \n|Type:                       |  2             |                                 \n|Name:                       |  IVA SEQ0      |                                 \n|EndPoint source:            |  101           |                                 \n|---------------------------------------------|                                 \n|=============================================|                                 \n|Type:                       |  1             |                                 \n|Name:                       |  IVA HD        |                                 \n|EndPoint source:            |  101           |                                 \n|---------------------------------------------|                                 \n|=============================================|                                 \n|Type:                       |  0             |                                 \n|Name:                       |  GP Timer      |                                 \n|EndPoint source:            |  101           |                                 \n|---------------------------------------------|                                 \n|Resource Paramaters:                         |                                 \n|       Id:                  |  3             |                                 \n|       Source:              |  0             |                                 \n|---------------------------------------------|"]},
+	>>>> not confusion for me
+{
+	"id":"84a416b45c2ce914916d7d4a2e97183b0d8baed5",
+	"message":["Patch Set 1:\n\nI think TARGET_SUPPORTS_64_BIT_APPS will stay the same, but I'd like it to get set from a common location that also selects the correct zygote, etc."]},
+	>>>> unsure
+{
+	"id":"a21253884f3f61558f7585da236f558ffff86bac",
+	"message":["Patch Set 1:\n\nThanks for clarification.  Will abandon"]},
+	>>>> not confusion for me
+{
+	"id":"d8fb942c652ad442dc40f4afd2275300663cf33e",
+	"message":["Patch Set 1: Code-Review-1\n\nThis will hit the API error check"]},
+	>>>> not confusion for me
+{
+	"id":"3446bae32664c31140dc02fa7bb473bcbab5b4c7",
+	"message":["Patch Set 2:\n\n(6 comments)\n\n> > From what I understand, the problems curl had with WSAPoll was\n > that\n > > it didn't report failures for non-blocking connection attempts,\n > > which I don't believe we do.\n > \n > Ah, ok. I guess it means that if you guys port libcutils/socket_network_client_unix.c\n > to Windows, you can't use adb_poll().\n\nI think it will be OK as long as WSAPoll() only has problems during connection attempts. socket_network_client_timeout() either finishes connecting or closes the socket before returning so by the time we pass anything to adb_poll() it will be fully connected.\n\nOverall great stuff! Super excited to see sysdeps trimmed down and simplified."]},
+	>>>> unsure
+{
+	"id":"e0716f52af30f79b4dac032939404205174328e1",
+	"message":["Patch Set 1:\n\nHopefully Richard will be able to come up with a better way to fix this."]},
+	>>>> not confusion for me
+{
+	"id":"d6adbeb9d847892db8dff18edcc61d2825206b0e",
+	"message":["Patch Set 2:\n\nyes, and I will wait until presubmit build successfully."]}]
+	>>>> not confusion for me
+}
