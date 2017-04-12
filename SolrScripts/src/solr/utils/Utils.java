@@ -32,8 +32,30 @@ public class Utils {
 		return isBot;
 	}
 
+	public static List<Tuple> readTulpe(String string) {
+
+		List<Tuple> tuples = new ArrayList<Tuple>();
+
+		try {
+
+			List<String> list = Files.readAllLines(Paths.get(string));
+
+			for (String line : list) {
+
+				String[] array = line.split(";");
+
+				tuples.add(new Tuple(array[0], array[1]));
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return tuples;
+	}
+
 	public static int countWordFrequency(String feature, String comment) {
-		
+
 		int matches = 0;
 
 		Matcher matcher = Pattern.compile("\\b" + feature + "\\b", Pattern.CASE_INSENSITIVE).matcher(comment);
@@ -41,10 +63,10 @@ public class Utils {
 		while (matcher.find()) {
 			matches++;
 		}
-		
-		return matches;		
+
+		return matches;
 	}
-	
+
 	public static List<String> getCodeReviewIDs() {
 
 		List<String> codeReviewIDs = new ArrayList<String>();
@@ -73,7 +95,7 @@ public class Utils {
 
 		return sentences;
 	}
-	
+
 	public static boolean checkCodeReview(SolrClient solr, int codeReviewID) {
 
 		boolean exists = false;

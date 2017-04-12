@@ -2,11 +2,8 @@ package solr.analysis;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.Map.Entry;
 
 import solr.utils.Const;
 import solr.utils.Tuple;
+import solr.utils.Utils;
 
 public class GetStratifiedSelection {
 
@@ -33,17 +31,17 @@ public class GetStratifiedSelection {
 			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH;
 		}
 
-		List<Tuple> hedges = readTulpe(filePath + Const.HEDGES + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> hedges = Utils.readTulpe(filePath + Const.HEDGES + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> hypo = readTulpe(filePath + Const.HYPOTHETICALS + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> hypo = Utils.readTulpe(filePath + Const.HYPOTHETICALS + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> I_statements = readTulpe(filePath + Const.I_STATEMENTS + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> I_statements = Utils.readTulpe(filePath + Const.I_STATEMENTS + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> probables = readTulpe(filePath + Const.PROBABLES + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> probables = Utils.readTulpe(filePath + Const.PROBABLES + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> nonverbals = readTulpe(filePath + Const.NONVERBALS + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> nonverbals = Utils.readTulpe(filePath + Const.NONVERBALS + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> meta = readTulpe(filePath + Const.META + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> meta = Utils.readTulpe(filePath + Const.META + Const._TUPLES_ID + Const._TXT);
 
 		List<Tuple> hedgesStratified = checkStratifiedIDFromAll(hedges, hypo, I_statements, probables, nonverbals,
 				meta);
@@ -279,27 +277,7 @@ public class GetStratifiedSelection {
 		return isUnique;
 	}
 
-	public static List<Tuple> readTulpe(String string) {
-
-		List<Tuple> tuples = new ArrayList<Tuple>();
-
-		try {
-
-			List<String> list = Files.readAllLines(Paths.get(string));
-
-			for (String line : list) {
-
-				String[] array = line.split(";");
-
-				tuples.add(new Tuple(array[0], array[1]));
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return tuples;
-	}
+	
 
 	public static void main(String[] args) {
 
