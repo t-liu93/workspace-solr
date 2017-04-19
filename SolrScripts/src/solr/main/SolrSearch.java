@@ -30,6 +30,7 @@ import edu.stanford.nlp.util.CoreMap;
 import solr.basics.FeatureResult;
 import solr.basics.Tuple;
 import solr.utils.Const;
+import solr.utils.Log;
 import solr.utils.Utils;
 
 /**
@@ -44,10 +45,13 @@ import solr.utils.Utils;
  */
 
 public class SolrSearch {
+	
+	private static Log log = new Log("countAllFeatures");
 
 	public static void countAllFeatures(String commentType) {
 
-		System.out.println("Started countAllFeatures...");
+		// System.out.println("Started countAllFeatures...");
+		log.doInfoLogging("Started countAllFeatures for " + commentType + "...");
 
 		StringBuffer sbResults = new StringBuffer();
 
@@ -57,8 +61,8 @@ public class SolrSearch {
 
 		long totalFeatures = 0;
 
-		// TODO add the percentage of the number in the result
-
+		log.doInfoLogging("Started countFeatures for hedges...");
+		
 		FeatureResult hedges = countFeatures(Const.HEDGES, commentType);
 
 		sbResults.append(Const.HEDGES + Const.SEMICOLON + hedges.getTotalNumCommentsFound() + Const.SEMICOLON
@@ -66,7 +70,10 @@ public class SolrSearch {
 
 		sbResults.append(Const.NEW_LINE);
 
-		System.out.println("Finished countFeatures for hedges...");
+		// System.out.println("Finished countFeatures for hedges...");
+		log.doInfoLogging("Finished countFeatures for hedges...");
+		
+		log.doInfoLogging("Started countFeatures for hypotheticals...");
 
 		FeatureResult hypo = countFeatures(Const.HYPOTHETICALS, commentType);
 
@@ -75,8 +82,11 @@ public class SolrSearch {
 
 		sbResults.append(Const.NEW_LINE);
 
-		System.out.println("Finished countFeatures for hypotheticals...");
+		// System.out.println("Finished countFeatures for hypotheticals...");
+		log.doInfoLogging("Finished countFeatures for hypotheticals...");
 
+		log.doInfoLogging("Started countFeatures for probables...");
+		
 		FeatureResult probables = countFeatures(Const.PROBABLES, commentType);
 
 		sbResults.append(Const.PROBABLES + Const.SEMICOLON + probables.getTotalNumCommentsFound() + Const.SEMICOLON
@@ -84,8 +94,11 @@ public class SolrSearch {
 
 		sbResults.append(Const.NEW_LINE);
 
-		System.out.println("Finished countFeatures for probables...");
+		// System.out.println("Finished countFeatures for probables...");
+		log.doInfoLogging("Finished countFeatures for probables...");
 
+		log.doInfoLogging("Started countFeatures for  I-statements...");
+		
 		FeatureResult I_statements = countFeatures(Const.I_STATEMENTS, commentType);
 
 		sbResults.append(Const.I_STATEMENTS + Const.SEMICOLON + I_statements.getTotalNumCommentsFound()
@@ -93,8 +106,11 @@ public class SolrSearch {
 
 		sbResults.append(Const.NEW_LINE);
 
-		System.out.println("Finished countFeatures for I-statements...");
+		// System.out.println("Finished countFeatures for I-statements...");
+		log.doInfoLogging("Finished countFeatures for I-statements...");
 
+		log.doInfoLogging("Started countFeatures for  nonverbals...");
+		
 		FeatureResult nonverbals = countFeatures(Const.NONVERBALS, commentType);
 
 		sbResults.append(Const.NONVERBALS + Const.SEMICOLON + nonverbals.getTotalNumCommentsFound() + Const.SEMICOLON
@@ -102,7 +118,10 @@ public class SolrSearch {
 
 		sbResults.append(Const.NEW_LINE);
 
-		System.out.println("Finished countFeatures for nonverbals...");
+		// System.out.println("Finished countFeatures for nonverbals...");
+		log.doInfoLogging("Finished countFeatures for nonverbals...");
+		
+		log.doInfoLogging("Started countFeatures for  meta...");
 
 		FeatureResult meta = countFeatures(Const.META, commentType);
 
@@ -111,7 +130,10 @@ public class SolrSearch {
 
 		sbResults.append(Const.NEW_LINE);
 
-		System.out.println("Finished countFeatures for meta...");
+		// System.out.println("Finished countFeatures for meta...");
+		log.doInfoLogging("Finished countFeatures for meta...");
+		
+		log.doInfoLogging("Started countFeatures for  questions...");
 
 		FeatureResult questions = countQuestionFeatures(Const.QUESTIONS, commentType);
 
@@ -120,7 +142,8 @@ public class SolrSearch {
 
 		sbResults.append(Const.NEW_LINE);
 
-		System.out.println("Finished countFeatures for questions...");
+		// System.out.println("Finished countFeatures for questions...");
+		log.doInfoLogging("Finished countFeatures for questions...");
 
 		totalFeatures = hedges.getTotalNumFeaturesFound() + hypo.getTotalNumFeaturesFound()
 				+ I_statements.getTotalNumFeaturesFound() + meta.getTotalNumFeaturesFound()
@@ -148,10 +171,13 @@ public class SolrSearch {
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
 			writer.write(sbResults.toString());
 		} catch (Exception e) {
-			System.out.println(e);
+			// System.out.println(e);
+			log.doSevereLogging("Error: when writing the sbResults file!!!");
+			log.doSevereLogging(e.getStackTrace().toString());
 		}
 
-		System.out.println("Done with countAllFeatures...");
+		// System.out.println("Done with countAllFeatures...");
+		log.doInfoLogging("Done with countAllFeatures...");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -272,7 +298,9 @@ public class SolrSearch {
 			writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			log.doSevereLogging("Error: countFeatures method!");
+			log.doSevereLogging(e.getStackTrace().toString());
 		}
 
 		// System.out.println("Done...");
@@ -283,6 +311,9 @@ public class SolrSearch {
 	@SuppressWarnings("unchecked")
 	public static FeatureResult countQuestionFeatures(String framework, String commentType) {
 
+		log.doFineLogging("Started method countQuestionFeatures!");
+		System.out.println("Started method countQuestionFeatures!");
+		
 		FeatureResult result = new FeatureResult();
 
 		List<Tuple> listTuples = new ArrayList<Tuple>();
@@ -298,10 +329,16 @@ public class SolrSearch {
 		sbFeaturesOutput.append(Const.NEW_LINE);
 
 		try {
+			
+			log.doFineLogging("Starting the StanfordNLP API...");
+			System.out.println("Starting the StanfordNLP API...");
 
 			Properties props = new Properties();
 			props.put(Const.ANNOTATORS, Const.STANFORD_NLP_ANNOTATORS);
 			StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+			
+			log.doFineLogging("Finished starting the StanfordNLP API!");
+			System.out.println("Finished starting the StanfordNLP API!");
 
 			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
 
@@ -332,9 +369,9 @@ public class SolrSearch {
 			while (!done) {
 
 				query.set(CursorMarkParams.CURSOR_MARK_PARAM, cursorMark);
-
+				
 				QueryResponse response = solr.query(query);
-
+				
 				String nextCursorMark = response.getNextCursorMark();
 
 				SolrDocumentList results = response.getResults();
@@ -344,7 +381,7 @@ public class SolrSearch {
 					SolrDocument codeReview = results.get(i);
 
 					String id = (String) codeReview.getFieldValue(Const.ID);
-
+					
 					String comment = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
 
 					Annotation document = new Annotation(comment);
@@ -385,6 +422,7 @@ public class SolrSearch {
 							}
 						}
 					}
+					
 				}
 
 				if (cursorMark.equals(nextCursorMark)) {
@@ -392,6 +430,9 @@ public class SolrSearch {
 				}
 
 				cursorMark = nextCursorMark;
+
+				log.doFineLogging("Finished querying solr cursor: " + nextCursorMark);
+				System.out.println("Finished querying solr cursor: " + nextCursorMark);
 			}
 
 			sbFeaturesOutput.append(
@@ -428,7 +469,10 @@ public class SolrSearch {
 			writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			log.doSevereLogging("Error: countQuestionFeatures method!");
+			log.doSevereLogging(e.getStackTrace().toString());
+			
 		}
 
 		// System.out.println("Done...");
@@ -517,7 +561,9 @@ public class SolrSearch {
 				writer.write(Const.NEW_LINE);
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			// System.out.println(e);
+			log.doSevereLogging("Error: writeTuplesOutputFile method!");
+			log.doSevereLogging(e.getStackTrace().toString());
 		}
 	}
 
@@ -543,7 +589,9 @@ public class SolrSearch {
 				writer.write(Const.NEW_LINE);
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			// System.out.println(e);
+			log.doSevereLogging("Error: writeIDsOutputFile method!");
+			log.doSevereLogging(e.getStackTrace().toString());
 		}
 	}
 
@@ -564,7 +612,9 @@ public class SolrSearch {
 
 			writer.write(sbFeaturesOutput.toString());
 		} catch (Exception e) {
-			System.out.println(e);
+			// System.out.println(e);
+			log.doSevereLogging("Error: writeCSVOutputFile method!");
+			log.doSevereLogging(e.getStackTrace().toString());
 		}
 	}
 
