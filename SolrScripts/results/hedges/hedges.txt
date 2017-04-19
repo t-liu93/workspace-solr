@@ -1,0 +1,27 @@
+=COUNTIF('hedges-gc'!B2:B310, "Varttala")
+
+
+=SUMIFS('hedges-gc'!D2:D310,'hedges-gc'!B2:B310,"Jordan")
+=SUMIFS('hedges-ic'!D2:D313,'hedges-gc'!B2:B313,"Lakoff")
+
+
+
+=MATCH(A2,sources!A1:A580,0)
+
+
+=INDIRECT("sources!B"&MATCH(A2,sources!A1:A580,0))
+
+
+
+=COUNTIF('hedges-gc'!C2:C310, "Modal Auxiliares")
+=COUNTIF('hedges-gc'!C2:C310, "Adjectives - Approximative Adjectives") + COUNTIF('hedges-gc'!C2:C310, "Adjectives - Adjectives of Indefinite Degree")
+=COUNTIF('hedges-gc'!C2:C310, "Adverbs - Approximative Adverbs") + COUNTIF('hedges-gc'!C2:C310, "Adverbs - Adverbs of Indefinite Degree")
+=COUNTIF('hedges-gc'!C2:C310, "Full verbs - Nonfactive reporting verbs") + COUNTIF('hedges-gc'!C2:C310, "Full verbs - Tentative cognition verbs") + COUNTIF('hedges-gc'!C2:C310, "Full verbs - Tentative linking verbs")
+=COUNTIF('hedges-gc'!C2:C310, "Nouns - Nonfactive assertive nouns") + COUNTIF('hedges-gc'!C2:C310, "Nouns - Nouns of tentative likelihood") + COUNTIF('hedges-gc'!C2:C310, "Nouns - Tentative cognition nouns")
+
+
+=SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Modal Auxiliares")
+=SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Adjectives - Approximative Adjectives") + SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Adjectives - Adjectives of Indefinite Degree")
+=SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Adverbs - Approximative Adverbs") + SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Adverbs - Adverbs of Indefinite Degree")
+=SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Full verbs - Nonfactive reporting verbs") + SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Full verbs - Tentative cognition verbs") + SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Full verbs - Tentative linking verbs")
+=SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Nouns - Nonfactive assertive nouns") + SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Nouns - Nouns of tentative likelihood") + SUMIFS('hedges-ic'!D2:D313,'hedges-ic'!C2:C313,"Nouns - Tentative cognition nouns")
