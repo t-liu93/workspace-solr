@@ -431,8 +431,8 @@ public class SolrSearch {
 
 				cursorMark = nextCursorMark;
 
-				log.doFineLogging("Finished querying solr cursor: " + nextCursorMark);
-				System.out.println("Finished querying solr cursor: " + nextCursorMark);
+				log.doFineLogging(Utils.getTimeStamp() + " >> Finished querying solr cursor: " + nextCursorMark);
+				System.out.println(Utils.getTimeStamp() +  " >> Finished querying solr cursor: " + nextCursorMark);
 			}
 
 			sbFeaturesOutput.append(

@@ -157,6 +157,8 @@ public class Const {
 	public static String _UTF_8 = "UTF-8";
 
 	public static String NEW_LINE = "\n";
+	
+	public static String DateFormat = "yyyy/MM/dd HH:mm:ss";
 
 	public static int _0 = 0;
 

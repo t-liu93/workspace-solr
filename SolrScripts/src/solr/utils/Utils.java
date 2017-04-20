@@ -8,6 +8,8 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.BreakIterator;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -23,7 +25,16 @@ import org.apache.solr.common.SolrDocumentList;
 import solr.basics.Tuple;
 
 public class Utils {
-	
+
+	public static String getTimeStamp() {
+
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(Const.DateFormat);
+
+		LocalDateTime time = LocalDateTime.now();
+
+		return dtf.format(time);
+	}
+
 	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples) {
 
 		String filePath = "";
