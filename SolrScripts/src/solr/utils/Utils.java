@@ -1,6 +1,10 @@
 package solr.utils;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.BreakIterator;
@@ -19,6 +23,79 @@ import org.apache.solr.common.SolrDocumentList;
 import solr.basics.Tuple;
 
 public class Utils {
+	
+	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples) {
+
+		String filePath = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._TUPLES_ID + Const._TXT;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._TUPLES_ID + Const._TXT;
+		}
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+
+			for (Tuple tuple : listTuples) {
+
+				writer.write(tuple.toString());
+
+				writer.write(Const.NEW_LINE);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	public static void writeIDsOutputFile(String framework, String commentType, List<String> listIDs) {
+
+		String filePath = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._ID + Const._TXT;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._ID + Const._TXT;
+		}
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+
+			for (String string : listIDs) {
+
+				writer.write(string);
+
+				writer.write(Const.NEW_LINE);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	public static void writeCSVOutputFile(String framework, String commentType, StringBuffer sbFeaturesOutput) {
+
+		String filePath = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._OUT + Const._CSV;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._OUT + Const._CSV;
+		}
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
+
+			writer.write(sbFeaturesOutput.toString());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 
 	public static boolean isBot(Long authorID) {
 

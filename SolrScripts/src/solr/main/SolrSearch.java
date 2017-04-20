@@ -291,11 +291,11 @@ public class SolrSearch {
 
 			result.setListTulpes(listTuples);
 
-			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
+			Utils.writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
 
-			writeIDsOutputFile(framework, commentType, listIDs);
+			Utils.writeIDsOutputFile(framework, commentType, listIDs);
 
-			writeTuplesOutputFile(framework, commentType, listTuples);
+			Utils.writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
 			// e.printStackTrace();
@@ -462,11 +462,11 @@ public class SolrSearch {
 			
 			result.setListTulpes(listTuples);
 
-			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
+			Utils.writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
 
-			writeIDsOutputFile(framework, commentType, listIDs);
+			Utils.writeIDsOutputFile(framework, commentType, listIDs);
 			
-			writeTuplesOutputFile(framework, commentType, listTuples);
+			Utils.writeTuplesOutputFile(framework, commentType, listTuples);
 
 		} catch (SolrServerException | IOException e) {
 			// e.printStackTrace();
@@ -534,88 +534,9 @@ public class SolrSearch {
 			}
 		}
 
-		writeIDsOutputFile(Const.ALL, commentType, uniqueIDs);
+		Utils.writeIDsOutputFile(Const.ALL, commentType, uniqueIDs);
 
 		return uniqueIDs;
-	}
-
-	public static void writeTuplesOutputFile(String framework, String commentType, List<Tuple> listTuples) {
-
-		String filePath = "";
-
-		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
-
-			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._TUPLES_ID + Const._TXT;
-
-		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
-
-			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._TUPLES_ID + Const._TXT;
-		}
-
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
-
-			for (Tuple tuple : listTuples) {
-
-				writer.write(tuple.toString());
-
-				writer.write(Const.NEW_LINE);
-			}
-		} catch (Exception e) {
-			// System.out.println(e);
-			log.doSevereLogging("Error: writeTuplesOutputFile method!");
-			log.doSevereLogging(e.getStackTrace().toString());
-		}
-	}
-
-	public static void writeIDsOutputFile(String framework, String commentType, List<String> listIDs) {
-
-		String filePath = "";
-
-		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
-
-			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._ID + Const._TXT;
-
-		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
-
-			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._ID + Const._TXT;
-		}
-
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
-
-			for (String string : listIDs) {
-
-				writer.write(string);
-
-				writer.write(Const.NEW_LINE);
-			}
-		} catch (Exception e) {
-			// System.out.println(e);
-			log.doSevereLogging("Error: writeIDsOutputFile method!");
-			log.doSevereLogging(e.getStackTrace().toString());
-		}
-	}
-
-	public static void writeCSVOutputFile(String framework, String commentType, StringBuffer sbFeaturesOutput) {
-
-		String filePath = "";
-
-		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
-
-			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + framework + Const._OUT + Const._CSV;
-
-		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
-
-			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + framework + Const._OUT + Const._CSV;
-		}
-
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath), Const._UTF_8))) {
-
-			writer.write(sbFeaturesOutput.toString());
-		} catch (Exception e) {
-			// System.out.println(e);
-			log.doSevereLogging("Error: writeCSVOutputFile method!");
-			log.doSevereLogging(e.getStackTrace().toString());
-		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -811,7 +732,7 @@ public class SolrSearch {
 				System.out.println("===========================");
 			}
 
-			writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
+			Utils.writeCSVOutputFile(framework, commentType, sbFeaturesOutput);
 
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
@@ -998,7 +919,7 @@ public class SolrSearch {
 
 	public static void main(String[] args) {
 
-		String commentType = Const.GENERAL;
+		String commentType = Const.INLINE;
 
 		countAllFeatures(commentType);
 
