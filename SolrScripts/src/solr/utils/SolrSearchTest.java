@@ -31,17 +31,24 @@ public class SolrSearchTest {
 
 			query.setFields("id", "message");
 
-			QueryResponse response = solr.query(query);
+			int counter = 0;
 
-			SolrDocumentList results = response.getResults();
+			while (counter < start) {
 
-			for (int i = 0; i < results.size(); i++) {
+				QueryResponse response = solr.query(query);
 
-				SolrDocument codeReview = results.get(i);
+				SolrDocumentList results = response.getResults();
 
-				String id = (String) codeReview.getFieldValue("id");
+				for (int i = 0; i < results.size(); i++) {
+					
+					SolrDocument codeReview = results.get(i);
+					
+					String id = (String) codeReview.getFieldValue("id");
+					
+					System.out.println("id: " + id);
+				}
 
-				System.out.println("id: " + id);
+				counter = counter + 1;
 			}
 
 		} catch (SolrServerException | IOException e) {
