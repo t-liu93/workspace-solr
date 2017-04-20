@@ -162,12 +162,16 @@ public class Const {
 
 	public static int _0 = 0;
 
+	public static int _100 = 100;
+	
 	public static int _500 = 500;
 
 	public static int _3000 = 3000;
 	
 	public static int _5000 = 5000;
 
+	public static int _10000 = 10000;
+	
 	public static int _20000 = 20000;
 
 	public static int _50000 = 50000;
