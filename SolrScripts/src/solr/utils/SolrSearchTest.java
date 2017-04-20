@@ -41,7 +41,7 @@ public class SolrSearchTest {
 
 				String id = (String) codeReview.getFieldValue("id");
 
-				System.out.println("id: " + id);
+				System.out.println(Utils.getTimeStamp() + " >> id: " + id);
 			}
 
 		} catch (SolrServerException | IOException e) {
