@@ -13,7 +13,7 @@ import org.apache.solr.common.SolrDocumentList;
 
 public class SolrSearchTest {
 
-	public static void paginationSolrTest(int start) {
+	public static void paginationSolrTest(int start, int rows) {
 
 		try {
 
@@ -23,7 +23,7 @@ public class SolrSearchTest {
 
 			query.setQuery("message:\"can\"");
 
-			query.setRows(3);
+			query.setRows(rows);
 
 			query.setSort(SortClause.asc("id"));
 
@@ -31,24 +31,17 @@ public class SolrSearchTest {
 
 			query.setFields("id", "message");
 
-			int counter = 0;
+			QueryResponse response = solr.query(query);
 
-			while (counter < start) {
+			SolrDocumentList results = response.getResults();
 
-				QueryResponse response = solr.query(query);
+			for (int i = 0; i < results.size(); i++) {
 
-				SolrDocumentList results = response.getResults();
+				SolrDocument codeReview = results.get(i);
 
-				for (int i = 0; i < results.size(); i++) {
-					
-					SolrDocument codeReview = results.get(i);
-					
-					String id = (String) codeReview.getFieldValue("id");
-					
-					System.out.println("id: " + id);
-				}
+				String id = (String) codeReview.getFieldValue("id");
 
-				counter = counter + 1;
+				System.out.println("id: " + id);
 			}
 
 		} catch (SolrServerException | IOException e) {
@@ -60,8 +53,10 @@ public class SolrSearchTest {
 
 	public static void main(String[] args) {
 
+		int rows = 10;
+
 		int start = 0;
 
-		paginationSolrTest(start);
+		paginationSolrTest(start, rows);
 	}
 }
