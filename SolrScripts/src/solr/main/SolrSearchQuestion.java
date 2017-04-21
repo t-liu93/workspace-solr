@@ -207,16 +207,16 @@ public class SolrSearchQuestion {
 
 		String commentType = args[0];
 		
-		int rows = Const._10000;
+		int rows = Const._20000;
 
 		int start = Integer.valueOf(args[1]);
 		
-		// Work Done - GENERAL COMMENTS @linuxapps02
+		// Work Done - GENERAL COMMENTS @linuxapps02:
 		// 0 		- 10000		=> OK	=> PID 40564	=> solrSearchQuestion.2017-04-20-035915.log
 		// 10000	- 20000		=> 		=> PID 43226	=>
 
 		
-		// Work Done - INLINE COMMENTS @TUe
+		// Work Done - INLINE COMMENTS @TUe:
 		// 0 		- 10000		=> OK	=> solrSearchQuestionIC-[0-10000].2017-04-21-114346.log 
 		// 10000	- 20000		=> 	=>
 
