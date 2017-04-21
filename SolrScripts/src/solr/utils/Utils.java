@@ -11,8 +11,10 @@ import java.text.BreakIterator;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -215,5 +217,31 @@ public class Utils {
 		}
 
 		return exists;
+	}
+
+	public static Map<String, String> readSourcesJordanAndLakoff() {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		try {
+			
+			String sourcePath = Const.DIR_FRAMEWORK + Const.SOURCES + Const._TXT;
+
+			List<String> list = Files.readAllLines(Paths.get(sourcePath));
+
+			for (String line : list) {
+
+				String[] array = line.split(";");
+				
+				if (array[1].equalsIgnoreCase(Const.JORDAN) || array[1].equalsIgnoreCase(Const.LAKOFF)) {
+					
+					map.put(array[0], array[1]);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return map;
 	}
 }

@@ -156,6 +156,12 @@ public class Const {
 	
 	public static String _RESULTS = "-results";
 	
+	public static String SOURCES = "sources";
+	
+	public static String LAKOFF = "Jordan";
+
+	public static String JORDAN = "Lakoff";
+	
 	public static String _STRATIFIED = "stratified";
 
 	public static String _ID = "-ID";

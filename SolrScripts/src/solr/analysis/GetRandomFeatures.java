@@ -27,7 +27,7 @@ public class GetRandomFeatures {
 
 	private static Random random;
 
-	public static void getRandomFeatures(String commentType, String feature, int numberExamples) {
+	public static void getRandomFeaturesIDs(String commentType, String framework, String feature, int numberExamples) {
 
 		String filePath = "";
 
@@ -40,11 +40,11 @@ public class GetRandomFeatures {
 			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH;
 		}
 
-		List<Tuple> hedges = Utils.readTulpe(filePath + Const.HEDGES + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> tuples = Utils.readTulpe(filePath + framework + Const._TUPLES_ID + Const._TXT);
 
 		Map<String, String> map = new HashMap<String, String>();
 
-		for (Tuple tuple : hedges) {
+		for (Tuple tuple : tuples) {
 
 			if (tuple.getFeature().equalsIgnoreCase(feature)) {
 
@@ -82,7 +82,7 @@ public class GetRandomFeatures {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void getRandomFeatures(String commentType, int numberExamples) {
+	public static void getRandomFeatures(String commentType, String framework, int numberExamples) {
 
 		String filePath = "";
 
@@ -95,17 +95,22 @@ public class GetRandomFeatures {
 			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH;
 		}
 
-		List<Tuple> hedges = Utils.readTulpe(filePath + Const.HEDGES + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> tuples = Utils.readTulpe(filePath + framework + Const._TUPLES_ID + Const._TXT);
 
 		List<Tuple> randomList = new ArrayList<Tuple>();
+		
+		Map<String, String> sourcesJordanAndLakoff = Utils.readSourcesJordanAndLakoff();
 
 		for (int i = 0; i < numberExamples; i++) {
 
-			Tuple randomTuple = randomItem(hedges);
-
-			randomList.add(randomTuple);
-
-			hedges.remove(randomTuple);
+			Tuple randomTuple = randomItem(tuples);
+			
+			if (sourcesJordanAndLakoff.containsKey(randomTuple.getFeature())) {
+				
+				randomList.add(randomTuple);
+				
+				tuples.remove(randomTuple);
+			}
 		}
 		
 		StringBuffer sbResults = new StringBuffer();
@@ -175,13 +180,15 @@ public class GetRandomFeatures {
 	public static void main(String[] args) {
 
 		String commentType = Const.GENERAL;
+		
+		String framework = Const.HEDGES;
 
 		int numberExamples = 25;
 
-		getRandomFeatures(commentType, numberExamples);
+		getRandomFeatures(commentType, framework, numberExamples);
 
 		// String feature = "would";
 
-		// getRandomFeatures(commentType, feature, numberExamples);
+		// getRandomFeaturesIDs(commentType, framework, feature, numberExamples);
 	}
 }
