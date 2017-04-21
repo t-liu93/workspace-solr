@@ -82,7 +82,7 @@ public class GetRandomFeatures {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void getRandomFeatures(String commentType, String framework, int numberExamples) {
+	public static void writeFileRandomFeatures(String commentType, String framework, int numberExamples) {
 
 		String filePath = "";
 
@@ -100,8 +100,10 @@ public class GetRandomFeatures {
 		List<Tuple> randomList = new ArrayList<Tuple>();
 		
 		Map<String, String> sourcesJordanAndLakoff = Utils.readSourcesJordanAndLakoff();
+		
+		int counter = 0;
 
-		for (int i = 0; i < numberExamples; i++) {
+		for (int i = 0; i < tuples.size() && counter < numberExamples; i++) {
 
 			Tuple randomTuple = randomItem(tuples);
 			
@@ -110,6 +112,8 @@ public class GetRandomFeatures {
 				randomList.add(randomTuple);
 				
 				tuples.remove(randomTuple);
+				
+				counter = counter + 1;
 			}
 		}
 		
@@ -186,7 +190,7 @@ public class GetRandomFeatures {
 
 		int numberExamples = 25;
 
-		getRandomFeatures(commentType, framework, numberExamples);
+		writeFileRandomFeatures(commentType, framework, numberExamples);
 
 		// String feature = "would";
 
