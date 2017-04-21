@@ -35,7 +35,15 @@ public class SolrSearchQuestion {
 		
 		int end = start + rows;
 		
-		log = new Log("solrSearchQuestion-[" +  start + "-" + end + "]");
+		String logFileName = "";
+		
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+			logFileName = "solrSearchQuestionGC-[";
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+			logFileName = "solrSearchQuestionIC-[";
+		}
+		
+		log = new Log(logFileName +  start + "-" + end + "]");
 
 		log.doFineLogging(Utils.getTimeStamp() + " >> Started SolrSearchQuestion: start = " + start + "...");
 		System.out.println(Utils.getTimeStamp() + " >> Started SolrSearchQuestion: start = " + start + "...");
@@ -194,16 +202,22 @@ public class SolrSearchQuestion {
 
 	public static void main(String[] args) {
 
-		String commentType = Const.GENERAL;
+		String commentType = Const.INLINE;
 		
 		int rows = Const._10000;
 
-		int start = Integer.valueOf(args[0]);
+		int start = 0;
 		
-		// Work Done - General Comments @linuxapps02
+		// Work Done - GENERAL COMMENTS @linuxapps02
 		// 0 		- 10000		=> OK	=> PID 40564	=> solrSearchQuestion.2017-04-20-035915.log
 		// 10000	- 20000		=> 		=> PID			=>
 
+		
+		// Work Done - INLINE COMMENTS @TUe
+		// 0 		- 10000		=> 	=> 
+		// 10000	- 20000		=> 	=>
+
+		
 		solrSearchQuestion(commentType, start, rows);
 	}
 }
