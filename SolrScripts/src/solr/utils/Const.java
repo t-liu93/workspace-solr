@@ -137,6 +137,8 @@ public class Const {
 	public static String _CSV = ".csv";
 
 	public static String _HTML = ".html";
+	
+	public static String _JSON = ".json";
 
 	public static String _OUT = "-out";
 
@@ -145,6 +147,10 @@ public class Const {
 	public static String _IC = "-ic";
 
 	public static String _GC = "-gc";
+	
+	public static String TRAINING_SET = "training-set";
+
+	public static String DIR_TRAINING = "set-training/";
 	
 	public static String _RESULTS = "-results";
 	
@@ -202,4 +208,5 @@ public class Const {
 
 	// android bot: Gerrit Code Review => id = -1
 	public static final int ANDROID_BOT_GERRIT = -1;
+
 }
