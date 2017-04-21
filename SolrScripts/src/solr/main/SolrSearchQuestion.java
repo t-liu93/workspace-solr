@@ -28,10 +28,14 @@ import solr.utils.Utils;
 
 public class SolrSearchQuestion {
 
-	private static Log log = new Log("solrSearchQuestion");
+	private static Log log;
 
 	@SuppressWarnings("unchecked")
 	public static void solrSearchQuestion(String commentType, int start, int rows) {
+		
+		int end = start + rows;
+		
+		log = new Log("solrSearchQuestion-[" +  start + "-" + end + "]");
 
 		log.doFineLogging(Utils.getTimeStamp() + " >> Started SolrSearchQuestion: start = " + start + "...");
 		System.out.println(Utils.getTimeStamp() + " >> Started SolrSearchQuestion: start = " + start + "...");
@@ -197,8 +201,8 @@ public class SolrSearchQuestion {
 		int start = Integer.valueOf(args[0]);
 		
 		// Work Done - General Comments @linuxapps02
-		// 0 		- 10000		=> OK	=> solrSearchQuestion.2017-04-20-035915.log
-		// 10000	- 20000		=> 		=>
+		// 0 		- 10000		=> OK	=> PID 40564	=> solrSearchQuestion.2017-04-20-035915.log
+		// 10000	- 20000		=> 		=> PID			=>
 
 		solrSearchQuestion(commentType, start, rows);
 	}
