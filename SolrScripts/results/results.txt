@@ -22,20 +22,6 @@ total of comments: 1,131,576
 
 General Comments results:
 
-	meta: 1,465
-
-	nonverbals: 1,596
-
-	I-statements: 8,744
-
-	probables: 10,466
-
-	hypotheticals: 256
-
-	hedges: 90,064
-
-total: 91,958 (10.22%)
-
 total (features without questions): 90,520 (10,06%)
 
 
