@@ -1,0 +1,76 @@
+{
+"id":"5fa1780de810778a742a55255c5c9c6180c37660",
+"message":["Patch Set 1: No score; No score\n\nWhich classes are proloaded has -nothing- to do with the CPU.  I imagine whatever build you are doing for x86 is using some other policy classes, so great, but it has nothing to do with the x86 cpu so the preloaded classes should not be selected based on that."]},
+{
+"id":"f2f8b131b628cd6d84962aac041d09541a03f5c6",
+"message":["Patch Set 1: Looks good to me, but someone else must approve\n\n"]},
+{
+"id":"6cc03f8c4d8e2e1dc327e832c8b292f88d7af8e9",
+"message":["Patch Set 1: Verified; Looks good to me, approved\n\n"]},
+{
+"id":"7c6343c7a704f7533d01245feea3f9aab630a487",
+"message":["Patch Set 1: Looks good to me, approved\n\n"]},
+{
+"id":"161a3cfc2024d6f85292a732e458ab85c880c29b",
+"message":["Patch Set 1: I would prefer that you didn't submit this\n\nIs this just defensive programming or do we really need to do this because its likely to occur?"]},
+{
+"id":"31b77a0c826f7465b559a3e823b14fc3f90d2528",
+"message":["Patch Set 3: Looks good to me, approved\n\nthanks for doing the archeology!"]},
+{
+"id":"82f6f437e2dfbc9d48324665e1cef17763597215",
+"message":["Patch Set 1:\n\n(everything boots and Netflix still works, so i think this doesn't break anything. it should fix irogers' dex2oat problem.)"]},
+{
+"id":"85f9fb2db1a25cffb439f19b5a8c2eb1b778b5f7",
+"message":["Patch Set 2:\n\nSure, will change that and commit."]},
+{
+"id":"df36e80200f93ea35214678953330c2e66671d83",
+"message":["Patch Set 1:\n\nThis is just a minor cleanup."]},
+{
+"id":"c237b8e7bf8ed349a22c9775325301bc6b676776",
+"message":["Patch Set 2:\n\nSorry, I just saw this old CL. Is there a reason you haven't submitted it so far? Are you holding back on purpose, or was it that no one reviewed it earlier?"]},
+{
+"id":"cd1b10b5e420195092f22b1c307bd5c18d13d908",
+"message":["Patch Set 3:\n\nWill revert and investigate"]},
+{
+"id":"850aa0c0fbd10f9d1020560de3b0c8aefdd71e53",
+"message":["Patch Set 2:\n\nIn retrospect, I don't understand the purpose of the access_kmsg() macro. Perhaps we should remove the macro entirely and covert everyone to \"allow foo kernel:system syslog_read;\"?"]},
+{
+"id":"9be7efc460eb064d6fceddf0b7b836ed5801b0a2",
+"message":["Patch Set 1:\n\nSorry, but we need more context to consider this patch. Is there a buganizer bug filed for this? If so, please reference the bug in the commit message. E.g.\n\n  BUG=123456"]},
+{
+"id":"663efb4a3dfdf988d9468e736a90aea108fc9f9c",
+"message":["Patch Set 1:\n\n> I did not realize that 'repo upload' w/o adding reviewers will go\n > into someone's inbox.\n > \n > What's the usual workflow for cases like that? I've got this change\n > on my branch because stuff does not work w/o it, but it's intended\n > as a local hack until the problem is fixed properly.\n\nfolks who work on bionic will likely have a gerrit project watch.\n\nas i implied above, starting the first line with \"DO NOT SUBMIT\" is the usual way to indicate you're just testing something. \"[WIP]\" (i.e. \"Work In Progress\") is how you say \"this is a legit change, but not yet ready for review\". (and never put the word \"MERGE\" in capitals --- you can tell the automerger to screw you over in obscure ways. even if someone tells you that you want that, don't do it :-) )"]},
+{
+"id":"c0ce6df9c027e6c3feb4e7ad9a5600fd5663a992",
+"message":["Patch Set 2: Code-Review-1\n\nIf the buffer size is greater than the max buffer size, that's indicative of a deeper problem (e.g. host and controller out of sync, etc)\n\nWe should crash hard so we know about it, rather than hiding the problem."]},
+{
+"id":"eee2273a06bd9e73685baad689caf75ca84ea01c",
+"message":["Patch Set 2: -Code-Review\n\n(2 comments)\n\nHi Robert,\n\nThe RIL.java is the basic communicate mechanism between RIL/Telephony FW. I do not suggest to break current mechanism.\n\nLock mWakeLock is for mWakeLock operation. \nLock mRequestsList is for mRequestMessagesWaiting operation. So I added Lock mPendingLock for mRequestMessagesPending operation.And deal mRequestMessagesPending same as mRequestMessagesWaiting did. Also avoid Lock plus Lock, which might cause dead lock.\n\nLet me know if you have any concerns.\nIf you agree, I suggest move back to patch set 1, which is used in Moto product for more than 4 months. Thanks!"]},
+{
+"id":"f5ec344139380c224404f5d0ae2bfa7bd962ba2d",
+"message":["Patch Set 1:\n\n(1 comment)\n\nImplementation is fine.  I agree we should add an ALOGW.  Will +2 when that's done."]},
+{
+"id":"d55dd22bc186e1314444ecb2a878f13fc7257de7",
+"message":["Patch Set 7:\n\n@Hareesh, can you also add \"In addition, the security of 2D is on par with 3D\" which will make it clear that both 3D and 2D have same security measures at the Kernel level as 3D device is already in the exception list. \n\nThank you."]},
+{
+"id":"5f5e388a88d6b420b4fdd2929fa7e44e8590248e",
+"message":["Patch Set 2: No score; Looks good to me, approved\n\n"]},
+{
+"id":"cffd0fde8cec9f73a0bebcc9d7832263c225a538",
+"message":["Patch Set 1: No score; Looks good to me, approved\n\n"]},
+{
+"id":"dabd4e15a056eba56d3471d3e6c53fefba073318",
+"message":["Patch Set 3: Looks good to me, approved; Verified\n\n"]},
+{
+"id":"3063650c9a0b819620f46ac42bed0c1e948914b8",
+"message":["Patch Set 1: Looks good to me, approved\n\n"]},
+{
+"id":"8f7a437453b9a89ec35cf339f4ce36735f849106",
+"message":["Patch Set 4: Verified+1 Code-Review+2\n\nChanged some comments."]},
+{
+"id":"99894a94ff84613af0444460f958cc9c0a968be8",
+"message":["Patch Set 2:\n\n> So Ying, should we stick with WHOLE archive, or just update the\n > transient references like in init?\n\nIf the static library is selinux specific, I'd suggest to add as whole archive to libselinux.a; otherwise add to the end points where the symbols need to be resolved."]},
+{
+"id":"c9cb4b3ace57a60acad35132c46014022d254792",
+"message":["Patch Set 1:\n\nShould this work on a Mac?"]}]
+}
