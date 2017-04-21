@@ -33,8 +33,8 @@ public class SolrSearchQuestion {
 	@SuppressWarnings("unchecked")
 	public static void solrSearchQuestion(String commentType, int start, int rows) {
 
-		log.doFineLogging(Utils.getTimeStamp() + " >> Started SolrSearchQuestion...");
-		System.out.println(Utils.getTimeStamp() + " >> Started SolrSearchQuestion...");
+		log.doFineLogging(Utils.getTimeStamp() + " >> Started SolrSearchQuestion: start = " + start + "...");
+		System.out.println(Utils.getTimeStamp() + " >> Started SolrSearchQuestion: start = " + start + "...");
 		
 		String framework = "questions";
 
@@ -194,7 +194,11 @@ public class SolrSearchQuestion {
 		
 		int rows = Const._10000;
 
-		int start = 0;
+		int start = Integer.valueOf(args[0]);
+		
+		// Work Done - General Comments @linuxapps02
+		// 0 		- 10000		=> OK	=> solrSearchQuestion.2017-04-20-035915.log
+		// 10000	- 20000		=> 		=>
 
 		solrSearchQuestion(commentType, start, rows);
 	}
