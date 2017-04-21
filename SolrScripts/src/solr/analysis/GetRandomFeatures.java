@@ -141,7 +141,7 @@ public class GetRandomFeatures {
 				sbResults.append("<example>" + Const.NEW_LINE);
 				sbResults.append("<id>" + tuple.getCommentID() + "</id>" + Const.NEW_LINE);
 				sbResults.append("<feature>" + tuple.getFeature() + "</feature>" + Const.NEW_LINE);
-				sbResults.append("<confusion>  </confusion>" + Const.NEW_LINE);
+				sbResults.append("<confusion></confusion>" + Const.NEW_LINE);
 				sbResults.append("<message>" + message + "</message>" + Const.NEW_LINE);
 				sbResults.append("</example>" + Const.NEW_LINE + Const.NEW_LINE);
 			}
