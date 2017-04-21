@@ -31,7 +31,7 @@ public class GetRandomFeatures {
 
 		for (Tuple tuple : hedges) {
 
-			if (tuple.getFeature().equalsIgnoreCase(feature)) {
+			if (tuple.getFeature().equalsIgnoreCase(feature) || feature == null) {
 
 				map.put(tuple.getCommentID(), tuple.getFeature());
 
@@ -61,9 +61,9 @@ public class GetRandomFeatures {
 
 		String commentType = Const.GENERAL;
 
-		String feature = "would";
+		String feature = null;
 
-		int numberExamples = 20;
+		int numberExamples = 25;
 
 		getRandomFeatures(commentType, feature, numberExamples);
 	}
