@@ -110,7 +110,7 @@ public class GetRandomFeatures {
 		
 		StringBuffer sbResults = new StringBuffer();
 		
-		sbResults.append("{" + Const.NEW_LINE);
+		sbResults.append("<set>" + Const.NEW_LINE);
 
 		try {
 			
@@ -138,29 +138,28 @@ public class GetRandomFeatures {
 
 				String message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
 				
-				sbResults.append("{" + Const.NEW_LINE);
-				sbResults.append("\"id\":\"" + tuple.getCommentID() + "\"," + Const.NEW_LINE);
-				sbResults.append("\"feature\":\"" + tuple.getFeature() + "\"," + Const.NEW_LINE);
-				sbResults.append("\"message\":\"" + message + "\"," + Const.NEW_LINE);
-				sbResults.append("}," + Const.NEW_LINE);
-				
+				sbResults.append("<example>" + Const.NEW_LINE);
+				sbResults.append("<id>" + tuple.getCommentID() + "</id>" + Const.NEW_LINE);
+				sbResults.append("<feature>" + tuple.getFeature() + "</feature>" + Const.NEW_LINE);
+				sbResults.append("<confusion>  </confusion>" + Const.NEW_LINE);
+				sbResults.append("<message>" + message + "</message>" + Const.NEW_LINE);
+				sbResults.append("</example>" + Const.NEW_LINE + Const.NEW_LINE);
 			}
-			
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
 		
-		sbResults.append("}");
+		sbResults.append("</set>");
 		
 		String filePathRandom = "";
 		
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
-			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._JSON;
+			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._XML;
 
 		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
-			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._JSON;
+			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._XML;
 		}
 		
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePathRandom), Const._UTF_8))) {
@@ -169,6 +168,8 @@ public class GetRandomFeatures {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		
+		System.out.println("Done with getRandomFeatures...");
 	}
 
 	public static void main(String[] args) {

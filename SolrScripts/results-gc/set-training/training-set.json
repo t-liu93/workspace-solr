@@ -1,76 +1,257 @@
 {
-	"id":"5fa1780de810778a742a55255c5c9c6180c37660",
-	"message":["Patch Set 1: No score; No score\n\nWhich classes are proloaded has -nothing- to do with the CPU.  I imagine whatever build you are doing for x86 is using some other policy classes, so great, but it has nothing to do with the x86 cpu so the preloaded classes should not be selected based on that."]},
 {
-	"id":"f2f8b131b628cd6d84962aac041d09541a03f5c6",
-	"message":["Patch Set 1: Looks good to me, but someone else must approve\n\n"]},
+"id":"789bfeaab765a0c15af2c09d38439c269d34654b",
+"feature":"think",
+"message":["Patch Set 3:
+
+Good catch, I think the null check was lost from ReleasePrimitiveArray. I wanted avoid the boiler plate null-check and ScopedObjectAccess. I noticed I hadn't cleaned this up for GetPrimitiveArray. I'll tidy that, check for null and add tests."]
+},
 {
-	"id":"6cc03f8c4d8e2e1dc327e832c8b292f88d7af8e9",
-	"message":["Patch Set 1: Verified; Looks good to me, approved\n\n"]},
+"id":"77df184a579fb50b9378647c3e5cb1e3e29d808b",
+"feature":"might",
+"message":["Patch Set 1: Looks good to me, but someone else must approve
+
+Might be better to let icu4c team to look over this change, in case."]
+},
 {
-	"id":"7c6343c7a704f7533d01245feea3f9aab630a487",
-	"message":["Patch Set 1: Looks good to me, approved\n\n"]},
+"id":"e182a1b7a3592d4c764054fce2be48ee5816cd6f",
+"feature":"could",
+"message":["Patch Set 1:
+
+I have no idea why are enforcing this warning, and I don't think anyone can argue for it.
+
+I would be very happy if we could remove it from the master makefile.
+
+Anyway, submitting this one."]
+},
 {
-	"id":"161a3cfc2024d6f85292a732e458ab85c880c29b",
-	"message":["Patch Set 1: I would prefer that you didn't submit this\n\nIs this just defensive programming or do we really need to do this because its likely to occur?"]},
+"id":"e9f48de6a29514f9d9218c87ee810de2ae4032df",
+"feature":"some",
+"message":["Patch Set 3:
+
+(4 comments)
+
+PS3 add some more fixes (thanks Vladimir!)."]
+},
 {
-	"id":"31b77a0c826f7465b559a3e823b14fc3f90d2528",
-	"message":["Patch Set 3: Looks good to me, approved\n\nthanks for doing the archeology!"]},
+"id":"86cbc3343bd843c0378e0325df3c232db21dc611",
+"feature":"can",
+"message":["Patch Set 3: Code-Review+2
+
+Thanks for trying to add a regression test.  We generally require them, but I understand it can be problematic when the necessary setup only occurs with old dx output."]
+},
 {
-	"id":"82f6f437e2dfbc9d48324665e1cef17763597215",
-	"message":["Patch Set 1:\n\n(everything boots and Netflix still works, so i think this doesn't break anything. it should fix irogers' dex2oat problem.)"]},
+"id":"0151f2bba501e557c6699206ea48af9b3cd629b7",
+"feature":"see",
+"message":["Patch Set 2:
+
+@enh @mark do you guys see any ample hatred on this where you want me to abandon, or are you (or others) ok with this?
+
+I'm starting docs yesterday and I want to know if we are going to require passwd/group/fs_config_files/fs_config_dirs (or some combo of those) as a separate explicit set on PRODUCT_PACKAGES"]
+},
 {
-	"id":"85f9fb2db1a25cffb439f19b5a8c2eb1b778b5f7",
-	"message":["Patch Set 2:\n\nSure, will change that and commit."]},
+"id":"efc917cf4b7e34d34cf402b4e82619e88cbbc26f",
+"feature":"maybe",
+"message":["Patch Set 4:
+
+> > > > > (1 comment)
+ > > > > >
+ > > > > > A memory leak is whenever you allocate memory that was
+ > never
+ > > > > freed
+ > > > > > before the program exits. Granted, change contexts for
+ > things
+ > > > out
+ > > > > > of userspace. The folks and valgrind and ASAN would agree,
+ > > > > > considering their tools report it as a leak.
+ > > > > >
+ > > > > > So now lets say, you have a test bed that uses ASAN or
+ > > valgrind
+ > > > > and
+ > > > > > your project has a dependency on libselinux. Both tools
+ > will
+ > > > > cause
+ > > > > > a non zero exit status and complain about losing 1 block of
+ > > 15
+ > > > > > bytes.
+ > > > >
+ > > > > 15 bytes ey? Then maybe we could set the version_buffer size
+ > to
+ > > -
+ > > > > say - 32 instead of 256? Other than that LGTM.
+ > > >
+ > > > It's actually 17. We could, but I would rather make this bigger
+ > > > than smaller, so if PCRE version strings get huge, we don't
+ > have
+ > > to
+ > > > bump this up, but I really don't care.
+ > > >
+ > > > What is your plan on upstreaming the PCRE2 changes?
+ > >
+ > > Very much in favor. It kind of got lost in priorities.
+ > 
+ > We would really want to make sure this is upstreamed, again, trying
+ > to kill off the Android fork. I'm not sure how far off sds and
+ > Richard are from achieving that offhand.
+
+I prepared a patch against upstream[1]. Note: I added your memory leak patch keeping your authorship intact, I hope you approve. This should be a good starting point. As you have contributed to libselinux before, may I ask you what the best way is to move forward with this?
+[1] https://github.com/werwurm/selinux/tree/add_pcre2_support"]
+},
 {
-	"id":"df36e80200f93ea35214678953330c2e66671d83",
-	"message":["Patch Set 1:\n\nThis is just a minor cleanup."]},
+"id":"5c8ff6ba79b9fb52432880351427a208df25f274",
+"feature":"looks",
+"message":["Patch Set 9: Looks good to me, approved
+
+"]
+},
 {
-	"id":"c237b8e7bf8ed349a22c9775325301bc6b676776",
-	"message":["Patch Set 2:\n\nSorry, I just saw this old CL. Is there a reason you haven't submitted it so far? Are you holding back on purpose, or was it that no one reviewed it earlier?"]},
+"id":"eac111bbeb3dc2f79b19dce5c8ce520df9556aba",
+"feature":"will",
+"message":["Patch Set 1:
+
+(1 comment)
+
+you will need to adjust the tests as well."]
+},
 {
-	"id":"cd1b10b5e420195092f22b1c307bd5c18d13d908",
-	"message":["Patch Set 3:\n\nWill revert and investigate"]},
+"id":"db900d345fd4bd3a297f4e00294d5b554374d48f",
+"feature":"will",
+"message":["Patch Set 2:
+
+Yes.  I will do so (in 24hr.)"]
+},
 {
-	"id":"850aa0c0fbd10f9d1020560de3b0c8aefdd71e53",
-	"message":["Patch Set 2:\n\nIn retrospect, I don't understand the purpose of the access_kmsg() macro. Perhaps we should remove the macro entirely and covert everyone to \"allow foo kernel:system syslog_read;\"?"]},
+"id":"01893dabe2571f42705a5ab51bf00cf17e03608f",
+"feature":"should",
+"message":["Patch Set 1:
+
+I disagree with your arguments for couple reasons:
+1. Documentation for MediaMuxer.addTrack() doesn't state that the format needs to contain CSD and how it should be structured
+2. The write process doesn't fail imediately if you add track without CSD. In fact it doesn't fail until you try to stop the muxer and then you get the "IllegalStateException" without any details regarding the problem!
+3. The documentation of MediaCodec.BUFFER_FLAG_CODEC_CONFIG doesn't say that's in not supported by MediaMuxer
+4. MediaMuxer doesn't thorow exception when you pass a config buffer to it.
+
+Given the above, I think that either documentation should be updated and appropriate exceptions should be thrown or this change should be accepted."]
+},
 {
-	"id":"9be7efc460eb064d6fceddf0b7b836ed5801b0a2",
-	"message":["Patch Set 1:\n\nSorry, but we need more context to consider this patch. Is there a buganizer bug filed for this? If so, please reference the bug in the commit message. E.g.\n\n  BUG=123456"]},
+"id":"c0110c3db460556359d44ecd6e704d4418848098",
+"feature":"very",
+"message":["Patch Set 1: Abandoned
+
+This change's most recent recorded activity is before the release of Gingerbread. That means that this change is very far from the bleeding edge, and most probably doesn't apply to the latest versions.
+
+We're focusing our efforts on the more recent changes (i.e. the ones that have been active since the latest major platform release), and we're abandoning old changes to clarify that focus.
+
+We're sorry that we never got a chance to accept your contribution when it was first uploaded.
+
+It's possible that we're overzealous. If this change still applies to the latest AOSP master, please restore it or upload a replacement change.
+
+Thanks for understanding."]
+},
 {
-	"id":"663efb4a3dfdf988d9468e736a90aea108fc9f9c",
-	"message":["Patch Set 1:\n\n> I did not realize that 'repo upload' w/o adding reviewers will go\n > into someone's inbox.\n > \n > What's the usual workflow for cases like that? I've got this change\n > on my branch because stuff does not work w/o it, but it's intended\n > as a local hack until the problem is fixed properly.\n\nfolks who work on bionic will likely have a gerrit project watch.\n\nas i implied above, starting the first line with \"DO NOT SUBMIT\" is the usual way to indicate you're just testing something. \"[WIP]\" (i.e. \"Work In Progress\") is how you say \"this is a legit change, but not yet ready for review\". (and never put the word \"MERGE\" in capitals --- you can tell the automerger to screw you over in obscure ways. even if someone tells you that you want that, don't do it :-) )"]},
+"id":"95af74c118a378c69e92b8e76d2abb7d1be4085a",
+"feature":"seems",
+"message":["Abandoned
+
+This seems to have been fixed differently in the 5.0 release in commit 54b0bc74."]
+},
 {
-	"id":"c0ce6df9c027e6c3feb4e7ad9a5600fd5663a992",
-	"message":["Patch Set 2: Code-Review-1\n\nIf the buffer size is greater than the max buffer size, that's indicative of a deeper problem (e.g. host and controller out of sync, etc)\n\nWe should crash hard so we know about it, rather than hiding the problem."]},
+"id":"5a3335311ed86d54c56dd5b1830d8539fbe8e653",
+"feature":"should",
+"message":["Patch Set 2:
+
+It should be good now."]
+},
 {
-	"id":"eee2273a06bd9e73685baad689caf75ca84ea01c",
-	"message":["Patch Set 2: -Code-Review\n\n(2 comments)\n\nHi Robert,\n\nThe RIL.java is the basic communicate mechanism between RIL/Telephony FW. I do not suggest to break current mechanism.\n\nLock mWakeLock is for mWakeLock operation. \nLock mRequestsList is for mRequestMessagesWaiting operation. So I added Lock mPendingLock for mRequestMessagesPending operation.And deal mRequestMessagesPending same as mRequestMessagesWaiting did. Also avoid Lock plus Lock, which might cause dead lock.\n\nLet me know if you have any concerns.\nIf you agree, I suggest move back to patch set 1, which is used in Moto product for more than 4 months. Thanks!"]},
+"id":"9cfe6deaab04b284404d75a419bd8d7c0c5f923a",
+"feature":"seems",
+"message":["Patch Set 1: Code-Review+1
+
+(2 comments)
+
+Thanks for your digging this! It seems good for this change, but I have some consideration...)"]
+},
 {
-	"id":"f5ec344139380c224404f5d0ae2bfa7bd962ba2d",
-	"message":["Patch Set 1:\n\n(1 comment)\n\nImplementation is fine.  I agree we should add an ALOGW.  Will +2 when that's done."]},
+"id":"de321ecdbb3fe0f2f1812b11429958f3036471b1",
+"feature":"suggested",
+"message":["Patch Set 2:
+
+Stupid gerrit, I don't know how to upload my reply the the comment :(, anyway I moved the mask as you suggested"]
+},
 {
-	"id":"d55dd22bc186e1314444ecb2a878f13fc7257de7",
-	"message":["Patch Set 7:\n\n@Hareesh, can you also add \"In addition, the security of 2D is on par with 3D\" which will make it clear that both 3D and 2D have same security measures at the Kernel level as 3D device is already in the exception list. \n\nThank you."]},
+"id":"66139c071cd78ad269cf052c2a174c30653fb1f0",
+"feature":"very",
+"message":["Patch Set 1:
+
+Any chance of merging in CAF's changes of any kk branch here: https://www.codeaurora.org/cgit/quic/la/platform/bionic/?h=kk_2.7.1 and this commit: http://review.cyanogenmod.org/#/c/54822/?
+
+Their changes work well on Krait and non-Krait targets alike.  Oddly enough, some people at XDA flashed crespo with binaries Qualcomm's bionic (obviously, the code is restricted by mks and ifdefs on the code) and it worked very well, doubled benchmarks and they said performance was doubled as well.
+
+Works great on my Optimus G and works great on Nexus 4's and all kinds of other devices."]
+},
 {
-	"id":"5f5e388a88d6b420b4fdd2929fa7e44e8590248e",
-	"message":["Patch Set 2: No score; Looks good to me, approved\n\n"]},
+"id":"5ded9e5ee52286c6fcba31896b0fcf79ce23ba58",
+"feature":"would",
+"message":["Patch Set 2: Verified+1
+
+I figured this would be easy to implement, in case we want to adopt it as a solution to the DBus permission problem. Tested and works as intended on brilloemulator_arm."]
+},
 {
-	"id":"cffd0fde8cec9f73a0bebcc9d7832263c225a538",
-	"message":["Patch Set 1: No score; Looks good to me, approved\n\n"]},
+"id":"c58d2484ac0aec56cbd57f268306c94f6985a5e4",
+"feature":"found",
+"message":["Patch Set 1:
+
+Finally found the culprit, which previously depended on the insert-on-Get-if-nonexistant map behavior."]
+},
 {
-	"id":"dabd4e15a056eba56d3471d3e6c53fefba073318",
-	"message":["Patch Set 3: Looks good to me, approved; Verified\n\n"]},
+"id":"0b84397d0c350b76e1fa5841e2377b1aa6a27e2e",
+"feature":"very",
+"message":["Patch Set 1:
+
+(2 comments)
+
+PTAL. I ended up doing this slightly differently. Setting a field inside HttpEngine#connected( ) would end up making Policy a "two way" interface. I don't think that's a very clean design. What do you think ?"]
+},
 {
-	"id":"3063650c9a0b819620f46ac42bed0c1e948914b8",
-	"message":["Patch Set 1: Looks good to me, approved\n\n"]},
+"id":"6b1c8e2ce0dc8bbc95c444a98ea46f829e1685c5",
+"feature":"might",
+"message":["Patch Set 1: Code-Review-1
+
+This patch is not needed in AOSP because osi_malloc takes a size_t, which is large enough to handle when a uint16_t might overflow.  The compiler should implicitly convert to size_t."]
+},
 {
-	"id":"8f7a437453b9a89ec35cf339f4ce36735f849106",
-	"message":["Patch Set 4: Verified+1 Code-Review+2\n\nChanged some comments."]},
+"id":"c3dc25c9ead1abb36fff1b4a0868ce7b0638462a",
+"feature":"can",
+"message":["Patch Set 2:
+
+I am no longer working on Android. 
+
+Hi, Angus, 
+Can you help me triage this CL ? Thanks."]
+},
 {
-	"id":"99894a94ff84613af0444460f958cc9c0a968be8",
-	"message":["Patch Set 2:\n\n> So Ying, should we stick with WHOLE archive, or just update the\n > transient references like in init?\n\nIf the static library is selinux specific, I'd suggest to add as whole archive to libselinux.a; otherwise add to the end points where the symbols need to be resolved."]},
+"id":"71e9950b79a5c8cc63f2dcfb0955239f42ac22ff",
+"feature":"about",
+"message":["Patch Set 2:
+
+ptal,
+
+I forgot to handle instanceof and checkcast previously, so PS3 adds support for them. It also fixes a wrong assumption in the reference type propagation about the type of the loaded class."]
+},
 {
-	"id":"c9cb4b3ace57a60acad35132c46014022d254792",
-	"message":["Patch Set 1:\n\nShould this work on a Mac?"]}]
+"id":"ff6dd8f13920608001c71598594a120037831606",
+"feature":"will",
+"message":["Patch Set 2:
+
+inheriting +2, we will check next canary run."]
+},
+{
+"id":"f6167eaf6f2bc7210ab2780a649c6d0251209b12",
+"feature":"finding",
+"message":["Patch Set 4:
+
+The UI issue shown in the screenshot in my first comment still exists in 4.2.1.
+
+JBQ: Did you have any luck finding the proper reviewers for Swedish translations yet? I know that you are busy. :)"]
+},
 }

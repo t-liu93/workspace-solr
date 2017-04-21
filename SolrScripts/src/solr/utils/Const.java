@@ -133,6 +133,8 @@ public class Const {
 	public static String DIR_RESULTS = "./results";
 
 	public static String _TXT = ".txt";
+	
+	public static String _XML = ".xml";
 
 	public static String _CSV = ".csv";
 

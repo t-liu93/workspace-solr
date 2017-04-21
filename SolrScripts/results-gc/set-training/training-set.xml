@@ -1,0 +1,295 @@
+<set>
+<example>
+<id>a8b54e026d9169fea8164d51fed3a3a69f5be83c</id>
+<feature>can</feature>
+<confusion>  </confusion>
+<message>Patch Set 2:
+
+Can this be merged or is there anything else here?</message>
+</example>
+
+<example>
+<id>6a356b766baad54bc0741cc389fc3e394718f01a</id>
+<feature>looks</feature>
+<confusion>  </confusion>
+<message>Patch Set 2: Looks good to me, approved
+
+</message>
+</example>
+
+<example>
+<id>e093f73e6b7cfeaa27f33604c82559b52cb5b699</id>
+<feature>looks</feature>
+<confusion>  </confusion>
+<message>Patch Set 1: Verified; Looks good to me, approved
+
+trivial merge</message>
+</example>
+
+<example>
+<id>346ab3b9d4151c2d9d9c170d90110a933778e6c5</id>
+<feature>tend</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+(2 comments)
+
+Sorry for the nitpicking, but I tend to obsess about commit messages.</message>
+</example>
+
+<example>
+<id>901927f6fe58034213c6a00c96b5af50d783097e</id>
+<feature>may</feature>
+<confusion>  </confusion>
+<message>Patch Set 2:
+
+Yep.When we use ART_BUILD_TARGET_DEBUG=false ART_BUILD_HOST_NDEBUG=false ART_BUILD_HOST_DEBUG=false , there is no libartd file.
+But libarttest, gtest, libnativebridgetest need libartd or libartd-compiler. That makes error when I build on l-pdk. I think build script may be different with aosp. Even if AOSP doesn't make libarttest by default, I think it needs to be modified for above reason.</message>
+</example>
+
+<example>
+<id>5bfc2b91a7abf035cc79f722c5442d3db6178d49</id>
+<feature>should</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+I removed the old property, but I'm not entirely sure that's the right thing to do.
+
+Let me know if people think I should keep the old behavior around.</message>
+</example>
+
+<example>
+<id>08ae34f68bf339ad2f210e629051558b8017a252</id>
+<feature>must</feature>
+<confusion>  </confusion>
+<message>Patch Set 1: Looks good to me, but someone else must approve
+
+Do we still wait anything before merging this change?</message>
+</example>
+
+<example>
+<id>24d7f7c8b4f3c5dbdf7c4dc752d575a80a78a10b</id>
+<feature>pseudo-</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+ping. this is a pseudo-cherry-pick from master.</message>
+</example>
+
+<example>
+<id>0d457b3ee29823d9461e7502fefe86383bb5b8c8</id>
+<feature>see</feature>
+<confusion>  </confusion>
+<message>Patch Set 5: Code-Review+1
+
+(2 comments)
+
+I'd like to see a comparison to gzip and lzma.
+
+Also, note in the commit message that patchoat isn't supported (and why).</message>
+</example>
+
+<example>
+<id>0a1d97ff980d5bcaa190d5c0b0c3ee29bf81f023</id>
+<feature>could</feature>
+<confusion>  </confusion>
+<message>Patch Set 2:
+
+> (1 comment)
+ > 
+ > This looks incomplete... Is there another patch associated with
+ > this? I don't see any uses in AOSP for deleting the files from the
+ > lost+found directory.
+This change allows for a tool to delete the lost+found files. Exactly which directories should be deleted is device dependent. We have internal scripts that just does rm -rf /blah/lost+found on a couple of paths, but since it is specific for our devices it does not make sense to share that on aosp. So we could remove parts concerning the tool from this patch, but it is a bit unfortunate since all devices should need some tool.
+Alternatively the file system checkers could add some option to not keep the lost+found directories around but that is farther away I guess.</message>
+</example>
+
+<example>
+<id>6cf68d7a37ebc64c67466ea47d517640778673b3</id>
+<feature>maybe</feature>
+<confusion>  </confusion>
+<message>Patch Set 2:
+
+"We don't need to be including libhidl, libhwbinder, libutils everywhere."
+
+Where exactly do we not need to include them? Maybe remove those as well?</message>
+</example>
+
+<example>
+<id>91fac3a5f1d65584bc97b5cb08ac028d9559ff21</id>
+<feature>worry</feature>
+<confusion>  </confusion>
+<message>Patch Set 2: Code-Review+2 Verified+1
+
+i worry that this means you've changed your GCC's configuration so your wchar_t has flipped sign...</message>
+</example>
+
+<example>
+<id>cdbbc25be0a86e30726bef1e9f843ec9d9a18179</id>
+<feature>can</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+can you please submit this to unbreak mac builds everywhere?</message>
+</example>
+
+<example>
+<id>fea4295be3d63a958a3db7efda3fe1577b6c1fac</id>
+<feature>may</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+This patch is in regards to a vulnerability that was disclosed to CyanogenMod.  I'm not sure it affects any major devices with stock firmware.
+
+jbq - Please contact one of us (myself, Steve or Ricardo) privately to discuss to avoid disclosing too many details prematurely.
+
+The security firm that reported this to us plans to disclose it to the public on May 17th.</message>
+</example>
+
+<example>
+<id>d84a51afa4640640af0af3b79b69f5da60087194</id>
+<feature>should</feature>
+<confusion>  </confusion>
+<message>Patch Set 3:
+
+OMG no?
+
+flounder_lte:/data/data # ls -l                                                                                                                                                                                                                                       
+total 2784
+drwx------  2 system                                         system                                         4096 2016-04-18 11:14 android
+drwx------  2 com.android.backupconfirm                      com.android.backupconfirm                      4096 2016-04-18 11:14 com.android.backupconfirm
+drwx------  3 bluetooth                                      bluetooth                                      4096 2016-04-22 11:37 com.android.bluetooth
+drwx------  2 com.android.bluetoothmidiservice               com.android.bluetoothmidiservice               4096 2016-04-18 11:14 com.android.bluetoothmidiservice
+drwx------  2 com.android.bookmarkprovider                   com.android.bookmarkprovider                   4096 2016-04-18 11:14 com.android.bookmarkprovider
+drwx------  2 com.android.captiveportallogin                 com.android.captiveportallogin                 4096 2016-04-18 11:14 com.android.captiveportallogin
+
+Should we consider scrubbing/squashing com.android. com.google.android from the names? c.a.captiveprotallogin and c.g.a.youtube etc?</message>
+</example>
+
+<example>
+<id>51ffea0f0f5e2e0bfd523328f0f84deedf4fddce</id>
+<feature>think</feature>
+<confusion>  </confusion>
+<message>Patch Set 1: No score
+
+The one adding the symlink stuff was not by me (look at
+the author, which Gerrit doesnÃ¢â‚¬â„¢t show, not the committer).
+
+However, I think this is only a temporary problem on my
+side which I only have to track downÃ¢â‚¬Â¦ if so IÃ¢â‚¬â„¢ll take
+back the comment-out commit, if not, both of them. But
+I preferred to publish the entire history first thing,
+but in a usable state.</message>
+</example>
+
+<example>
+<id>f7b769cff1e4acd39e9fb9e5d35d72badcab3309</id>
+<feature>can</feature>
+<confusion>  </confusion>
+<message>Patch Set 2:
+
+Update: The patches to import this regulator data into trace-viewer have landed (https://github.com/google/trace-viewer/commit/11c484bc186ec93c7c356b91f3fe23c1fdfa5388) 
+
+After applying this patch to atrace you can run the following to see the voltage regulator output in trace-viewer.
+
+"./systrace.py regulators"</message>
+</example>
+
+<example>
+<id>aa4787303e6d7ac2282cb3c2387be4e6be2588de</id>
+<feature>some</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+(9 comments)
+
+Some initial comments.</message>
+</example>
+
+<example>
+<id>3defd61a9dbd06285605db857cd9ac55bd24985d</id>
+<feature>almost</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+(1 comment)
+
+I measured build time of aosp_x86-eng on my linux desktop with SSD and make -j32 flag. As expected clang-tidy is faster than clang or clang++ compilation. With WITH_TIDY_ONLY=1 I saved significant compilation time when working on clang-tidy warnings:
+
+* Clean build with WITH_TIDY_ONLY=0 WITH_TIDY=1 took 28:31 (mm:ss)
+  That includes about 21728 calls to clang or clang++ compiler,
+  plus about 20607 calls to clang-tidy.
+
+Of those 28.5 minutes, about half or more was consumed by clang/clang++ compiler.
+
+* I touched almost all source files in my local tree, then the incremental make with WITH_TIDY_ONLY=1 WITH_TIDY=1 took 14:55 (mm:ss).
+  That included only about 90 calls to clang or clang++ compiler, and
+  about 20607 calls to clang-tidy.
+
+If that was done with WITH_TIDY_ONLY=0 WITH_TIDY=1, it would take about 28 minutes, and included about 21622 calls to clang/clang++ compiler plus
+about 20607 calls to clang-tidy.
+
+Incremental make with WITH_TIDY_ONLY=0 WITH_TIDY=0 took about 18:25 (mm:ss), which does not call clang-tidy, but calls clang/clang++ about 21672 times.</message>
+</example>
+
+<example>
+<id>d7a670de5d73552cda789f294a3632a715e27e91</id>
+<feature>looks</feature>
+<confusion>  </confusion>
+<message>Patch Set 2: Verified; Looks good to me, approved
+
+</message>
+</example>
+
+<example>
+<id>5c73e814cef618b4b5b5acfa7c98697c477d78c0</id>
+<feature>especially</feature>
+<confusion>  </confusion>
+<message>Patch Set 12:
+
+(15 comments)
+
+Hey Alan. Another bunch of comments about scheduling annotations (@Support) and visitor question. I think I should have reviewed everything.
+
+I had some comments on PS10 that I don't see addressed or answered here, especially about the granularity of the JMethodInliner. Let me know what you think.</message>
+</example>
+
+<example>
+<id>ab144ff8ebcac61a3ecd6b43b56b4934ea61c3ee</id>
+<feature>looks</feature>
+<confusion>  </confusion>
+<message>Patch Set 4: Code-Review+2 Verified+1
+
+Looks much better! Thanks for making all the changes!</message>
+</example>
+
+<example>
+<id>0fe1e38d7a38bc66c9f3c6cd13e037087d61cf80</id>
+<feature>maybe</feature>
+<confusion>  </confusion>
+<message>Patch Set 1: Code-Review+2
+
+Sounds good to me. Not a big deal (and you don't have to do it) but maybe we could even make it print (BIOS interrupt 10h) something useful to the user before looping? (Maybe not worth it).</message>
+</example>
+
+<example>
+<id>1f6789cdce4f915cef7a87d8ce845a49c51b9e11</id>
+<feature>can</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+Why can I Verified+1 this?</message>
+</example>
+
+<example>
+<id>ae215dff4a5e7159a8d576b620dd64eae92bedc1</id>
+<feature>feel</feature>
+<confusion>  </confusion>
+<message>Patch Set 1:
+
+(3 comments)
+
+I'm only marginally happy with this change. Feel free to rewrite it your own way, but at least take my test. :)</message>
+</example>
+
+</set>
