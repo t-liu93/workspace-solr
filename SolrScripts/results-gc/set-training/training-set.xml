@@ -1,165 +1,358 @@
 <set>
 <example>
-<id>caabb93a0b79aa2bb3c6e0837b16962dcb9d082b</id>
-<feature>rather</feature>
-<source>Lakoff</source>
-<confusion></confusion>
-<message>Patch Set 14:
-
-(8 comments)
-
-These adjustment suggestions spill down to the Squash log/logger.h CL too, most of which will land in private/android_log.h rather than in NDK. (only add C++ event log buffer write interface).</message>
-</example>
-
-<example>
-<id>7a0a1493ad1e0ecdfc46a8bd01d96e9bc666e9eb</id>
+<id>ec98e156d316e62c5bd70ec21d54354050e171c4</id>
 <feature>might</feature>
 <source>Jordan</source>
 <confusion></confusion>
+<message>Patch Set 6:
+
+I checked the option of attaching it on gerrit but didn't found anything.
+
+It's possible to publish the app as a code.google.com project or GitHub like site, but it looks an overkill to me.
+
+Anyway, we are open to meet with the requirement you might propose.</message>
+</example>
+
+<example>
+<id>398a7ae9ab0891ef6028bd4449d0783f01a51410</id>
+<feature>often</feature>
+<source>Lakoff</source>
+<confusion></confusion>
 <message>Patch Set 1:
 
-I'd actually prefer pass by value here - StringView str
-reference for this small object won't improve things a lot, but it might make it more complicated for the compiler - it's much harder to analyze aliased objects</message>
+Well, I'm not the one to make the call on this, but I doubt something like this would be approved.
+
+In my experience, success in Open Source is often about saying "no" as much as it is about "yes", otherwise we'll soon have Toast.LENGTH_EVEN_LONGER and Toast.A_BIT_LONGER_THAN_LONG_BUT_LESS_THAN_EVEN_LONGER.
+
+It's a slippery slope.</message>
 </example>
 
 <example>
-<id>3ee57ce1ad36036448da84610f42db8d5ae2de09</id>
-<feature>rather</feature>
-<source>Lakoff</source>
-<confusion></confusion>
-<message>Patch Set 2: Verified
-
-Thanks for the quick turnaround. Style looks fine, merges and builds fine in open-source tree, merges fine in Google's internal tree.
-
-For comments about the review itself (e.g. "fixed code style problems"), it's more traditional to mention those in Gerrit through "review" / "publish comments" rather than in the commit description itself, as those don't have much long-term value.</message>
-</example>
-
-<example>
-<id>188840bdb85157fb573980bc0e49846ac0cc22ac</id>
-<feature>really</feature>
-<source>Lakoff</source>
-<confusion></confusion>
-<message>Patch Set 3:
-
-> It is easy to create one more interface for another hardware
- > Interface.
- > 
- > Please help to change the CameraHardwareInterface.h class as
- > virtual then only we can map two vendors camera hardware's
- > component can be called with single interface class API.
- > 
- > If we keep CamerahardwareInterface.h as Virtual, Inherited class
- > API' can invoke with the same API name without modifying the huge
- > change in CameraClient.cpp.
- > 
- > Sample piece of code:
- > 
- > -    mHardware = new CameraHardwareInterface(camera_device_name);
- > +    if(mCameraId == mCameraService->getNumberOfCameras() -1)
- > +        mHardware = new CameraHardwareInterface_1(camera_device_name);
- > +    else
- > +        mHardware = new CameraHardwareInterface(camera_device_name);
- > 
- > class CameraHardwareInterface_1 : public CameraHardwareInterface {
- > }
-
-CameraHardwareInterface is just a wrapper around the Android HAL layer, there should be no reason to subclass it.
-
-It can be used to open multiple HAL devices just fine
-
-  mHardware1 = new CameraHardwareInterface(camera1_device_name);
-  mHardware2 = new CameraHardwareInterface(camera2_device_name);
-
-In fact, the Camera HALv1 (which is what CameraHardwareInterface wraps around) is now considered deprecated in Android 5.0, so we really don't have much of a reason to modify this area of code.</message>
-</example>
-
-<example>
-<id>9a119b9f8419afad9f25af0c4000912083807a15</id>
-<feature>very</feature>
-<source>Lakoff</source>
-<confusion></confusion>
-<message>Patch Set 7:
-
-Your intention is nice.
-
-And please understand this change will make many Android application developers(and designers) shocked.
-
-I think that the erase feature(right click and pressing shift key) does not work on this change. It should not be removed.
-
-The erase feature is very important for our usability...
-
-Please.</message>
-</example>
-
-<example>
-<id>c8408f695c0e813a358d04c7022c195ed945ffb0</id>
-<feature>could</feature>
+<id>10d3540cd1a57088022d94cd7197a7159d34188f</id>
+<feature>seems</feature>
 <source>Jordan</source>
 <confusion></confusion>
-<message>Patch Set 5:
-
-> How were these generated? We'll need a repo.prop from the build
- > server and a NOTICE file.
-
-Ah, I copied repo.prop from llvm prebuilts. Let me grab it from the build server and update.
-
-Should I look for the artifact on master-ndk build server? Do I need to  manually update it each time I make some changes or it could be done automatically?</message>
-</example>
-
-<example>
-<id>e1353c9e21c79fced4543babf361420f89ac26af</id>
-<feature>particularly</feature>
-<source>Lakoff</source>
-<confusion></confusion>
 <message>Patch Set 1:
 
-Not opposed to this, but I'm not sure it will prove to be an effective way to apply neverallow checking (as opposed to wiring up sepolicy-check to read a config file containing the neverallow rules extracted from the policy and check them all using the existing libsepol check_assertions() code.
-Particularly when you consider that many of the neverallow rules are written in terms of type attributes, not individual types, and you can't use this API on a type attribute.</message>
+can we have a regression test case to accompany this? libcore/harmony-tests/src/test/java/org/apache/harmony/tests/java/lang/MathTest.java seems like it has some related ones.</message>
 </example>
 
 <example>
-<id>73985f05219b3eb602cfb89f0350564f3996ddbe</id>
-<feature>seems</feature>
+<id>1f15f501bab170394f7e37518ecb17e33e9dceda</id>
+<feature>could</feature>
 <source>Jordan</source>
 <confusion></confusion>
 <message>Patch Set 2:
 
-> (1 comment)
- > 
- > LGTM so far, roughly what I expected. one comment so far.
+Hi:
 
-is_elf64_ is now const and assigned in constructor.
+I'm new in this area, could you guide me through the patch installation? I'm using MAC OSX 10.9.... and when I run the emulator I got "/system/bin/e2fsck failed: No such file or directory" 
 
-The reason for unique_ptr is ElfFileImpl(former ElfFile) has no default constructor, and we can only construct it by ElfFileImpl::Open. And I prefer to keep it like this.
+Regards
 
-Also, I changed from union to separate objects, because there seems to be no way to destruct properly..</message>
+Alvaro</message>
 </example>
 
 <example>
-<id>97a97283d44db60624901c5dfcaa9b159b3a3b01</id>
+<id>d79b326164292b4304aaa140c1c65b89473f16e5</id>
+<feature>more or less</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+> @Roberts, then why for perfprofd? Remove that or depricate the
+ > userdebug_or_eng macro? I can see that a platform vendors dont have
+ > to use it, but we have more or less ready to launch products and
+ > dont think it is a good idea to have any own permissive domains on
+ > field tests, but still we need to have collection of data from
+ > /proc. Surely we can piggy-back on the perfprofd domain, but thats
+ > really silly solutions.
+
+perfprofd is shipped with the platform, thus its easily added to be bypassed.
+
+You can easily add rules you need for user builds or dontaudits plus permissive to get what you need.
+
+---- START ------
+userdebug_or_eng(`
+    permissive mydomain;
+    dontaudit rules I dont care about;
+')
+allow rules i care about;
+-------END------
+
+Now if you see an denials for that domain, you can either add the allow rule or dontaudit it.</message>
+</example>
+
+<example>
+<id>8b4971833ecfd1e112c49102a77a7fcc47bd8579</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1: No score
+
+Could you please re-upload without the dependency?</message>
+</example>
+
+<example>
+<id>f6bb277788b724d9263cff01b3fb5986aec12695</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 10: Code-Review+2
+
+lgtm. (really, i want to move gettid to libbase, but i've no idea when i'll have time to look at that, so i'll submit this anyway. but not right now because i'm about to go to bed. first thing tomorrow morning though...)</message>
+</example>
+
+<example>
+<id>8e3c939aec5ce5ed5bb052e9131fd14353937b60</id>
+<feature>especially</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 2: Abandoned
+
+This is a semi-automated message. We're cleaning up all changes that have had no recorded activity for at least a year.
+
+This change was recovered from a backup after a server incident, and is potentially in an inconsistent state.
+
+If this change is still relevant, please cherry-pick it into a clean client, double-check it against your records (especially if you had any recorded activity after approximately July 5-6 2011), use a different Change-Id, and upload the replacement.
+
+Sorry for the annoyance, and thanks for understanding.</message>
+</example>
+
+<example>
+<id>7dd1d3bfb6dea0443bfc68a499572bf72b5f4038</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+Hi Zhihai,
+
+Could you please help getting this gerrit merged.
+
+BR
+Hemant</message>
+</example>
+
+<example>
+<id>5dad8c02a905a0c85562b2cc5b7dc2933486686b</id>
+<feature>very</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+> We already have a lot of these tests in 800. I don't think this
+ > needs an explicit test number...
+
+An interesting collection. Note that I recently also added 600-verifier-fails with a very similar error. Shall I try to cast both of these in 800, or move this one into 600?</message>
+</example>
+
+<example>
+<id>67f7da481fab5c0f8d82e31eb550b19cc0b7b53c</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+> Actually I have already implemented the same thing for additional
+ > language support. This was already in N. We can abandon this CL.
+ > Thanks for your work.
+
+Sounds good. The following two are very much related, could you take a look (I added you as reviewers):
+* https://android-review.googlesource.com/#/c/202530/
+* https://android-review.googlesource.com/#/c/202128/</message>
+</example>
+
+<example>
+<id>3694bc07409e5dd306d9543238c21ae9de6c067e</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+Please refer https://code.google.com/p/android/issues/detail?id=39378 for more info.
+
+
+Hi, NDK guys,
+
+Could you help me if any case I didn't consider? I'm afraid of fixing this bug but producing other bugs at the same time.</message>
+</example>
+
+<example>
+<id>a775a00735011d186207087e0bf64e72c36a5223</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 6:
+
+Hi Yevgeny, thanks for you patience.
+
+I would like to comment on the mandatory/optional part.  I think I know what your aim is since that was my first instinct as all - accurately annotate all original instructions and pick any reasonable nearby dex_pc for the synthesized instructions.  After all, some mapping is better then none, and we should aim for 100% coverage.
+
+I have since changed my opinion.  Guessing information can be more harmful than not having the information in the first place.  Imagine the following two source lines:
+ a = b + 1
+ c = d + 1
+Which might, in theory, be compiled to something like:
+ mov r0, #1  // dex_pc = 2
+ add r1, r2, r0  // dex_pc = 1
+ add r3, r4, r0  // dex_pc = 2
+All of the instructions are mapped to something, but native instructions for given dex_pc are not continuous.  I suppose that is ok for profiles, but it makes life of a debugger very difficult.  If you want to stop at the start of the second line, when do you stop?
+
+I would rather have:
+ mov r0, #1  // dex_pc = kNoDexPc
+ add r1, r2, r0  // dex_pc = 1
+ add r3, r4, r0  // dex_pc = 2
+Followed by some post-processing to assign some dex_pc to all instructions.  For example, you can visit all HInstuctions in post processing pass, and if it has kNoDexPc, assign it the dex_pc of the instruction which uses it.  Or assign it the dex_pc of the previous/following instruction.
+
+The point is, the post-processing heuristic might actually be in better position to guess reasonable dex_pc based on location of the instruction and its use (shared code vs unique).
+
+So I would prefer to use kNoDexPc liberally for synthesized instructions, and add some back-end heuristic to set it to something reasonable.  As a bonus it keeps the patch small.</message>
+</example>
+
+<example>
+<id>bedc1a067d91dfcbd2b9582c8e86540380b2492a</id>
+<feature>maybe</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1: Code-Review+1
+
+I checked that the patch introduced by kyocera is the same as the one submitted by Kenny ( https://android-review.googlesource.com/#/c/107214/ )
+
+
+Since conscrypt was moved, it's not a platform/libcore change anymore but platform/external/conscrypt .
+
+I'm not sure about how this should be handled, or whether we should investigate why this particular change didn't make it to that branch (maybe there are more changes that were lost).</message>
+</example>
+
+<example>
+<id>22747f08d1b8c5c74f52d28571d594164361f62f</id>
 <feature>may</feature>
 <source>Jordan</source>
 <confusion></confusion>
 <message>Patch Set 2:
 
-Mathieu: How do I test GC performance impact of this change?
+I'm trying to resize the dispatcher pool to be able to control max number of concurrent network requests while preserving the enqueued requests on the fly. On slower networks, by reducing the concurrency we can avoid choking network bandwidth. That's my use case for exploring this change.
 
-N5 ToT boot.oat impact:
-  - file size: -80KiB (size_code_alignment_ reduced by 82KiB)
-  - compile time: -1s (mostly thanks to writing zeros instead of seeking to align code)
-Seeking seems to be rather expensive.
+As far as I understand, RequestQueue.start() is not thread-safe either. Concurrent calls to start() can lead to extra dispatchers getting started with no way of stopping them. So I assumed that RequestQueue's start()/stop() must be used only from UI thread. There shouldn't be any issue if start()/stop()/reconfigure() are called only from UI thread. What do you think?
 
-(When running the boot.oat compilation manually after `adb shell stop` with output in /sdcard/, the compile time difference is actualy about 3s but the initial boot.oat compilation time after `fastboot -w flashall` shows only about 1s improvement. It may have to do with /sdcard->/storage/emulated/legacy->/mnt/shell/emulated/0 being mounted differently.)</message>
+Still there is one issue with the behaviour of reconfigure() specifically when reducing the threadpool size. We quit() the excess dispatchers which interrupts and cancels the in-flight requests. May be NetworkDispatcher.quit() can behave differently for stop() and reconfigure(), interrupting & cancelling the in-flight request for the first case and allowing the in-flight request to complete for the other. Do you see any issue with this approach?
+
+Also, do you feel this use case can be realized by existing APIs? If we create a new RequestQueue altogether, we'll need some way to transfer Request objects to the new queue. Another way could be to use a semaphore around BasicNetwork.performRequest(Request) and RequestFinishedListener.onRequestFinished(Request) calls, but there needs to be a way to dynamically change semaphore's permits (hacky!).</message>
 </example>
 
 <example>
-<id>1c5729f6285afacfe42c99e83522bf8f3553d2e6</id>
+<id>c58969d5d84e6dda643a913d226dd796408f486e</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1: I would prefer that you didn't submit this
+
+Unfortunately this probably isn't a change we can take, in this form. The API for the GPS provider and the corresponding uses-feature constant is defined with the assumption that the GPS hardware is built in to the device (i.e. is always present.) We can't take a change like this that makes the GPS hardware come and go, without violating the contract of the API.
+
+We would need to introduce a notion of "always present" vs. "capable of" features -- and of course build out the framework plumbing -- before we could do something like this.</message>
+</example>
+
+<example>
+<id>847301449f8653c23ddd253e6a7969a5afe1337f</id>
+<feature>very</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+this is my counter-offer to https://android-review.googlesource.com/#/c/40442/. strxfrm(3) isn't very exciting, but this is hopefully the start of us just tracking upstream NetBSD where we can.</message>
+</example>
+
+<example>
+<id>992ff2ef1aa2d0072a3afc2f9950c49cae3736ad</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 2: Looks good to me, approved
+
+Thanks, looks good. I'll verify this later today.
+I agree it's weird to have the set property use some constants and some non constant. I'll argue it's my fault, I should not have used the interface constants -- which are really meant as our internal property keys. Java doesn't seem to define their own magic strings anywhere, which is unfortunate.</message>
+</example>
+
+<example>
+<id>b35b6daf3fc105e2ea2dd52e33168faa33f34be0</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+I'm fine renaming the .h and .cc files to register_allocator_linear_scan, but I'd prefer if you would just move everything there, and then start from scratch a new RA where you would progressively decide on which helper methods could be shared.</message>
+</example>
+
+<example>
+<id>416e35a887900afd2af6894ef591f7f19719e3c0</id>
 <feature>seems</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Abandoned
+
+Abandoning since a newer version seems to be at https://android-review.googlesource.com/#/c/212950/</message>
+</example>
+
+<example>
+<id>59e5bb06f3237f4d8154a8f912cf808545c923a9</id>
+<feature>actually</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 16: Code-Review+2 Verified+1
+
+PS16 moves a check on the PrimaryOatFile down the flow where we actually save the file. 
+
+OatFiles are registered after the runtime is created and as such we cannot test or cache them when we create the JIT.
+
+I'll add test cases with the following CL. Which implements the read as well.</message>
+</example>
+
+<example>
+<id>59a96784b2e164abcd890b1b13a057ce4636a06b</id>
+<feature>rather</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+Is it an error to read mBits and mBitsUnpadded directly rather than through Element::getSizeBits() and Element::getSizeBitsUnpadded()?  If everything were going through these accessors, would this new initialization in Element::compute() be necessary?</message>
+</example>
+
+<example>
+<id>299722631fee3d6641e7f7d88f96b8c84198b0ec</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 6:
+
+> Is there still a way to set the emulator window size from the
+ > command line? We might break a lot of our users' automation
+ > scenarios with this simple change
+
+No, but we did consider that. However, J and Vince both agree that the command line options are no longer necessary. Any automated tests that require the emulator to be a certain size already seem pretty shaky. If you feel strongly about leaving them in, we should have that chat with the two of them.</message>
+</example>
+
+<example>
+<id>097c25b5e24912e57a7366b9aa78bba8862d0415</id>
+<feature>actually</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+> Yeah, I don't really know what that test was trying to achieve.
+ > 
+ > It's a test that guaranteed the code was broken :P
+
+The MAX_VALUE checking has no meaning. Always app can't get too large memory, and MemoryFile.java also erro keep the MAX_VALUE wrong size. Actually the kernel just return -1 when fail.</message>
+</example>
+
+<example>
+<id>0306717092b57c635d0e68a35ce61c944cec28f9</id>
+<feature>might</feature>
 <source>Jordan</source>
 <confusion></confusion>
 <message>Patch Set 1:
 
-Well, ok, but I don't quite see how to reconcile that with a command that takes a list of paths as its argument.  And why would we diverge from the toolbox command-line syntax?  Just seems prone to confusion.</message>
+Hmm. I pulled the ccache git repo and my patch is definitely there in the master branch. You might want to ping the maintainer and ask why it's not merged into the 'maint' branch he cuts releases from.</message>
 </example>
 
 </set>
