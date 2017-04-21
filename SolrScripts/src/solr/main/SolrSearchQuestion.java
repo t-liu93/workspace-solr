@@ -217,7 +217,7 @@ public class SolrSearchQuestion {
 
 		
 		// Work Done - INLINE COMMENTS @TUe
-		// 0 		- 10000		=> 	=> 
+		// 0 		- 10000		=> OK	=> solrSearchQuestionIC-[0-10000].2017-04-21-114346.log 
 		// 10000	- 20000		=> 	=>
 
 		
