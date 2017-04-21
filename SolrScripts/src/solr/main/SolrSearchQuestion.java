@@ -33,9 +33,9 @@ public class SolrSearchQuestion {
 	@SuppressWarnings("unchecked")
 	public static void solrSearchQuestion(String commentType, int start, int rows) {
 
-		log.doFineLogging("Started SolrSearchQuestion...");
-		System.out.println("Started SolrSearchQuestion...");
-
+		log.doFineLogging(Utils.getTimeStamp() + " >> Started SolrSearchQuestion...");
+		System.out.println(Utils.getTimeStamp() + " >> Started SolrSearchQuestion...");
+		
 		String framework = "questions";
 
 		FeatureResult result = new FeatureResult();
@@ -184,8 +184,8 @@ public class SolrSearchQuestion {
 			log.doSevereLogging(e.getStackTrace().toString());
 		}
 
-		log.doFineLogging("Finished SolrSearchQuestion!");
-		System.out.println("Finished SolrSearchQuestion!");
+		log.doFineLogging(Utils.getTimeStamp() + " >> Finished SolrSearchQuestion!");
+		System.out.println(Utils.getTimeStamp() + " >> Finished SolrSearchQuestion!");
 	}
 
 	public static void main(String[] args) {
