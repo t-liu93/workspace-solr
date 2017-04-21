@@ -97,7 +97,7 @@ public class SolrSearchQuestion {
 				SolrDocument codeReview = results.get(i);
 
 				String id = (String) codeReview.getFieldValue(Const.ID);
-
+				
 				String comment = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
 
 				Annotation document = new Annotation(comment);
