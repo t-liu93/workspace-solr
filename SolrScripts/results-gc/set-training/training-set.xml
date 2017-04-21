@@ -1,0 +1,165 @@
+<set>
+<example>
+<id>caabb93a0b79aa2bb3c6e0837b16962dcb9d082b</id>
+<feature>rather</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 14:
+
+(8 comments)
+
+These adjustment suggestions spill down to the Squash log/logger.h CL too, most of which will land in private/android_log.h rather than in NDK. (only add C++ event log buffer write interface).</message>
+</example>
+
+<example>
+<id>7a0a1493ad1e0ecdfc46a8bd01d96e9bc666e9eb</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+I'd actually prefer pass by value here - StringView str
+reference for this small object won't improve things a lot, but it might make it more complicated for the compiler - it's much harder to analyze aliased objects</message>
+</example>
+
+<example>
+<id>3ee57ce1ad36036448da84610f42db8d5ae2de09</id>
+<feature>rather</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 2: Verified
+
+Thanks for the quick turnaround. Style looks fine, merges and builds fine in open-source tree, merges fine in Google's internal tree.
+
+For comments about the review itself (e.g. "fixed code style problems"), it's more traditional to mention those in Gerrit through "review" / "publish comments" rather than in the commit description itself, as those don't have much long-term value.</message>
+</example>
+
+<example>
+<id>188840bdb85157fb573980bc0e49846ac0cc22ac</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 3:
+
+> It is easy to create one more interface for another hardware
+ > Interface.
+ > 
+ > Please help to change the CameraHardwareInterface.h class as
+ > virtual then only we can map two vendors camera hardware's
+ > component can be called with single interface class API.
+ > 
+ > If we keep CamerahardwareInterface.h as Virtual, Inherited class
+ > API' can invoke with the same API name without modifying the huge
+ > change in CameraClient.cpp.
+ > 
+ > Sample piece of code:
+ > 
+ > -    mHardware = new CameraHardwareInterface(camera_device_name);
+ > +    if(mCameraId == mCameraService->getNumberOfCameras() -1)
+ > +        mHardware = new CameraHardwareInterface_1(camera_device_name);
+ > +    else
+ > +        mHardware = new CameraHardwareInterface(camera_device_name);
+ > 
+ > class CameraHardwareInterface_1 : public CameraHardwareInterface {
+ > }
+
+CameraHardwareInterface is just a wrapper around the Android HAL layer, there should be no reason to subclass it.
+
+It can be used to open multiple HAL devices just fine
+
+  mHardware1 = new CameraHardwareInterface(camera1_device_name);
+  mHardware2 = new CameraHardwareInterface(camera2_device_name);
+
+In fact, the Camera HALv1 (which is what CameraHardwareInterface wraps around) is now considered deprecated in Android 5.0, so we really don't have much of a reason to modify this area of code.</message>
+</example>
+
+<example>
+<id>9a119b9f8419afad9f25af0c4000912083807a15</id>
+<feature>very</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 7:
+
+Your intention is nice.
+
+And please understand this change will make many Android application developers(and designers) shocked.
+
+I think that the erase feature(right click and pressing shift key) does not work on this change. It should not be removed.
+
+The erase feature is very important for our usability...
+
+Please.</message>
+</example>
+
+<example>
+<id>c8408f695c0e813a358d04c7022c195ed945ffb0</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 5:
+
+> How were these generated? We'll need a repo.prop from the build
+ > server and a NOTICE file.
+
+Ah, I copied repo.prop from llvm prebuilts. Let me grab it from the build server and update.
+
+Should I look for the artifact on master-ndk build server? Do I need to  manually update it each time I make some changes or it could be done automatically?</message>
+</example>
+
+<example>
+<id>e1353c9e21c79fced4543babf361420f89ac26af</id>
+<feature>particularly</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+Not opposed to this, but I'm not sure it will prove to be an effective way to apply neverallow checking (as opposed to wiring up sepolicy-check to read a config file containing the neverallow rules extracted from the policy and check them all using the existing libsepol check_assertions() code.
+Particularly when you consider that many of the neverallow rules are written in terms of type attributes, not individual types, and you can't use this API on a type attribute.</message>
+</example>
+
+<example>
+<id>73985f05219b3eb602cfb89f0350564f3996ddbe</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+> (1 comment)
+ > 
+ > LGTM so far, roughly what I expected. one comment so far.
+
+is_elf64_ is now const and assigned in constructor.
+
+The reason for unique_ptr is ElfFileImpl(former ElfFile) has no default constructor, and we can only construct it by ElfFileImpl::Open. And I prefer to keep it like this.
+
+Also, I changed from union to separate objects, because there seems to be no way to destruct properly..</message>
+</example>
+
+<example>
+<id>97a97283d44db60624901c5dfcaa9b159b3a3b01</id>
+<feature>may</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+Mathieu: How do I test GC performance impact of this change?
+
+N5 ToT boot.oat impact:
+  - file size: -80KiB (size_code_alignment_ reduced by 82KiB)
+  - compile time: -1s (mostly thanks to writing zeros instead of seeking to align code)
+Seeking seems to be rather expensive.
+
+(When running the boot.oat compilation manually after `adb shell stop` with output in /sdcard/, the compile time difference is actualy about 3s but the initial boot.oat compilation time after `fastboot -w flashall` shows only about 1s improvement. It may have to do with /sdcard->/storage/emulated/legacy->/mnt/shell/emulated/0 being mounted differently.)</message>
+</example>
+
+<example>
+<id>1c5729f6285afacfe42c99e83522bf8f3553d2e6</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+Well, ok, but I don't quite see how to reconcile that with a command that takes a list of paths as its argument.  And why would we diverge from the toolbox command-line syntax?  Just seems prone to confusion.</message>
+</example>
+
+</set>
