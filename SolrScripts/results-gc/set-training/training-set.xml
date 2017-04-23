@@ -3,7 +3,7 @@
 <id>ec98e156d316e62c5bd70ec21d54354050e171c4</id>
 <feature>might</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! The statement containing the feature might does not express confusion.</confusion>
 <message>Patch Set 6:
 
 I checked the option of attaching it on gerrit but didn't found anything.
@@ -17,7 +17,7 @@ Anyway, we are open to meet with the requirement you might propose.</message>
 <id>398a7ae9ab0891ef6028bd4449d0783f01a51410</id>
 <feature>often</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! The statement containing the feature often does not express confusion.</confusion>
 <message>Patch Set 1:
 
 Well, I'm not the one to make the call on this, but I doubt something like this would be approved.
@@ -31,7 +31,7 @@ It's a slippery slope.</message>
 <id>10d3540cd1a57088022d94cd7197a7159d34188f</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! The statement containing the feature seems does not express confusion.</confusion>
 <message>Patch Set 1:
 
 can we have a regression test case to accompany this? libcore/harmony-tests/src/test/java/org/apache/harmony/tests/java/lang/MathTest.java seems like it has some related ones.</message>
@@ -41,7 +41,7 @@ can we have a regression test case to accompany this? libcore/harmony-tests/src/
 <id>1f15f501bab170394f7e37518ecb17e33e9dceda</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>Yes! The author explicitly ask a question about something that he is not certain of.</confusion>
 <message>Patch Set 2:
 
 Hi:
