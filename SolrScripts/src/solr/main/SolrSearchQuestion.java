@@ -216,13 +216,15 @@ public class SolrSearchQuestion {
 		int rows = Integer.valueOf(args[2]);
 
 		// Work Done - GENERAL COMMENTS @linuxapps02:
-		// Rows => 20000
+		// Rows => 50000
 		//
 		// 0 		- 10000		=> OK	=> PID 40564	=> solrSearchQuestionGC-[0-10000].2017-04-20-035915.log
 		// 10000	- 20000		=> OK	=> PID 43226	=> solrSearchQuestionGC-[10000-20000].2017-04-21-070201.log
 		// 20000	- 30000		=> OK	=> PID 43477	=> solrSearchQuestionGC-[20000-30000].2017-04-21-080525.log
 		// 30000	- 50000		=> OK	=> PID 43719	=> solrSearchQuestionGC-[30000-50000].2017-04-21-085926.log
 		// 50000	- 70000		=> OK	=> PID 44096 	=> solrSearchQuestionGC-[50000-70000].2017-04-21-110828.log
+		// 70000	- 100000	=> OK	=> PID 47243 	=> solrSearchQuestionGC-[70000-100000].2017-04-22-091938.log
+		// 100000	- 150000	=> 	=> PID  	=> 
 
 		
 		// Work Done - INLINE COMMENTS @TUe:
