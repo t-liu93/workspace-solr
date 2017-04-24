@@ -1,0 +1,328 @@
+<set>
+<example>
+<id>54daddb4da7f824d335a308494134c15247f9ffa</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It is just an expression of a request.</reasoning>
+<message>Patch Set 1:
+
+Hi, Elliot,
+
+This patch still needs a +2, could you help me review this?
+
+Thanks,
+Dehao</message>
+</example>
+
+
+<example>
+<id>11e56d224d60cd029438ceafb2fb4117742f9e2e</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It just an expression of a suggestion.</reasoning>
+<message>Patch Set 1: Code-Review+2
+
+Though you might also check if c/195806 is sufficient.</message>
+</example>
+
+
+<example>
+<id>85cdfe15ad69272b2877f7be191acfaf7d8351ed</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion>No!</confusion>
+<reasoning>The author is not confused, he is trying to be clearer.</reasoning>
+<message>Patch Set 1:
+
+For clarification, what I really meant is "... if the input data is spread out over 2 VM pages ..."</message>
+</example>
+
+
+<example>
+<id>b9dc532deba0c1ede3f3740fd042b1d1dd98f4e7</id>
+<feature>maybe</feature>
+<source>Jordan</source>
+<confusion>Yes!</confusion>
+<reasoning>The author is confused about the code.</reasoning>
+<message>Patch Set 3:
+
+Sorry I don't have the ToT. Thanks for confirm.
+
+But isn't goBack and goForward history navigation? Maybe I mis-understand it.</message>
+</example>
+
+
+<example>
+<id>022afc4e05ff239d668bfa8f7f86f481d640d40a</id>
+<feature>somewhat</feature>
+<source>Lakoff</source>
+<confusion>No!</confusion>
+<reasoning>The author is saying the it is still a "work in progress".</reasoning>
+<message>Patch Set 3:
+
+This is still somewhat WIP</message>
+</example>
+
+
+<example>
+<id>8b914b4a24674cdf1ba7deb6d390876c1ab2e779</id>
+<feature>actually</feature>
+<source>Lakoff</source>
+<confusion>Yes!</confusion>
+<reasoning>The authos explicit says he is uncertain how a library works.</reasoning>
+<message>Patch Set 2:
+
+How does exporting a resource in a library work? Is this the point of the AAR file? (Sorry, I actually don't have experience with this!)</message>
+</example>
+
+
+<example>
+<id>eb45b039eaf696cdfb0544f0bc06dfb77da34e08</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It is just an expression of a suggestion.</reasoning>
+<message>Patch Set 10:
+
+> Thanks Nicolas; I've enabled floating-point constant propagation
+ > only when the C++ `float` and `double` types behave as IEEE 754
+ > single- and double precision types in PS10; PTAL.
+
+BTW we might want to do a similar check/warning in the interpreter as well.</message>
+</example>
+
+
+<example>
+<id>f64f0e270df51853e0d8701d26a4d6729744ac5e</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion>Yes!</confusion>
+<reasoning>The authos is uncertain about some part of the code.</reasoning>
+<message>Patch Set 1: Code-Review+1
+
+LGTM overall.
+
+One thing that might be worth emphasizing is that NDK gcc and platform gcc are built from the same source tree, so any changes need to be tested with both the NDK and platform. Not sure if that belongs in your blurb on in the toolchain/gcc/Readme.</message>
+</example>
+
+
+<example>
+<id>08b1fcb167f68570688f6339aed5683ec0e710f3</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>The authos is requesting someone else to check the patch set.</reasoning>
+<message>Patch Set 2:
+
+Rebased on N. 
+Hi Dongfang, could you kindly confirm the requirements and review the patch?</message>
+</example>
+
+
+<example>
+<id>8940a1cf1427432263188be09b16ef2656b4dd43</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion>Yes!</confusion>
+<reasoning>The author is not quite sure whether it works.</reasoning>
+<message>Patch Set 6: Verified+1
+
+Seems to work</message>
+</example>
+
+
+<example>
+<id>d059ca174f66144edbb8034999dffa97603e449d</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It is just an expression of a opinion.</reasoning>
+<message>Patch Set 1:
+
+(2 comments)
+
+I still need to test this pre-rebase before being confident in it, but this seems to allow bionic to be built.</message>
+</example>
+
+
+<example>
+<id>20dc2806adca2778812dd197994544a7922bd0a6</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion>Yes!</confusion>
+<reasoning>The author explicts express confusion about the patch set.</reasoning>
+<message>Patch Set 1: Code-Review+1
+
+Not really sure what this does, but screenrecord worked before... so +1.</message>
+</example>
+
+
+<example>
+<id>b7562bf1a8583b362c4978fbd3767c3be33e6ac7</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion>Yes!</confusion>
+<reasoning>Uncertainty about the need of the change.</reasoning>
+<message>Patch Set 1:
+
+Did we really need this change?</message>
+</example>
+
+
+<example>
+<id>f44158a2089925ed60ea8b8c4b082a266799e6ae</id>
+<feature>may</feature>
+<source>Jordan</source>
+<confusion>Yes!</confusion>
+<reasoning>The authos is not certain of other places for the checker.</reasoning>
+<message>Patch Set 1:
+
+BTW, there may be other places where Checker annotations test methods implemented in Smali.</message>
+</example>
+
+
+<example>
+<id>92d9185d91c1386e65afd5f03776468ac1448400</id>
+<feature>actually</feature>
+<source>Lakoff</source>
+<confusion>No!</confusion>
+<reasoning>Direct question for the patch set author.</reasoning>
+<message>Patch Set 1:
+
+Bug number is missing. Also, did you actually confirm this causes the problem?</message>
+</example>
+
+
+<example>
+<id>35677810d1f622ca3dcd67531b3cf0cdff792a47</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion>Yes!</confusion>
+<reasoning>The author is confused about everything in the code review.</reasoning>
+<message>Patch Set 1:
+
+Robert, this make sense to you?  (I don't really understand from the commit message and comment, but I don't really know this code either...)</message>
+</example>
+
+
+<example>
+<id>2c76a4cd745ee166310eb72c276ba9d8351db5a6</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It is just an expression of opinion.</reasoning>
+<message>Patch Set 1: Code-Review-2
+
+Seems to be already applied.  Abandon?</message>
+</example>
+
+
+<example>
+<id>a6cfd79910e7a91f876db7eb418d056865c4d7bb</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It is just an expression of a suggestion.</reasoning>
+<message>Patch Set 4:
+
+Include guards in C files are weird... Could use #pragma clang diagnostic instead: http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas</message>
+</example>
+
+
+<example>
+<id>2874c13ab992843499d770d9cf3b5ccacffcd26b</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It is just an expression of a request.</reasoning>
+<message>Patch Set 2:
+
+Yu, could you try internal branches</message>
+</example>
+
+
+<example>
+<id>8e8a8745de34e382562600b8f5381fcf48660974</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion>Yes!</confusion>
+<reasoning>The author is uncertain about some Ubuntu configuration.</reasoning>
+<message>Patch Set 3: Code-Review+1
+
+Worked for me on Ubuntu 14.04.  Did not work for me on Fedora 20, but that's not a supported build host OS.  Seems that Ubuntu has a libpcre.so.3 that is being picked up as a dependency for your prebuilt libselinux.so.1 and Fedora only has libpcre.so.1, not sure why/if they truly differ in ABI.</message>
+</example>
+
+
+<example>
+<id>92627123be5fa6d03b86fd543a22a40240f992b4</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion>Yes!</confusion>
+<reasoning>The author express he was confused, that's why he needed an explanation.</reasoning>
+<message>Patch Set 1:
+
+> This is a misfeature of gcc - C++ standard requires it to not
+ > implement strings with reference counting, but GCC still does it
+ > that way.
+ > As we modify string data directly, not through the std::string's
+ > accessors, the implementation can't catch that modification and
+ > perform copy on write.
+
+Thank you Yurii for your explanation! I was really confused with this one.</message>
+</example>
+
+
+<example>
+<id>0a676f995aa369efb9de25a3dff292daf61f49d6</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion>No!</confusion>
+<reasoning>It is just a compliment.</reasoning>
+<message>Patch Set 3:
+
+(2 comments)
+
+This is really helpful!
+Thanks so much!!</message>
+</example>
+
+
+<example>
+<id>626fdf513492f1cdc271918740e8ac33f1242a84</id>
+<feature>maybe</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It is just an expression of a request.</reasoning>
+<message>Patch Set 2: Code-Review+2
+
+b/18830897 is related, maybe add to commit message?</message>
+</example>
+
+
+<example>
+<id>ef04a9f9af3347a584ed90b2fccc823732789dad</id>
+<feature>may</feature>
+<source>Jordan</source>
+<confusion>No!</confusion>
+<reasoning>It is just an expression of a request.</reasoning>
+<message>Patch Set 3: -Code-Review
+
+(4 comments)
+
+There are a number of other device-specific file_contexts entries removed from our policy that you may want to sweep up here as well.</message>
+</example>
+
+
+<example>
+<id>e7523fff54e72b03f796dddabce4d4203796eb69</id>
+<feature>actually</feature>
+<source>Lakoff</source>
+<confusion>Yes!</confusion>
+<reasoning>The author is uncertain about how it works.</reasoning>
+<message>Patch Set 1: Code-Review+1
+
+Actually, how does this work? Where's dex2oat coming from then?</message>
+</example>
+</set>

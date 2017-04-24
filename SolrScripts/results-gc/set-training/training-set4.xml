@@ -3,7 +3,7 @@
 <id>9b11fab74ef2a80627b6fcc26a2da7ef17ad8b8c</id>
 <feature>rather</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 For the record, Android wpa_supplicant does this in code (https://cs.corp.google.com/p#android/external/wpa_supplicant_8/src/utils/os_unix.c&l=336) rather than through init.</message>
@@ -13,7 +13,7 @@ For the record, Android wpa_supplicant does this in code (https://cs.corp.google
 <id>e238bdc774e4d46320a1419f2ee8151f3b626a2e</id>
 <feature>pretty</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1: Code-Review+2
 
 i'm pretty sure this is called removal ... this was already deprecated :-)
@@ -25,7 +25,7 @@ i'm pretty sure this is called removal ... this was already deprecated :-)
 <id>fa1d3e112eddbe345dafaa5632879cbd3c3b6586</id>
 <feature>really</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 3: Code-Review+2
 
 Really nice! Thank you for this!</message>
@@ -35,7 +35,7 @@ Really nice! Thank you for this!</message>
 <id>ae4bf50a8c3409d934eab4f4565ff73e09142fd8</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 1:
 
 The correct fix here is for Vpns.get(userId) to not be null.
@@ -124,7 +124,7 @@ I had a dns failure up until now on my machine for this review ... maybe ignore 
 <id>b9dc532deba0c1ede3f3740fd042b1d1dd98f4e7</id>
 <feature>maybe</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>Yes!</confusion>
 <message>Patch Set 3:
 
 Sorry I don't have the ToT. Thanks for confirm.
@@ -136,7 +136,7 @@ But isn't goBack and goForward history navigation? Maybe I mis-understand it.</m
 <id>8b914b4a24674cdf1ba7deb6d390876c1ab2e779</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>Yes!</confusion>
 <message>Patch Set 2:
 
 How does exporting a resource in a library work? Is this the point of the AAR file? (Sorry, I actually don't have experience with this!)</message>
