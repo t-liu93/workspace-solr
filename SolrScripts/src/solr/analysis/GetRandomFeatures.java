@@ -108,7 +108,8 @@ public class GetRandomFeatures {
 				sbResults.append("<example>" + Const.NEW_LINE);
 				sbResults.append("<id>" + tuple.getCommentID() + "</id>" + Const.NEW_LINE);
 				sbResults.append("<feature>" + tuple.getFeature() + "</feature>" + Const.NEW_LINE);
-				sbResults.append("<source>" + sourcesJordanAndLakoff.get(tuple.getFeature()) + "</source>" + Const.NEW_LINE);
+				sbResults.append(
+						"<source>" + sourcesJordanAndLakoff.get(tuple.getFeature()) + "</source>" + Const.NEW_LINE);
 				sbResults.append("<confusion></confusion>" + Const.NEW_LINE);
 				sbResults.append("<message>" + message + "</message>" + Const.NEW_LINE);
 				sbResults.append("</example>" + Const.NEW_LINE + Const.NEW_LINE);
@@ -123,14 +124,17 @@ public class GetRandomFeatures {
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
-			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._XML;
+			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
+					+ Const._XML;
 
 		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
-			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._XML;
+			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
+					+ Const._XML;
 		}
 
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePathRandom), Const._UTF_8))) {
+		try (Writer writer = new BufferedWriter(
+				new OutputStreamWriter(new FileOutputStream(filePathRandom), Const._UTF_8))) {
 
 			writer.write(sbResults.toString());
 		} catch (Exception e) {
@@ -141,7 +145,7 @@ public class GetRandomFeatures {
 	}
 
 	public static void getHedgesExamplesWithoutOverlapping(String commentType, int numberExamples) {
-		
+
 		List<Tuple> hedges = getListTuples(Const.HEDGES);
 		List<Tuple> hypo = getListTuples(Const.HYPOTHETICALS);
 		List<Tuple> probables = getListTuples(Const.PROBABLES);
@@ -149,47 +153,72 @@ public class GetRandomFeatures {
 		List<Tuple> nonverbals = getListTuples(Const.NONVERBALS);
 		List<Tuple> meta = getListTuples(Const.META);
 
-		hedges = removeOverlapping(hedges);
-		hedges = removeOverlapping(hypo);
-		hedges = removeOverlapping(probables);
-		hedges = removeOverlapping(I_statements);
-		hedges = removeOverlapping(nonverbals);
-		hedges = removeOverlapping(meta);
-		
+		hedges = removeOverlappingFromSameList(hedges);
+		hedges = removeOverlappingFromOtherList(hedges, hypo);
+		hedges = removeOverlappingFromOtherList(hedges, probables);
+		hedges = removeOverlappingFromOtherList(hedges, I_statements);
+		hedges = removeOverlappingFromOtherList(hedges, nonverbals);
+		hedges = removeOverlappingFromOtherList(hedges, meta);
+
 		System.out.println("Done with getHedgesExamplesWithoutOverlapping...");
 	}
 
-	public static List<Tuple> removeOverlapping(List<Tuple> tuples) {
-		
+	public static List<Tuple> removeOverlappingFromSameList(List<Tuple> tuples) {
+
 		List<Tuple> newList = new ArrayList<Tuple>();
-		
+
 		for (Tuple tuple : tuples) {
-			
+
 			List<Tuple> tmp = new ArrayList<Tuple>(tuples);
-			
+
 			tmp.remove(tuple);
-			
-			int counter = 0;
-			
+
+			boolean hasDuplicate = false;
+
 			for (Tuple tuple2 : tmp) {
-				
+
 				if (tuple.equals(tuple2)) {
-					counter = counter + 1;
+					hasDuplicate = true;
+					break;
 				}
 			}
-			
-			if (counter == 0) {
+
+			if (!hasDuplicate) {
 				newList.add(tuple);
 			}
 		}
-		
+
+		return newList;
+	}
+
+	public static List<Tuple> removeOverlappingFromOtherList(List<Tuple> source, List<Tuple> target) {
+
+		List<Tuple> newList = new ArrayList<Tuple>();
+
+		for (Tuple s : source) {
+
+			boolean hasDuplicate = false;
+
+			for (Tuple t : target) {
+
+				if (s.equals(t)) {
+					hasDuplicate = true;
+					break;
+				}
+			}
+
+			if (!hasDuplicate) {
+				newList.add(s);
+			}
+		}
+
 		return newList;
 	}
 
 	public static List<Tuple> getListTuples(String framework) {
-		
+
 		List<Tuple> listTuples = new ArrayList<Tuple>();
-		
+
 		try {
 
 			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
@@ -199,9 +228,9 @@ public class GetRandomFeatures {
 			String frameworkPath = Const.DIR_FRAMEWORK + framework + Const._TXT;
 
 			List<String> features = Files.readAllLines(Paths.get(frameworkPath));
-			
+
 			for (String feature : features) {
-				
+
 				String solrQueryString = solrQuery + feature + Const.DOUBLE_QUOTES;
 
 				SolrQuery query = new SolrQuery();
@@ -217,9 +246,9 @@ public class GetRandomFeatures {
 				String cursorMark = CursorMarkParams.CURSOR_MARK_START;
 
 				boolean done = false;
-				
+
 				while (!done) {
-					
+
 					query.set(CursorMarkParams.CURSOR_MARK_PARAM, cursorMark);
 
 					QueryResponse response = solr.query(query);
@@ -244,11 +273,11 @@ public class GetRandomFeatures {
 					cursorMark = nextCursorMark;
 				}
 			}
-			
+
 		} catch (SolrServerException | IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return listTuples;
 	}
 
@@ -261,7 +290,7 @@ public class GetRandomFeatures {
 		int numberExamples = 25;
 
 		// writeFileRandomFeatures(commentType, framework, numberExamples);
-		
+
 		getHedgesExamplesWithoutOverlapping(commentType, numberExamples);
 
 	}
