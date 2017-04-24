@@ -44,7 +44,7 @@ import solr.utils.Utils;
  * 
  */
 
-public class SolrSearch {
+public class SolrSearch_Old {
 	
 	private static Log log = new Log("countAllFeatures");
 
