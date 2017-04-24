@@ -3,7 +3,7 @@
 <id>54daddb4da7f824d335a308494134c15247f9ffa</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of a request.</confusion>
 <message>Patch Set 1:
 
 Hi, Elliot,
@@ -18,7 +18,7 @@ Dehao</message>
 <id>f455b9a0350f87220fdd10d1d3b381ce9461f15b</id>
 <feature>very</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! The comment contains a question but it does not express confusion.</confusion>
 <message>Patch Set 2:
 
 Are you working with upstream to get them to take this change? The maintainer is very responsive.</message>
@@ -28,7 +28,7 @@ Are you working with upstream to get them to take this change? The maintainer is
 <id>a9b714adbd30459b573d7ed300404d7cd1cf0905</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of a suggestion.</confusion>
 <message>Steve, it'd be great if you could try the variant that I uploaded, based on Dmitry's comments - if it works for you, I'll put it in.
 
 BTW, thanks for the contribution :)</message>
@@ -38,7 +38,7 @@ BTW, thanks for the contribution :)</message>
 <id>bf4812ef8ba5862237df226c5e42adf75e3c8c10</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Restored
 
 Actually, we need this.</message>
@@ -48,7 +48,7 @@ Actually, we need this.</message>
 <id>11e56d224d60cd029438ceafb2fb4117742f9e2e</id>
 <feature>might</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It just an expression of a suggestion.</confusion>
 <message>Patch Set 1: Code-Review+2
 
 Though you might also check if c/195806 is sufficient.</message>
@@ -58,7 +58,7 @@ Though you might also check if c/195806 is sufficient.</message>
 <id>c9544b8a8bcb097cf1e6e918fc19ae2ac9de2442</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! The authos is being polite and requesting something from another person.</confusion>
 <message>Patch Set 1:
 
 (4 comments)
@@ -70,7 +70,7 @@ High level question: We already have a fastboot test in external/chromiumos/src/
 <id>99190f7e0baf706e1b40630b9c1dea7e1ac1bc44</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It just an epresseion of suggestion.</confusion>
 <message>Patch Set 1:
 
 we could also do with tests</message>
@@ -80,7 +80,7 @@ we could also do with tests</message>
 <id>85cdfe15ad69272b2877f7be191acfaf7d8351ed</id>
 <feature>really</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! The author is not confused, he is trying to be clearer.</confusion>
 <message>Patch Set 1:
 
 For clarification, what I really meant is "... if the input data is spread out over 2 VM pages ..."</message>
@@ -90,7 +90,7 @@ For clarification, what I really meant is "... if the input data is spread out o
 <id>022afc4e05ff239d668bfa8f7f86f481d640d40a</id>
 <feature>somewhat</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! The author is saying the it is still a "work in progress".</confusion>
 <message>Patch Set 3:
 
 This is still somewhat WIP</message>
@@ -100,7 +100,7 @@ This is still somewhat WIP</message>
 <id>eb45b039eaf696cdfb0544f0bc06dfb77da34e08</id>
 <feature>might</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of a suggestion.</confusion>
 <message>Patch Set 10:
 
 > Thanks Nicolas; I've enabled floating-point constant propagation
@@ -114,7 +114,7 @@ BTW we might want to do a similar check/warning in the interpreter as well.</mes
 <id>58768154d133a42ab09a4fdfca02a64d5109b335</id>
 <feature>very</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! It is just a compliment.</confusion>
 <message>Patch Set 2:
 
 (1 comment)
@@ -126,7 +126,7 @@ Very nice.</message>
 <id>08b1fcb167f68570688f6339aed5683ec0e710f3</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! The authos is requesting someone else to check the patch set.</confusion>
 <message>Patch Set 2:
 
 Rebased on N. 
@@ -137,7 +137,7 @@ Hi Dongfang, could you kindly confirm the requirements and review the patch?</me
 <id>d059ca174f66144edbb8034999dffa97603e449d</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of a opinion.</confusion>
 <message>Patch Set 1:
 
 (2 comments)
@@ -149,7 +149,7 @@ I still need to test this pre-rebase before being confident in it, but this seem
 <id>8a797d956fb737dfe3fe5f054c0398341530bc35</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! The author is requesting for reponses in the code review.</confusion>
 <message>Patch Set 1:
 
 Ping... the discussion seems to have stalled.</message>
@@ -159,7 +159,7 @@ Ping... the discussion seems to have stalled.</message>
 <id>b4ff9e172e04578c1bf972198e1d1242c3dc989b</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just a request for someone else's action.</confusion>
 <message>Patch Set 3:
 
 Narayan, we have the approval of Przemyslaw. Could this change be merged?</message>
@@ -169,7 +169,7 @@ Narayan, we have the approval of Przemyslaw. Could this change be merged?</messa
 <id>d8e87ca4f8d1195c06fd011aed0169ab828034f8</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! It is just a request for someone else's action.</confusion>
 <message>Patch Set 3:
 
 ps3 actually deletes everything like the commit message says.</message>
@@ -179,7 +179,7 @@ ps3 actually deletes everything like the commit message says.</message>
 <id>20dc2806adca2778812dd197994544a7922bd0a6</id>
 <feature>really</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>Yes! The author explicts express confusion about the patch set.</confusion>
 <message>Patch Set 1: Code-Review+1
 
 Not really sure what this does, but screenrecord worked before... so +1.</message>
@@ -189,7 +189,7 @@ Not really sure what this does, but screenrecord worked before... so +1.</messag
 <id>b315522b2dd042ecd6585421019d3cbf1eb5a85e</id>
 <feature>really</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of opinion.</confusion>
 <message>Patch Set 1: Code-Review+2
 
 We've been adding --log to the commit message, but it doesn't really matter...</message>
@@ -199,7 +199,7 @@ We've been adding --log to the commit message, but it doesn't really matter...</
 <id>0a676f995aa369efb9de25a3dff292daf61f49d6</id>
 <feature>really</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! It is just a compliment.</confusion>
 <message>Patch Set 3:
 
 (2 comments)
@@ -212,7 +212,7 @@ Thanks so much!!</message>
 <id>ef04a9f9af3347a584ed90b2fccc823732789dad</id>
 <feature>may</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of a request.</confusion>
 <message>Patch Set 3: -Code-Review
 
 (4 comments)
@@ -224,7 +224,7 @@ There are a number of other device-specific file_contexts entries removed from o
 <id>2c76a4cd745ee166310eb72c276ba9d8351db5a6</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of opinion.</confusion>
 <message>Patch Set 1: Code-Review-2
 
 Seems to be already applied.  Abandon?</message>
@@ -234,7 +234,7 @@ Seems to be already applied.  Abandon?</message>
 <id>a6cfd79910e7a91f876db7eb418d056865c4d7bb</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of a suggestion.</confusion>
 <message>Patch Set 4:
 
 Include guards in C files are weird... Could use #pragma clang diagnostic instead: http://clang.llvm.org/docs/UsersManual.html#controlling-diagnostics-via-pragmas</message>
@@ -244,7 +244,7 @@ Include guards in C files are weird... Could use #pragma clang diagnostic instea
 <id>2874c13ab992843499d770d9cf3b5ccacffcd26b</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of a request.</confusion>
 <message>Patch Set 2:
 
 Yu, could you try internal branches</message>
@@ -254,7 +254,7 @@ Yu, could you try internal branches</message>
 <id>626fdf513492f1cdc271918740e8ac33f1242a84</id>
 <feature>maybe</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No! It is just an expression of a request.</confusion>
 <message>Patch Set 2: Code-Review+2
 
 b/18830897 is related, maybe add to commit message?</message>
@@ -264,7 +264,7 @@ b/18830897 is related, maybe add to commit message?</message>
 <id>620a3d8514ab1056562689cd71deba0194938879</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! There is no confusion from the author.</confusion>
 <message>Patch Set 2: -Verified
 
 actually, I'm running the tests now...</message>
