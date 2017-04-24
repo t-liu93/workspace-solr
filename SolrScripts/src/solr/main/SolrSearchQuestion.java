@@ -224,7 +224,7 @@ public class SolrSearchQuestion {
 		// 30000	- 50000		=> OK	=> PID 43719	=> solrSearchQuestionGC-[30000-50000].2017-04-21-085926.log
 		// 50000	- 70000		=> OK	=> PID 44096 	=> solrSearchQuestionGC-[50000-70000].2017-04-21-110828.log
 		// 70000	- 100000	=> OK	=> PID 47243 	=> solrSearchQuestionGC-[70000-100000].2017-04-22-091938.log
-		// 100000	- 150000	=> OK	=> PID 1426 	=> solrSearchQuestionGC-[70000-100000].2017-04-22-091938.log
+		// 100000	- 150000	=> OK	=> PID 1426 	=> solrSearchQuestionGC-[100000-150000].2017-04-23-054314.log
 
 		
 		// Work Done - INLINE COMMENTS @TUe:
