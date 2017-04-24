@@ -144,6 +144,7 @@ public class GetRandomFeatures {
 		System.out.println("Done with writeFileRandomFeatures...");
 	}
 
+	@SuppressWarnings("unchecked")
 	public static void getHedgesExamplesWithoutOverlapping(String commentType, int numberExamples) {
 
 		List<Tuple> hedges = getListTuples(Const.HEDGES);
@@ -159,6 +160,90 @@ public class GetRandomFeatures {
 		hedges = removeOverlappingFromOtherList(hedges, I_statements);
 		hedges = removeOverlappingFromOtherList(hedges, nonverbals);
 		hedges = removeOverlappingFromOtherList(hedges, meta);
+		
+		System.out.println("Number of hedges comments: " + hedges.size());
+		
+		List<Tuple> randomList = new ArrayList<Tuple>();
+
+		Map<String, String> sourcesJordanAndLakoff = Utils.readSourcesJordanAndLakoff();
+
+		int counter = 0;
+
+		for (int i = 0; i < hedges.size() && counter < numberExamples; i++) {
+
+			Tuple randomTuple = randomItem(hedges);
+
+			if (sourcesJordanAndLakoff.containsKey(randomTuple.getFeature())) {
+
+				randomList.add(randomTuple);
+
+				hedges.remove(randomTuple);
+
+				counter = counter + 1;
+			}
+		}
+
+		StringBuffer sbResults = new StringBuffer();
+
+		sbResults.append("<set>" + Const.NEW_LINE);
+
+		try {
+
+			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
+
+			SolrQuery query = new SolrQuery();
+
+			String queryString = "";
+
+			for (Tuple tuple : randomList) {
+
+				queryString = Const.ID + Const.TWO_DOTS + tuple.getCommentID();
+
+				query.setQuery(queryString);
+
+				query.setFields(Const.MESSAGE);
+
+				QueryResponse response;
+
+				response = solr.query(query);
+
+				SolrDocumentList results = response.getResults();
+
+				SolrDocument codeReview = results.get(Const._0);
+
+				String message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
+
+				sbResults.append("<example>" + Const.NEW_LINE);
+				sbResults.append("<id>" + tuple.getCommentID() + "</id>" + Const.NEW_LINE);
+				sbResults.append("<feature>" + tuple.getFeature() + "</feature>" + Const.NEW_LINE);
+				sbResults.append("<source>" + sourcesJordanAndLakoff.get(tuple.getFeature()) + "</source>" + Const.NEW_LINE);
+				sbResults.append("<confusion></confusion>" + Const.NEW_LINE);
+				sbResults.append("<message>" + message + "</message>" + Const.NEW_LINE);
+				sbResults.append("</example>" + Const.NEW_LINE + Const.NEW_LINE);
+			}
+		} catch (SolrServerException | IOException e) {
+			e.printStackTrace();
+		}
+
+		sbResults.append("</set>");
+
+		String filePathRandom = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._XML;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._XML;
+		}
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePathRandom), Const._UTF_8))) {
+
+			writer.write(sbResults.toString());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 
 		System.out.println("Done with getHedgesExamplesWithoutOverlapping...");
 	}
