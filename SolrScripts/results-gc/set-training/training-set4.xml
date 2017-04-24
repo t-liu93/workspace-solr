@@ -1,0 +1,282 @@
+<set>
+<example>
+<id>9b11fab74ef2a80627b6fcc26a2da7ef17ad8b8c</id>
+<feature>rather</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+For the record, Android wpa_supplicant does this in code (https://cs.corp.google.com/p#android/external/wpa_supplicant_8/src/utils/os_unix.c&l=336) rather than through init.</message>
+</example>
+
+<example>
+<id>e238bdc774e4d46320a1419f2ee8151f3b626a2e</id>
+<feature>pretty</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1: Code-Review+2
+
+i'm pretty sure this is called removal ... this was already deprecated :-)
+
+(yay!)</message>
+</example>
+
+<example>
+<id>fa1d3e112eddbe345dafaa5632879cbd3c3b6586</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 3: Code-Review+2
+
+Really nice! Thank you for this!</message>
+</example>
+
+<example>
+<id>ae4bf50a8c3409d934eab4f4565ff73e09142fd8</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+The correct fix here is for Vpns.get(userId) to not be null.
+
+In MNC the service was (wrongly) listening to USER_STARTING and USER_STOPPING which are background broadcasts. Changing it to USER_STARTED and USER_STOPPED seems to fix it.
+
+Does this reproduce on the NYC previews?</message>
+</example>
+
+<example>
+<id>4b8c481b6108377fb26e9b81aa717ebbb92d4530</id>
+<feature>really</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+> Shouldn't you not restart the trace instead? I mean, do you really
+ > need to start a new one for your test?
+
+It does: we stop and then start it.</message>
+</example>
+
+<example>
+<id>223dae70f8723c386d7094c777a689cd86db1c51</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+FWIW, this bug still seems to exist in 5.0, though FastScroller seems to be rewritten.</message>
+</example>
+
+<example>
+<id>e07530762da98a4b560bc68658c978bd8d3eff70</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+The FUSE code is not freezer safe with or without this patch -- this fixed a situation we happened to hit, but others have reported new symptoms with this patch applied, so could skip it.  Rejected upstream since they know they need a bunch more work to be freeze safe.</message>
+</example>
+
+<example>
+<id>12389c84238c93f04a16804a1b2287a11ce503c2</id>
+<feature>actually</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 2: Verified+1
+
+Verified on all 3 platforms. Actually fixes an unrelated bug on OSX too!</message>
+</example>
+
+<example>
+<id>b1053cb3880e6b4c01bcb90727cef0bb15b6f4e9</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 5: Verified-1
+
+This CL seems to break run-test 098-ddmc on ARM64.  I'll investigate.</message>
+</example>
+
+<example>
+<id>17bc00cb2da22e3d9c058c08e0e0f9c99016a542</id>
+<feature>may</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+I recommend simplify the function's implementation to match the realistic use case of it today. A simple timeout and retry may be sufficient.
+
+But if you want to keep the way it is, please add more unit tests to check more cases like the hanging on mac issue.</message>
+</example>
+
+<example>
+<id>fb50a587ca6563deacb6fb9a1bd349ff1a2a11c0</id>
+<feature>maybe</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 20:
+
+I had a dns failure up until now on my machine for this review ... maybe ignore my comments?</message>
+</example>
+
+<example>
+<id>b9dc532deba0c1ede3f3740fd042b1d1dd98f4e7</id>
+<feature>maybe</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 3:
+
+Sorry I don't have the ToT. Thanks for confirm.
+
+But isn't goBack and goForward history navigation? Maybe I mis-understand it.</message>
+</example>
+
+<example>
+<id>8b914b4a24674cdf1ba7deb6d390876c1ab2e779</id>
+<feature>actually</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+How does exporting a resource in a library work? Is this the point of the AAR file? (Sorry, I actually don't have experience with this!)</message>
+</example>
+
+<example>
+<id>62386c5c20be9fe2c3cc2f3582299dbd62d57e1c</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+Might want to add neverallows to the SELinux policy to ensure that this does not get weakened by OEMs, e.g.
+
+neverallow { domain -zygote -system_server } zygote:unix_stream_socket connectto;
+
+neverallow { domain -system_server } zygote_socket:sock_file write;</message>
+</example>
+
+<example>
+<id>9d2d452ee523dd420760f9f83121ff88277dbc12</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 3: Code-Review+1
+
+SvetoslavÃ¯Â¼Å’ could you code review again,  thanks</message>
+</example>
+
+<example>
+<id>d297d21b51deeb2aea779e88a4d657fc567bdacf</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 5:
+
+The gold linker in x86-4.6 could not build full_x86-eng successfully as gold could not parse -Ttext=7C00 for external/grub and could not link rild as libdl is not included in the Makefile.
+
+I have submitted a code patch https://android-review.googlesource.com/#/c/36730/ to fix the first problem and https://android-review.googlesource.com/#/c/36721/1/rild/Android.mk to fix the second problem.</message>
+</example>
+
+<example>
+<id>8e1e146ddcf818dc51cfbf417ce1360eec9f31e6</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 2: Code-Review+2
+
+Might want Colin to +2 the blueprint change.</message>
+</example>
+
+<example>
+<id>4a0bf60f07d01716bca0d6d122978021334e5453</id>
+<feature>seems</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 3:
+
+> Note: this CL seems to make these run-tests fail:
+ > - test-art-host-run-test-debug-prebuild-optimizing-relocate-no-trace-cms-checkjni-image-nopictest-083-compiler-regressions64
+
+Fixed in PS4.
+
+ > - test-art-target-run-test-debug-prebuild-optimizing-relocate-no-trace-cms-checkjni-image-nopictest-083-compiler-regressions32
+
+Fixed by https://android-review.googlesource.com/#/c/112564.</message>
+</example>
+
+<example>
+<id>3d886983fa09c6cafde38362878d4404f1c017d3</id>
+<feature>might</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+If the resolution is more important than the ratio you might prefer +1 https://android-review.googlesource.com/101290</message>
+</example>
+
+<example>
+<id>2c14c3c75cd8fdefaa6f2ed9e9868a5260458158</id>
+<feature>very</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+JBQ: Indeed, this piece of code is very scary, and this is the first step towards fixing it.</message>
+</example>
+
+<example>
+<id>09960612e14d06b30a7ff318ccfde7a76500c7bb</id>
+<feature>actually</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+Ping? any way to retrigger Treehugger or force-submit? I'm happy to lay my good name on the table as guarantee that it doesn't actually break anything.</message>
+</example>
+
+<example>
+<id>d4fbbd80c73e1a28cc85011ec37cfb2ec9886fc9</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 3:
+
+You could tie this to
+
+https://b.corp.google.com/u/0/issues/26314417</message>
+</example>
+
+<example>
+<id>d24a4332a652d3807599c6fd90db3053897b0cfa</id>
+<feature>may</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 1:
+
+This may require changes to external/sepolicy. The current policy allows connections via unix_domain socket.</message>
+</example>
+
+<example>
+<id>94c0a4b1e572c15f8b6733da5c840588f1363f14</id>
+<feature>could</feature>
+<source>Jordan</source>
+<confusion></confusion>
+<message>Patch Set 6:
+
+Guys, could merge it if everything is ok?</message>
+</example>
+
+<example>
+<id>259f179224ae3311892e3b094270608044b3f0d4</id>
+<feature>almost</feature>
+<source>Lakoff</source>
+<confusion></confusion>
+<message>Patch Set 2:
+
+> Did you forget to git add the unit test?
+
+This is a refactor. It's unit-tested as well as it was before, and still better than the JIT or GC (almost everything in the gtests is unstarted).</message>
+</example>
+
+</set>
