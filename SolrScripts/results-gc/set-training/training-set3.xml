@@ -3,7 +3,7 @@
 <id>35677810d1f622ca3dcd67531b3cf0cdff792a47</id>
 <feature>really</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>Yes! The author is confused about everything in the code review.</confusion>
 <message>Patch Set 1:
 
 Robert, this make sense to you?  (I don't really understand from the commit message and comment, but I don't really know this code either...)</message>
@@ -13,7 +13,7 @@ Robert, this make sense to you?  (I don't really understand from the commit mess
 <id>92d9185d91c1386e65afd5f03776468ac1448400</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No! Direct question for the patch set author.</confusion>
 <message>Patch Set 1:
 
 Bug number is missing. Also, did you actually confirm this causes the problem?</message>
@@ -23,7 +23,7 @@ Bug number is missing. Also, did you actually confirm this causes the problem?</
 <id>0b02906a19a5ae2b5bb4b7d8acb8b2ef7927cd0f</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1: Code-Review+2
 
 Nice! Thanks for figuring out a great way to actually cover this.</message>
@@ -33,7 +33,7 @@ Nice! Thanks for figuring out a great way to actually cover this.</message>
 <id>4bfa6b7b59d8afada93a514fc01b403a2a6140f0</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 While you are at it, could you fix the library name to use - instead of _?</message>
@@ -43,7 +43,7 @@ While you are at it, could you fix the library name to use - instead of _?</mess
 <id>8e8a8745de34e382562600b8f5381fcf48660974</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>Yes! The author is uncertain about some Ubuntu configuration.</confusion>
 <message>Patch Set 3: Code-Review+1
 
 Worked for me on Ubuntu 14.04.  Did not work for me on Fedora 20, but that's not a supported build host OS.  Seems that Ubuntu has a libpcre.so.3 that is being picked up as a dependency for your prebuilt libselinux.so.1 and Fedora only has libpcre.so.1, not sure why/if they truly differ in ABI.</message>
@@ -53,7 +53,7 @@ Worked for me on Ubuntu 14.04.  Did not work for me on Fedora 20, but that's not
 <id>614bad4c434fafe753b666d8c4393a9c243683b0</id>
 <feature>may</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 3:
 
 Well you are adding a new device class called "android_usb" which is only used by Android, and in the future the Android team may change how this works without consulting the greater Linux kernel community.</message>
@@ -63,7 +63,7 @@ Well you are adding a new device class called "android_usb" which is only used b
 <id>1c25d9485da9dcad320e612eab96263547a63cad</id>
 <feature>pretty</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2:
 
 so far, it works pretty well;
@@ -75,7 +75,7 @@ the older version is 3x-4x slower</message>
 <id>ce80db80e95ba251fdb8df0a2d8d9f8fa8b32e25</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Restored
 
 This seems to be the right solution.</message>
@@ -85,7 +85,7 @@ This seems to be the right solution.</message>
 <id>d5900d05a7d55f35c4c7aa32b16c9f83791f41b6</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 (1 comment)
@@ -97,7 +97,7 @@ Could you confirm that this builds fine with the latest checkout of the tree?</m
 <id>7ef8b19e4a9ace57bf7a4312ea09febe5a78b164</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 > If I get the bug description right, we have code that stresses
@@ -110,7 +110,7 @@ This could only be observed when running with the interpreter without quickened 
 <id>2a98560d54857dc8ff9038305612c41876a7313b</id>
 <feature>may</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 Does this work with the @Target meta-annotation? ...who checks that package annotations may be annotated @Target(PACKAGE) ?</message>
@@ -120,7 +120,7 @@ Does this work with the @Target meta-annotation? ...who checks that package anno
 <id>7180b0ee1328f05b7b904dfe7e6f9ec4d06e8447</id>
 <feature>almost</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2:
 
 (6 comments)
@@ -132,7 +132,7 @@ Almost there!</message>
 <id>56e8a7504ca392727712c5c8370d90439bc9b76e</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 2: Code-Review-1
 
 (1 comment)
@@ -144,7 +144,7 @@ This seems incorrect.</message>
 <id>a4089fabf7928c228b6f3137a069fe7f88c2ae25</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 9:
 
 > Uploaded patch set 9: Patch Set 8 was rebased.
@@ -157,7 +157,7 @@ I double checked, .oat files are actually ELF64 in that case.</message>
 <id>102dad60364665f21dc21a3cfcf4f3448be90276</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2: Code-Review+1
 
 This fails to merge internally because change 324367 switched the code in question to use FastPrintWriter. Not sure what the advantage of that over using BufferedOutputStream is, but we could take this change in AOSP and skip the merge to internal.</message>
@@ -167,7 +167,7 @@ This fails to merge internally because change 324367 switched the code in questi
 <id>c4f152a5ea4e862bfabebe1ec8d59a99fb5c8ade</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 3: Code-Review+1
 
 (3 comments)
@@ -181,7 +181,7 @@ narayan?</message>
 <id>1fccf42cf713c9f2e6762a443a707c8d9c675a83</id>
 <feature>very</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1: Code-Review+1
 
 Very good!Like it))</message>
@@ -191,7 +191,7 @@ Very good!Like it))</message>
 <id>48260863d7abc57b25055ac96fea9a7ae4597d8f</id>
 <feature>may</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 May I have a +2?</message>
@@ -201,7 +201,7 @@ May I have a +2?</message>
 <id>011699fea1f2195fde95e2f9406376b985a93d04</id>
 <feature>a real</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 Does this pass CTS (renderscript, renderscriptgraphics, rscpp) on a real device (not emulator)?</message>
@@ -211,7 +211,7 @@ Does this pass CTS (renderscript, renderscriptgraphics, rscpp) on a real device 
 <id>1c6ac09d9d8e83943cecbc80d2f7f986d0447d95</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2:
 
 Glad you didn't merge, forgot to actually build the lib in the previous patch set.</message>
@@ -221,7 +221,7 @@ Glad you didn't merge, forgot to actually build the lib in the previous patch se
 <id>d433f231406428293851a933daa2dcf87814bb65</id>
 <feature>rather</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Abandoned
 
 we plan on fixing this by removing minadb and using a libadb rather than duplicating more of the adb code.</message>
@@ -231,7 +231,7 @@ we plan on fixing this by removing minadb and using a libadb rather than duplica
 <id>4cd2b08ac71859b820fb7fa8306da69e016b7cfd</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 1: Code-Review+1 Verified+1
 
 Tests pass apart from com.android.build.gradle.integration.application.ExtractAnnotationTest which seems broken in the release branch.</message>
@@ -241,7 +241,7 @@ Tests pass apart from com.android.build.gradle.integration.application.ExtractAn
 <id>92627123be5fa6d03b86fd543a22a40240f992b4</id>
 <feature>really</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>Yes!</confusion>
 <message>Patch Set 1:
 
 > This is a misfeature of gcc - C++ standard requires it to not
@@ -258,7 +258,7 @@ Thank you Yurii for your explanation! I was really confused with this one.</mess
 <id>361c34f46848a61dcfe6c169f87f06bf3faa9156</id>
 <feature>very</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 1: Code-Review+1
 
 Thanks very much for explanation, Mattias!</message>
@@ -268,7 +268,7 @@ Thanks very much for explanation, Mattias!</message>
 <id>24966c4886217bb32c669c61f4db50b281f7b62c</id>
 <feature>may</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>??? Suggestion?</confusion>
 <message>Patch Set 1: Code-Review+1
 
 May want to remove syslog_read from unconfineddomain too.</message>
@@ -278,7 +278,7 @@ May want to remove syslog_read from unconfineddomain too.</message>
 <id>fe76942a7798333114a02522ab957b021f5a2410</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 3:
 
 I rebased the CL. Could you give me +2 again?</message>
@@ -288,7 +288,7 @@ I rebased the CL. Could you give me +2 again?</message>
 <id>dbaba8837fd44d9755d2a065bfc3d0ad816a0bd9</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 4:
 
 David, could you PTAL? I added a comment and a test case for the issue you discovered.</message>
@@ -298,7 +298,7 @@ David, could you PTAL? I added a comment and a test case for the issue you disco
 <id>a35f09b5e35a8634bbc8b798bd93ccdabc4d578f</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 Actually, this also adds a public API, so the relevant file (current.txt) needs to be updated accordingly (this breaks the build otherwise).</message>
@@ -308,7 +308,7 @@ Actually, this also adds a public API, so the relevant file (current.txt) needs 
 <id>1839b28be789dd85a6e4e780a9e3d0988dc4389d</id>
 <feature>might</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1: Code-Review+2
 
 You might want to use topic branches in this and http://r.android.com/145828</message>
@@ -318,7 +318,7 @@ You might want to use topic branches in this and http://r.android.com/145828</me
 <id>538f65cf81acd49f14a2f2ec0f1408a1737bae40</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 6:
 
 Gapid seems to work</message>
@@ -328,7 +328,7 @@ Gapid seems to work</message>
 <id>c8ffd6ef5dd6289569584a62649e41e39bf33996</id>
 <feature>may</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Abandoned
 
 ...for now.  I may resurrect it couple of months for O.</message>
@@ -338,7 +338,7 @@ Gapid seems to work</message>
 <id>3c504a0ccd3759d962d2e8428b60527cc0f91b44</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 1:
 
 Seems to build ok with the Chromium change - PTAL.</message>
@@ -348,7 +348,7 @@ Seems to build ok with the Chromium change - PTAL.</message>
 <id>d63822f1322bfdf512266e31e83ee9561fdca86d</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>????</confusion>
 <message>Patch Set 2:
 
 seems to work -- python still builds</message>
@@ -358,7 +358,7 @@ seems to work -- python still builds</message>
 <id>994141dcd5893bf71dbfac1d5c6561a7ce9aa84e</id>
 <feature>very</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2: Code-Review+2
 
 Very nice!</message>
@@ -368,7 +368,7 @@ Very nice!</message>
 <id>d7b7d559f62c462b30e7c23133b5d03f01a21f31</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 10:
 
 > (2 comments)
@@ -380,7 +380,7 @@ Could you help to upload the modification, thank you.</message>
 <id>0a8e3f203283f8a31d6084aded6fd8dc8c2d65f0</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 3: Code-Review+2 Verified+1
 
 Sorry, I noticed a bit late that the wording of the message could be improved; done in PS3 & self-approving.</message>
@@ -390,7 +390,7 @@ Sorry, I noticed a bit late that the wording of the message could be improved; d
 <id>5d6020f8c423fa82e6250d493484d32125dba7bf</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1: Code-Review+1
 
 Opps, wrong commit. Chris's commit is fine with LTP test.
@@ -403,7 +403,7 @@ It was the more comprehensive fix that seems to need work.
 <id>5a0d8dadd6b6f76af65ad214102b7ec17b8eafff</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2:
 
 Actually, this causes a trivial conflict into Google's internal master branch.</message>
@@ -413,7 +413,7 @@ Actually, this causes a trivial conflict into Google's internal master branch.</
 <id>593976b6f91c5d7a36940e20acfe943d4842589f</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 1: Verified
 
 The code style seems correct. The change merges and builds with no problem into Google's private master branch. Untested.</message>
@@ -423,7 +423,7 @@ The code style seems correct. The change merges and builds with no problem into 
 <id>865370dd5b9bb9f30eb9b091f3536ee8fd7318ee</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 (3 comments)
@@ -435,7 +435,7 @@ I actually used the template from libchromeos, but I don't mind tweaking the mak
 <id>3dd349454e95419a85ffd47ed5fab12f877b8650</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 Right, ok. David, could you PTAL?</message>
@@ -445,7 +445,7 @@ Right, ok. David, could you PTAL?</message>
 <id>26fd32d269665d2723a838dbafa0a79a4c34b500</id>
 <feature>may</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1: Code-Review+2
 
 You may want to assign a topic for all related changes. 
@@ -458,7 +458,7 @@ You may want to assign a topic for all related changes.
 <id>86eca4a92b2d6397d369ffcecd253789cb137ae1</id>
 <feature>rather</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Abandoned
 
 if we do write our own unwinder, we'll definitely use offsetof rather than write a separate program that hard-codes offsetof values into a generated header file :-)</message>
@@ -468,7 +468,7 @@ if we do write our own unwinder, we'll definitely use offsetof rather than write
 <id>7b823fb34fcaf54d04214a9db9670e88718ed594</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2:
 
 Hi,
@@ -479,7 +479,7 @@ we have no buttons to merge changes on aosp, could you if you are happy with thi
 <id>e66aedf6ccfd2b73fba16342af8d9cce42573e04</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 7: Code-Review+1
 
 The Intel team has no capacity to test DT code. Could we merge this separately and ask someone working with ARM to add the DT code?</message>
@@ -489,7 +489,7 @@ The Intel team has no capacity to test DT code. Could we merge this separately a
 <id>e7523fff54e72b03f796dddabce4d4203796eb69</id>
 <feature>actually</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>Yes! The author is uncertain about how it works.</confusion>
 <message>Patch Set 1: Code-Review+1
 
 Actually, how does this work? Where's dex2oat coming from then?</message>
@@ -499,7 +499,7 @@ Actually, how does this work? Where's dex2oat coming from then?</message>
 <id>aadeeee034d2781101e5604dd2b2ab0e40561786</id>
 <feature>basically</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2:
 
 (1 comment)
@@ -511,7 +511,7 @@ Ian: Calin is reworking the system/core code, so this is currently back to WIP s
 <id>25b14ee2ab76044d5f17366113f03ea495352a28</id>
 <feature>could</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 2:
 
 could you please review this change?</message>
@@ -521,7 +521,7 @@ could you please review this change?</message>
 <id>b11db664518d883c95fc03785ee8a90adceca04a</id>
 <feature>seems</feature>
 <source>Jordan</source>
-<confusion></confusion>
+<confusion>???</confusion>
 <message>Patch Set 1: Verified+1
 
 I was able to reproduce the Jenkins hang only with JDK7, and skipping these tests seems to work.</message>
@@ -531,7 +531,7 @@ I was able to reproduce the Jenkins hang only with JDK7, and skipping these test
 <id>b3b8fe732483b5f801b32c321ed5fdb53ea1961d</id>
 <feature>very</feature>
 <source>Lakoff</source>
-<confusion></confusion>
+<confusion>No!</confusion>
 <message>Patch Set 1:
 
 very good!</message>
