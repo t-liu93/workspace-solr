@@ -1,0 +1,160 @@
+id#####comment#####confusion#####reasoning
+ddbf143d8502f29ebb13df964ee19ff16608ee63#####Patch Set 1:
+
+Reviewers (and experts in LatinIME and l18n): how practical is it going to be to merge this into our internal tree in a way that won't get stomped over by any l18n scripts?##### ##### 
+62ab0fa6913c0b7de96b7e140bf1b545cca6bbe0#####Patch Set 2: Verified
+
+Thanks, that took care of it.
+
+FWIW, the build failure was on the linux-host side of things, which means that it's only visible on linux, and might not even exist on all configurations.##### ##### 
+3684a94dbd1617e5a608e030a40b80ca709a865f#####Patch Set 2:
+
+Maybe it's a delay in the snapshotting of libcore?##### ##### 
+0699ef73365a9701f9c6589095f30488d78d7c0e#####Patch Set 5:
+
+The artwork is not suitable for the current platform style (and is also missing several densities) but maybe it's best re-drawn by our artists.
+
+Do you have reference material for the required presentation of the HAC feature?##### ##### 
+301c58720a290007740eb9b293e172460089707b#####Patch Set 1: Do not submit
+
+Actually I'm going to change this to a better mechanism provided by gradle (thanks Adam!)##### ##### 
+a468932e3a21c4f99a6fc52a04cde1ea0b517b98#####Patch Set 2:
+
+Johan, I've forwarded this to the team that actually owns this code.  Thanks!##### ##### 
+cf1e0e412f60ccbb4c752e2358665c35204f3cdd#####Patch Set 6:
+
+Actually, that's the exception thrown when i'm closing the stream. I'm still trying to figure out where the error is. (All non SPDY connections have stopped working)##### ##### 
+4b10753a192481cebff3a15519b39e0d9965b031#####Patch Set 1:
+
+Could anyone submit this?##### ##### 
+4c8fcf235f42dff327267c993b773eae4961a001#####Patch Set 2: Code-Review-1
+
+Causes FC when setting an alarm http://pastebin.com/kSL99VN6
+
+seems to be missing android.permission.INTERACT_ACROSS_USERS according to the log##### ##### 
+9de096dc8a0020c78dae0d93211ed68ad018677d#####Patch Set 1:
+
+SureÃ¢â‚¬Â¦ Do you have any existing test I in mind, that I could use as example for doing that?##### ##### 
+7e0d99b696165f6b51dfc2ac1b7019b48bcb30c5#####Patch Set 1: No score; No score
+
+Hi,
+
+Thanks for your submission. Could you explain the purpose of this patch and the differences with the current data?##### ##### 
+5c455b302e6e3977866d502c786144702526966b#####Patch Set 4:
+
+Rebased. We have been using this for a very long time.##### ##### 
+a35f09b5e35a8634bbc8b798bd93ccdabc4d578f#####Patch Set 1:
+
+Actually, this also adds a public API, so the relevant file (current.txt) needs to be updated accordingly (this breaks the build otherwise).##### ##### 
+8c1ae43e13d9f2f41b5b7951b82a3679d8ee1294#####Patch Set 1: Verified
+
+* Merges and builds in AOSP
+* Merges and builds in Google's internal master
+
+A reviewer may submit.##### ##### 
+1a68272d02bee40d86c7b4a922c16e31977d5dd4#####Patch Set 1:
+
+If I understand correctly, this change might not be relevant any more.##### ##### 
+4738c7419e2b61d4522ceea6178a36e9cb5a7e21#####Patch Set 1:
+
+Yes. Here are the error messages:
+../../gas/config/tc-arm.c: In function Ã¢â‚¬Ëœparse_operandsÃ¢â‚¬â„¢:
+../../gas/config/tc-arm.c:1924:27: error: Ã¢â‚¬Ëœfirsttype$definedÃ¢â‚¬â„¢ may be used uninitialized in this function
+../../gas/config/tc-arm.c:1924:27: error: Ã¢â‚¬Ëœfirsttype$indexÃ¢â‚¬â„¢ may be used uninitialized in this function
+
+I am using Ubuntu 11.04. Gcc version is 4.5.2. The configuration is ../configure --target=arm-linux-androideabi##### ##### 
+f90bcade3a6cf639f653db4718353ad702e8efd8#####Patch Set 2:
+
+But we at Linaro do active development of 64-bit code :) and basing on AOSP. it is very essential for us to have changes in AOSP##### ##### 
+0fccfb8657b85b9c7153f14ee4dc4f96810333b7#####Patch Set 3:
+
+(3 comments)
+
+Sorry for all the comments. Seems the best way to handle all the bookkeeping is through Gerrit.##### ##### 
+2e9c5510a8944db98a7a36fb78bf1a094753adb4#####Patch Set 9: Verified+1 Code-Review+2
+
+ps9 uses l rather than q for the errno manipulation.##### ##### 
+5e4ba0fc10c01a3ea4d52496bf4c9f1c84daa202#####Patch Set 2: Verified-1 Code-Review-2
+
+don't we already have a real fmal? math_test.cpp contains a reference to fmal and compiles and links on all three platforms.##### ##### 
+206e6d4c5f1d39adf1a7a5a40d9140ee9371be87#####No score.
+
+The coding guidelines say
+
+http://source.android.com/submit-patches/code-style-guide#indentation
+
+Thus, line wraps are indented by 8 spaces.
+
+Jon, sorry again for the confusion, you might want to add Dave Bort to
+the discussion...##### ##### 
+9bb3eb1ebfd64f1554d99bd28a0e9c5af7970e9d#####The change in AudioManager is needed to prevent the phone app from crashing repeatedly every few seconds (which makes the system essentially unusable).##### ##### 
+99150a28c5b87c94e22de9e7eb0482ae5ece950c#####Patch Set 3:
+
+Still seems fine##### ##### 
+c4c72e72a8513fe5157ec2b1381d7469429c1cd8#####Patch Set 2:
+
+The process is better explained on the source.android.com
+
+Going forward, it might make sense to discuss your contribution plans on the android-contrib mailing list.##### ##### 
+10eb13221866e8e6c0b96a23d5aab3b78c8ad158#####Patch Set 1: No score
+
+Hi,
+
+Could you explain this change please? Also, do not use tabs but spaces for indentation.##### ##### 
+b53e333ea4c0977ed5e54ddb4f19da254fbb635d#####Patch Set 1: No score; No score
+
+Yup, that's the right branch. However, we don't really need to record branching details between eclair and master in the long-term, so that'd be better in a review comment than in the commit description itself.##### ##### 
+acf1cd1ec5b9e51da1400400d722c55204daa317#####Patch Set 2: Verified+1 Code-Review+2
+
+Rebased, and tested that a 4.2.2 x86 system image could boot with the new kernel and work properly (with a 200 MB SDCard image).##### ##### 
+912d3bdd190852a0e8e7c62efc84b689ed61add5#####Patch Set 7:
+
+even though, we could start dropping booleans##### ##### 
+1ffeaefe628161009cab6f014e406133168f52f1#####Patch Set 1: Code-Review+2
+
+Seems safe enough...##### ##### 
+5853ce90c5fa085f682691682a65171c315e70ea#####Patch Set 1: Code-Review-1
+
+As we've already spoken - please submit all your changes to wpa_supplicant upstream. Merging your changes from here makes our life very complicated with upstream merge.##### ##### 
+2f06f2bbab8af857283d8d630abcd46577f70657#####Patch Set 1: Fails; No score
+
+unfortunately this change fails to merge on top of the latest head and can't be submitted as-is. If it's still relevant, please resolve the conflicts and upload a replacement. Sorry for the very long delay.##### ##### 
+839d0f2cf22513e131cf3a6d406bde963b8a1893#####Patch Set 2: Fails; No score
+
+Unfortunately this fails to merge again, as opencore has been changing since the original submission.
+
+Because there are a few high-level issues to resolve first (i.e. sourcing a FLAC library), it might not immediately make sense to resolve these conflicts.##### ##### 
+a4ceab0db604608f0182b730d38eb4a309b643c6#####Patch Set 1:
+
+Maybe the font guy do need also these sfd files too
+
+http://dl.dropbox.com/u/17326992/dev/droid_sft_with_georgian.zip##### ##### 
+07edc4e5e7c80b5ee3758953f238af3a99475b8c#####Patch Set 1:
+
+Seems that way... but that's not a solution. We can't include the code that causes a crash on people's machines when they are using code from a standard distro.##### ##### 
+70a2942b696b484ce3f368c266454beb06317521#####Patch Set 1:
+
+Xav, could you +2 this change please?
+Thanks in advance.##### ##### 
+f40d5987814cd661255ef6ecf57d61d8cc4dc244#####Patch Set 2:
+
+JBQ,
+Could you please verify these build in your tree?
+
+Thanks.##### ##### 
+32bb4881aca264ddb1b250c585dd6cc851bd1745#####Patch Set 3:
+
+given the recent activity in toybox, maybe this toolbox has become obsolete?##### ##### 
+d367733aaedd20b835bd6a6694103a1d97ff373c#####Patch Set 1: Code-Review+1
+
+Guys,
+
+Could you please help to review this change? Thanks.
+
+Robin##### ##### 
+41867f8f8e0ce004d236014ebff13f463e324301#####Patch Set 1:
+
+Thanks. I'm actually using this patch locally.##### ##### 
+484e741b5c8c6d7076b7f318377164aa63fa1f1b#####Patch Set 2:
+
+Don't know why it built fail, could anyone help to check?##### ##### 
