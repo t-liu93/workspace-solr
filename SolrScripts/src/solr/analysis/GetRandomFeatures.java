@@ -14,8 +14,8 @@ import java.util.Random;
 
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.SolrQuery.SortClause;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrClient;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
@@ -160,9 +160,11 @@ public class GetRandomFeatures {
 		hedges = removeOverlappingFromOtherList(hedges, I_statements);
 		hedges = removeOverlappingFromOtherList(hedges, nonverbals);
 		hedges = removeOverlappingFromOtherList(hedges, meta);
-		
+
+		hedges = removeTrainingSet(hedges, commentType);
+
 		System.out.println("Number of hedges comments: " + hedges.size());
-		
+
 		List<Tuple> randomList = new ArrayList<Tuple>();
 
 		Map<String, String> sourcesJordanAndLakoff = Utils.readSourcesJordanAndLakoff();
@@ -231,14 +233,17 @@ public class GetRandomFeatures {
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
-			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._XML;
+			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
+					+ Const._XML;
 
 		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
-			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET + Const._XML;
+			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
+					+ Const._XML;
 		}
 
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePathRandom), Const._UTF_8))) {
+		try (Writer writer = new BufferedWriter(
+				new OutputStreamWriter(new FileOutputStream(filePathRandom), Const._UTF_8))) {
 
 			writer.write(sbResults.toString());
 		} catch (Exception e) {
@@ -246,6 +251,50 @@ public class GetRandomFeatures {
 		}
 
 		System.out.println("Done with getHedgesExamplesWithoutOverlapping...");
+	}
+
+	public static List<Tuple> removeTrainingSet(List<Tuple> tuples, String commentType) {
+
+		List<Tuple> newList = new ArrayList<Tuple>();
+		
+		String filePath = "";
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
+					+ Const.SLASH + Const.TRAINING_SET_IDS + Const._TXT;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
+					+ Const.SLASH + Const.TRAINING_SET_IDS + Const._TXT;
+		}
+
+		try {
+			
+			List<String> trainingSetIDs = Files.readAllLines(Paths.get(filePath));
+			
+			for (Tuple tuple : tuples) {
+				
+				boolean isFromTrainingSet = false;
+
+				for (String id : trainingSetIDs) {
+					
+					if (tuple.getCommentID().equals(id)) {
+						isFromTrainingSet = true;
+						break;
+					}
+				}
+				
+				if (!isFromTrainingSet) {
+					newList.add(tuple);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return newList;
 	}
 
 	public static List<Tuple> removeOverlappingFromSameList(List<Tuple> tuples) {

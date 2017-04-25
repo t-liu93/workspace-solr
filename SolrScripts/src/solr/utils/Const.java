@@ -154,6 +154,8 @@ public class Const {
 
 	public static String DIR_TRAINING = "set-training/";
 	
+	public static String TRAINING_SET_IDS = "training-set-ID";
+	
 	public static String _RESULTS = "-results";
 	
 	public static String SOURCES = "sources";
