@@ -119,6 +119,8 @@ public class Const {
 	public static String AT = "@";
 
 	public static String DOUBLE_QUOTES = "\"";
+	
+	public static String EMPTY_STRING = "";
 
 	public static String BRACKET_LEFT = "[";
 
@@ -151,8 +153,12 @@ public class Const {
 	public static String _GC = "-gc";
 	
 	public static String TRAINING_SET = "training-set";
+	
+	public static String VERIFYING_SET = "verifying-set";
 
 	public static String DIR_TRAINING = "set-training/";
+	
+	public static String DIR_400 = "set-400/";
 	
 	public static String TRAINING_SET_IDS = "training-set-ID";
 	
@@ -165,6 +171,12 @@ public class Const {
 	public static String JORDAN = "Lakoff";
 	
 	public static String _STRATIFIED = "stratified";
+	
+	public static String CONFUSION = "confusion";
+	
+	public static String REASONING = "reasoning";
+	
+	public static String COMMENT = "comment";
 
 	public static String _ID = "-ID";
 	
@@ -177,6 +189,12 @@ public class Const {
 	public static String DateFormat = "yyyy/MM/dd HH:mm:ss";
 
 	public static int _0 = 0;
+	
+	public static int _1 = 1;
+	
+	public static int _2 = 2;
+	
+	public static int _3 = 3;
 
 	public static int _100 = 100;
 	

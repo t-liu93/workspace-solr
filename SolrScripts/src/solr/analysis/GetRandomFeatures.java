@@ -12,6 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrQuery.SortClause;
@@ -39,10 +44,9 @@ public class GetRandomFeatures {
 		return randomInt;
 	}
 
-	@SuppressWarnings("unchecked")
 	public static void writeFileRandomFeatures(String commentType, String framework, int numberExamples) {
 
-		String filePath = "";
+		String filePath = Const.EMPTY_STRING;
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
@@ -75,52 +79,9 @@ public class GetRandomFeatures {
 			}
 		}
 
-		StringBuffer sbResults = new StringBuffer();
+		StringBuffer sbResults = buildXMLStringBuffer(randomList, sourcesJordanAndLakoff);
 
-		sbResults.append("<set>" + Const.NEW_LINE);
-
-		try {
-
-			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
-
-			SolrQuery query = new SolrQuery();
-
-			String queryString = "";
-
-			for (Tuple tuple : randomList) {
-
-				queryString = Const.ID + Const.TWO_DOTS + tuple.getCommentID();
-
-				query.setQuery(queryString);
-
-				query.setFields(Const.MESSAGE);
-
-				QueryResponse response;
-
-				response = solr.query(query);
-
-				SolrDocumentList results = response.getResults();
-
-				SolrDocument codeReview = results.get(Const._0);
-
-				String message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
-
-				sbResults.append("<example>" + Const.NEW_LINE);
-				sbResults.append("<id>" + tuple.getCommentID() + "</id>" + Const.NEW_LINE);
-				sbResults.append("<feature>" + tuple.getFeature() + "</feature>" + Const.NEW_LINE);
-				sbResults.append(
-						"<source>" + sourcesJordanAndLakoff.get(tuple.getFeature()) + "</source>" + Const.NEW_LINE);
-				sbResults.append("<confusion></confusion>" + Const.NEW_LINE);
-				sbResults.append("<message>" + message + "</message>" + Const.NEW_LINE);
-				sbResults.append("</example>" + Const.NEW_LINE + Const.NEW_LINE);
-			}
-		} catch (SolrServerException | IOException e) {
-			e.printStackTrace();
-		}
-
-		sbResults.append("</set>");
-
-		String filePathRandom = "";
+		String filePathRandom = Const.EMPTY_STRING;
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
@@ -144,8 +105,8 @@ public class GetRandomFeatures {
 		System.out.println("Done with writeFileRandomFeatures...");
 	}
 
-	@SuppressWarnings("unchecked")
-	public static void getHedgesExamplesWithoutOverlapping(String commentType, int numberExamples) {
+	public static void getHedgesExamplesWithoutOverlapping(String commentType, int numberExamples,
+			String outputFormat) {
 
 		List<Tuple> hedges = getListTuples(Const.HEDGES);
 		List<Tuple> hypo = getListTuples(Const.HYPOTHETICALS);
@@ -187,59 +148,32 @@ public class GetRandomFeatures {
 
 		StringBuffer sbResults = new StringBuffer();
 
-		sbResults.append("<set>" + Const.NEW_LINE);
+		String fileFormat = Const.EMPTY_STRING;
 
-		try {
+		if (outputFormat.equalsIgnoreCase(Const._XML)) {
 
-			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
+			sbResults = buildXMLStringBuffer(randomList, sourcesJordanAndLakoff);
 
-			SolrQuery query = new SolrQuery();
+			fileFormat = Const._XML;
 
-			String queryString = "";
+		} else if (outputFormat.equalsIgnoreCase(Const._TXT)) {
 
-			for (Tuple tuple : randomList) {
+			sbResults = buildTXTtringBuffer(randomList);
 
-				queryString = Const.ID + Const.TWO_DOTS + tuple.getCommentID();
-
-				query.setQuery(queryString);
-
-				query.setFields(Const.MESSAGE);
-
-				QueryResponse response;
-
-				response = solr.query(query);
-
-				SolrDocumentList results = response.getResults();
-
-				SolrDocument codeReview = results.get(Const._0);
-
-				String message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
-
-				sbResults.append("<example>" + Const.NEW_LINE);
-				sbResults.append("<id>" + tuple.getCommentID() + "</id>" + Const.NEW_LINE);
-				sbResults.append("<feature>" + tuple.getFeature() + "</feature>" + Const.NEW_LINE);
-				sbResults.append("<source>" + sourcesJordanAndLakoff.get(tuple.getFeature()) + "</source>" + Const.NEW_LINE);
-				sbResults.append("<confusion></confusion>" + Const.NEW_LINE);
-				sbResults.append("<message>" + message + "</message>" + Const.NEW_LINE);
-				sbResults.append("</example>" + Const.NEW_LINE + Const.NEW_LINE);
-			}
-		} catch (SolrServerException | IOException e) {
-			e.printStackTrace();
+			fileFormat = Const._TXT;
 		}
 
-		sbResults.append("</set>");
-
-		String filePathRandom = "";
+		String filePathRandom = Const.EMPTY_STRING;
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
-			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
-					+ Const._XML;
+			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_400 + Const.VERIFYING_SET
+					+ fileFormat;
 
 		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
-			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
-					+ Const._XML;
+			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_400 + Const.VERIFYING_SET
+					+ fileFormat;
 		}
 
 		try (Writer writer = new BufferedWriter(
@@ -253,39 +187,201 @@ public class GetRandomFeatures {
 		System.out.println("Done with getHedgesExamplesWithoutOverlapping...");
 	}
 
+	public static StringBuffer buildTXTtringBuffer(List<Tuple> randomList) {
+
+		StringBuffer sbResults = new StringBuffer();
+
+		for (Tuple tuple : randomList) {
+
+			sbResults.append(tuple.getCommentID() + Const.NEW_LINE);
+		}
+
+		return sbResults;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static void buildXLSExampleFile(String filePath, String outputFile) {
+
+		try {
+
+			FileOutputStream out = new FileOutputStream(outputFile);
+
+			Workbook wb = new HSSFWorkbook();
+
+			Sheet s = wb.createSheet();
+
+			wb.setSheetName(Const._0, Const.HEDGES);
+
+			Row r = null;
+
+			Cell c = null;
+			
+			int lineCounter = 1;
+
+			r = s.createRow(Const._0);
+
+			c = r.createCell(Const._0);
+			c.setCellValue(Const.ID);
+
+			c = r.createCell(Const._1);
+			c.setCellValue(Const.CONFUSION);
+
+			c = r.createCell(Const._2);
+			c.setCellValue(Const.REASONING);
+
+			c = r.createCell(Const._3);
+			c.setCellValue(Const.COMMENT);
+
+			List<String> listIDs = Files.readAllLines(Paths.get(filePath));
+
+			String queryString = Const.EMPTY_STRING;
+
+			List<String> listSolrQueries = new ArrayList<String>();
+
+			for (int i = 0; i < listIDs.size(); i++) {
+
+				queryString = queryString + "id:" + listIDs.get(i) + Const.SPACE;
+
+				if ((i + 1) % Const._100 == Const._0) {
+
+					listSolrQueries.add(new String(queryString));
+
+					queryString = Const.EMPTY_STRING;
+				}
+			}
+
+			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
+
+			SolrQuery query = new SolrQuery();
+
+			for (String solrQuery : listSolrQueries) {
+				
+				query.setRows(Const._100);
+				
+				query.setQuery(solrQuery);
+
+				query.setFields(Const.ID, Const.MESSAGE);
+
+				QueryResponse response = solr.query(query);
+
+				SolrDocumentList results = response.getResults();
+				
+				for (int i = 0; i < results.size(); i++) {
+
+					SolrDocument codeReview = results.get(i);
+
+					String id = (String) codeReview.getFieldValue(Const.ID);
+
+					String message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(Const._0);
+
+					r = s.createRow(lineCounter);
+
+					c = r.createCell(Const._0);
+					c.setCellValue(id);
+
+					c = r.createCell(Const._3);
+					c.setCellValue(message);
+					
+					lineCounter = lineCounter + 1;
+				}
+			}
+
+			wb.write(out);
+
+			out.close();
+
+			wb.close();
+
+		} catch (SolrServerException | IOException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println("Done with buildXLSExampleFile...");
+	}
+
+	@SuppressWarnings("unchecked")
+	public static StringBuffer buildXMLStringBuffer(List<Tuple> randomList,
+			Map<String, String> sourcesJordanAndLakoff) {
+
+		StringBuffer sbResults = new StringBuffer();
+
+		sbResults.append("<set>" + Const.NEW_LINE);
+
+		try {
+
+			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
+
+			SolrQuery query = new SolrQuery();
+
+			String queryString = Const.EMPTY_STRING;
+
+			for (Tuple tuple : randomList) {
+
+				queryString = Const.ID + Const.TWO_DOTS + tuple.getCommentID();
+
+				query.setQuery(queryString);
+
+				query.setFields(Const.MESSAGE);
+
+				QueryResponse response = solr.query(query);
+
+				SolrDocumentList results = response.getResults();
+
+				SolrDocument codeReview = results.get(Const._0);
+
+				String message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
+
+				sbResults.append("<example>" + Const.NEW_LINE);
+				sbResults.append("<id>" + tuple.getCommentID() + "</id>" + Const.NEW_LINE);
+				sbResults.append("<feature>" + tuple.getFeature() + "</feature>" + Const.NEW_LINE);
+				sbResults.append(
+						"<source>" + sourcesJordanAndLakoff.get(tuple.getFeature()) + "</source>" + Const.NEW_LINE);
+				sbResults.append("<confusion></confusion>" + Const.NEW_LINE);
+				sbResults.append("<message>" + message + "</message>" + Const.NEW_LINE);
+				sbResults.append("</example>" + Const.NEW_LINE + Const.NEW_LINE);
+			}
+		} catch (SolrServerException | IOException e) {
+			e.printStackTrace();
+		}
+
+		sbResults.append("</set>");
+
+		return sbResults;
+	}
+
 	public static List<Tuple> removeTrainingSet(List<Tuple> tuples, String commentType) {
 
 		List<Tuple> newList = new ArrayList<Tuple>();
-		
-		String filePath = "";
+
+		String filePath = Const.EMPTY_STRING;
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
-			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
-					+ Const.SLASH + Const.TRAINING_SET_IDS + Const._TXT;
+			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET_IDS
+					+ Const._TXT;
 
 		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
-			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
-					+ Const.SLASH + Const.TRAINING_SET_IDS + Const._TXT;
+			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET_IDS
+					+ Const._TXT;
 		}
 
 		try {
-			
+
 			List<String> trainingSetIDs = Files.readAllLines(Paths.get(filePath));
-			
+
 			for (Tuple tuple : tuples) {
-				
+
 				boolean isFromTrainingSet = false;
 
 				for (String id : trainingSetIDs) {
-					
+
 					if (tuple.getCommentID().equals(id)) {
 						isFromTrainingSet = true;
 						break;
 					}
 				}
-				
+
 				if (!isFromTrainingSet) {
 					newList.add(tuple);
 				}
@@ -417,15 +513,20 @@ public class GetRandomFeatures {
 
 	public static void main(String[] args) {
 
-		String commentType = Const.GENERAL;
+		// String commentType = Const.GENERAL;
 
 		// String framework = Const.HEDGES;
 
-		int numberExamples = 25;
+		// int numberExamples = 400;
+
+		// String outputFormat = Const._TXT;
 
 		// writeFileRandomFeatures(commentType, framework, numberExamples);
 
-		getHedgesExamplesWithoutOverlapping(commentType, numberExamples);
+		// getHedgesExamplesWithoutOverlapping(commentType, numberExamples,
+		// outputFormat);
+
+		buildXLSExampleFile("./results-gc/set-400/verifying-set.txt", "./results-gc/set-400/verifying-set.xls");
 
 	}
 }
