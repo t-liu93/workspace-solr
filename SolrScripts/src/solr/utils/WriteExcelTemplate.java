@@ -21,7 +21,7 @@ public class WriteExcelTemplate {
 
 			Sheet s = wb.createSheet();
 
-			wb.setSheetName(0, "HSSF Test");
+			wb.setSheetName(0, "Test");
 
 			Row r = null;
 
