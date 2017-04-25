@@ -236,7 +236,7 @@ public class SolrSearchQuestion {
 		// 30000	- 50000		=> OK 	=> solrSearchQuestionIC-[30000-50000].2017-04-21-021848.log
 		// 50000	- 70000		=> OK 	=> solrSearchQuestionIC-[50000-70000].2017-04-21-040931.log
 		// 70000	- 100000	=> OK 	=> solrSearchQuestionIC-[70000-100000].2017-04-21-055510.log
-		// 100000	- 200000	=>  	=> 
+		// 100000	- 200000	=> OK 	=> solrSearchQuestionIC-[100000-200000].2017-04-24-094616.log
 
 		
 		solrSearchQuestion(commentType, start, rows);
