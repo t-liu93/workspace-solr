@@ -216,7 +216,7 @@ public class SolrSearchQuestion {
 		int rows = Integer.valueOf(args[2]);
 
 		// Work Done - GENERAL COMMENTS @linuxapps02:
-		// Rows => 50000
+		// Rows => 30000
 		//
 		// 0 		- 10000		=> OK	=> PID 40564	=> solrSearchQuestionGC-[0-10000].2017-04-20-035915.log
 		// 10000	- 20000		=> OK	=> PID 43226	=> solrSearchQuestionGC-[10000-20000].2017-04-21-070201.log
@@ -225,11 +225,11 @@ public class SolrSearchQuestion {
 		// 50000	- 70000		=> OK	=> PID 44096 	=> solrSearchQuestionGC-[50000-70000].2017-04-21-110828.log
 		// 70000	- 100000	=> OK	=> PID 47243 	=> solrSearchQuestionGC-[70000-100000].2017-04-22-091938.log
 		// 100000	- 150000	=> OK	=> PID 1426 	=> solrSearchQuestionGC-[100000-150000].2017-04-23-054314.log
-		// 150000	- 20000	=> 	=> PID 5272 => 
+		// 150000	- 180000	=> 	=> PID 12307  => 
 
 		
 		// Work Done - INLINE COMMENTS @TUe:
-		// Rows => 100000
+		// Rows => 32471
 		// 
 		// 0 		- 10000		=> OK	=> solrSearchQuestionIC-[0-10000].2017-04-21-114346.log 
 		// 10000	- 30000		=> OK 	=> solrSearchQuestionIC-[10000-30000].2017-04-21-125549.log
@@ -237,6 +237,7 @@ public class SolrSearchQuestion {
 		// 50000	- 70000		=> OK 	=> solrSearchQuestionIC-[50000-70000].2017-04-21-040931.log
 		// 70000	- 100000	=> OK 	=> solrSearchQuestionIC-[70000-100000].2017-04-21-055510.log
 		// 100000	- 200000	=> OK 	=> solrSearchQuestionIC-[100000-200000].2017-04-24-094616.log
+		// 200000	- 232471	=>  	=> 
 
 		
 		solrSearchQuestion(commentType, start, rows);
