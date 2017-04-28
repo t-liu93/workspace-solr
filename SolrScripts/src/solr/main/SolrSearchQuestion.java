@@ -233,6 +233,7 @@ public class SolrSearchQuestion {
 		// 220000	- 228000	=> OK 	=> @TUe  		=> solrSearchQuestionGC-[220000-228000].2017-04-26-010449.log
 		// 228000	- 230000	=> OK 	=> @TUe  		=> solrSearchQuestionGC-[228000-230000].2017-04-26-021455.log
 		// 230000	- 280000	=> OK 	=> @TUe  		=> solrSearchQuestionGC-[230000-280000].2017-04-26-054427.log
+		// 280000	- 330000	=> OK 	=> @TUe  		=> solrSearchQuestionGC-[280000-330000].2017-04-27-054146.log
 
 		
 		// Work Done - INLINE COMMENTS @TUe:
