@@ -238,7 +238,10 @@ public class SolrSearchQuestion {
 		// 380000	- 400000	=> OK 	=> PID 27954	=> solrSearchQuestionGC-[380000-400000].2017-04-28-075700.log
 		// 400000	- 430000 	=> OK 	=> PID 36699 	=> solrSearchQuestionGC-[400000-430000].2017-04-30-105537.log
 		// 430000	- 450000 	=> OK 	=> @TUe		 	=> solrSearchQuestionGC-[430000-450000].2017-04-30-035711.log
-		// 450000	- 420000 	=> OK 	=> @TUe		 	=> solrSearchQuestionGC-[450000-470000].2017-04-30-083649.log
+		// 450000	- 470000 	=> OK 	=> @TUe		 	=> solrSearchQuestionGC-[450000-470000].2017-04-30-083649.log
+		// 470000	- 520000 	=>  	=> PID 42053 	=> 
+		// 520000	- 550000 	=>  	=> @TUe			=> solrSearchQuestionGC-[520000-550000].2017-05-01-103643.log
+		
 
 		
 		// Work Done - INLINE COMMENTS @TUe:
