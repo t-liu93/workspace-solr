@@ -245,6 +245,7 @@ public class SolrSearchQuestion {
 		// 580000	- 630000 	=> 	=> PID 45756	=> 
 		// 630000	- 640000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[630000-640000].2017-05-02-124710.log
 		// 640000	- 650000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[640000-650000].2017-05-02-011916.log
+		// 650000	- 660000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[650000-660000].2017-05-02-021227.log
 		
 		
 
