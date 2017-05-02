@@ -77,19 +77,19 @@ public class CompileQuestionResults {
 
 				List<String> lines = Files.readAllLines(Paths.get(file));
 
-				String[] sbarq = lines.get(Const._1).split(";");
+				String[] sbarq = lines.get(Const._1).split(Const.SEMICOLON);
 				int comSQARB = Integer.valueOf(sbarq[1]);
 				int feaSQARB = Integer.valueOf(sbarq[2]);
 				commentsSBARQ = commentsSBARQ + comSQARB;
 				featuresSBARQ = featuresSBARQ + feaSQARB;
 
-				String[] sq = lines.get(Const._2).split(";");
+				String[] sq = lines.get(Const._2).split(Const.SEMICOLON);
 				int comSQ = Integer.valueOf(sq[1]);
 				int feaSQ = Integer.valueOf(sq[2]);
 				commentsSQ = commentsSQ + comSQ;
 				featuresSQ = featuresSQ + feaSQ;
 
-				String[] total = lines.get(Const._3).split(";");
+				String[] total = lines.get(Const._3).split(Const.SEMICOLON);
 				int comTotal = Integer.valueOf(total[1]);
 				int feaTotal = Integer.valueOf(total[2]);
 				commentsTotal = commentsTotal + comTotal;
