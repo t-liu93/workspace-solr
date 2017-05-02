@@ -3,14 +3,11 @@ code reviews dated until 25/11/2016!!
 
 ==================
 
-total of code reviews: 141,784 (with duplicated)
-
-duplicated code reviews: 1,778
-
 code reviews downloaded: 140,006
 
 code reviews with inline comments: 28,091 (20%)
 
+==================
 
 general comments: 899,105 (80%)
 
@@ -22,12 +19,21 @@ total of comments: 1,131,576
 
 General Comments results:
 
+general comments: 899,105
+
+automated comments: 238,260 (26%)
+
+non-automated comments: 660,845 (74%)
+
+
 total (features without questions): 90,520 (10,06%)
 
 
 ==================
 
 Inline Comments results:
+
+inline comments: 232,471
 
 total (features without questions): 104,600 (44.99%)
 
