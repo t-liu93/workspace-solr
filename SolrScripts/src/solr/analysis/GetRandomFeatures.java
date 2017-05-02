@@ -57,7 +57,7 @@ public class GetRandomFeatures {
 			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH;
 		}
 
-		List<Tuple> tuples = Utils.readTulpe(filePath + framework + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> tuples = Utils.readTulpes(filePath + framework + Const._TUPLES_ID + Const._TXT);
 
 		List<Tuple> randomList = new ArrayList<Tuple>();
 

@@ -124,13 +124,13 @@ public class Utils {
 		return isBot;
 	}
 
-	public static List<Tuple> readTulpe(String string) {
+	public static List<Tuple> readTulpes(String filePath) {
 
 		List<Tuple> tuples = new ArrayList<Tuple>();
 
 		try {
 
-			List<String> list = Files.readAllLines(Paths.get(string));
+			List<String> list = Files.readAllLines(Paths.get(filePath));
 
 			for (String line : list) {
 

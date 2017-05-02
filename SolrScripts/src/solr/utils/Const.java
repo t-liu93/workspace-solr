@@ -133,6 +133,8 @@ public class Const {
 	public static String DIR_FRAMEWORK = "./framework/";
 
 	public static String DIR_RESULTS = "./results";
+	
+	public static String DIR_SEARCHQUESTION = "searchQuestion/";
 
 	public static String _TXT = ".txt";
 	
@@ -151,6 +153,10 @@ public class Const {
 	public static String _IC = "-ic";
 
 	public static String _GC = "-gc";
+	
+	public static String _ID_TXT = "-ID.txt";
+	
+	public static String _TUPLESID_TXT = "-TuplesID.txt";
 	
 	public static String TRAINING_SET = "training-set";
 	

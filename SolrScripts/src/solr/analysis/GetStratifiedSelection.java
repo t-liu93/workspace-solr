@@ -31,17 +31,17 @@ public class GetStratifiedSelection {
 			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH;
 		}
 
-		List<Tuple> hedges = Utils.readTulpe(filePath + Const.HEDGES + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> hedges = Utils.readTulpes(filePath + Const.HEDGES + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> hypo = Utils.readTulpe(filePath + Const.HYPOTHETICALS + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> hypo = Utils.readTulpes(filePath + Const.HYPOTHETICALS + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> I_statements = Utils.readTulpe(filePath + Const.I_STATEMENTS + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> I_statements = Utils.readTulpes(filePath + Const.I_STATEMENTS + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> probables = Utils.readTulpe(filePath + Const.PROBABLES + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> probables = Utils.readTulpes(filePath + Const.PROBABLES + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> nonverbals = Utils.readTulpe(filePath + Const.NONVERBALS + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> nonverbals = Utils.readTulpes(filePath + Const.NONVERBALS + Const._TUPLES_ID + Const._TXT);
 
-		List<Tuple> meta = Utils.readTulpe(filePath + Const.META + Const._TUPLES_ID + Const._TXT);
+		List<Tuple> meta = Utils.readTulpes(filePath + Const.META + Const._TUPLES_ID + Const._TXT);
 
 		List<Tuple> hedgesStratified = checkStratifiedIDFromAll(hedges, hypo, I_statements, probables, nonverbals,
 				meta);

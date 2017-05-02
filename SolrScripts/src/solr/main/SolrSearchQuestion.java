@@ -51,7 +51,7 @@ public class SolrSearchQuestion {
 		log.doFineLogging(Utils.getTimeStamp() + " >> Started SolrSearchQuestion: start = " + start + "...");
 		System.out.println(Utils.getTimeStamp() + " >> Started SolrSearchQuestion: start = " + start + "...");
 		
-		String framework = "questions";
+		String framework = Const.QUESTIONS;
 
 		FeatureResult result = new FeatureResult();
 

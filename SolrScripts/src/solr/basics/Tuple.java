@@ -41,6 +41,7 @@ public class Tuple {
 
 	@Override
 	public boolean equals(Object obj) {
+		// TODO check this method! It is failing for inline comments IDs!!!! 
 		return (hashCode() == obj.hashCode());
 	}
 }
