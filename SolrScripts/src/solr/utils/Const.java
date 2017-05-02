@@ -158,6 +158,8 @@ public class Const {
 	
 	public static String _TUPLESID_TXT = "-TuplesID.txt";
 	
+	public static String _OUT_CSV = "-out.csv";
+	
 	public static String TRAINING_SET = "training-set";
 	
 	public static String VERIFYING_SET = "verifying-set";
