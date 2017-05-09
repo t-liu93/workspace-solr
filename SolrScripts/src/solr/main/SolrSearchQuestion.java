@@ -252,7 +252,7 @@ public class SolrSearchQuestion {
 		// 615000 	- 620000	=> OK	=> @TUe			=> solrSearchQuestionGC-[615000-620000].2017-05-08-093459.log
 		
 		// 620000	- 625000 	=> 		=> @TUe			=>
-		// 625000	- 630000 	=> 		=> @TUe			=>
+		// 625000	- 630000 	=> OK	=> @fe			=> solrSearchQuestionGC-[625000-630000].2017-05-09-092729.log
 		
 		// 630000	- 640000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[630000-640000].2017-05-02-124710.log
 		// 640000	- 650000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[640000-650000].2017-05-02-011916.log
