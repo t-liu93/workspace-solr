@@ -242,18 +242,14 @@ public class SolrSearchQuestion {
 		// 470000	- 520000 	=> OK 	=> PID 42053 	=> solrSearchQuestionGC-[470000-520000].2017-05-01-053202.log
 		// 520000	- 550000 	=> OK 	=> @TUe			=> solrSearchQuestionGC-[520000-550000].2017-05-01-103643.log
 		// 550000	- 580000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[550000-580000].2017-05-01-035029.log
-		// 580000	- 590000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[580000-590000].2017-05-04-125534.log
-		
+		// 580000	- 590000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[580000-590000].2017-05-04-125534.log	
 		// 590000	- 595000 	=> OK	=> @fe			=> solrSearchQuestionGC-[590000-595000].2017-05-09-074615.log
 		// 595000	- 600000 	=> OK	=> @fe			=> solrSearchQuestionGC-[595000-600000].2017-05-09-083413.log
-		
 		// 600000	- 610000 	=> OK	=> PID 9693		=> solrSearchQuestionGC-[600000-610000].2017-05-04-035742.log
 		// 610000	- 615000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[610000-615000].2017-05-06-103802.log	
 		// 615000 	- 620000	=> OK	=> @TUe			=> solrSearchQuestionGC-[615000-620000].2017-05-08-093459.log
-		
-		// 620000	- 625000 	=> 		=> @TUe			=>
+		// 620000	- 625000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[620000-625000].2017-05-09-093457.log
 		// 625000	- 630000 	=> OK	=> @fe			=> solrSearchQuestionGC-[625000-630000].2017-05-09-092729.log
-		
 		// 630000	- 640000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[630000-640000].2017-05-02-124710.log
 		// 640000	- 650000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[640000-650000].2017-05-02-011916.log
 		// 650000	- 660000 	=> OK	=> @TUe			=> solrSearchQuestionGC-[650000-660000].2017-05-02-021227.log
