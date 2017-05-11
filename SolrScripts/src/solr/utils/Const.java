@@ -156,9 +156,15 @@ public class Const {
 	
 	public static String _ID_TXT = "-ID.txt";
 	
+	public static String __ID_TXT = "_ID.txt";
+	
 	public static String _TUPLESID_TXT = "-TuplesID.txt";
 	
+	public static String __TUPLESID_TXT = "_TuplesID.txt";
+	
 	public static String _OUT_CSV = "-out.csv";
+	
+	public static String __OUT_CSV = "_out.csv";
 	
 	public static String TRAINING_SET = "training-set";
 	
