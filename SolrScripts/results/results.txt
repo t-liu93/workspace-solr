@@ -19,21 +19,19 @@ total of comments: 1,131,576
 
 General Comments results:
 
-general comments: 899,105
+Total number of general comments: 899,105
 
-automated comments: 238,260 (26%)
+Total number of automated comments: 238,260 (26%)
 
-non-automated comments: 660,845 (74%)
+Total number of non-automated comments: 660,845 (74%)
 
-
-total (features without questions): 90,520 (10,06%)
-
+Total comments with our features (considering the non-automated comments): 91,658 (13.86%)
 
 ==================
 
 Inline Comments results:
 
-inline comments: 232,471
+Total number of inline comments: 232,471
 
-total (features without questions): 104,600 (44.99%)
+Total comments with our features: 116,292 (50.02%)
 
