@@ -139,6 +139,8 @@ public class Const {
 	public static String _TXT = ".txt";
 	
 	public static String _XML = ".xml";
+	
+	public static String _XLS = ".xls";
 
 	public static String _CSV = ".csv";
 
@@ -169,8 +171,14 @@ public class Const {
 	public static String TRAINING_SET = "training-set";
 	
 	public static String VERIFYING_SET = "verifying-set";
+	
+	public static String VERIFYING_ = "verifying-";
+	
+	public static String SET = "-set";
 
 	public static String DIR_TRAINING = "set-training/";
+	
+	public static String DIR_VERIFYING = "set-verifying/";
 	
 	public static String DIR_400 = "set-400/";
 	
