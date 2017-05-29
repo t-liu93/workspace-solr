@@ -44,7 +44,7 @@ public class GetRandomFeatures {
 		return randomInt;
 	}
 
-	public static void writeFileRandomFeatures(String commentType, String framework, int numberExamples) {
+	public static void getTrainingRandomFeatures(String commentType, String framework, int numberExamples) {
 
 		String filePath = Const.EMPTY_STRING;
 
@@ -102,7 +102,7 @@ public class GetRandomFeatures {
 			System.out.println(e);
 		}
 
-		System.out.println("Done with writeFileRandomFeatures...");
+		System.out.println("Done with getTrainingRandomFeatures...");
 	}
 
 	public static void getHedgesExamplesWithoutOverlapping(String commentType, int numberExamples,
@@ -121,8 +121,11 @@ public class GetRandomFeatures {
 		hedges = removeOverlappingFromOtherList(hedges, I_statements);
 		hedges = removeOverlappingFromOtherList(hedges, nonverbals);
 		hedges = removeOverlappingFromOtherList(hedges, meta);
+		
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
-		hedges = removeTrainingSet(hedges, commentType);
+			hedges = removeTrainingSet(hedges, commentType);
+		}
 
 		System.out.println("Number of hedges comments: " + hedges.size());
 
@@ -167,12 +170,12 @@ public class GetRandomFeatures {
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
-			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_400 + Const.VERIFYING_SET
+			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_VERIFYING + Const.VERIFYING_ + Const.HEDGES + Const.SET
 					+ fileFormat;
 
 		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
-			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_400 + Const.VERIFYING_SET
+			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_VERIFYING + Const.VERIFYING_ + Const.HEDGES + Const.SET
 					+ fileFormat;
 		}
 
@@ -215,7 +218,7 @@ public class GetRandomFeatures {
 			Row r = null;
 
 			Cell c = null;
-			
+
 			int lineCounter = 1;
 
 			r = s.createRow(Const._0);
@@ -255,9 +258,9 @@ public class GetRandomFeatures {
 			SolrQuery query = new SolrQuery();
 
 			for (String solrQuery : listSolrQueries) {
-				
+
 				query.setRows(Const._100);
-				
+
 				query.setQuery(solrQuery);
 
 				query.setFields(Const.ID, Const.MESSAGE);
@@ -265,7 +268,7 @@ public class GetRandomFeatures {
 				QueryResponse response = solr.query(query);
 
 				SolrDocumentList results = response.getResults();
-				
+
 				for (int i = 0; i < results.size(); i++) {
 
 					SolrDocument codeReview = results.get(i);
@@ -281,7 +284,7 @@ public class GetRandomFeatures {
 
 					c = r.createCell(Const._3);
 					c.setCellValue(message);
-					
+
 					lineCounter = lineCounter + 1;
 				}
 			}
@@ -513,7 +516,7 @@ public class GetRandomFeatures {
 
 	public static void main(String[] args) {
 
-		// String commentType = Const.GENERAL;
+		// String commentType = Const.INLINE;
 
 		// String framework = Const.HEDGES;
 
@@ -521,12 +524,11 @@ public class GetRandomFeatures {
 
 		// String outputFormat = Const._TXT;
 
-		// writeFileRandomFeatures(commentType, framework, numberExamples);
+		// getTrainingRandomFeatures(commentType, framework, numberExamples);
 
-		// getHedgesExamplesWithoutOverlapping(commentType, numberExamples,
-		// outputFormat);
+		// getHedgesExamplesWithoutOverlapping(commentType, numberExamples, outputFormat);
 
-		buildXLSExampleFile("./results-gc/set-400/verifying-set.txt", "./results-gc/set-400/verifying-set.xls");
+		buildXLSExampleFile("./results-ic/set-verifying/verifying-hedges-set.txt", "./results-ic/set-verifying/verifying-hedges-set.xls");
 
 	}
 }
