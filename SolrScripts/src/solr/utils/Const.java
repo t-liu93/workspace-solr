@@ -107,6 +107,8 @@ public class Const {
 	public static String TRIPLE_HASTAG = "###";
 
 	public static String SPACE = " ";
+	
+	public static String DASH = "-";
 
 	public static String TWO_DOTS = ":";
 

@@ -225,7 +225,7 @@ public class Utils {
 		
 		try {
 			
-			String sourcePath = Const.DIR_FRAMEWORK + Const.SOURCES + Const._TXT;
+			String sourcePath = Const.DIR_FRAMEWORK + Const.HEDGES + Const.DASH + Const.SOURCES + Const._TXT;
 
 			List<String> list = Files.readAllLines(Paths.get(sourcePath));
 
