@@ -103,6 +103,8 @@ public class Const {
 	public static String SBARQ = "SBARQ";
 
 	public static String SEMICOLON = ";";
+	
+	public static String COMMA = ",";
 
 	public static String TRIPLE_HASTAG = "###";
 
