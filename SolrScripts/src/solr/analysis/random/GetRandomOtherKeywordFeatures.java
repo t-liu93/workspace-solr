@@ -215,7 +215,7 @@ public class GetRandomOtherKeywordFeatures {
 
 			Sheet s = wb.createSheet();
 
-			wb.setSheetName(Const._0, Const.HEDGES);
+			wb.setSheetName(Const._0, Const.OTHER);
 
 			Row r = null;
 
