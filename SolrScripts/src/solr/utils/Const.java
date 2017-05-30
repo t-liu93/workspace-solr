@@ -176,13 +176,13 @@ public class Const {
 	
 	public static String VERIFYING_ = "verifying-";
 	
+	public static String OTHER = "other";
+	
 	public static String SET = "-set";
 
 	public static String DIR_TRAINING = "set-training/";
 	
 	public static String DIR_VERIFYING = "set-verifying/";
-	
-	public static String DIR_400 = "set-400/";
 	
 	public static String TRAINING_SET_IDS = "training-set-ID";
 	
@@ -193,6 +193,10 @@ public class Const {
 	public static String LAKOFF = "Jordan";
 
 	public static String JORDAN = "Lakoff";
+	
+	public static String HOLMES = "Holmes";
+	
+	public static String EBERT = "Ebert";
 	
 	public static String _STRATIFIED = "stratified";
 	

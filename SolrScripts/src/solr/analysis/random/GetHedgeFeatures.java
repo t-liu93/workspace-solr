@@ -44,68 +44,7 @@ public class GetHedgeFeatures {
 		return randomInt;
 	}
 
-	public static void getTrainingRandomFeatures(String commentType, String framework, int numberExamples) {
-
-		String filePath = Const.EMPTY_STRING;
-
-		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
-
-			filePath = Const.DIR_RESULTS + Const._GC + Const.SLASH;
-
-		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
-
-			filePath = Const.DIR_RESULTS + Const._IC + Const.SLASH;
-		}
-
-		List<Tuple> tuples = Utils.readTulpes(filePath + framework + Const._TUPLES_ID + Const._TXT);
-
-		List<Tuple> randomList = new ArrayList<Tuple>();
-
-		Map<String, String> sourcesJordanAndLakoff = Utils.readSourcesJordanAndLakoff();
-
-		int counter = 0;
-
-		for (int i = 0; i < tuples.size() && counter < numberExamples; i++) {
-
-			Tuple randomTuple = randomItem(tuples);
-
-			if (sourcesJordanAndLakoff.containsKey(randomTuple.getFeature())) {
-
-				randomList.add(randomTuple);
-
-				tuples.remove(randomTuple);
-
-				counter = counter + 1;
-			}
-		}
-
-		StringBuffer sbResults = buildXMLStringBuffer(randomList, sourcesJordanAndLakoff);
-
-		String filePathRandom = Const.EMPTY_STRING;
-
-		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
-
-			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
-					+ Const._XML;
-
-		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
-
-			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_TRAINING + Const.TRAINING_SET
-					+ Const._XML;
-		}
-
-		try (Writer writer = new BufferedWriter(
-				new OutputStreamWriter(new FileOutputStream(filePathRandom), Const._UTF_8))) {
-
-			writer.write(sbResults.toString());
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-
-		System.out.println("Done with getTrainingRandomFeatures...");
-	}
-
-	public static void getHedgesFeatures(String commentType, int numberExamples, String outputFormat) {
+	public static void getHedgesFeatures(String commentType, int numberExamples) {
 
 		List<Tuple> hedges = getListTuples(Const.HEDGES);
 		List<Tuple> hypo = getListTuples(Const.HYPOTHETICALS);
@@ -130,7 +69,7 @@ public class GetHedgeFeatures {
 
 		List<Tuple> randomList = new ArrayList<Tuple>();
 
-		Map<String, String> sourcesJordanAndLakoff = Utils.readSourcesJordanAndLakoff();
+		Map<String, String> sourcesJordanAndLakoff = Utils.readHedgesSourcesJordanLakoff();
 
 		int counter = 0;
 
@@ -150,32 +89,19 @@ public class GetHedgeFeatures {
 
 		StringBuffer sbResults = new StringBuffer();
 
-		String fileFormat = Const.EMPTY_STRING;
-
-		if (outputFormat.equalsIgnoreCase(Const._XML)) {
-
-			sbResults = buildXMLStringBuffer(randomList, sourcesJordanAndLakoff);
-
-			fileFormat = Const._XML;
-
-		} else if (outputFormat.equalsIgnoreCase(Const._TXT)) {
-
-			sbResults = buildTXTtringBuffer(randomList);
-
-			fileFormat = Const._TXT;
-		}
+		sbResults = buildStringBuffer(randomList);
 
 		String filePathRandom = Const.EMPTY_STRING;
 
 		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
 
 			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_VERIFYING + Const.VERIFYING_
-					+ Const.HEDGES + Const.SET + fileFormat;
+					+ Const.HEDGES + Const.SET + Const._TXT;
 
 		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
 
 			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_VERIFYING + Const.VERIFYING_
-					+ Const.HEDGES + Const.SET + fileFormat;
+					+ Const.HEDGES + Const.SET + Const._TXT;
 		}
 
 		try (Writer writer = new BufferedWriter(
@@ -189,7 +115,7 @@ public class GetHedgeFeatures {
 		System.out.println("Done with getHedgesFeatures...");
 	}
 
-	public static StringBuffer buildTXTtringBuffer(List<Tuple> randomList) {
+	public static StringBuffer buildStringBuffer(List<Tuple> randomList) {
 
 		StringBuffer sbResults = new StringBuffer();
 
@@ -202,7 +128,7 @@ public class GetHedgeFeatures {
 	}
 
 	@SuppressWarnings("unchecked")
-	public static void buildXLSExampleFile(String filePath, String outputFile) {
+	public static void buildXLSFile(String filePath, String outputFile) {
 
 		try {
 
@@ -299,56 +225,6 @@ public class GetHedgeFeatures {
 		}
 
 		System.out.println("Done with buildXLSExampleFile...");
-	}
-
-	@SuppressWarnings("unchecked")
-	public static StringBuffer buildXMLStringBuffer(List<Tuple> randomList,
-			Map<String, String> sourcesJordanAndLakoff) {
-
-		StringBuffer sbResults = new StringBuffer();
-
-		sbResults.append("<set>" + Const.NEW_LINE);
-
-		try {
-
-			SolrClient solr = new HttpSolrClient.Builder(Const.URL_SORL).build();
-
-			SolrQuery query = new SolrQuery();
-
-			String queryString = Const.EMPTY_STRING;
-
-			for (Tuple tuple : randomList) {
-
-				queryString = Const.ID + Const.TWO_DOTS + tuple.getCommentID();
-
-				query.setQuery(queryString);
-
-				query.setFields(Const.MESSAGE);
-
-				QueryResponse response = solr.query(query);
-
-				SolrDocumentList results = response.getResults();
-
-				SolrDocument codeReview = results.get(Const._0);
-
-				String message = ((List<String>) codeReview.getFieldValue(Const.MESSAGE)).get(0);
-
-				sbResults.append("<example>" + Const.NEW_LINE);
-				sbResults.append("<id>" + tuple.getCommentID() + "</id>" + Const.NEW_LINE);
-				sbResults.append("<feature>" + tuple.getFeature() + "</feature>" + Const.NEW_LINE);
-				sbResults.append(
-						"<source>" + sourcesJordanAndLakoff.get(tuple.getFeature()) + "</source>" + Const.NEW_LINE);
-				sbResults.append("<confusion></confusion>" + Const.NEW_LINE);
-				sbResults.append("<message>" + message + "</message>" + Const.NEW_LINE);
-				sbResults.append("</example>" + Const.NEW_LINE + Const.NEW_LINE);
-			}
-		} catch (SolrServerException | IOException e) {
-			e.printStackTrace();
-		}
-
-		sbResults.append("</set>");
-
-		return sbResults;
 	}
 
 	public static List<Tuple> removeTrainingSet(List<Tuple> tuples, String commentType) {
@@ -515,19 +391,13 @@ public class GetHedgeFeatures {
 
 	public static void main(String[] args) {
 
-		// String commentType = Const.INLINE;
+		String commentType = Const.INLINE;
 
-		// String framework = Const.HEDGES;
+		int numberExamples = 400;
 
-		// int numberExamples = 400;
+		getHedgesFeatures(commentType, numberExamples);
 
-		// String outputFormat = Const._TXT;
-
-		// getTrainingRandomFeatures(commentType, framework, numberExamples);
-
-		// getHedgesFeatures(commentType, numberExamples, outputFormat);
-
-		buildXLSExampleFile("./results-ic/set-verifying/verifying-hedges-set.txt", "./results-ic/set-verifying/verifying-hedges-set.xls");
+		buildXLSFile("./results-ic/set-verifying/verifying-hedges-set.txt", "./results-ic/set-verifying/verifying-hedges-set.xls");
 
 	}
 }

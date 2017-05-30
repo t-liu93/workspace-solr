@@ -219,7 +219,7 @@ public class Utils {
 		return exists;
 	}
 
-	public static Map<String, String> readSourcesJordanAndLakoff() {
+	public static Map<String, String> readHedgesSourcesJordanLakoff() {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		
@@ -236,6 +236,41 @@ public class Utils {
 				if (array[1].equalsIgnoreCase(Const.JORDAN) || array[1].equalsIgnoreCase(Const.LAKOFF)) {
 					
 					map.put(array[0], array[1]);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+	
+	public static Map<String, String> readOthersSourcesJordanLakoffHolmesEbert() {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		try {
+			
+			for (int i = 0; i < Const.features.length; i++) {
+				
+				if (!Const.features[i] .equals(Const.HEDGES)) {
+					
+					String sourcePath = Const.DIR_FRAMEWORK + Const.features[i] + Const.DASH + Const.SOURCES + Const._TXT;
+					
+					List<String> list = Files.readAllLines(Paths.get(sourcePath));
+					
+					for (String line : list) {
+						
+						String[] array = line.split(";");
+						
+						if (array[1].equalsIgnoreCase(Const.JORDAN) 
+								|| array[1].equalsIgnoreCase(Const.LAKOFF)
+								|| array[1].equalsIgnoreCase(Const.EBERT)
+								|| array[1].equalsIgnoreCase(Const.HOLMES)) {
+							
+							map.put(array[0], array[1]);
+						}
+					}
 				}
 			}
 		} catch (IOException e) {
