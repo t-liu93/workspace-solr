@@ -1,4 +1,4 @@
-package solr.analysis;
+package solr.analysis.random;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;

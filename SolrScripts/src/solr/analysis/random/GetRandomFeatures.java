@@ -1,4 +1,4 @@
-package solr.analysis;
+package solr.analysis.random;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -105,7 +105,7 @@ public class GetRandomFeatures {
 		System.out.println("Done with getTrainingRandomFeatures...");
 	}
 
-	public static void getHedgesExamplesWithoutOverlapping(String commentType, int numberExamples,
+	public static void getHedgesSampleWithoutOverlapping(String commentType, int numberExamples,
 			String outputFormat) {
 
 		List<Tuple> hedges = getListTuples(Const.HEDGES);
@@ -188,6 +188,91 @@ public class GetRandomFeatures {
 		}
 
 		System.out.println("Done with getHedgesExamplesWithoutOverlapping...");
+	}
+	
+	public static void getOtherKeywordSampleWithoutOverlapping(String commentType, int numberExamples,
+			String outputFormat) {
+
+		List<Tuple> hedges = getListTuples(Const.HEDGES);
+		List<Tuple> hypo = getListTuples(Const.HYPOTHETICALS);
+		List<Tuple> probables = getListTuples(Const.PROBABLES);
+		List<Tuple> I_statements = getListTuples(Const.I_STATEMENTS);
+		List<Tuple> nonverbals = getListTuples(Const.NONVERBALS);
+		List<Tuple> meta = getListTuples(Const.META);
+
+		hedges = removeOverlappingFromSameList(hedges);
+		hedges = removeOverlappingFromOtherList(hedges, hypo);
+		hedges = removeOverlappingFromOtherList(hedges, probables);
+		hedges = removeOverlappingFromOtherList(hedges, I_statements);
+		hedges = removeOverlappingFromOtherList(hedges, nonverbals);
+		hedges = removeOverlappingFromOtherList(hedges, meta);
+		
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			hedges = removeTrainingSet(hedges, commentType);
+		}
+
+		System.out.println("Number of hedges comments: " + hedges.size());
+
+		List<Tuple> randomList = new ArrayList<Tuple>();
+
+		Map<String, String> sourcesJordanAndLakoff = Utils.readSourcesJordanAndLakoff();
+
+		int counter = 0;
+
+		for (int i = 0; i < hedges.size() && counter < numberExamples; i++) {
+
+			Tuple randomTuple = randomItem(hedges);
+
+			if (sourcesJordanAndLakoff.containsKey(randomTuple.getFeature())) {
+
+				randomList.add(randomTuple);
+
+				hedges.remove(randomTuple);
+
+				counter = counter + 1;
+			}
+		}
+
+		StringBuffer sbResults = new StringBuffer();
+
+		String fileFormat = Const.EMPTY_STRING;
+
+		if (outputFormat.equalsIgnoreCase(Const._XML)) {
+
+			sbResults = buildXMLStringBuffer(randomList, sourcesJordanAndLakoff);
+
+			fileFormat = Const._XML;
+
+		} else if (outputFormat.equalsIgnoreCase(Const._TXT)) {
+
+			sbResults = buildTXTtringBuffer(randomList);
+
+			fileFormat = Const._TXT;
+		}
+
+		String filePathRandom = Const.EMPTY_STRING;
+
+		if (commentType.equalsIgnoreCase(Const.GENERAL)) {
+
+			filePathRandom = Const.DIR_RESULTS + Const._GC + Const.SLASH + Const.DIR_VERIFYING + Const.VERIFYING_ + Const.HEDGES + Const.SET
+					+ fileFormat;
+
+		} else if (commentType.equalsIgnoreCase(Const.INLINE)) {
+
+			filePathRandom = Const.DIR_RESULTS + Const._IC + Const.SLASH + Const.DIR_VERIFYING + Const.VERIFYING_ + Const.HEDGES + Const.SET
+					+ fileFormat;
+		}
+
+		try (Writer writer = new BufferedWriter(
+				new OutputStreamWriter(new FileOutputStream(filePathRandom), Const._UTF_8))) {
+
+			writer.write(sbResults.toString());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		System.out.println("Done with getOtherKeywordSampleWithoutOverlapping...");
 	}
 
 	public static StringBuffer buildTXTtringBuffer(List<Tuple> randomList) {
@@ -526,7 +611,7 @@ public class GetRandomFeatures {
 
 		// getTrainingRandomFeatures(commentType, framework, numberExamples);
 
-		// getHedgesExamplesWithoutOverlapping(commentType, numberExamples, outputFormat);
+		// getHedgesSampleWithoutOverlapping(commentType, numberExamples, outputFormat);
 
 		buildXLSExampleFile("./results-ic/set-verifying/verifying-hedges-set.txt", "./results-ic/set-verifying/verifying-hedges-set.xls");
 
