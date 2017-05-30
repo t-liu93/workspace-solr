@@ -26,7 +26,7 @@ import org.apache.solr.common.SolrDocumentList;
 
 import solr.utils.Const;
 
-public class GetRandomQuestionFeatures {
+public class GetQuestionFeatures {
 
 	private static Random random;
 
@@ -39,7 +39,7 @@ public class GetRandomQuestionFeatures {
 		return randomInt;
 	}
 
-	public static void getRandomQuestionFeatures(String commentType, int numberExamples) {
+	public static void getQuestionFeatures(String commentType, int numberExamples) {
 
 		String filePath = Const.EMPTY_STRING;
 
@@ -102,7 +102,7 @@ public class GetRandomQuestionFeatures {
 			e.printStackTrace();
 		}
 
-		System.out.println("Done with getRandomQuestionFeatures..");
+		System.out.println("Done with getQuestionFeatures..");
 	}
 
 	@SuppressWarnings("unchecked")
@@ -255,6 +255,6 @@ public class GetRandomQuestionFeatures {
 
 		int numberExamples = 400;
 
-		getRandomQuestionFeatures(commentType, numberExamples);
+		getQuestionFeatures(commentType, numberExamples);
 	}
 }
