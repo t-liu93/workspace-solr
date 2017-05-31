@@ -23,7 +23,7 @@ public class BuildCSVFromExcel {
 
 			StringBuffer sbOutput = new StringBuffer();
 			
-			sbOutput.append(Const.ID + Const.COMMA + Const.CONFUSION + Const.COMMA + Const.COMMENT + Const.NEW_LINE);
+			// sbOutput.append(Const.COMMENT + Const.COMMA + Const.CONFUSION + Const.NEW_LINE);
 
 			workbook = Workbook.getWorkbook(new File(excelFileLocation + excelFileName));
 
@@ -33,21 +33,17 @@ public class BuildCSVFromExcel {
 				
 				Cell cell1 = sheet.getCell(0, i);
 
-				String id = cell1.getContents();
-
-				Cell cell2 = sheet.getCell(1, i);
-
-				String label = cell2.getContents();
-
-				Cell cell3 = sheet.getCell(2, i);
-
-				String comment = cell3.getContents();
+				String comment = cell1.getContents();
 
 				comment = comment.replaceAll(Const.NEW_LINE, Const.SPACE);
 
 				comment = comment.replaceAll(Const.DOUBLE_QUOTES, Const.EMPTY_STRING);
 
-				sbOutput.append(id + Const.COMMA + label + Const.COMMA + Const.DOUBLE_QUOTES + comment + Const.DOUBLE_QUOTES + Const.NEW_LINE);
+				Cell cell2 = sheet.getCell(1, i);
+				
+				String label = cell2.getContents();
+
+				sbOutput.append(Const.DOUBLE_QUOTES + comment + Const.DOUBLE_QUOTES + Const.COMMA + label +  Const.NEW_LINE);
 			}
 
 			String output = excelFileName.substring(0, 17);
