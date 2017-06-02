@@ -147,6 +147,8 @@ public class Const {
 	public static String _XLS = ".xls";
 
 	public static String _CSV = ".csv";
+	
+	public static String _ARFF = ".arff";
 
 	public static String _HTML = ".html";
 	
