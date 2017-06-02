@@ -34,28 +34,38 @@ public class BuildCSVandARFFFromExcel {
 	}
 
 	public static String replaceNumbers(String str) {
-		//Pattern pattern = Pattern.compile("[*0-9]+");
-		Pattern pattern = Pattern.compile("-?\\d+");
-		Matcher matcher = pattern.matcher(str);
-		while (matcher.find()) {
-			String match = matcher.group();
-			str = str.replace(match, "NUMBER");
-		}
-		return str;
+//		//Pattern pattern = Pattern.compile("[*0-9]+");
+//		Pattern pattern = Pattern.compile("-?\\d+");
+//		Matcher matcher = pattern.matcher(str);
+//		while (matcher.find()) {
+//			String match = matcher.group();
+//			str = str.replace(match, "NUMBER");
+//		}
+//		return str;
 
-//		String replaced = str;
-//		String[] array = str.split(" ");
-//		for (String word : array) {
-//			//TODO HERE!!!
-//		}
-//		for (int i = 0; i < str.length(); i++) {
-//			char c = str.charAt(i);
-//
-//			if (Character.isDigit(c)) {
-//				replaced = replaced.replace(c, 'N');
-//			}
-//		}
-//		return replaced;
+		String replaced = str;
+		String[] array = str.split(" ");
+		for (String word : array) {
+			
+			boolean allDigit = false;
+
+			for (int i = 0; i < word.length(); i++) {
+				
+				char c = word.charAt(i);
+				
+				if (Character.isDigit(c)) {
+					allDigit = true;
+				} else {
+					allDigit = false;
+					break;
+				}
+			}
+			
+			if (allDigit) {
+				str = str.replace(word, "NUMBER");
+			}
+		}
+		return replaced;
 	}
 
 	public static String replacteUsers(String str) {
@@ -110,96 +120,104 @@ public class BuildCSVandARFFFromExcel {
 		return str;
 	}
 
-	public static String replacteMetatokens(String str) {
+	public static String replacteMetatokens(String str, int i) {
+		i = i + 1;
 		if (Pattern.compile(Pattern.quote("won't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)won't", "WONT");
+			str = str.replaceAll("(?i)won't", "will not");
 		}
 		if (Pattern.compile(Pattern.quote("it's"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)it's", "ITS");
+			str = str.replaceAll("(?i)it's", "it is");
+			// System.out.println("Need to check for it's in line " + i);
 		}
 		if (Pattern.compile(Pattern.quote("I'm"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)I'm", "IAM");
+			str = str.replaceAll("(?i)I'm", "I am");
 		}
 		if (Pattern.compile(Pattern.quote("I've"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)I've", "IHAVE");
+			str = str.replaceAll("(?i)I've", "I have");
 		}
 		if (Pattern.compile(Pattern.quote("that's"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)that's", "THATS");
+			str = str.replaceAll("(?i)that's", "that is");
+			// System.out.println("Need to check for that's in line " + i);
 		}
 		if (Pattern.compile(Pattern.quote("don't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)don't", "DONT");
+			str = str.replaceAll("(?i)don't", "do not");
 		}
 		if (Pattern.compile(Pattern.quote("can't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)can't", "CANT");
+			str = str.replaceAll("(?i)can't", "cannot");
 		}
 		if (Pattern.compile(Pattern.quote("didn't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)didn't", "DIDNT");
+			str = str.replaceAll("(?i)didn't", "did not");
 		}
 		if (Pattern.compile(Pattern.quote("hadn't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)hadn't", "HADNT");
+			str = str.replaceAll("(?i)hadn't", "had not");
 		}
 		if (Pattern.compile(Pattern.quote("I'll"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)I'll", "IWILL");
+			str = str.replaceAll("(?i)I'll", "I will");
 		}
 		if (Pattern.compile(Pattern.quote("doesn't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)doesn't", "DOESNT");
+			str = str.replaceAll("(?i)doesn't", "does not");
 		}
 		if (Pattern.compile(Pattern.quote("dosen't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)dosen't", "DOESNT");
+			str = str.replaceAll("(?i)dosen't", "does not");
 		}
-		if (Pattern.compile(Pattern.quote("It'd"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)It'd", "ITWOULD");
+		if (Pattern.compile(Pattern.quote("it'd"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
+			// str = str.replaceAll("(?i)it'd", "it would");
+			System.out.println("Need to check for it'd in line " + i);
 		}
 		if (Pattern.compile(Pattern.quote("here's"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)here's", "HEREIS");
+			str = str.replaceAll("(?i)here's", "here is");
 		}
 		if (Pattern.compile(Pattern.quote("what's"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)what's", "WHATS");
+			str = str.replaceAll("(?i)what's", "what is");
 		}
 		if (Pattern.compile(Pattern.quote("let's"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)let's", "LETS");
+			str = str.replaceAll("(?i)let's", "let us");
 		}
 		if (Pattern.compile(Pattern.quote("shouldn't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)shouldn't", "SHOULDNT");
+			str = str.replaceAll("(?i)shouldn't", "should not");
 		}
 		if (Pattern.compile(Pattern.quote("wasn't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)wasn't", "WASNT");
+			str = str.replaceAll("(?i)wasn't", "was not");
 		}
 		if (Pattern.compile(Pattern.quote("we'd"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)we'd", "WEWOULD");
+			// str = str.replaceAll("(?i)we'd", "we would");
+			System.out.println("Need to check for we'd in line " + i);
 		}
 		if (Pattern.compile(Pattern.quote("I'd"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)I'd", "IWOULD");
+			// str = str.replaceAll("(?i)I'd", "I would");
+			System.out.println("Need to check for I'd in line " + i);
 		}
 		if (Pattern.compile(Pattern.quote("we've"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)we've", "WEHAVE");
+			str = str.replaceAll("(?i)we've", "we have");
 		}
 		if (Pattern.compile(Pattern.quote("you're"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)you're", "YOUARE");
+			str = str.replaceAll("(?i)you're", "you are");
 		}
 		if (Pattern.compile(Pattern.quote("we're"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)we're", "WEARE");
+			str = str.replaceAll("(?i)we're", "we are");
 		}
 		if (Pattern.compile(Pattern.quote("they're"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)they're", "THEYARE");
+			str = str.replaceAll("(?i)they're", "they are");
 		}
 		if (Pattern.compile(Pattern.quote("aren't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)aren't", "ARENT");
+			str = str.replaceAll("(?i)aren't", "are not");
 		}
 		if (Pattern.compile(Pattern.quote("that'd"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)that'd", "THATWOULD");
+			// str = str.replaceAll("(?i)that'd", "THATWOULD");
+			System.out.println("Need to check for that'd in line " + i);
 		}
 		if (Pattern.compile(Pattern.quote("isn't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)isn't", "ISNT");
+			str = str.replaceAll("(?i)isn't", "is not");
 		}
 		if (Pattern.compile(Pattern.quote("haven't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)haven't", "HAVENT");
+			str = str.replaceAll("(?i)haven't", "have not");
 		}
 		if (Pattern.compile(Pattern.quote("you'd"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)you'd", "YOUWOULD");
+			// str = str.replaceAll("(?i)you'd", "YOUWOULD");
+			System.out.println("Need to check for you'd in line " + i);
 		}
 		if (Pattern.compile(Pattern.quote("hasn't"), Pattern.CASE_INSENSITIVE).matcher(str).find()) {
-			str = str.replaceAll("(?i)hasn't", "HASNT");
+			str = str.replaceAll("(?i)hasn't", "has not");
 		}
 		return str;
 	}
@@ -247,10 +265,10 @@ public class BuildCSVandARFFFromExcel {
 				comment = replaceBreakLine(comment);
 
 				// replace metatokens
-				comment = replacteMetatokens(comment);
+				// comment = replacteMetatokens(comment, i);
 
 				// replace users
-				comment = replacteUsers(comment);
+				// comment = replacteUsers(comment);
 
 				// replace URLs
 				comment = replaceURLs(comment);
