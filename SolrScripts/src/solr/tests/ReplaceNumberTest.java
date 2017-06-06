@@ -1,42 +1,58 @@
 package solr.tests;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ReplaceNumberTest {
 
-	public static String replaceNumbers(String str) {
+	public static String replaceNames(String str) {
 
-		List<Character> number = new ArrayList<Character>();
+		String nameListPath = "C:/Users/febert/Documents/genderComputer/nameLists/";
 
-		int start = -1;
-		int end = -1;
+		HashSet<String> nameList = readNameListFiles(nameListPath);
+
+		String[] words = str.split(" ");
 		
-		for (int i = 0; i < str.length(); i++) {
-			
-			char c = str.charAt(i);
-
-			if (Character.isDigit(c)) {
-
-				
-			} else {
-				
+		for (int i = 0; i < words.length; i++) {
+			if (nameList.contains(words[i])) {
+				str = str.replaceAll(words[i], "@USERNAME");
 			}
 		}
 		
-		// str = str.replace(c, 'N');
-
 		return str;
+	}
+
+	public static HashSet<String> readNameListFiles(String filePath) {
+		HashSet<String> set = new HashSet<String>();
+		try {
+			List<File> filesInFolder = new ArrayList<>();
+			filesInFolder.addAll(Files.walk(Paths.get(filePath)).filter(Files::isRegularFile).map(Path::toFile)
+					.collect(Collectors.toList()));
+			for (File file : filesInFolder) {
+				List<String> list = Files.readAllLines(file.toPath());
+				for (String line : list) {
+					String[] array = line.split(";");
+					set.add(array[0]);
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return set;
 	}
 
 	public static void main(String[] args) {
 
-		String str = "Patch Set 1:  is this true? i CANT tell any difference in transfer speed with or without this patch. "
-				+ "i still get roughly these numbers from \"adb sync\"  a -B build of bionic:  syncing /system... ... "
-				+ "32 files pushed. 41492 files skipped. 1002 KB/s (1876139 bytes in 1.827s) syncing /data... ... "
-				+ "5 files pushed. 132 files skipped. 3997 KB/s (3579643 bytes in 0.874s)";
+		String str = "Patch Do Set NUMBER: Alan  SureÃ¢â‚¬Â¦ Do you have any existing Felipe Jessica Mike";
 
-		str = replaceNumbers(str);
+		str = replaceNames(str);
 
 		System.out.println(str);
 
