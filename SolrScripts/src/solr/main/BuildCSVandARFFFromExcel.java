@@ -76,6 +76,8 @@ public class BuildCSVandARFFFromExcel {
 				str = str.replaceAll(words[i], "@USERNAME");
 			}
 		}
+		
+		//TODO fix the "Do", "Set", etc...
 
 		return str;
 	}
