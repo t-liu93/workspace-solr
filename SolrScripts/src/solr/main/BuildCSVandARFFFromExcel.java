@@ -24,7 +24,7 @@ import solr.utils.Const;
 
 public class BuildCSVandARFFFromExcel {
 
-	public static String replaceBreakLine(String str) {
+	public static String replaceBreakLines(String str) {
 		String replaced = str;
 		if (replaced.contains("\n") || str.contains("\r")) {
 			replaced = str.replaceAll("\\r\\n|\\r|\\n", " ");
@@ -61,37 +61,22 @@ public class BuildCSVandARFFFromExcel {
 	}
 
 	public static String replaceNumbers(String str) {
-		return str.replaceAll("\\b-?\\+?\\d+\\b", "NUMBER");
+		return str.replaceAll("\\b\\d+\\b", "NUMBER");
 	}
 
 	public static String replaceNames(String str, List<String> fakeNames) {
-
 		HashSet<String> nameList = readNameListFiles();
-		
 		String[] words = str.split("[\\s.,;:\n!?()]+");
-
 		for (int i = 0; i < words.length; i++) {
-
 			for (String name : nameList) {
-
 				if (name.equalsIgnoreCase(words[i])) {
-					
 					if (!fakeNames.contains(name)) {
 						fakeNames.add(name);
 					}
-
 					str = str.replaceAll("\\b" + words[i] + "\\b", "@USERNAME");
 				}
 			}
 		}
-		
-		//TODO fix the "Do", "Set", etc...
-
-		return str;
-	}
-	
-	public static String removeCorruptedChars(String str) {
-		str = str.replaceAll("[^\\x00-\\x7F]", "");
 		return str;
 	}
 
@@ -106,13 +91,43 @@ public class BuildCSVandARFFFromExcel {
 				List<String> list = Files.readAllLines(file.toPath());
 				for (String line : list) {
 					String[] array = line.split(";");
-					set.add(array[0]);
+
+					// TODO fix the "Do", "Set", etc...
+					if (array[0].equalsIgnoreCase("Set") || array[0].equalsIgnoreCase("And")
+							|| array[0].equalsIgnoreCase("In") || array[0].equalsIgnoreCase("How")
+							|| array[0].equalsIgnoreCase("To") || array[0].equalsIgnoreCase("Be")
+							|| array[0].equalsIgnoreCase("A") || array[0].equalsIgnoreCase("That")
+							|| array[0].equalsIgnoreCase("Over") || array[0].equalsIgnoreCase("By")
+							|| array[0].equalsIgnoreCase("Any") || array[0].equalsIgnoreCase("The")
+							|| array[0].equalsIgnoreCase("On") || array[0].equalsIgnoreCase("Side")
+							|| array[0].equalsIgnoreCase("Even") || array[0].equalsIgnoreCase("Maybe")
+							|| array[0].equalsIgnoreCase("For") || array[0].equalsIgnoreCase("Best")
+							|| array[0].equalsIgnoreCase("Do") || array[0].equalsIgnoreCase("You")
+							|| array[0].equalsIgnoreCase("Non") || array[0].equalsIgnoreCase("An")
+							|| array[0].equalsIgnoreCase("Log") || array[0].equalsIgnoreCase("I")
+							|| array[0].equalsIgnoreCase("Master") || array[0].equalsIgnoreCase("Or")
+							|| array[0].equalsIgnoreCase("numbers") || array[0].equalsIgnoreCase("Very")
+							|| array[0].equalsIgnoreCase("Run") || array[0].equalsIgnoreCase("Java")
+							|| array[0].equalsIgnoreCase("Lot") || array[0].equalsIgnoreCase("Me")
+							|| array[0].equalsIgnoreCase("So") || array[0].equalsIgnoreCase("One")
+							|| array[0].equalsIgnoreCase("Due")) {
+
+						continue;
+
+					} else {
+						set.add(array[0]);
+					}
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return set;
+	}
+
+	public static String removeCorruptedChars(String str) {
+		str = str.replaceAll("[^\\x00-\\x7F]", "");
+		return str;
 	}
 
 	public static String replaceUsers(String str) {
@@ -183,7 +198,7 @@ public class BuildCSVandARFFFromExcel {
 	public static void buildCSVandARFFFromExcel(String excelFileLocation, String excelFileName) {
 
 		Workbook workbook = null;
-		
+
 		List<String> fakeNames = new ArrayList<String>();
 
 		try {
@@ -207,7 +222,7 @@ public class BuildCSVandARFFFromExcel {
 				String comment = cell1.getContents();
 
 				// remove breaklines: "\\r\\n|\\r|\\n" ==> " "
-				comment = replaceBreakLine(comment);
+				comment = replaceBreakLines(comment);
 
 				// remove corrupted chars
 				comment = removeCorruptedChars(comment);
@@ -235,9 +250,7 @@ public class BuildCSVandARFFFromExcel {
 
 				// escape double quotes: " ==> \"
 				comment = replaceDoubleQuotes(comment);
-				
 
-				
 				Cell cell2 = sheet.getCell(1, i);
 				String label = cell2.getContents();
 
@@ -270,7 +283,7 @@ public class BuildCSVandARFFFromExcel {
 				workbook.close();
 			}
 		}
-		
+
 		System.out.println(fakeNames);
 
 		System.out.println("Done with buildCSVandARFFFromExcel...");
