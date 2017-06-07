@@ -20,7 +20,6 @@ import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
-import solr.basics.Tuple;
 import solr.utils.Const;
 
 public class BuildCSVandARFFFromExcel {
@@ -62,23 +61,37 @@ public class BuildCSVandARFFFromExcel {
 	}
 
 	public static String replaceNumbers(String str) {
-		return str.replaceAll("-?\\+?\\d+", "NUMBER");
+		return str.replaceAll("\\b-?\\+?\\d+\\b", "NUMBER");
 	}
 
-	public static String replaceNames(String str) {
+	public static String replaceNames(String str, List<String> fakeNames) {
 
 		HashSet<String> nameList = readNameListFiles();
-
-		String[] words = str.split(" ");
+		
+		String[] words = str.split("[\\s.,;:\n!?()]+");
 
 		for (int i = 0; i < words.length; i++) {
-			if (nameList.contains(words[i])) {
-				str = str.replaceAll(words[i], "@USERNAME");
+
+			for (String name : nameList) {
+
+				if (name.equalsIgnoreCase(words[i])) {
+					
+					if (!fakeNames.contains(name)) {
+						fakeNames.add(name);
+					}
+
+					str = str.replaceAll("\\b" + words[i] + "\\b", "@USERNAME");
+				}
 			}
 		}
 		
 		//TODO fix the "Do", "Set", etc...
 
+		return str;
+	}
+	
+	public static String removeCorruptedChars(String str) {
+		str = str.replaceAll("[^\\x00-\\x7F]", "");
 		return str;
 	}
 
@@ -170,6 +183,8 @@ public class BuildCSVandARFFFromExcel {
 	public static void buildCSVandARFFFromExcel(String excelFileLocation, String excelFileName) {
 
 		Workbook workbook = null;
+		
+		List<String> fakeNames = new ArrayList<String>();
 
 		try {
 
@@ -189,14 +204,19 @@ public class BuildCSVandARFFFromExcel {
 			for (int i = 0; i < 396; i++) {
 
 				Cell cell1 = sheet.getCell(0, i);
-
 				String comment = cell1.getContents();
 
 				// remove breaklines: "\\r\\n|\\r|\\n" ==> " "
 				comment = replaceBreakLine(comment);
 
+				// remove corrupted chars
+				comment = removeCorruptedChars(comment);
+
 				// replace single quotes
 				comment = replaceSingleQuotes(comment);
+
+				// replace URLs
+				comment = replaceURLs(comment);
 
 				// replace greater than
 				comment = removeGreaterThan(comment);
@@ -205,10 +225,7 @@ public class BuildCSVandARFFFromExcel {
 				comment = replaceUsers(comment);
 
 				// replace names
-				comment = replaceNames(comment);
-
-				// replace URLs
-				comment = replaceURLs(comment);
+				comment = replaceNames(comment, fakeNames);
 
 				// replace commits SHA1
 				comment = replaceCommitSha1(comment);
@@ -218,13 +235,10 @@ public class BuildCSVandARFFFromExcel {
 
 				// escape double quotes: " ==> \"
 				comment = replaceDoubleQuotes(comment);
+				
 
-				// remove the weird chars:
-				// http://www.cafeconleche.org/books/xmljava/chapters/ch03s03.html
-				// http://docs.oracle.com/javase/6/docs/technotes/guides/intl/encoding.doc.html
-
+				
 				Cell cell2 = sheet.getCell(1, i);
-
 				String label = cell2.getContents();
 
 				sbCsv.append("\"" + comment + "\"" + "," + label + "\n");
@@ -256,6 +270,8 @@ public class BuildCSVandARFFFromExcel {
 				workbook.close();
 			}
 		}
+		
+		System.out.println(fakeNames);
 
 		System.out.println("Done with buildCSVandARFFFromExcel...");
 	}

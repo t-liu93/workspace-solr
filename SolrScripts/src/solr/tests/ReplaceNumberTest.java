@@ -1,58 +1,30 @@
 package solr.tests;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class ReplaceNumberTest {
-
-	public static String replaceNames(String str) {
-
-		String nameListPath = "C:/Users/febert/Documents/genderComputer/nameLists/";
-
-		HashSet<String> nameList = readNameListFiles(nameListPath);
-
-		String[] words = str.split(" ");
+	
+	public static String removeCorruptedChars(String str) {
 		
-		for (int i = 0; i < words.length; i++) {
-			if (nameList.contains(words[i])) {
-				str = str.replaceAll(words[i], "@USERNAME");
-			}
-		}
+		str = str.replaceAll("[^\\x00-\\x7F]", "");
 		
 		return str;
 	}
 
-	public static HashSet<String> readNameListFiles(String filePath) {
-		HashSet<String> set = new HashSet<String>();
-		try {
-			List<File> filesInFolder = new ArrayList<>();
-			filesInFolder.addAll(Files.walk(Paths.get(filePath)).filter(Files::isRegularFile).map(Path::toFile)
-					.collect(Collectors.toList()));
-			for (File file : filesInFolder) {
-				List<String> list = Files.readAllLines(file.toPath());
-				for (String line : list) {
-					String[] array = line.split(";");
-					set.add(array[0]);
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return set;
-	}
-
+	
 	public static void main(String[] args) {
+		
+//		String str = "Patch Set 1:  is this true? i can�t tell any difference in transfer speed with or without this patch. "
+//				+ "i still get roughly these numbers from \"adb sync\"  a -B build of bionic:  syncing /system... ... "
+//				+ "32 files pushed. 1492 files skipped. 1002 KB/s (COMMIT bytes in 1.827s) syncing /data... ... "
+//				+ "5 files pushed. 132 files skipped. 3997 KB/s (COMMIT bytes in 0.874s)";
 
-		String str = "Patch Do Set NUMBER: Alan  SureÃ¢â‚¬Â¦ Do you have any existing Felipe Jessica Mike";
+		
+//		String str = "Mike, How are Ana\n Patch Set 1: Reviewers (and experts in LatinIME and l18n): "
+//				+ "how practical is it. Josh! ,going, to be to merge this into our internal "
+//				+ "tree in a way that won't get stomped over by any l18n scripts?";
+		
+		String str = "NUMBER:  Sureâ€¦ @USERNAME reviewï¼Ÿ function â€˜parse_operandsâ€™: error: â€˜firsttype$definedâ€™ @USERNAME";
 
-		str = replaceNames(str);
+		str = removeCorruptedChars(str);
 
 		System.out.println(str);
 
