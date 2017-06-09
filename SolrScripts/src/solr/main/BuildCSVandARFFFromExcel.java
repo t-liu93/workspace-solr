@@ -64,15 +64,13 @@ public class BuildCSVandARFFFromExcel {
 		return str.replaceAll("\\b\\d+\\b", "NUMBER");
 	}
 
-	public static String replaceNames(String str, List<String> fakeNames) {
+	public static String replaceNames(String str) {
 		HashSet<String> nameList = readNameListFiles();
 		String[] words = str.split("[\\s.,;:\n!?()]+");
 		for (int i = 0; i < words.length; i++) {
 			for (String name : nameList) {
 				if (name.equalsIgnoreCase(words[i])) {
-					if (!fakeNames.contains(name)) {
-						fakeNames.add(name);
-					}
+					// System.out.println("|| array[0].equalsIgnoreCase(\"" + name + "\")");
 					str = str.replaceAll("\\b" + words[i] + "\\b", "@USERNAME");
 				}
 			}
@@ -92,7 +90,6 @@ public class BuildCSVandARFFFromExcel {
 				for (String line : list) {
 					String[] array = line.split(";");
 
-					// TODO fix the "Do", "Set", etc...
 					if (array[0].equalsIgnoreCase("Set") || array[0].equalsIgnoreCase("And")
 							|| array[0].equalsIgnoreCase("In") || array[0].equalsIgnoreCase("How")
 							|| array[0].equalsIgnoreCase("To") || array[0].equalsIgnoreCase("Be")
@@ -110,7 +107,57 @@ public class BuildCSVandARFFFromExcel {
 							|| array[0].equalsIgnoreCase("Run") || array[0].equalsIgnoreCase("Java")
 							|| array[0].equalsIgnoreCase("Lot") || array[0].equalsIgnoreCase("Me")
 							|| array[0].equalsIgnoreCase("So") || array[0].equalsIgnoreCase("One")
-							|| array[0].equalsIgnoreCase("Due")) {
+							|| array[0].equalsIgnoreCase("Due") || array[0].equalsIgnoreCase("Have")
+							|| array[0].equalsIgnoreCase("Ah") || array[0].equalsIgnoreCase("Alias")
+							|| array[0].equalsIgnoreCase("Api") || array[0].equalsIgnoreCase("Are")
+							|| array[0].equalsIgnoreCase("Ask") || array[0].equalsIgnoreCase("Big")
+							|| array[0].equalsIgnoreCase("C") || array[0].equalsIgnoreCase("cherry")
+							|| array[0].equalsIgnoreCase("Constant") || array[0].equalsIgnoreCase("D")
+							|| array[0].equalsIgnoreCase("Dear") || array[0].equalsIgnoreCase("desire")
+							|| array[0].equalsIgnoreCase("Done") || array[0].equalsIgnoreCase("Else")
+							|| array[0].equalsIgnoreCase("File") || array[0].equalsIgnoreCase("Final")
+							|| array[0].equalsIgnoreCase("Fine") || array[0].equalsIgnoreCase("G")
+							|| array[0].equalsIgnoreCase("Gerrit") || array[0].equalsIgnoreCase("Git")
+							|| array[0].equalsIgnoreCase("Given") || array[0].equalsIgnoreCase("Go")
+							|| array[0].equalsIgnoreCase("Great") || array[0].equalsIgnoreCase("Happy")
+							|| array[0].equalsIgnoreCase("Has") || array[0].equalsIgnoreCase("He")
+							|| array[0].equalsIgnoreCase("J") || array[0].equalsIgnoreCase("Jar")
+							|| array[0].equalsIgnoreCase("Jenkins") || array[0].equalsIgnoreCase("Kind")
+							|| array[0].equalsIgnoreCase("L") || array[0].equalsIgnoreCase("Light")
+							|| array[0].equalsIgnoreCase("Like") || array[0].equalsIgnoreCase("Line")
+							|| array[0].equalsIgnoreCase("Little") || array[0].equalsIgnoreCase("Long")
+							|| array[0].equalsIgnoreCase("Mailing") || array[0].equalsIgnoreCase("Make")
+							|| array[0].equalsIgnoreCase("May") || array[0].equalsIgnoreCase("Mean")
+							|| array[0].equalsIgnoreCase("Media") || array[0].equalsIgnoreCase("More")
+							|| array[0].equalsIgnoreCase("My") || array[0].equalsIgnoreCase("N")
+							|| array[0].equalsIgnoreCase("Name") || array[0].equalsIgnoreCase("Native")
+							|| array[0].equalsIgnoreCase("Nice") || array[0].equalsIgnoreCase("Ok")
+							|| array[0].equalsIgnoreCase("Os") || array[0].equalsIgnoreCase("Phone")
+							|| array[0].equalsIgnoreCase("Pick") || array[0].equalsIgnoreCase("ping")
+							|| array[0].equalsIgnoreCase("Pretty") || array[0].equalsIgnoreCase("Ready")
+							|| array[0].equalsIgnoreCase("Real") || array[0].equalsIgnoreCase("Said")
+							|| array[0].equalsIgnoreCase("Say") || array[0].equalsIgnoreCase("Silly")
+							|| array[0].equalsIgnoreCase("Skip") || array[0].equalsIgnoreCase("Sorry")
+							|| array[0].equalsIgnoreCase("Special") || array[0].equalsIgnoreCase("Sure")
+							|| array[0].equalsIgnoreCase("Tar") || array[0].equalsIgnoreCase("Than")
+							|| array[0].equalsIgnoreCase("Them") || array[0].equalsIgnoreCase("Tie")
+							|| array[0].equalsIgnoreCase("Time") || array[0].equalsIgnoreCase("Too")
+							|| array[0].equalsIgnoreCase("Tricky") || array[0].equalsIgnoreCase("Try")
+							|| array[0].equalsIgnoreCase("Us") || array[0].equalsIgnoreCase("Valid")
+							|| array[0].equalsIgnoreCase("With") || array[0].equalsIgnoreCase("Zero")
+							|| array[0].equalsIgnoreCase("Key") || array[0].equalsIgnoreCase("Ran")
+							|| array[0].equalsIgnoreCase("Im") || array[0].equalsIgnoreCase("Okay")
+							|| array[0].equalsIgnoreCase("Guy") || array[0].equalsIgnoreCase("Beta")
+							|| array[0].equalsIgnoreCase("grant") || array[0].equalsIgnoreCase("Made")
+							|| array[0].equalsIgnoreCase("Mark") || array[0].equalsIgnoreCase("Job")
+							|| array[0].equalsIgnoreCase("Core") || array[0].equalsIgnoreCase("bar")
+							|| array[0].equalsIgnoreCase("bill") || array[0].equalsIgnoreCase("Let")
+							|| array[0].equalsIgnoreCase("Late") || array[0].equalsIgnoreCase("Less")
+							|| array[0].equalsIgnoreCase("Dev") || array[0].equalsIgnoreCase("Sets")
+							|| array[0].equalsIgnoreCase("Ids") || array[0].equalsIgnoreCase("Trees")
+							|| array[0].equalsIgnoreCase("Per") || array[0].equalsIgnoreCase("Rom")
+							|| array[0].equalsIgnoreCase("Hammer") || array[0].equalsIgnoreCase("MD")
+							|| array[0].equalsIgnoreCase("Bat")) {
 
 						continue;
 
@@ -199,8 +246,6 @@ public class BuildCSVandARFFFromExcel {
 
 		Workbook workbook = null;
 
-		List<String> fakeNames = new ArrayList<String>();
-
 		try {
 
 			StringBuffer sbCsv = new StringBuffer();
@@ -240,7 +285,7 @@ public class BuildCSVandARFFFromExcel {
 				comment = replaceUsers(comment);
 
 				// replace names
-				comment = replaceNames(comment, fakeNames);
+				comment = replaceNames(comment);
 
 				// replace commits SHA1
 				comment = replaceCommitSha1(comment);
@@ -283,8 +328,6 @@ public class BuildCSVandARFFFromExcel {
 				workbook.close();
 			}
 		}
-
-		System.out.println(fakeNames);
 
 		System.out.println("Done with buildCSVandARFFFromExcel...");
 	}
