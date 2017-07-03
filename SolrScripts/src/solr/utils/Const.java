@@ -46,17 +46,11 @@ public class Const {
 
 	public static String CODE_REVIEW_ID = "code_review";
 
-	public static String MESSAGES_ID = "messages.id";
+	public static String AUTHOR_ID = "author._account_id";
 
-	public static String MESSAGES_MESSAGE = "messages.message";
-
-	public static String FILES_COMMENTS_ID = "files.comments.id";
-
-	public static String FILES_COMMENTS_AUTHOR_ID = "files.comments.author._account_id";
-
-	public static String FILES_COMMENTS_MESSAGE = "files.comments.message";
-
-	public static String FILES_COMMENTS_PATCH_SET = "files.comments.patch_set";
+	public static String AUTHOR_NAME = "author.name";
+	
+	public static String AUTHOR_EMAIL = "author.email";
 
 	public static String PATCH_SET = "patch_set";
 
@@ -64,20 +58,6 @@ public class Const {
 
 	public static String MESSAGE = "message";
 
-	public static String COMMENTS_ID = "comments.id";
-
-	public static String MESSAGES_AUTHOR_ID = "author._account_id";
-
-	public static String COMMENTS_AUTHOR_ID = "comments.author._account_id";
-
-	public static String MESSAGES_AUTHOR_NAME = "messages.author.name";
-
-	public static String COMMENTS_MESSAGE = "comments.message";
-
-	public static String COMMENTS_PATCH_SET = "comments.patch_set";
-
-	public static String COMMENTS_LINE = "comments.line";
-	
 	public static String ANNOTATORS = "annotators";
 	
 	public static String STANFORD_NLP_ANNOTATORS = "tokenize, ssplit, parse";
@@ -92,9 +72,15 @@ public class Const {
 	
 	public static String CSV_HEADLINE_COMMENTS = "Feature;Number of comments";
 	
+	public static String CSV_HEADLINE_EMAILS = "ID,Name,Email";
+	
+	public static String EMAILS = "emails";
+	
 	public static String GENERAL = "general";
 	
 	public static String INLINE = "inline";
+	
+	public static String CONFUSION_IDS = "hedges-confusion-id";
 	
 	public static String ALL = "all";
 	
@@ -191,6 +177,8 @@ public class Const {
 	public static String TRAINING_SET_IDS = "training-set-ID";
 	
 	public static String _RESULTS = "-results";
+	
+	public static String EMAIL_LIST = "emails";
 	
 	public static String SOURCES = "sources";
 	
